@@ -1,20 +1,20 @@
-import styles from "./Product.styles.css";
+
 const Product = () => {
 // TENGO QUE HACER UN CHECKBOT EL CUAL TENGA MUEBLES Y QUE DENTRO TENGA TODAS LAS OPCIONES DE LOS MUEBLES  Y OTRO DE COLORES, CON TODOS LOS COLORES
 
     return (
-        <div className={styles.container}>
+        <div >
             <h1>
                 Aquí van los muebles
             </h1>
             <select>
-                <option className={styles.select} value="">MUEBLES</option>
+                <option value="">MUEBLES</option>
 
             </select>
 
 
             <select>
-                <option className={styles.select} value="">COLOR</option>
+                <option value="">COLOR</option>
             </select>
           
             <select >
