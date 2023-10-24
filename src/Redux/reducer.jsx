@@ -1,13 +1,13 @@
 
-function reducer () {
-  switch (action.type) {
-case "RESTART_FILTER":
-            return {
-                ...state,
-                filterTeams: []
-            }
-        default: return state;
-}
+///function reducer () {
+  //switch (action.type) {
+//case "a":
+            //return {
+                //...state,
+               // filterTeams: []
+           // }
+       // default: return state;
+/*}
 }
 
-export default reducer;
+export default reducer; */
