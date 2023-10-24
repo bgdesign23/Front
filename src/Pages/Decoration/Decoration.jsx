@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const FormDecoracion = () => {
+const Decoracion = () => {
 
     return (
         <div>
@@ -17,4 +17,4 @@ const FormDecoracion = () => {
 
 }
 
-export default FormDecoracion
+export default Decoracion
