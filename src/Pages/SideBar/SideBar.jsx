@@ -1,10 +1,10 @@
-const SideBar = () => {
+import { Link } from 'react-router-dom'
+import styles from '../SideBar/SideBar.module.css'
+const SideBar = ({isOpen}) => {
 
     return (
-        <div>
-            <h1>
-                Esta va a ser la side bar con los filtros
-            </h1>
+        <div className={`${styles.sideBar} ${isOpen ? styles.open : ''}`}>
+           <Link>Inicio</Link>
         </div>
     )
 
