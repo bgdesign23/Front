@@ -1,0 +1,36 @@
+/* FormDecoracion.module.css */
+
+/* Estilos para el contenedor principal */
+.containerFor {
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #e21a1a;
+    border-radius: 5px;
+  }
+  
+  /* Estilos para los campos de entrada */
+  .containerFor input[type="text"],
+  input[type="tel"],
+  textarea {
+    width: 85%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Estilos para el botón de enviar */
+  .containerFor button {
+    background-color: #ff7300;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para los espacios entre elementos */
+  .containerFor br {
+    margin: 10px 0;
+  }
+  
