@@ -1,10 +1,12 @@
 import styles from "./App.module.css";
 import Home from "./Pages/Home/Home";
-import FormDecoracion from "./Pages/Decoration/Decoration";
+
 import SideBar from "./Pages/SideBar/SideBar";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Product from "./Pages/Product/Product";
+import Decoracion from "./Pages/Decoration/Decoration";
+import FormDecoracion from "./Pages/FormDecoracion/FormDecoracion";
 
 
 
@@ -25,8 +27,8 @@ function App() {
     <div className={styles.contentContainer}>
       <Routes>
         <Route path='/' element={<Home/>} />
-        <Route path='/home/decoracion' element={<FormDecoracion/>} />
-
+        <Route path='/home/decoracion' element={<Decoracion/>} />
+        <Route path="/form/decoracion" element={<FormDecoracion/>}/>
         <Route path="/home/product" element={<Product/>} />
 
       </Routes>  
