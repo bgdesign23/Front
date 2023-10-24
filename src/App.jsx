@@ -1,10 +1,16 @@
+import Home from "./Pages/Home/Home";
+import FormDecoracion from "./Pages/Decoracion/Decoracion";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 
 function App() {
   return (
     <>
-      <span>Cargandoo</span>    
+      <Routes>
+        <Route path='/home' element={<Home/>} />
+        <Route path='/home/decoracion' element={<FormDecoracion/>} />
+      </Routes>  
     </>
   );
 }
