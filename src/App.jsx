@@ -4,6 +4,8 @@ import FormDecoracion from "./Pages/Decoration/Decoration";
 import SideBar from "./Pages/SideBar/SideBar";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import Product from "./Pages/Product/Product";
+
 
 
 function App() {
@@ -24,6 +26,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/home/decoracion' element={<FormDecoracion/>} />
+
+        <Route path="/home/product" element={<Product/>} />
+
       </Routes>  
       </div>
     </>
