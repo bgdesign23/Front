@@ -1,13 +1,16 @@
 import SearchBar from "../../Components/SearchBar/SearchBar";
-import CartShop from "../../Pages/CartShop/CartShop"
+import styles from "../NavBar/NavBar.module.css";
+
+
 const NavBar = () => {
 
     return (
-        <div>
-            
+        <nav className={styles.navBar}>
+          <div>
             <SearchBar/>
-            <CartShop/>
-        </div>
+
+          </div>
+        </nav>
     )
 
 }

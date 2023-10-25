@@ -8,6 +8,7 @@ import Decoracion from "./Pages/Decoration/Decoration";
 import FormDecoracion from "./Pages/FormDecoracion/FormDecoracion";
 import LoginForm from "./Pages/LoginForm/LoginForm";
 import FormRegistro from "./Pages/FormRegistro/FormRegistro";
+import NavBar from "./Pages/NavBar/NavBar";
 
 
 
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <>
+    <NavBar/>
     <div className={styles.sideBar}>
       <SideBar isOpen={isOpenSideBar} onClick={() => setIsOpenSideBar(!isOpenSideBar)}/>
     </div>
