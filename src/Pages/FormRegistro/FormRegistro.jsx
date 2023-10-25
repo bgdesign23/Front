@@ -5,16 +5,51 @@ function FormRegistro () {
         <h2>Registrarse</h2>
            <form >
           <div>
-            <label>Usuario</label>
-            <input> </input>
-             
-          </div>
-          <div>
+            <label>Nombre Completo</label>
+            <input 
+            type="text"
+            value={input.nombre}
+            name="nombre"
+            onChange={()} 
+            />
+            <label>Apellido:</label>
+            <input
+            type="text"
+            value={input.apellido}
+            name="apellido"
+            onChange={}
+              />
+              <label>Nacionalidad:</label>
+                <input
+                  type="text"
+                  value={input.nacionalidad}
+                  name="nacionalidad"
+                  onChange={}
+                  />
+                   <label>Fecha de Nacimiento:</label>
+                        <input
+                            type="text"
+                            value={input.nacimiento}
+                            name="nacimiento"
+                            onChange={}
+                        />
+                 <label>Email: </label>
+                       <input 
+                      type="text"
+                       value={input.email}
+                      name="email"
+                   onChange={}    
+                   />       
             <label>Contraseña</label>
-            <input> </input>
+            <input 
+            type="text"
+            value={input.password}
+            name="contraseña"
+            onChange={}
+            />
   
           </div>
-          <button type="submit"> Registro </button>
+          <button type="submit"> Registrarme </button>
         </form>
       </div>
     );

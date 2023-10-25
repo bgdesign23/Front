@@ -1,13 +1,15 @@
+import SearchBar from "../../Components/SearchBar/SearchBar";
+
 const NavBar = () => {
 
     return (
         <div>
-            <h1>
-                Aquí va la Navbar
-            </h1>
+            
+            <SearchBar/>
+
         </div>
     )
 
 }
 
-export default NavBar
+export default NavBar;

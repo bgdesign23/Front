@@ -2,9 +2,15 @@ const SearchBar = () => {
 
     return (
         <div>
-            <h1>
-                Aquí va el código del search bar
-            </h1>
+        
+            <input
+                type="text"
+                placeholder="Buscar productos"
+                value= 
+            />
+            
+            <button type="submit" onClick={ }> Buscar </button>
+            <button onClick={ }> Borrar </button>
         </div>
     )
 
