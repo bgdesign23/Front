@@ -1,0 +1,14 @@
+.products_container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    /* max-width: 100px;
+    min-height: 64vh; */
+    /* padding-inline: 22rem;
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+    row-gap: 6rem; */
+    cursor: pointer;
+    margin-top: 1rem;
+    order: 2;
+}

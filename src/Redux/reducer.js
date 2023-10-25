@@ -1,13 +1,24 @@
+import { GET_ALL_PRODUCTS } from "./actionsTypes";
 
-///function reducer () {
-  //switch (action.type) {
-//case "a":
-            //return {
-                //...state,
-               // filterTeams: []
-           // }
-       // default: return state;
-/*}
-}
+let initialState = {
+  products: [],
+  error: null,
+  products_Details: {},
+  category: [],
+  products_Copy: [],
+};
 
-export default reducer; */
+const Reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_ALL_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload,
+        products_Copy: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export default Reducer;

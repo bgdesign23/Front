@@ -1,0 +1,13 @@
+.cardContainer{
+        display: inline-block;
+        width: 200px;
+        height: 380px;
+        background-color: #222622e4;
+        padding: 15px;
+        justify-content: center;
+        align-items: center;
+        color: rgb(255, 255, 255);
+}
+.imagen {
+        width: 70px;
+}

@@ -1,18 +1,13 @@
 .Footer {
     position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
     width:  100%; /* Resta el ancho de la barra lateral al 100% */
     background-color: #393636;
     color: #fff;
     text-align: center;
-    padding: 5px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    padding: 10px;
      /* Mismo ancho que la barra lateral */
-}
+  }
 
 /* Dividir la lista del equipo en dos columnas*/
 .TeamSection {
