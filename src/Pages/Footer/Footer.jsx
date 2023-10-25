@@ -41,6 +41,7 @@ function Footer() {
         <div className={style.FooterCopyright}>
           <p> A© 2023 Black Group Design. Todos los derechos reservados </p>
         </div>
+
       </footer>
         
     );
