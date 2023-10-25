@@ -1,8 +1,8 @@
 import Styles from "../Product/card.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Card({ id, name, price, image,}) {
-  const navigate = useNavigate();
+  
 
   return (
     <>

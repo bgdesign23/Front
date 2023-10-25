@@ -1,9 +1,13 @@
 import Styles from "../Product/Product.module.css";
 import Card from "../Product/Card";
+import Filters from "../../Components/Filters/Filters";
 
 export default function Cards({ productos }) {
   return (
+    <>
+    <Filters/>
     <div className={Styles.products_container}>
+      
       {productos.map( product => (
               <Card
                 key={product.id}
@@ -18,7 +22,9 @@ export default function Cards({ productos }) {
               />
             )
            )}
+           
       
     </div>
+    </>
   );
 }
