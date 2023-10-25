@@ -1,25 +1,43 @@
-import { Route, Routes } from "react-router-dom";
-// import Nav from "./components/nav_component/Nav";
-import "./App.css";
-import Home from "./views/home/Home";
-import Details from "./views/details/Details";
-import axios from "axios";
-import Landing from "./views/landingPage/LandingPage";
-import Create from "./views/create/Create";
+import styles from "./App.module.css";
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home/Home";
+import SideBar from "./Pages/SideBar/SideBar";
+import Product from "./Pages/Product/Product";
+import Decoracion from "./Pages/Decoration/Decoration";
+import FormDecoracion from "./Pages/FormDecoracion/FormDecoracion";
+import LoginForm from "./Pages/LoginForm/LoginForm";
+import FormRegistro from "./Pages/FormRegistro/FormRegistro";
+import NavBar from "./Pages/NavBar/NavBar";
 
-// import { useState } from "react";
-axios.defaults.baseURL = "http://localhost:3001";
+
 
 function App() {
+  const [isOpenSideBar, setIsOpenSideBar] = useState(false);
+
+
   return (
-    <div className="App">
-      {/* <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/detail/:id" element={<Details />} />
-        <Route path="/create" element={<Create />} />
-      </Routes> */}
+    <>
+    <NavBar/>
+    <div className={styles.sideBar}>
+      <SideBar isOpen={isOpenSideBar} onClick={() => setIsOpenSideBar(!isOpenSideBar)}/>
     </div>
+
+    <button className={styles.toggleSidebarBtn} onClick={() => setIsOpenSideBar(!isOpenSideBar)}> SideBar
+      {isOpenSideBar ? "Close" : "Open"}
+    </button>
+
+    <div className={styles.contentContainer}>
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/home/decoracion' element={<Decoracion/>} />
+        <Route path="/form/decoracion" element={<FormDecoracion/>}/>
+        <Route path="/home/product" element={<Product/>} />
+        <Route path="/form/login" element={<LoginForm/>}/>
+        <Route path="/form/register" element={<FormRegistro/>} />
+      </Routes>  
+      </div>
+    </>
   );
 }
 
