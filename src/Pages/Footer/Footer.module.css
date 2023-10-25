@@ -9,3 +9,26 @@
      /* Mismo ancho que la barra lateral */
   }
 
+/* Dividir la lista del equipo en dos columnas*/
+.TeamSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Alinear derechos reservados al centro*/
+.FooterCopyright {
+  grid-column: span 3;
+  text-align: center;
+}
+
+.Logo {
+  background-image: url('../../../public/BG_Design_sin_fondo.png');
+  background-size: cover;
+  width: 100px; /* Adjust the width as needed */
+  height: 100px; /* Adjust the height as needed */
+}
