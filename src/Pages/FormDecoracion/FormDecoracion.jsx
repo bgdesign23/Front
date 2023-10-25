@@ -8,7 +8,6 @@ function FormDecoracion() {
     Apellido:'',
     NumeroDeTelefono: '', 
     Localidad: '',
-    Nacionalidad: '', 
     Mensaje: ''
  });
 
@@ -56,16 +55,7 @@ function FormDecoracion() {
         />
         <br />
         <br />
-        <input
-          type="text"
-          name="Nacionalidad"
-          value={formData.Nacionalidad}
-          onChange={handleChange}
-          placeholder="Nacionalidad"
-          required
-        /> 
-        <br />
-        <br />
+       
         <input
           type="text"
           name="Localidad"

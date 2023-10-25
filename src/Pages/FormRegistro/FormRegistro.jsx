@@ -1,18 +1,27 @@
+import styles from '../FormRegistro/FormRegistro.module.css'
+
+
 function FormRegistro () {
 
     return (
-      <form>
+      <form className={styles.containerRegistro}>
         <label htmlFor="nombre">Nombre: </label>
         <input type="text"name="nombre"/>
        <hr/>
         <label htmlFor="apellido">Apellido: </label>
         <input type="text" name="apellido"/>
+        <hr/>
+        <label htmlFor="Email">Email: </label>
+        <input type="text" name="Email"/>
        <hr/>
-        <label htmlFor="localidad">Localidad: </label>
-        <input type="text" name="localidad"/>
-       <hr/>
-        <label htmlFor="localidad">Localidad: </label>
-        <input type="text" name="localidad"/>
+        <label htmlFor="CONTRASEÑA">Contraseña: </label>
+        <input type="text" name="CONTRASEÑA"/>
+        <hr/>
+        <label htmlFor="confirmacion">Confirmar Contraseña: </label>
+        <input type="text" name="confirmacion"/>
+        <br />
+        <br />
+        <button type="submit"> Crear cuenta </button>
       </form>
       
       );

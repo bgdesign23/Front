@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
+import Footer from '../Footer/Footer'
+import style from "../Home/Home.module.css"
 
 const Home = () => {
 
     return (
-        <div>
+        <div className={style.home}>
             <h1>
                 Este es el Home
             </h1>
@@ -13,7 +15,7 @@ const Home = () => {
             <Link to='/home/decoracion'>
                 <button> DECORACIÓN </button>
             </Link>
-           
+           <Footer/>
         </div>
     )
 
