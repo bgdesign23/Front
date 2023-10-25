@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import styles from '../FormDecoracion/formDecoracion.module.css'
+import styles from './formDecoracion.module.css'
 
 
 function FormDecoracion() {

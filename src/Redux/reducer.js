@@ -17,7 +17,7 @@ const Reducer = (state = initialState, action) => {
         products_Copy: action.payload,
       };
     default:
-      return state;
+      return {...state};
   }
 };
 
