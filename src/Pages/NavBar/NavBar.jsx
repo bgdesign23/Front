@@ -1,13 +1,13 @@
 import SearchBar from "../../Components/SearchBar/SearchBar";
-
+import styles from "../NavBar/NavBar.module.css";
 const NavBar = () => {
 
     return (
-        <div>
-            
+        <nav className={styles.navBar}>
+          <div>
             <SearchBar/>
-
-        </div>
+          </div>
+        </nav>
     )
 
 }
