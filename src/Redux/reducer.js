@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS } from "./actionsTypes";
+import { GET_ALL_PRODUCTS,  ORDERBYPRICE } from "./actionsTypes";
 
 let initialState = {
   products: [],
@@ -16,6 +16,14 @@ const Reducer = (state = initialState, action) => {
         products: action.payload,
         products_Copy: action.payload,
       };
+
+    case ORDERBYPRICE:
+      return{
+        ...state,
+        products: action.payload,
+
+      }  
+
     default:
       return {...state};
   }
