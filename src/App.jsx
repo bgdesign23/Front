@@ -1,12 +1,13 @@
 import styles from "./App.module.css";
-import Home from "./Pages/Home/Home";
-
-import SideBar from "./Pages/SideBar/SideBar";
-import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home/Home";
+import SideBar from "./Pages/SideBar/SideBar";
 import Product from "./Pages/Product/Product";
 import Decoracion from "./Pages/Decoration/Decoration";
 import FormDecoracion from "./Pages/FormDecoracion/FormDecoracion";
+import LoginForm from "./Pages/LoginForm/LoginForm";
+import FormRegistro from "./Pages/FormRegistro/FormRegistro";
 
 
 
@@ -30,7 +31,8 @@ function App() {
         <Route path='/home/decoracion' element={<Decoracion/>} />
         <Route path="/form/decoracion" element={<FormDecoracion/>}/>
         <Route path="/home/product" element={<Product/>} />
-
+        <Route path="/form/login" element={<LoginForm/>}/>
+        <Route path="/form/register" element={<FormRegistro/>} />
       </Routes>  
       </div>
     </>

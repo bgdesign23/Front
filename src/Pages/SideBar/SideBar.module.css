@@ -1,21 +1,22 @@
 .sideBar {
-    width: 250px;       /* Ancho de tu barra lateral */
-    height: 100vh;      /* Asegura que ocupe todo el alto de la pantalla */
-    position: fixed;    /* Fijo a la pantalla */
-    left: -250px;       /* Comienza oculto, fuera de la pantalla */
+    width: 200px;      
+    height: 100vh;      
+    position: fixed;   
+    left: -250px;       
     top: 0;             
-    background-color: #333; /* Un fondo oscuro para tu barra lateral */
-    color: white;       /* Texto blanco */
-    overflow-y: auto;   /* Si hay demasiado contenido, que sea desplazable */
-    transition: 0.3s ease;  /* Transición suave al abrir/cerrar */
+    background-color: #333; 
+    color: white;      
+    overflow-y: auto;   
     z-index: 10;
+    padding-top: 60px;
+    transition: 1s ease-in-out;
   }
   
   .sideBar.open {
-    left: 0px;    /* Cuando está abierta, la barra lateral se posiciona a la izquierda */
+    left: 0px;    
 }
   
-  /* Estilizar el enlace dentro de la barra lateral */
+
   .sideBar a {
     display: block;
     padding: 10px 15px;
@@ -28,3 +29,11 @@
     }
   }
   
+  .buttonslogin{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    bottom: 4rem;
+  }

@@ -1,30 +1,17 @@
 
 function LoginForm() {
-
-  return (
-    <div>
-      <h2>Iniciar Sesion</h2>
-         <form >
-        <div>
-        <label>Email: </label>
-        <input 
-            type="text"
-       value={input.email}
-          name="email"
-          onChange={}    
-                   />       
-            <label>Contraseña</label>
-            <input 
-            type="text"
-            value={input.password}
-            name="contraseña"
-            onChange={}
-            />       
-            </div>
-        <button type="submit">Iniciar Sesion</button>
+  return(
+      <form>
+          <h1>FORM</h1>
+          <label htmlFor="email">Email:</label>
+          <input name="email" type="email" placeholder="Ingrese su email"/>
+          <hr/>
+          <label htmlFor="password">Password:  </label>
+          <input name="password" type="password" placeholder="Ingrese su contraseña"/>
+          <hr/>
+          <button  className="btoninicial">SUBMIT</button>
       </form>
-    </div>
-  );
+  )
 }
 
 export default LoginForm;
