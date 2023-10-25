@@ -1,9 +1,10 @@
+import style from "../Footer/Footer.module.css"
 function Footer() {
     return (
-      
-        <div>
-        
-        </div>
+      <footer className={style.footer}>
+        <p>pioui</p>
+
+      </footer>
         
     );
   }

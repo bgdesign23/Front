@@ -1,2 +1,29 @@
+.footer {
+    background-color: #121212;
+    color: #fff;
+    padding: 1px;
+    text-align: center;
+    border-top: 1px solid #404040;
+    z-index: 1; 
 
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+  }
 
