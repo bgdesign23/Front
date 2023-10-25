@@ -1,4 +1,4 @@
-import style from "../LoginForm/LoginForm.module.css"
+import style from "./LoginForm.module.css"
 function LoginForm() {
   return(
     <div className={style.login}>

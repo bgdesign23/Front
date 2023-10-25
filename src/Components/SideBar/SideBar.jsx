@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import styles from '../SideBar/SideBar.module.css'
+import styles from './SideBar.module.css'
 
 
 const SideBar = ({isOpen}) => {

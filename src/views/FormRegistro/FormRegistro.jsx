@@ -1,4 +1,4 @@
-import styles from '../FormRegistro/FormRegistro.module.css'
+import styles from './FormRegistro.module.css'
 
 
 function FormRegistro () {
