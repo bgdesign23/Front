@@ -46,7 +46,7 @@
 
 .contentContainer {
 margin: 0 auto; /* Esto centra el contenedor horizontalmente */
-max-width: 1200px; /* o cualquier otro valor que desees para limitar el ancho máximo del contenido */
-padding: 50px 15px; /* Espaciado alrededor del contenido */
+/* max-width: 1200px; o cualquier otro valor que desees para limitar el ancho máximo del contenido */
+padding: 0px 0px; /* Espaciado alrededor del contenido */
 text-align: center; /* Esto centra el contenido textual horizontalmente */
 }
