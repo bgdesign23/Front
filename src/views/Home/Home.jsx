@@ -1,9 +1,30 @@
 import {useNavigate } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import style from "./Home.module.css";
+import { useState, useEffect } from "react";
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const [showFooter, setShowFooter] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if(window.scrollY < 100){
+        setShowFooter(false)
+        console.log("El footer debería mostrarse");
+      } else {
+        setShowFooter(true)
+        console.log("El footer debería mostrarse");
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
 
   return (
@@ -13,9 +34,8 @@ const Home = () => {
       <button onClick={() => navigate("/home/product")}> MUEBLES </button>
 
       <button onClick={() => navigate("/home/decoracion")}> DECORACIÓN </button>
-      
-      
-      <Footer />
+
+     { showFooter && <Footer/>}
     </div>
   );
 };
