@@ -1,7 +1,7 @@
 .cardContainer{
         display: inline-block;
         width: 200px;
-        height: 380px;
+        height: 300px;
         background-color: #222622e4;
         padding: 15px;
         justify-content: center;
@@ -9,5 +9,7 @@
         color: rgb(255, 255, 255);
 }
 .imagen {
-        width: 70px;
+        width: 200px;
+        height: 150px;
+        border-radius: 20px;
 }
