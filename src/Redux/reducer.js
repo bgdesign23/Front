@@ -1,4 +1,4 @@
-import { CLEAR_DETAIL, GET_ALL_PRODUCTS,  GET_DETAIL,  ORDERBYPRICE } from "./actionsTypes";
+import { CLEAR_DETAIL,  FILTER_BY_COLOR,  GET_ALL_PRODUCTS,  GET_DETAIL,  ORDERBYPRICE } from "./actionsTypes";
 
 let initialState = {
   products: [],
@@ -32,6 +32,16 @@ const Reducer = (state = initialState, action) => {
       return{
         ...state, 
         products_Details: {}
+      }
+    // case FILTER_BY_CATEGORIES:
+    //   return{
+    //     ...state,
+    //     category: action.payload
+    //   }  
+    case FILTER_BY_COLOR:
+      return{
+        ...state,
+        products: action.payload
       }
 
     default:
