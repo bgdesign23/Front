@@ -1,8 +1,13 @@
 import axios from "axios";
-import { CLEAR_DETAIL, GET_ALL_PRODUCTS, GET_BY_NAME, GET_DETAIL, ORDERBYPRICE } from "../Redux/actionsTypes";
-const URL = "http://localhost:3001";
-// const URL = "https://backend-muebles.vercel.app/";
-
+import {
+  CLEAR_DETAIL,
+  GET_ALL_PRODUCTS,
+  GET_BY_NAME,
+  GET_DETAIL,
+  ORDERBYPRICE,
+} from "../Redux/actionsTypes";
+// const URL = "http://localhost:3001";
+const URL = "https://backend-muebles.vercel.app/";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -12,7 +17,6 @@ export const getProductsAction = () => {
       return dispatch({
         type: GET_ALL_PRODUCTS,
         payload: data,
-        
       });
     } catch (error) {
       console.log(error.message);
@@ -20,28 +24,26 @@ export const getProductsAction = () => {
   };
 };
 
-
 export const getDetail = (id) => {
- return async (dispatch) => {
-  try {
-    const {data} = await axios.get(`${URL}/products/${id}`)
-   
-    return dispatch({
-      type: GET_DETAIL, 
-      payload: data
-    })
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/products/${id}`);
 
-  } catch (error) {
-    console.log(error.message);
-  }
- }
-}
+      return dispatch({
+        type: GET_DETAIL,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
 
 export const cleanDetail = () => {
   return {
-    type: CLEAR_DETAIL
-  }
-}
+    type: CLEAR_DETAIL,
+  };
+};
 
 export const orderbyprice = (product, orderDirection) => {
   try {
@@ -60,7 +62,7 @@ export const orderbyprice = (product, orderDirection) => {
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 
 export const getcategories = () => {
   return async (dispatch) => {
@@ -75,19 +77,19 @@ export const getcategories = () => {
       console.log(error.message);
     }
   };
-}
+};
 
 export const getByName = (name) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(`${URL}/search/${name}`)
+      const { data } = await axios.get(`${URL}/search/${name}`);
       console.log(data);
       return dispatch({
-        type: GET_BY_NAME, 
-        payload: data
-      })
+        type: GET_BY_NAME,
+        payload: data,
+      });
     } catch (error) {
-       console.log(error.message);
+      console.log(error.message);
     }
-  }
-}
+  };
+};
