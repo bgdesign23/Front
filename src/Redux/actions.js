@@ -3,6 +3,7 @@ import { CLEAR_DETAIL, GET_ALL_PRODUCTS, GET_DETAIL, ORDERBYPRICE } from "../Red
 const URL = "http://localhost:3001";
 // const URL = "https://backend-muebles.vercel.app/";
 
+
 export const getProductsAction = () => {
   return async (dispatch) => {
     try {
@@ -27,7 +28,6 @@ export const orderbyprice = (product, orderDirection) => {
     if (orderDirection === "Mayor") {
       orderByprice.sort((a, b) => b.price - a.price);
     }
-
     return {
       type: ORDERBYPRICE,
       payload: orderByprice,
@@ -58,3 +58,19 @@ export const cleanDetail = () => {
     type: CLEAR_DETAIL
   }
 }
+
+
+// export const getcategories = () => {
+//   return async (dispatch) => {
+//     try {
+//       const { data } = await axios.get(`${URL}/categories`);
+//       return dispatch({
+//         type: FILTER_BY_CATEGORIES,
+//         payload: data,
+        
+//       });
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+//   };
+// }
