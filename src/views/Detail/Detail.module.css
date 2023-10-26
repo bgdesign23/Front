@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    margin: auto;
+    border: 1px solid #252525;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 60%;  /* Ajustar según prefieras */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.imageContainer {
+    flex: 1;
+    max-width: 40%;  /* Ajustar según prefieras */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    width: 200px;
+    height: 200px; /* Ajustar según prefieras */
+    object-fit: cover; /* Esto hará que la imagen mantenga su aspecto */
+    border-radius: 8px;
+}
+
+.detailsContainer {
+    flex: 2;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.description, .type, .stock, .color, .material, .category {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.price {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: auto;  /* Push the price to the bottom */
+}
+
+/* Estilo para el botón */
+.button {
+    align-self: center;
+    padding: 10px 20px;
+    margin: center; /* Centrar a la derecha */
+    border: none;
+    border-radius: 4px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.backButton {
+    position: absolute;  /* Posicionamos el botón de manera absoluta con respecto al contenedor más cercano con posición relativa o el cuerpo si no hay ninguno. */
+    bottom: 40px; /* Distancia desde la parte superior */
+    right: 20px;  /* Distancia desde la izquierda */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.backButton:hover {
+    background-color: #0056b3;
+}

@@ -1,14 +1,23 @@
 import Styles from "../Product/Product.module.css";
 import Card from "../Product/Card";
 import Filters from "../../Components/Filters/Filters";
+import { useState } from "react";
 
 export default function Cards({ productos }) {
+
+  const [paged, setPaged] = useState(10);
+
+  const handlePaged = (event) => {
+    setPaged(paged + 10);
+  }
+
+  const pagedSection = productos.slice(0, paged)
   return (
     <>
     <Filters/>
     <div className={Styles.products_container}>
       
-      {productos.map( product => (
+      {pagedSection.map( product => (
               <Card
                 key={product.id}
                 id={product.id}
@@ -23,8 +32,8 @@ export default function Cards({ productos }) {
             )
            )}
            
-      
     </div>
+      <button onClick={handlePaged}>Mas Productos</button>
     </>
   );
 }
