@@ -16,15 +16,6 @@ const SideBar = ({isOpen}) => {
           <Link to="/home/product">
                Productos
           </Link>
-          <Link>
-               Hogar
-          </Link>
-          <Link>
-               Comercial
-          </Link>
-          <Link>
-               Oficina
-          </Link>
           
           <div className={styles.buttonslogin}>
                 <Link to="/form/register">

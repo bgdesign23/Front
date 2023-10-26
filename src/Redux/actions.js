@@ -66,10 +66,10 @@ export const getcategories = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${URL}/categories`);
+      console.log(data);
       return dispatch({
         type: FILTER_BY_CATEGORIES,
         payload: data,
-        
       });
     } catch (error) {
       console.log(error.message);
