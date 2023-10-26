@@ -10,7 +10,7 @@ import LoginForm from "./views/LoginForm/LoginForm";
 import FormRegistro from "./views/FormRegistro/FormRegistro";
 import NavBar from "./Components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsAction } from "./redux/actions";
+import { getProductsAction } from "./Redux/actions";
 import Detail from "./views/Detail/Detail";
 
 
