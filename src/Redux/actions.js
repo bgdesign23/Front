@@ -5,9 +5,10 @@ import {
   GET_BY_NAME,
   GET_DETAIL,
   ORDERBYPRICE,
+  CLEAR_PRODUCTS,
 } from "../Redux/actionsTypes";
-// const URL = "http://localhost:3001";
-const URL = "https://backend-muebles.vercel.app/";
+const URL = "http://localhost:3001";
+// const URL = "https://backend-muebles.vercel.app/";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -82,8 +83,7 @@ export const getcategories = () => {
 export const getByName = (name) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`${URL}/search/${name}`);
-      console.log(data);
+      const { data } = await axios.get(`${URL}/products/search/${name}`);
       return dispatch({
         type: GET_BY_NAME,
         payload: data,
@@ -91,5 +91,11 @@ export const getByName = (name) => {
     } catch (error) {
       console.log(error.message);
     }
+  };
+};
+
+export const reset_ProductList = () => {
+  return {
+    type: CLEAR_PRODUCTS,
   };
 };
