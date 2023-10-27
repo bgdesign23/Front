@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import {
   CLEAR_DETAIL,
   FILTER_BY_COLOR,
@@ -9,6 +10,9 @@ import {
   CLEAR_PRODUCTS,
   FILTER_BY_TYPE
 } from "./actionsTypes";
+=======
+import { CLEAR_DETAIL,  FILTER_BY_COLOR,  GET_ALL_PRODUCTS,  GET_DETAIL,  ORDERBYPRICE } from "./actionsTypes";
+>>>>>>> Stashed changes
 
 let initialState = {
   products: [],
@@ -35,6 +39,7 @@ const Reducer = (state = initialState, action) => {
     case GET_DETAIL:
       return {
         ...state,
+<<<<<<< Updated upstream
         products_Details: action.payload,
       };
     case CLEAR_DETAIL:
@@ -67,6 +72,10 @@ const Reducer = (state = initialState, action) => {
         ...state,
         products: state.products_Copy,
       };
+=======
+        products: action.payload
+      }
+>>>>>>> Stashed changes
 
     default:
       return { ...state };
