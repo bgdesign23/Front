@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux"
 
 import { filterByColor, filteredByType, orderbyprice } from '../../Redux/actions';
-import { useEffect, useState } from "react";
+
 
 const Filters = () => {
    
@@ -36,7 +36,7 @@ const Filters = () => {
         <option value="Menor">Menor a Mayor</option>
         <option value="Mayor">Mayor a Menor</option>
       </select>
-<<<<<<< Updated upstream
+
       <select onChange={handleByColor} >
         <option value="">Selecciona un color</option>
         {colors.map((color) => (
@@ -51,11 +51,7 @@ const Filters = () => {
         <option value="Hogar">Hogar</option>
         <option value="Oficina">Oficina</option>
         <option value="Comercial">Comercial</option>
-=======
 
-      <select>
-        <option>Categorias</option>
->>>>>>> Stashed changes
       </select>
         </div>
         
