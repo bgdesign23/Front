@@ -1,0 +1,14 @@
+
+  
+  .Filters select{
+    margin-right: 1cm; 
+    color: #FFF;
+
+text-align: center;
+font-family: Cinzel;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+    background-color: rgba(0, 0, 0, 1);
+}

@@ -17,6 +17,7 @@ import {
   LOGIN_FAILURE,
   GET_CATEGORIES,
   FILTER_BY_CATEGORIES,
+  FILTER_BY_MATERIAL,
 } from "../Redux/actionsTypes";
 
 // const URL = "http://localhost:3001";
@@ -198,3 +199,15 @@ export const loginUser = (credentials) => async (dispatch) => {
   }
 };
 
+export const filterByMaterial = (byMaterial, product) =>{
+  try {
+    const filterMaterial = product.filter(mat => mat.material === byMaterial);
+    return{
+      type: FILTER_BY_MATERIAL,
+      payload: filterMaterial,
+    }
+    
+  } catch (error) {
+    console.log(error.message);
+  }
+}

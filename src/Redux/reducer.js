@@ -16,7 +16,8 @@ import {
   FILTER_RESTART,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  FILTER_BY_MATERIAL
 } from "./actionsTypes";
 
 
@@ -136,6 +137,12 @@ case REGISTER_REQUEST:
           loading: false,
           error: action.payload,
         };
+
+        case FILTER_BY_MATERIAL:
+          return{
+          ...state,
+           products: action.payload
+          }  
         
     default:
       return { ...state };

@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
+import Style from "../Filters/Filters.module.css"
 
 import {
   filterByColor,
+  filterByMaterial,
   filterCategories,
   filteredByType,
   orderbyprice,
@@ -26,6 +28,14 @@ const Filters = () => {
     dispatch(filterByColor(byColor, copia));
   };
 
+  const materiales= [...new Set(copy.map((mat)=> mat.material))] 
+  const handleByMaterial = (event) => {
+    const byMaterial = event.target.value;
+    var copia= [...copy]
+    dispatch(filterByMaterial(byMaterial,copia))
+  }
+
+
   const handleFilterCategory = (event) => {
     event.preventDefault();
     const category = event.target.value;
@@ -40,7 +50,7 @@ const Filters = () => {
   };
 
   return (
-    <div>
+    <div className={Style.Filters}>
       <select
         onChange={handleFilterCategory}
         value={copy}
@@ -57,14 +67,15 @@ const Filters = () => {
         })}
       </select>
       
-      <label> Ordenar por precio: </label>
+      
       <select onChange={handleOrderChange}>
+        <option value="">Precio</option>
         <option value="Menor">Menor a Mayor</option>
         <option value="Mayor">Mayor a Menor</option>
       </select>
 
       <select onChange={handleByColor}>
-        <option value=""> Selecciona un color </option>
+        <option value="">Color</option>
         {colors.map((color) => (
           <option key={color} value={color}>
             {color}
@@ -72,12 +83,21 @@ const Filters = () => {
         ))}
       </select>
       
-      <label> Ordenar por ambiente: </label>
+     
       <select onChange={handleFilterType} value={copy}>
         <option value="">Ambientes</option>
         <option value="Hogar">Hogar</option>
         <option value="Oficina">Oficina</option>
         <option value="Comercial">Comercial</option>
+      </select>
+
+      <select onChange={handleByMaterial}>
+  <option value="">Material</option>
+  {materiales.map((material) => (
+    <option key={material} value={material}>
+      {material}
+    </option>
+      ))}
       </select>
     </div>
   );
