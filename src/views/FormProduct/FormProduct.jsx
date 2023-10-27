@@ -1,15 +1,16 @@
 import  React, { useState } from 'react';
+import axios from 'axios';
 import styles from './FormProduct.module.css'
 
 function FormProduct() {
-  const [formData, setFormData] = useState({ 
-    Nombre: '',
-    Tipo:'',
-    Material: '', 
-    Precio: '',
-    Image: '',
-    Color: '',
-    Descripción: ''
+  const [formProduct, setFormProduct] = useState({ 
+    name: '',
+    type:'',
+    material: '', 
+    price: '',
+    image: '',
+    color: '',
+    description: ''
  });
 
   const [errors, setErrors] = useState({}) //objeto vacío para los errores
@@ -17,7 +18,8 @@ function FormProduct() {
   const validationForm = () => {
     const newErrors = {}
      
-    if(formData.Nombre.trim() === ''){
+    if(formProduct.Nombre.trim() === ''){
+
       newErrors.Nombre = 'El nombre es obligatorio'    
     }
 
@@ -25,32 +27,46 @@ function FormProduct() {
 }
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormProduct({
+      ...formProduct,
+
       [e.target.name]: e.target.value
     })
 
     setErrors(
       validationForm({
-        ...formData,
+        ...formProduct,
         [e.target.name]: e.target.value
       })
     )
 
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    if(validationForm()){
-      alert('Creación exitosa')
-      setFormData({
-        Nombre: '',
-        Apellido:'',
-        NumeroDeTelefono: '', 
-        Localidad: '',
-        Mensaje: ''
-      })
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formProduct);
+
+    try {
+      const response = await axios.post('url', formProduct)
+      
+      if(response.status === 201){
+        alert('Creación exitosa')
+        setFormProduct({
+          Nombre: '',
+          Tipo:'',
+          Material: '', 
+          Precio: '',
+          Image: '',
+          Color: '',
+          Descripción: ''
+        })
+      } else {
+        console.error('Error al crear el producto')
+      }
+    } catch (error) {
+      console.error('Ha ocurrido un error:', error)
+
     }
     
     }
@@ -59,41 +75,51 @@ function FormProduct() {
     <div className={styles.containerFor}>
       <form onSubmit={handleSubmit}>
         <input 
-        type="text" 
-        name="Nombre" 
-        value={formData.Nombre}
-        onChange={handleChange}
-        placeholder="Nombre"
-        required
+
+          type="text" 
+          name="Nombre" 
+          value={formProduct.Nombre}
+          onChange={handleChange}
+          placeholder="Nombre"
+          required
+
          />
         {errors.Nombre && <div className={styles.error}>{errors.Nombre}</div>}
          <br />
          <br />
-          <input
-         type="text" 
-         name="Tipo" 
-         value={formData.Tipo}
-         onChange={handleChange}
-         placeholder="Tipo de mueble"
-         required
+
+        <input
+          type="text" 
+          name="Tipo" 
+          value={formProduct.Tipo}
+          onChange={handleChange}
+          placeholder="Tipo de mueble"
+          required
+
          />
          <br />
          <br />
         <input
           type="text"
           name="Material"
-          value={formData.Material}
+
+          value={formProduct.Material}
           onChange={handleChange}
-          placeholder="Material del mueble"
-          pattern="[0-9]+"
+          placeholder="Material del mueble"          
+
           required
         />
         <br />
         <br />
         <input
           type="text"
+
+          name="Precio"
+          value={formProduct.Precio}
+
           name="precio"
           value={formData.Precio}
+
           onChange={handleChange}
           placeholder="Precio"
           pattern="[0-9]+"
@@ -104,7 +130,9 @@ function FormProduct() {
         <input
           type="text"
           name="Color"
-          value={formData.Color}
+
+          value={formProduct.Color}
+
           onChange={handleChange}
           placeholder="Color"
           required
@@ -116,7 +144,9 @@ function FormProduct() {
           type="file"
           name="Image"
           accept="image/*"
-          value={formData.Image}
+
+          value={formProduct.Image}
+
           onChange={handleChange}
           placeholder="Image"
           required
@@ -126,7 +156,9 @@ function FormProduct() {
         <textarea
           type="text"  
           name="Descripción"
-          value={formData.Descripción}
+
+          value={formProduct.Descripción}
+
           onChange={handleChange}
           placeholder="Descripción"
           rows="4"

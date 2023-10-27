@@ -15,7 +15,6 @@ import Detail from "./views/Detail/Detail";
 import ButtonSide from "./Components/ButtonSide/ButtonSide";
 import FormProduct from "./views/FormProduct/FormProduct";
 
-
 function App() {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const dispatch = useDispatch();
