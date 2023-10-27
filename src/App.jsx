@@ -26,6 +26,7 @@ function App() {
   }, []);
 
   return (
+    <div className={styles.App}>
     <>
     <NavBar/>
     <div className={styles.sideBar}>
@@ -48,6 +49,7 @@ function App() {
       </Routes>  
       </div>
     </>
+    </div>
   );
 }
 
