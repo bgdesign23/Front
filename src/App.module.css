@@ -1,3 +1,4 @@
+
 #root {
   width: 100%;
   margin: 0 auto;
@@ -6,47 +7,40 @@
 }
 
 .toggleSidebarBtn {
-  padding: 10px 40px;
+  padding: 10px;
   font-size: 16px;
   cursor: pointer;
-  position: fixed; /* esto mantendrá el botón en el extremo izquierdo */
+  position: fixed;
   top: 10px;
-  left: 10px;
-  z-index: 11; /* un z-index más alto que la barra lateral para asegurarse de que el botón siempre esté encima */
+  left: 70px;
+  z-index: 11;
   border: none;
-  background-color: #333;
-  color: white;
+  background: none;
   border-radius: 5px;
+  width: 30px; /* Tamaño del SVG */
+  height: 30px; /* Tamaño del SVG */
+  color:#ffffff
 }
 
 .toggleSidebarBtn:hover {
-  background-color: #555;
+  opacity: 0.7;
 }
 
-.toggleSidebarBtn:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
-}
-
-/* Estilos cuando la barra lateral está abierta */
 .toggleSidebarBtn.open {
   background-color: white;
-  color: #333;
+  color: #ffffff;
 }
 
 .sideBar {
-  /* Otros estilos que podrías tener para la barra lateral */
-  z-index: 10; /* asegurarse de que la barra lateral esté debajo del botón */
+  z-index: 10; 
 }
 
-/* Asegurarse de que la barra lateral sea negra cuando está abierta */
 .sideBar.open {
   background-color: black;
 }
 
 .contentContainer {
-margin: 0 auto; /* Esto centra el contenedor horizontalmente */
-/* max-width: 1200px; o cualquier otro valor que desees para limitar el ancho máximo del contenido */
-padding: 0px 0px; /* Espaciado alrededor del contenido */
-text-align: center; /* Esto centra el contenido textual horizontalmente */
+margin: 0 auto; 
+padding: 0px 0px;
+text-align: center; 
 }

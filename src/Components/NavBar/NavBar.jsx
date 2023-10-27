@@ -1,18 +1,21 @@
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import styles from "../NavBar/NavBar.module.css";
-// import CartShop from "../../Pages/CartShop/CartShop"
+import logo from "../../images/logo.png";
+import ButtonCarrito from "../SearchBar/ButtonCarrito/ButtonCarrito";
 
 
 
 const NavBar = () => {
 
     return (
-        <nav className={styles.navBar}>
-          <div>
-            <SearchBar/>
-
-          </div>
-        </nav>
+      <nav className={styles.navBar}>
+        <img src={logo} className={styles.logo} alt="Logo"/>
+        <SearchBar />
+        <button type="button" className={styles.buttonCarrito}>
+          <ButtonCarrito/>
+        </button>
+      </nav>
+ 
     )
 
 }

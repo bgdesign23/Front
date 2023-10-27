@@ -35,6 +35,8 @@ const Home = () => {
 
       <button onClick={() => navigate("/home/decoracion")}> DECORACIÓN </button>
 
+      <button onClick={() => navigate("/home/nuevo")} > NUEVO MUEBLE</button>
+
      { showFooter && <Footer/>}
     </div>
   );

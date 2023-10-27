@@ -1,71 +1,106 @@
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
+import Style from "../Filters/Filters.module.css"
 
-import { getcategories, orderbyprice } from '../../Redux/actions';
-import { useEffect, useState } from "react";
+import {
+  filterByColor,
+  filterByMaterial,
+  filterCategories,
+  filteredByType,
+  orderbyprice,
+} from "../../Redux/actions";
 
 const Filters = () => {
-   
-   const dispatch = useDispatch();
-   const product= useSelector((state)=> state.products)
-   console.log(product);
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.products);
+  const copy = useSelector((state) => state.products_Copy);
+  const categories = useSelector((state) => state.categories);
 
   const handleOrderChange = (e) => {
     const orderDirection = e.target.value;
-   dispatch ( orderbyprice( product,orderDirection)); 
+    dispatch(orderbyprice(product, orderDirection));
   };
-  
 
-  const [categories, setCategories] = useState([]);  //Para seleccionar y guardar el valor de las categorias
-  const [showCateMenus, setsShowCateMenus] = useState(false); //Para que se abra el menu de checkbox
-  
+  const colors = [...new Set(copy.map((prod) => prod.color))];
 
-  const handleCategories = (event) => {
-    const category = event.target.value;
-    let check;
+  const handleByColor = (event) => {
+    const byColor = event.target.value;
+    var copia = [...copy];
+    dispatch(filterByColor(byColor, copia));
+  };
 
-    if(categories.includes(category)){
-      setCategories(categories.filter(cate => cate!== category ))
-      check = categories.filter(cate => cate !== category)
-    }else{
-      setCategories([...categories, category])
-      check = [...categories, category]
-    }
-
-    dispatch(getcategories(product, check))
+  const materiales= [...new Set(copy.map((mat)=> mat.material))] 
+  const handleByMaterial = (event) => {
+    const byMaterial = event.target.value;
+    var copia= [...copy]
+    dispatch(filterByMaterial(byMaterial,copia))
   }
 
-    return (
-        <div>
-       <label>Ordenar por precio:</label>
-       <select onChange={handleOrderChange}>
+
+  const handleFilterCategory = (event) => {
+    event.preventDefault();
+    const category = event.target.value;
+    var copia = [...copy];
+    dispatch(filterCategories(category, copia));
+  };
+
+  const handleFilterType = (event) => {
+    const selectedCategory = event.target.value;
+    const copia = [...copy];
+    dispatch(filteredByType(copia, selectedCategory)); // Corrección aquí
+  };
+
+  return (
+    <div className={Style.Filters}>
+      <select
+        onChange={handleFilterCategory}
+        value={copy}
+      >
+        <option value="">
+          Categorias
+        </option>
+        {categories?.map((category) => {
+          return (
+            <option key={category.id} value={category.name}>
+              {category.name}
+            </option>
+          );
+        })}
+      </select>
+      
+      
+      <select onChange={handleOrderChange}>
+        <option value="">Precio</option>
         <option value="Menor">Menor a Mayor</option>
         <option value="Mayor">Mayor a Menor</option>
       </select>
 
-      <button onClick={() => {setsShowCateMenus(!showCateMenus)}}>
-        Categorias
-      </button>{
-        showCateMenus && (
-          <div>
-            {
-              categories.map(cat => (
-                <div key={cat.id}>
-                  <input
-                    type="checkbox"
-                    value={cat.name}
-                    checked={categories.includes(cat.name)}
-                    onChange={handleCategories}
-                  />
-                </div>
-              ))
-            }
-          </div>
-        )
-      }
+      <select onChange={handleByColor}>
+        <option value="">Color</option>
+        {colors.map((color) => (
+          <option key={color} value={color}>
+            {color}
+          </option>
+        ))}
+      </select>
+      
+     
+      <select onChange={handleFilterType} value={copy}>
+        <option value="">Ambientes</option>
+        <option value="Hogar">Hogar</option>
+        <option value="Oficina">Oficina</option>
+        <option value="Comercial">Comercial</option>
+      </select>
 
-        </div>
-    )
+      <select onChange={handleByMaterial}>
+  <option value="">Material</option>
+  {materiales.map((material) => (
+    <option key={material} value={material}>
+      {material}
+    </option>
+      ))}
+      </select>
+    </div>
+  );
+};
 
-}
-
-export default Filters
+export default Filters;

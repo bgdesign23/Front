@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
-  reset_ProductList,
-  getByHashtag,
   getByName,
+  getByHashtag,
+  reset_ProductList,
 } from "../../Redux/actions";
+import ButtonSearch from "./ButtonSearch/ButtonSearch";
+import ButtonCarrito from "./ButtonCarrito/ButtonCarrito";
 
 const SearchBar = () => {
   const copy = useSelector((state) => state.products_Copy);
@@ -33,19 +35,20 @@ const SearchBar = () => {
     setSearchState(event.target.value);
   };
 
-  const handle_reset = () => {
-    dispatch(reset_ProductList());
-  };
-
   return (
     <div className={styles.searchBar_Container}>
       <form onSubmit={handle_Submit}>
-        <input type="text" value={searchState} onChange={handle_input} />
-        <button type="submit">Search</button>
-        <button type="button" onClick={handle_reset}>
-          clean
-        </button>
+        <input
+          className={styles.lineInput}
+          placeholder="Buscar "
+          type="text"
+          value={searchState}
+          onChange={handle_input}
+        />
       </form>
+      <button type="submit" className={styles.noStyleButton}>
+        <ButtonSearch />
+      </button>
     </div>
   );
 };
