@@ -6,5 +6,6 @@ export const GET_DETAIL = "GET_DETAIL";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";
 export const FILTER_BY_CATEGORIES = "FILTER_BY_CATEGORIES";
 export const FILTER_BY_COLOR = "FILTER_BY_COLOR";
+export const GET_BY_HASHTAG = "GET_BY_HASHTAG";
 export const GET_BY_NAME = "GET_BY_NAME";
 export const CLEAR_PRODUCTS = "CLEAR_PRODUCTS";

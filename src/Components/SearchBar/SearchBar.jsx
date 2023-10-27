@@ -2,17 +2,30 @@ import styles from "../SearchBar/SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { getByName, reset_ProductList } from "../../Redux/actions";
+import {
+  reset_ProductList,
+  getByHashtag,
+  getByName,
+} from "../../Redux/actions";
 
 const SearchBar = () => {
+  const copy = useSelector((state) => state.products_Copy);
+  const products = useSelector((state) => state.products);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchState, setSearchState] = useState("");
 
+  const handleSearch = () => {
+    dispatch(getByName(searchState));
+    if (products.length !== copy.length) {
+      dispatch(getByHashtag(searchState));
+    }
+  };
+
   const handle_Submit = (event) => {
     event.preventDefault();
-    console.log(searchState);
-    dispatch(getByName(searchState));
+    handleSearch();
     navigate(`/home/product`);
   };
 

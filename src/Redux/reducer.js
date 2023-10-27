@@ -7,6 +7,7 @@ import {
   ORDERBYPRICE,
   FILTER_BY_CATEGORIES,
   CLEAR_PRODUCTS,
+  GET_BY_HASHTAG,
 } from "./actionsTypes";
 
 let initialState = {
@@ -55,6 +56,11 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+    case GET_BY_HASHTAG:
+      return {
+        ...state,
+        products: [...state.products, ...action.payload],
       };
     case CLEAR_PRODUCTS:
       return {

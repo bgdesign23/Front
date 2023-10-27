@@ -6,6 +6,7 @@ import {
   GET_DETAIL,
   ORDERBYPRICE,
   CLEAR_PRODUCTS,
+  GET_BY_HASHTAG,
 } from "../Redux/actionsTypes";
 // const URL = "http://localhost:3001";
 const URL = "https://backend-muebles.vercel.app";
@@ -85,6 +86,22 @@ export const getByName = (name) => {
       const { data } = await axios.get(`${URL}/products/search/${name}`);
       return dispatch({
         type: GET_BY_NAME,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const getByHashtag = (hashtag) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        `${URL}/products/searchByHashtag/${hashtag}`
+      );
+      return dispatch({
+        type: GET_BY_HASHTAG,
         payload: data,
       });
     } catch (error) {
