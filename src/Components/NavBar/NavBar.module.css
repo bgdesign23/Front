@@ -1,20 +1,36 @@
+.navBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: relative; /* Agregar posición relativa para posicionar el logo de manera absoluta respecto a la barra de navegación */
+    margin-bottom: 30px;
+}
 
-    .navBar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border: 1px solid red;
-        padding: 0 20px;
-    }
+.logo {
+    position: absolute; /* Hacer que el logo se posicione de manera absoluta */
+    top: 45%; /* Posicionar el logo en el centro verticalmente */
+    left: 50%; /* Posicionar el logo en el centro horizontalmente */
+    transform: translate(-50%, -50%); /* Corregir la posición para que esté exactamente en el centro */
+    height: auto;
+    max-width: 270px;
+}
+
+
+.buttonCarrito {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    color: white;
+    top: 10%;
+  }
     
-    .placeholder {
-        flex: 1;
-    }
-    
-    
-    /* .logo {
-        height: auto;
-        max-width: 270px;
-        margin-left: 0px;
-    }
-     */
+.buttonCarrito:hover {
+      opacity: 0.7;
+}
+
+.noStyleButton, .buttonCarrito {
+    margin: 0; /* Asegúrate de que no haya márgenes */
+}
