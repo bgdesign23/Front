@@ -14,10 +14,13 @@ import {
   FILTER_RESTART,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  GET_CATEGORIES,
+  FILTER_BY_CATEGORIES,
 } from "../Redux/actionsTypes";
-const URL = "http://localhost:3001";
-//const URL = "https://backend-muebles.vercel.app";
+
+// const URL = "http://localhost:3001";
+const URL = "https://backend-muebles.vercel.app";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -57,7 +60,7 @@ export const cleanDetail = () => {
 export const orderbyprice = (product, orderDirection) => {
   try {
     const orderByprice = [...product];
-    console.log(orderByprice);
+    // console.log(orderByprice);
     if (orderDirection === "Menor") {
       orderByprice.sort((a, b) => a.price - b.price);
     }
@@ -121,6 +124,33 @@ export const getByName = (name) => {
       console.log(error.message);
     }
   };
+};
+
+export const getCategories = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/categories`);
+      console.log(data);
+      return dispatch({
+        type: GET_CATEGORIES,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const filterCategories = (category, product) => {
+  try {
+    const filteredProducts = product.filter(prod => prod.category.name === category);
+    return{
+      type: FILTER_BY_CATEGORIES, 
+      payload: filteredProducts
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const reset_ProductList = () => {

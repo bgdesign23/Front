@@ -6,6 +6,7 @@ import {
   GET_BY_NAME,
   GET_DETAIL,
   ORDERBYPRICE,
+  GET_CATEGORIES,
   FILTER_BY_CATEGORIES,
   CLEAR_PRODUCTS,
   FILTER_BY_TYPE,
@@ -21,12 +22,13 @@ import {
 
 let initialState = {
   products: [],
+  products_Copy: [],
   error: null,
   products_Details: {},
-  category: [],
-  products_Copy: [],
   user: null, 
-  loading: false
+  loading: false,
+  categories: [],
+  categories_Copy: [],
 };
 
 const Reducer = (state = initialState, action) => {
@@ -53,10 +55,16 @@ const Reducer = (state = initialState, action) => {
         ...state,
         products_Details: {},
       };
+      case GET_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
+        categories_Copy: action.payload,
+      };
     case FILTER_BY_CATEGORIES:
       return {
         ...state,
-        products: action.payload,
+        products: action.payload
       };
     case FILTER_BY_COLOR:
       return {
