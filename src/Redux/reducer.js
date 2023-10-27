@@ -9,7 +9,14 @@ import {
   GET_CATEGORIES,
   FILTER_BY_CATEGORIES,
   CLEAR_PRODUCTS,
-  FILTER_BY_TYPE
+  FILTER_BY_TYPE,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  FILTER_RESTART,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE
 } from "./actionsTypes";
 
 
@@ -18,6 +25,8 @@ let initialState = {
   products_Copy: [],
   error: null,
   products_Details: {},
+  user: null, 
+  loading: false,
   categories: [],
   categories_Copy: [],
 };
@@ -77,8 +86,57 @@ const Reducer = (state = initialState, action) => {
         ...state,
         products: state.products_Copy,
       };
+case REGISTER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
 
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        loading: false,
+        error: null,
+      };
 
+    case REGISTER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case FILTER_RESTART:
+      return {
+        ...state,
+        user: null,
+        loading: false,
+        error: null,
+      };
+      case LOGIN_REQUEST:
+        return {
+          ...state,
+          loading: true,
+          error: null,
+        };
+  
+      case LOGIN_SUCCESS:
+        return {
+          ...state,
+          user: action.payload,
+          loading: false,
+          error: null,
+        };
+  
+      case LOGIN_FAILURE:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+        
     default:
       return { ...state };
   }
