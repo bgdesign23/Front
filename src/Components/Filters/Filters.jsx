@@ -1,38 +1,33 @@
 import {useDispatch, useSelector} from "react-redux"
 
-import { getcategories, orderbyprice } from '../../Redux/actions';
-import { useEffect, useState } from "react";
+import { filterByColor, filteredByType, orderbyprice } from '../../Redux/actions';
+
 
 const Filters = () => {
    
    const dispatch = useDispatch();
-   const product= useSelector((state)=> state.products)
-   console.log(product);
+   const product= useSelector((state)=> state.products);
+   const copy = useSelector(state => state.products_Copy)
 
   const handleOrderChange = (e) => {
-    const orderDirection = e.target.value;
-   dispatch ( orderbyprice( product,orderDirection)); 
+   const orderDirection = e.target.value;
+   dispatch ( orderbyprice( product, orderDirection)); 
   };
+
+  const colors = [...new Set(copy.map((prod) => prod.color))];
   
-
-  const [categories, setCategories] = useState([]);  //Para seleccionar y guardar el valor de las categorias
-  const [showCateMenus, setsShowCateMenus] = useState(false); //Para que se abra el menu de checkbox
-  
-
-  const handleCategories = (event) => {
-    const category = event.target.value;
-    let check;
-
-    if(categories.includes(category)){
-      setCategories(categories.filter(cate => cate!== category ))
-      check = categories.filter(cate => cate !== category)
-    }else{
-      setCategories([...categories, category])
-      check = [...categories, category]
-    }
-
-    dispatch(getcategories(product, check))
+  const handleByColor = (event) => {
+    const byColor = event.target.value;
+    var copia = [...copy]
+    dispatch(filterByColor(byColor, copia))
   }
+
+
+  const handleFilterType = (event) => {
+    const selectedCategory = event.target.value;
+    const copia = [...copy]
+    dispatch(filteredByType(copia, selectedCategory)); // Corrección aquí
+  };
 
     return (
         <div>
@@ -42,28 +37,24 @@ const Filters = () => {
         <option value="Mayor">Mayor a Menor</option>
       </select>
 
-      <button onClick={() => {setsShowCateMenus(!showCateMenus)}}>
-        Categorias
-      </button>{
-        showCateMenus && (
-          <div>
-            {
-              categories.map(cat => (
-                <div key={cat.id}>
-                  <input
-                    type="checkbox"
-                    value={cat.name}
-                    checked={categories.includes(cat.name)}
-                    onChange={handleCategories}
-                  />
-                </div>
-              ))
-            }
-          </div>
-        )
-      }
+      <select onChange={handleByColor} >
+        <option value="">Selecciona un color</option>
+        {colors.map((color) => (
+          <option key={color} value={color}>
+            {color}
+          </option>
+        ))}
+      </select>
+      <label>Ordenar por categoría:</label>
+      <select onChange={handleFilterType} value={copy}>
+        <option value="">Todas las categorías</option>
+        <option value="Hogar">Hogar</option>
+        <option value="Oficina">Oficina</option>
+        <option value="Comercial">Comercial</option>
 
+      </select>
         </div>
+        
     )
 
 }

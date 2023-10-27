@@ -1,3 +1,4 @@
+
 #root {
   width: 100%;
   margin: 0 auto;
@@ -35,7 +36,7 @@
 }
 
 .sideBar {
-  /* Otros estilos que podrías tener para la barra lateral */
+
   z-index: 10; /* asegurarse de que la barra lateral esté debajo del botón */
 }
 

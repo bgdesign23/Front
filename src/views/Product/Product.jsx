@@ -4,20 +4,24 @@ import Filters from "../../Components/Filters/Filters";
 import { useState } from "react";
 
 export default function Cards({ productos }) {
-
   const [paged, setPaged] = useState(10);
 
   const handlePaged = (event) => {
     setPaged(paged + 10);
-  }
+  };
 
-  const pagedSection = productos.slice(0, paged)
+  const pagedSection = productos.slice(0, paged);
   return (
     <>
-    <Filters/>
-    <div className={Styles.products_container}>
-      
-      {pagedSection.map( product => (
+      <Filters />
+      {!productos.length ? (
+        <div>
+          <h1>No se encontraron productos relacionados</h1>
+        </div>
+      ) : (
+        <>
+          <div className={Styles.products_container}>
+            {pagedSection.map((product) => (
               <Card
                 key={product.id}
                 id={product.id}
@@ -29,11 +33,11 @@ export default function Cards({ productos }) {
                 image={product.image}
                 category={product.CategoryId}
               />
-            )
-           )}
-           
-    </div>
-      <button onClick={handlePaged}>Mas Productos</button>
+            ))}
+          </div>
+          <button onClick={handlePaged}>Mas Productos</button>
+        </>
+      )}
     </>
   );
 }
