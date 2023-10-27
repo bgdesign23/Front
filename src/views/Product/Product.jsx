@@ -6,12 +6,13 @@ import { useState } from "react";
 export default function Cards({ productos }) {
   const [paged, setPaged] = useState(10);
 
-  const handlePaged = (event) => {
+  const handlePaged = () => {
     setPaged(paged + 10);
   };
 
   const pagedSection = productos.slice(0, paged);
   return (
+    <div className={Styles.contenCard}>
     <>
       <Filters />
       {!productos.length ? (
@@ -35,9 +36,9 @@ export default function Cards({ productos }) {
               />
             ))}
           </div>
-          <button onClick={handlePaged}>Mas Productos</button>
+          <button onClick={handlePaged}>Más Productos</button>
         </>
       )}
-    </>
+    </></div>
   );
 }

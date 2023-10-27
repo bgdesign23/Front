@@ -19,6 +19,7 @@ function FormProduct() {
     const newErrors = {}
      
     if(formProduct.Nombre.trim() === ''){
+
       newErrors.Nombre = 'El nombre es obligatorio'    
     }
 
@@ -28,6 +29,7 @@ function FormProduct() {
   const handleChange = (e) => {
     setFormProduct({
       ...formProduct,
+
       [e.target.name]: e.target.value
     })
 
@@ -39,6 +41,7 @@ function FormProduct() {
     )
 
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,6 +66,7 @@ function FormProduct() {
       }
     } catch (error) {
       console.error('Ha ocurrido un error:', error)
+
     }
     
     }
@@ -71,16 +75,19 @@ function FormProduct() {
     <div className={styles.containerFor}>
       <form onSubmit={handleSubmit}>
         <input 
+
           type="text" 
           name="Nombre" 
           value={formProduct.Nombre}
           onChange={handleChange}
           placeholder="Nombre"
           required
+
          />
         {errors.Nombre && <div className={styles.error}>{errors.Nombre}</div>}
          <br />
          <br />
+
         <input
           type="text" 
           name="Tipo" 
@@ -88,23 +95,31 @@ function FormProduct() {
           onChange={handleChange}
           placeholder="Tipo de mueble"
           required
+
          />
          <br />
          <br />
         <input
           type="text"
           name="Material"
+
           value={formProduct.Material}
           onChange={handleChange}
           placeholder="Material del mueble"          
+
           required
         />
         <br />
         <br />
         <input
           type="text"
+
           name="Precio"
           value={formProduct.Precio}
+
+          name="precio"
+          value={formData.Precio}
+
           onChange={handleChange}
           placeholder="Precio"
           pattern="[0-9]+"
@@ -115,7 +130,9 @@ function FormProduct() {
         <input
           type="text"
           name="Color"
+
           value={formProduct.Color}
+
           onChange={handleChange}
           placeholder="Color"
           required
@@ -127,7 +144,9 @@ function FormProduct() {
           type="file"
           name="Image"
           accept="image/*"
+
           value={formProduct.Image}
+
           onChange={handleChange}
           placeholder="Image"
           required
@@ -137,7 +156,9 @@ function FormProduct() {
         <textarea
           type="text"  
           name="Descripción"
+
           value={formProduct.Descripción}
+
           onChange={handleChange}
           placeholder="Descripción"
           rows="4"
