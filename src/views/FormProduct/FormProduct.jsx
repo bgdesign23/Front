@@ -1,13 +1,15 @@
 import  React, { useState } from 'react';
-import styles from './formDecoracion.module.css'
+import styles from './FormProduct.module.css'
 
-function FormDecoracion() {
+function FormProduct() {
   const [formData, setFormData] = useState({ 
     Nombre: '',
-    Apellido:'',
-    NumeroDeTelefono: '', 
-    Localidad: '',
-    Mensaje: ''
+    Tipo:'',
+    Material: '', 
+    Precio: '',
+    Image: '',
+    Color: '',
+    Descripción: ''
  });
 
   const [errors, setErrors] = useState({}) //objeto vacío para los errores
@@ -17,9 +19,6 @@ function FormDecoracion() {
      
     if(formData.Nombre.trim() === ''){
       newErrors.Nombre = 'El nombre es obligatorio'    
-    }
-    if(!/^[\d+]+$/.test(formData.NumeroDeTelefono)){
-      newErrors.NumeroDeTelefono = 'El número de teléfono solo pueden ser números sin espacios, puedes incluir también el indicativo de tu país con el signo +'
     }
 
   return newErrors
@@ -72,42 +71,64 @@ function FormDecoracion() {
          <br />
           <input
          type="text" 
-         name="Apellido" 
-         value={formData.Apellido}
+         name="Tipo" 
+         value={formData.Tipo}
          onChange={handleChange}
-         placeholder="Apellido"
+         placeholder="Tipo de mueble"
          required
          />
          <br />
          <br />
         <input
-          type="tel"
-          name="NumeroDeTelefono"
-          value={formData.NumeroDeTelefono}
+          type="text"
+          name="Material"
+          value={formData.Material}
           onChange={handleChange}
-          placeholder="Número de Teléfono"
+          placeholder="Material del mueble"
           pattern="[0-9]+"
           required
         />
-        {errors.NumeroDeTelefono && <div className={styles.error}>{errors.NumeroDeTelefono}</div>}
         <br />
         <br />
-       
         <input
           type="text"
-          name="Localidad"
-          value={formData.Localidad}
+          name="precio"
+          value={formData.Precio}
           onChange={handleChange}
-          placeholder="Localidad"
+          placeholder="Precio"
+          pattern="[0-9]+"
+          required
+        />
+        <br />
+        <br />       
+        <input
+          type="text"
+          name="Color"
+          value={formData.Color}
+          onChange={handleChange}
+          placeholder="Color"
+          required
+        />
+        <br />
+        <br />
+        Imagen: 
+        <input
+          type="file"
+          name="Image"
+          accept="image/*"
+          value={formData.Image}
+          onChange={handleChange}
+          placeholder="Image"
           required
         />
         <br />
         <br />
         <textarea
-          name="Mensaje"
-          value={formData.Mensaje}
+          type="text"  
+          name="Descripción"
+          value={formData.Descripción}
           onChange={handleChange}
-          placeholder="Mensaje"
+          placeholder="Descripción"
           rows="4"
           required
         />
@@ -119,4 +140,4 @@ function FormDecoracion() {
   );
 }
 
-export default FormDecoracion;
+export default FormProduct;
