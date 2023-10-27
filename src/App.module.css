@@ -1,3 +1,8 @@
+.App {
+background-color: #191919;
+margin: 0; /* Para eliminar el espacio de margen predeterminado en el body */
+  padding: 0
+}
 #root {
   width: 100%;
   margin: 0 auto;
