@@ -12,6 +12,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getProductsAction } from "../src/Redux/actions";
 import Detail from "./views/Detail/Detail";
+import FormProduct from "./views/FormProduct/FormProduct";
 
 function App() {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
@@ -41,6 +42,7 @@ function App() {
         <Route path='/home/decoracion' element={<Decoracion/>} />
         <Route path="/form/decoracion" element={<FormDecoracion/>}/>
         <Route path="/home/product" element={<Product productos={productos}/>} />
+        <Route path="/home/nuevo" element={<FormProduct/>} />
         <Route path="/form/login" element={<LoginForm/>}/>
         <Route path="/form/register" element={<FormRegistro/>} />
         <Route path="/detail/:id" element={<Detail/>}/>
