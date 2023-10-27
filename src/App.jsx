@@ -12,6 +12,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAction } from "../src/Redux/actions";
 import Detail from "./views/Detail/Detail";
+import ButtonSide from "./Components/ButtonSide/ButtonSide";
 
 
 
@@ -33,8 +34,8 @@ function App() {
       <SideBar isOpen={isOpenSideBar} onClick={() => setIsOpenSideBar(!isOpenSideBar)}/>
     </div>
 
-    <button className={styles.toggleSidebarBtn} onClick={() => setIsOpenSideBar(!isOpenSideBar)}> SideBar
-      {isOpenSideBar ? "Close" : "Open"}
+    <button className={styles.toggleSidebarBtn} onClick={() => setIsOpenSideBar(!isOpenSideBar)}> 
+      <ButtonSide/>
     </button>
 
     <div className={styles.contentContainer}>
