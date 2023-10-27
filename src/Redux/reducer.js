@@ -1,4 +1,3 @@
-
 import {
   CLEAR_DETAIL,
   FILTER_BY_COLOR,
@@ -9,6 +8,7 @@ import {
   GET_CATEGORIES,
   FILTER_BY_CATEGORIES,
   CLEAR_PRODUCTS,
+  GET_BY_HASHTAG,
   FILTER_BY_TYPE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
@@ -17,16 +17,15 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  FILTER_BY_MATERIAL
+  FILTER_BY_MATERIAL,
 } from "./actionsTypes";
-
 
 let initialState = {
   products: [],
   products_Copy: [],
   error: null,
   products_Details: {},
-  user: null, 
+  user: null,
   loading: false,
   categories: [],
   categories_Copy: [],
@@ -56,7 +55,7 @@ const Reducer = (state = initialState, action) => {
         ...state,
         products_Details: {},
       };
-      case GET_CATEGORIES:
+    case GET_CATEGORIES:
       return {
         ...state,
         categories: action.payload,
@@ -65,29 +64,34 @@ const Reducer = (state = initialState, action) => {
     case FILTER_BY_CATEGORIES:
       return {
         ...state,
-        products: action.payload
+        products: action.payload,
       };
     case FILTER_BY_COLOR:
       return {
         ...state,
-       products: action.payload
+        products: action.payload,
       };
     case FILTER_BY_TYPE:
-        return{
-          ...state,
-           products: action.payload,
-        }
+      return {
+        ...state,
+        products: action.payload,
+      };
     case GET_BY_NAME:
       return {
         ...state,
         products: action.payload,
+      };
+    case GET_BY_HASHTAG:
+      return {
+        ...state,
+        products: [...state.products, ...action.payload],
       };
     case CLEAR_PRODUCTS:
       return {
         ...state,
         products: state.products_Copy,
       };
-case REGISTER_REQUEST:
+    case REGISTER_REQUEST:
       return {
         ...state,
         loading: true,
@@ -116,34 +120,34 @@ case REGISTER_REQUEST:
         loading: false,
         error: null,
       };
-      case LOGIN_REQUEST:
-        return {
-          ...state,
-          loading: true,
-          error: null,
-        };
-  
-      case LOGIN_SUCCESS:
-        return {
-          ...state,
-          user: action.payload,
-          loading: false,
-          error: null,
-        };
-  
-      case LOGIN_FAILURE:
-        return {
-          ...state,
-          loading: false,
-          error: action.payload,
-        };
+    case LOGIN_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
 
-        case FILTER_BY_MATERIAL:
-          return{
-          ...state,
-           products: action.payload
-          }  
-        
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        loading: false,
+        error: null,
+      };
+
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case FILTER_BY_MATERIAL:
+      return {
+        ...state,
+        products: action.payload,
+      };
+
     default:
       return { ...state };
   }

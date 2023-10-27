@@ -6,6 +6,7 @@ import {
   GET_DETAIL,
   ORDERBYPRICE,
   CLEAR_PRODUCTS,
+  GET_BY_HASHTAG,
   FILTER_BY_COLOR,
   FILTER_BY_TYPE,
   REGISTER_REQUEST,
@@ -78,27 +79,31 @@ export const orderbyprice = (product, orderDirection) => {
 };
 
 export const filterByColor = (byColor, product) => {
-    try {
-      const filteredProducts = product.filter(prod => prod.color === byColor);
-      return{
-        type: FILTER_BY_COLOR, 
-        payload: filteredProducts
-      }
-    } catch (error) {
-      console.log("NO LO ESTA FILTRANDO");
-    }
-}
+  try {
+    const filteredProducts = product.filter((prod) => prod.color === byColor);
+    return {
+      type: FILTER_BY_COLOR,
+      payload: filteredProducts,
+    };
+  } catch (error) {
+    console.log("NO LO ESTA FILTRANDO");
+  }
+};
 
 export const filteredByType = (products, selectedCategory) => {
   try {
     let orderedProducts;
 
     if (selectedCategory === "Hogar") {
-      orderedProducts = products.filter(product => product.type === "Hogar");
+      orderedProducts = products.filter((product) => product.type === "Hogar");
     } else if (selectedCategory === "Oficina") {
-      orderedProducts = products.filter(product => product.type === "Oficina");
+      orderedProducts = products.filter(
+        (product) => product.type === "Oficina"
+      );
     } else if (selectedCategory === "Comercial") {
-      orderedProducts = products.filter(product => product.type === "Comercial");
+      orderedProducts = products.filter(
+        (product) => product.type === "Comercial"
+      );
     } else {
       // Si no se selecciona una categoría específica, mostrar todos los productos
       orderedProducts = products;
@@ -127,6 +132,22 @@ export const getByName = (name) => {
   };
 };
 
+export const getByHashtag = (hashtag) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        `${URL}/products/searchByHashtag/${hashtag}`
+      );
+      return dispatch({
+        type: GET_BY_HASHTAG,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
 export const getCategories = () => {
   return async (dispatch) => {
     try {
@@ -144,11 +165,13 @@ export const getCategories = () => {
 
 export const filterCategories = (category, product) => {
   try {
-    const filteredProducts = product.filter(prod => prod.category.name === category);
-    return{
-      type: FILTER_BY_CATEGORIES, 
-      payload: filteredProducts
-    }
+    const filteredProducts = product.filter(
+      (prod) => prod.category.name === category
+    );
+    return {
+      type: FILTER_BY_CATEGORIES,
+      payload: filteredProducts,
+    };
   } catch (error) {
     console.error(error);
   }
@@ -160,12 +183,14 @@ export const reset_ProductList = () => {
   };
 };
 
-
 export const registerUser = (userData) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST });
 
   try {
-    const response = await axios.post('http://localhost:3001/register', userData);
+    const response = await axios.post(
+      "http://localhost:3001/register",
+      userData
+    );
     dispatch({
       type: REGISTER_SUCCESS,
       payload: response.data,
@@ -186,7 +211,10 @@ export const loginUser = (credentials) => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
 
   try {
-    const response = await axios.post('http://localhost:3001/login', credentials);
+    const response = await axios.post(
+      "http://localhost:3001/login",
+      credentials
+    );
     dispatch({
       type: LOGIN_SUCCESS,
       payload: response.data,
@@ -199,15 +227,14 @@ export const loginUser = (credentials) => async (dispatch) => {
   }
 };
 
-export const filterByMaterial = (byMaterial, product) =>{
+export const filterByMaterial = (byMaterial, product) => {
   try {
-    const filterMaterial = product.filter(mat => mat.material === byMaterial);
-    return{
+    const filterMaterial = product.filter((mat) => mat.material === byMaterial);
+    return {
       type: FILTER_BY_MATERIAL,
       payload: filterMaterial,
-    }
-    
+    };
   } catch (error) {
     console.log(error.message);
   }
-}
+};
