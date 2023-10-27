@@ -1,8 +1,4 @@
-.App {
-background-color: #191919;
-margin: 0; /* Para eliminar el espacio de margen predeterminado en el body */
-  padding: 0
-}
+
 #root {
   width: 100%;
   margin: 0 auto;
@@ -40,7 +36,7 @@ margin: 0; /* Para eliminar el espacio de margen predeterminado en el body */
 }
 
 .sideBar {
-  /* Otros estilos que podrías tener para la barra lateral */
+
   z-index: 10; /* asegurarse de que la barra lateral esté debajo del botón */
 }
 
