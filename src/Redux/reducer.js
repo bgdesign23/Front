@@ -18,6 +18,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   FILTER_BY_MATERIAL,
+  GET_DESING,
 } from "./actionsTypes";
 
 let initialState = {
@@ -29,6 +30,8 @@ let initialState = {
   loading: false,
   categories: [],
   categories_Copy: [],
+  desings: [],
+  desings_Copy: []
 };
 
 const Reducer = (state = initialState, action) => {
@@ -147,6 +150,12 @@ const Reducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
+    case GET_DESING: 
+      return {
+        ...state, 
+        desings: action.payload, 
+        desings_Copy: action.payload
+      }
 
     default:
       return { ...state };
