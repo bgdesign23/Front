@@ -7,6 +7,7 @@ import {
   ORDERBYPRICE,
   FILTER_BY_CATEGORIES,
   CLEAR_PRODUCTS,
+  FILTER_BY_TYPE
 } from "./actionsTypes";
 
 let initialState = {
@@ -14,7 +15,7 @@ let initialState = {
   error: null,
   products_Details: {},
   category: [],
-  products_Copy: [],
+  products_Copy: []
 };
 
 const Reducer = (state = initialState, action) => {
@@ -44,13 +45,18 @@ const Reducer = (state = initialState, action) => {
     case FILTER_BY_CATEGORIES:
       return {
         ...state,
-        category: action.payload,
+        products: action.payload,
       };
     case FILTER_BY_COLOR:
       return {
         ...state,
-        products: action.payload,
+       products: action.payload
       };
+    case FILTER_BY_TYPE:
+        return{
+          ...state,
+           products: action.payload,
+        }
     case GET_BY_NAME:
       return {
         ...state,

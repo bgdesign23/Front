@@ -6,6 +6,8 @@ import {
   GET_DETAIL,
   ORDERBYPRICE,
   CLEAR_PRODUCTS,
+  FILTER_BY_COLOR,
+  FILTER_BY_TYPE
 } from "../Redux/actionsTypes";
 const URL = "http://localhost:3001";
 // const URL = "https://backend-muebles.vercel.app/";
@@ -65,19 +67,40 @@ export const orderbyprice = (product, orderDirection) => {
   }
 };
 
-export const getcategories = () => {
-  return async (dispatch) => {
+export const filterByColor = (byColor, product) => {
     try {
-      const { data } = await axios.get(`${URL}/categories`);
-      console.log(data);
-      return dispatch({
-        type: FILTER_BY_CATEGORIES,
-        payload: data,
-      });
+      const filteredProducts = product.filter(prod => prod.color === byColor);
+      return{
+        type: FILTER_BY_COLOR, 
+        payload: filteredProducts
+      }
     } catch (error) {
-      console.log(error.message);
+      console.log("NO LO ESTA FILTRANDO");
     }
-  };
+}
+
+export const filteredByType = (products, selectedCategory) => {
+  try {
+    let orderedProducts;
+
+    if (selectedCategory === "Hogar") {
+      orderedProducts = products.filter(product => product.type === "Hogar");
+    } else if (selectedCategory === "Oficina") {
+      orderedProducts = products.filter(product => product.type === "Oficina");
+    } else if (selectedCategory === "Comercial") {
+      orderedProducts = products.filter(product => product.type === "Comercial");
+    } else {
+      // Si no se selecciona una categoría específica, mostrar todos los productos
+      orderedProducts = products;
+    }
+
+    return {
+      type: FILTER_BY_TYPE,
+      payload: orderedProducts,
+    };
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 export const getByName = (name) => {
