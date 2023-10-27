@@ -1,6 +1,6 @@
 import styles from "./App.module.css";
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, /* useNavigate, useLocation */ } from "react-router-dom";
 import Home from "./views/Home/Home";
 import SideBar from "./Components/SideBar/SideBar";
 import Product from "./views/Product/Product";
@@ -10,10 +10,10 @@ import LoginForm from "./views/LoginForm/LoginForm";
 import FormRegistro from "./views/FormRegistro/FormRegistro";
 import NavBar from "./Components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsAction } from "../src/Redux/actions";
+import { getCategories, getProductsAction } from "../src/Redux/actions";
 import Detail from "./views/Detail/Detail";
 import ButtonSide from "./Components/ButtonSide/ButtonSide";
-
+import FormProduct from "./views/FormProduct/FormProduct";
 
 
 function App() {
@@ -21,10 +21,10 @@ function App() {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products);
 
-
   useEffect(() => {
     dispatch(getProductsAction())
-  }, []);
+    dispatch(getCategories())
+  }, [dispatch]);
 
   return (
     <div className={styles.App}>
@@ -44,6 +44,7 @@ function App() {
         <Route path='/home/decoracion' element={<Decoracion/>} />
         <Route path="/form/decoracion" element={<FormDecoracion/>}/>
         <Route path="/home/product" element={<Product productos={productos}/>} />
+        <Route path="/home/nuevo" element={<FormProduct/>} />
         <Route path="/form/login" element={<LoginForm/>}/>
         <Route path="/form/register" element={<FormRegistro/>} />
         <Route path="/detail/:id" element={<Detail/>}/>

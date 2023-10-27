@@ -1,124 +1,131 @@
-import styles from './FormRegistro.module.css'
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
 
-function FormRegistro() {
-  const initialFormData = {
-    firstName: '',
-    lastName: '',
-    nationality: '',
-    birthdate: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  };
+import styles from "../FormRegistro/FormRegistro.module.css"
+import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { registerUser, filterRestart } from "../../Redux/actions";
 
-  const [formData, setFormData] = useState(initialFormData);
-  const [errors, setErrors] = useState({});
-  const [message, setMessage] = useState('');
+function validation(input) {
+  const errors = {};
+  if (!input.username || !/^(?:[A-Z][a-zA-Z]*)(?: [A-Z][a-zA-Z]*){0,2}$/.test(input.username)) {
+    errors.username = "Debe tener un nombre válido con la primera letra mayúscula y permitir nombres compuestos de hasta 255 caracteres.";
+  }
+  if (!input.location || !/^(?:[A-Z][a-zA-Z]*)(?:-[A-Z][a-zA-Z]*){0,1}$/.test(input.location)) {
+    errors.location = "Debe tener un nombre válido, con la primera letra mayúscula. Permite compuestos separados por un guión (-)";
+  }
+  if (!/^\(\d{3}\)\d{4}-\d{4}$/.test(input.phone)) {
+    errors.phone = "Debe contener un número de teléfono válido. Ej (000)0000-0000 ";
+  }
+  if (!/^\S+@\S+\.\S+$/.test(input.email)) {
+    errors.email = "Debe ser un email válido";
+  }
+  if (input.password.length < 8) {
+    errors.password = "Debe contener mínimo 8 caracteres";
+  }
+  if (input.password !== input.confirmPassword) {
+    errors.confirmPassword = "Las contraseñas no coinciden";
+  }
+  return errors;
+}
 
-  const validateForm = () => {
-    const newErrors = {};
 
-    if (formData.firstName.trim() === '') {
-      newErrors.firstName = "El nombre es obligatorio";
-    }
+export default function FormRegistro() {
+    const dispatch = useDispatch() 
 
-    if (formData.lastName.trim() === '') {
-      newErrors.lastName = "El apellido es obligatorio";
-    }
+    const [errors, setErrors] = useState({})
 
-    if (formData.nationality.trim() === '') {
-      newErrors.nationality = "La nacionalidad es obligatoria";
-    }
+    const [input, setInput] = useState({
+      username: "",
+      phone: "",
+      location: "",
+      email: "",
+      password: "",
+      confirmPassword:"",
+      formSubmitted: false
 
-    if (formData.birthdate.trim() === '') {
-      newErrors.birthdate = "La fecha de nacimiento es obligatoria";
-    }
-
-    if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      newErrors.email = "Email inválido";
-    }
-
-    if (formData.password.length < 8) {
-      newErrors.password = "La contraseña debe tener al menos 8 caracteres";
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Las contraseñas no coinciden";
-    }
-
-    setErrors(newErrors);
-    return Object.values(newErrors).every((error) => error === '');
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (validateForm()) {
-      alert('REGISTRO EXITOSO, PORFAVOR INICIE SESION');
-      setFormData(initialFormData); 
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
     });
-  };
 
-  return (
+
+    function handleChange(event) { 
+        console.log(input); 
+        setInput({ 
+            ...input,
+            [event.target.name]: event.target.value 
+        }) 
+        setErrors(validation({
+            ...input,
+            [event.target.name]: event.target.value
+        }))   
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      setErrors(validation(input));
+      setInput((prevInput) => ({ ...prevInput, formSubmitted: true }));
+      
+      if (
+        Object.keys(errors).length === 0 &&
+        input.username !== "" &&
+        input.location !== "" &&
+        input.email !== "" &&
+        input.password !== "" &&
+        input.confirmPassword !== ""
+      ) {
+        dispatch(registerUser()); 
+        dispatch(filterRestart());
+        alert("USUARIO CREADO CON ÉXITO, POR FAVOR INICIE SESIÓN");
+        setInput({
+          username: "",
+          phone: "",
+          location: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+      } else {
+        alert("Debe ingresar todos los datos.");
+      }
+    }
+
+      return (
     <div>
       <h2>Registro de Usuario</h2>
       <form className={styles.containerRegistro} onSubmit={handleSubmit}>
         <div>
-          <label>Nombre:</label>
+          <label>Nombre Completo:</label>
           <input
             type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
+            name="username"
+            value={input.username}
+            onChange={(event) => handleChange(event)}
             required
           />
-          {errors.firstName && <p className="error-message">{errors.firstName}</p>}
+          {errors.username && <p className="error-message">{errors.username}</p>}
         </div>
 
         <div>
-          <label>Apellido:</label>
+          <label>Localidad:</label>
           <input
             type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
+            name="location"
+            value={input.location}
+             onChange={(event) => handleChange(event)}
             required
           />
-          {errors.lastName && <p className="error-message">{errors.lastName}</p>}
+          {errors.location && <p className="error-message">{errors.location}</p>}
         </div>
 
         <div>
-          <label>Nacionalidad:</label>
+          <label>Telefono:</label>
           <input
             type="text"
-            name="nationality"
-            value={formData.nationality}
-            onChange={handleChange}
+            name="phone"
+            value={input.dob}
+            onChange={(event) => handleChange(event)}
             required
           />
-          {errors.nationality && <p className="error-message">{errors.nationality}</p>}
-        </div>
-
-        <div>
-          <label>Fecha de Nacimiento:</label>
-          <input
-            type="date"
-            name="birthdate"
-            value={formData.birthdate}
-            onChange={handleChange}
-            required
-          />
-          {errors.birthdate && <p className="error-message">{errors.birthdate}</p>}
+          {errors.phone && <p className="error-message">{errors.phone}</p>}
         </div>
 
         <div>
@@ -126,8 +133,9 @@ function FormRegistro() {
           <input
             type="email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
+            value={input.email}
+            onChange={(event) => handleChange(event)}
+
             required
           />
           {errors.email && <p className="error-message">{errors.email}</p>}
@@ -138,8 +146,8 @@ function FormRegistro() {
           <input
             type="password"
             name="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={input.password}
+            onChange={(event) => handleChange(event)}
             required
           />
           {errors.password && <p className="error-message">{errors.password}</p>}
@@ -150,24 +158,25 @@ function FormRegistro() {
           <input
             type="password"
             name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
+            value={input.confirmPassword}
+            onChange={(event) => handleChange(event)}
             required
           />
           {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
         </div>
 
-        <button type="submit">REGISTRARSE</button>
+        <button type="submit"
+               > REGISTRARSE </button>
+
         <Link to="/form/login">
+
                 <button> INICIAR SESION </button>
+
             </Link>
       </form>
-      {message && <p>{message}</p>}
     </div>
   );
 }
 
-export default FormRegistro;
-
-  
-  
+      
+         
