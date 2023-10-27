@@ -12,6 +12,7 @@ export default function Cards({ productos }) {
 
   const pagedSection = productos.slice(0, paged);
   return (
+    <div className={Styles.contenCard}>
     <>
       <Filters />
       {!productos.length ? (
@@ -35,9 +36,9 @@ export default function Cards({ productos }) {
               />
             ))}
           </div>
-          <button onClick={handlePaged}>Mas Productos</button>
+          <button onClick={handlePaged}>Más Productos</button>
         </>
       )}
-    </>
+    </></div>
   );
 }
