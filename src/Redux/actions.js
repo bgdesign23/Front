@@ -19,10 +19,11 @@ import {
   GET_CATEGORIES,
   FILTER_BY_CATEGORIES,
   FILTER_BY_MATERIAL,
+  GET_DESING
 } from "../Redux/actionsTypes";
 
-// const URL = "http://localhost:3001";
-const URL = "https://backend-muebles.vercel.app";
+const URL = "http://localhost:3001";
+// const URL = "https://backend-muebles.vercel.app";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -152,7 +153,7 @@ export const getCategories = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${URL}/categories`);
-      console.log(data);
+      
       return dispatch({
         type: GET_CATEGORIES,
         payload: data,
@@ -238,3 +239,19 @@ export const filterByMaterial = (byMaterial, product) => {
     console.log(error.message);
   }
 };
+
+export const getDesings = () => {
+  return async (dispatch) => {
+    try {
+      const {data} = await axios.get(`${URL}/designs`)
+
+      return dispatch({
+        type: GET_DESING, 
+        payload: data
+      })
+
+    } catch (error) {
+      console.log("No esta llegando la info");
+    }
+  }
+}

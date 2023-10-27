@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function Cards({ productos }) {
   const [paged, setPaged] = useState(10);
 
-  const handlePaged = (event) => {
+  const handlePaged = () => {
     setPaged(paged + 10);
   };
 
