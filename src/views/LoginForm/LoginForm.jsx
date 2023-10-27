@@ -1,78 +1,65 @@
-import style from "./LoginForm.module.css"
-
-/*function LoginForm() {
-  return(
-    <div className={style.login}>
-      <form>
-
-          <h1>FORM</h1>
-          <label htmlFor="email">Email:</label>
-          <input name="email" type="email" placeholder="Ingrese su email"/>
-          <br/>
-          <label htmlFor="password">Password:  </label>
-          <input name="password" type="password" placeholder="Ingrese su contraseña"/>
-          <br/>
-          <h5>¿Olvidaste tu Contraseña?</h5>
-          <button  className="btoninicial">SUBMIT</button>
-      </form>
-      </div>
-  )
-}*/
-
-
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 function LoginForm() {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
+  const dispatch = useDispatch();
+  const [input, setInput] = useState({
+    email: '',
+    password: '',
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleChange = (event) => {
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const credentials = {
+      email: input.email,
+      password: input.password,
+    };
+
     try {
-      const response = await axios.post('/login', formData);
-
-      if (response.status === 200) {
-        
-      } else {
-        setError('El inicio de sesión falló. Email o Contraseña incorrectos.');
-      }
+      await dispatch(loginUser(credentials)); 
     } catch (error) {
-      console.error('Error al iniciar sesión:', error);
-      setError('Error al iniciar sesión. Inténtalo de nuevo.');
+      console.error('Error al iniciar sesión:', error.message);
     }
   };
 
   return (
-    <div className={style.login}>
+    <div>
+      <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
+          <label>Correo Electrónico:</label>
           <input
             type="email"
             name="email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            value={input.email}
+            onChange={handleChange}
             required
           />
         </div>
+
         <div>
           <label>Contraseña:</label>
           <input
             type="password"
             name="password"
-            value={formData.password}
-            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            value={input.password}
+            onChange={handleChange}
             required
           />
         </div>
-        <button className="btoninicial" >Iniciar Sesión</button>
+
+        <button type="submit">INICIAR SESIÓN</button>
       </form>
-      {error && <p>{error}</p>}
     </div>
   );
-} 
-
-
+}
 
 export default LoginForm;

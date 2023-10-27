@@ -7,10 +7,17 @@ import {
   ORDERBYPRICE,
   CLEAR_PRODUCTS,
   FILTER_BY_COLOR,
-  FILTER_BY_TYPE
+  FILTER_BY_TYPE,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  FILTER_RESTART,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE
 } from "../Redux/actionsTypes";
-// const URL = "http://localhost:3001";
-const URL = "https://backend-muebles.vercel.app";
+const URL = "http://localhost:3001";
+//const URL = "https://backend-muebles.vercel.app";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -121,3 +128,43 @@ export const reset_ProductList = () => {
     type: CLEAR_PRODUCTS,
   };
 };
+
+
+export const registerUser = (userData) => async (dispatch) => {
+  dispatch({ type: REGISTER_REQUEST });
+
+  try {
+    const response = await axios.post('http://localhost:3001/register', userData);
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: REGISTER_FAILURE,
+      payload: error.message,
+    });
+  }
+};
+
+export const filterRestart = () => (dispatch) => {
+  dispatch({ type: FILTER_RESTART });
+};
+
+export const loginUser = (credentials) => async (dispatch) => {
+  dispatch({ type: LOGIN_REQUEST });
+
+  try {
+    const response = await axios.post('http://localhost:3001/login', credentials);
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: LOGIN_FAILURE,
+      payload: error.message,
+    });
+  }
+};
+
