@@ -1,5 +1,33 @@
 .searchBar_Container{
     display: flex;
     justify-content: right;
-    margin-top: 20px;
+    margin-top: 5px;
+    margin-left: 60%;
 }
+
+.noStyleButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    outline: none;
+    color: white;
+  }
+  
+  .noStyleButton:hover {
+    opacity: 0.7;
+  }
+  .lineInput {
+    background: none;      
+    border: none;           
+    border-bottom: 1px solid white;  
+    outline: none;         
+    padding: 5px 0;        
+    color: white;           
+    transition: border-color 0.3s ease; 
+    margin-top: 10px;
+  }
+  
+  .lineInput:focus {
+    border-color: #888;     /* Cambia el color al hacer foco, ajusta según tu diseño */
+  }

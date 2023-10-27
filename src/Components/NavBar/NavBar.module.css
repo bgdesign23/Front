@@ -1,0 +1,20 @@
+
+    .navBar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid red;
+        padding: 0 20px;
+    }
+    
+    .placeholder {
+        flex: 1;
+    }
+    
+    
+    /* .logo {
+        height: auto;
+        max-width: 270px;
+        margin-left: 0px;
+    }
+     */

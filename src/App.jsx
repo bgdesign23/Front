@@ -12,7 +12,9 @@ import NavBar from "./Components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getProductsAction } from "../src/Redux/actions";
 import Detail from "./views/Detail/Detail";
+import ButtonSide from "./Components/ButtonSide/ButtonSide";
 import FormProduct from "./views/FormProduct/FormProduct";
+
 
 function App() {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
@@ -32,8 +34,8 @@ function App() {
       <SideBar isOpen={isOpenSideBar} onClick={() => setIsOpenSideBar(!isOpenSideBar)}/>
     </div>
 
-    <button className={styles.toggleSidebarBtn} onClick={() => setIsOpenSideBar(!isOpenSideBar)}> SideBar
-      {isOpenSideBar ? "Close" : "Open"}
+    <button className={styles.toggleSidebarBtn} onClick={() => setIsOpenSideBar(!isOpenSideBar)}> 
+      <ButtonSide/>
     </button>
 
     <div className={styles.contentContainer}>
