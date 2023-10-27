@@ -7,14 +7,13 @@ import {
   ORDERBYPRICE,
   CLEAR_PRODUCTS,
 } from "../Redux/actionsTypes";
-const URL = "http://localhost:3001";
-// const URL = "https://backend-muebles.vercel.app/";
+// const URL = "http://localhost:3001";
+const URL = "https://backend-muebles.vercel.app";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${URL}/products`);
-      console.log(data);
       return dispatch({
         type: GET_ALL_PRODUCTS,
         payload: data,
