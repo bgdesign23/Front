@@ -12,14 +12,16 @@ import 'slick-carousel/slick/slick-theme.css';
 function Offer() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
+  console.log(allProducts.oferr);
 
   useEffect(() => {
     dispatch(getProductsAction());
   }, [dispatch]);
 
-  
-  const productsInOffer = allProducts.filter((product) => product.oferr);
+  const productsInOffer = allProducts.filter(product => product.offer);
   console.log(productsInOffer);
+
+
 
   const sliderSettings = {
     dots: true, // Muestra los puntos indicadores
@@ -31,7 +33,7 @@ function Offer() {
 
   return (
     <div className={Style.offer}>
-      <h1>Productos en oferta </h1>
+      <h1>Productos en oferta</h1>
       <Slider {...sliderSettings}>
         {productsInOffer.map((product) => (
           <div key={product.id}>

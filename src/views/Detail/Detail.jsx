@@ -20,6 +20,7 @@ const Detail = () => {
     window.history.back();
   };
 
+
   const addToCart = () => {
     //agregando al carrito el producto
     setThing([...thing, detailProduct]);
@@ -49,6 +50,7 @@ const Detail = () => {
           <button onClick={addToCart} className={styles.button}>
             Agregar al Carrito
           </button>
+
         </div>
       </div>
       <button className={styles.backButton} onClick={back}>
