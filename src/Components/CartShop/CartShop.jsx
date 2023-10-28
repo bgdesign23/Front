@@ -1,28 +1,46 @@
-
- /*import React, { useState } from 'react'; */
+import CartCard from "../CartShop/CartCard";
+import Styles from "../CartShop/CartShop.module.css";
+import { useState } from "react";
 
 function ShoppingCart() {
-  /*const [cart, setCart] = useState([]);
+  // const initialCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  const addToCart = () => {
-  };
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
 
-  const removeFromCart = () => {
+  const deleteProduct = (productId) => {
+    // Filtra el producto con el id especificado y actualiza el carrito
+    const updatedCart = cart.filter((product) => product.id !== productId);
+
+    // Actualiza el estado y el localStorage
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   return (
-    <div>
-      <h2> ShoppingCart </h2>
-      
-        {cart.map(( ) => (
-          
-    <button onClick={() => removeFromCart( )}> Eliminar </button>
-        
-        ))}
-  
+    <div className={Styles.all_container}>
+      <div className={Styles.ShoppingCart_container}>
+        <div>
+          {cart.map((producto, index) => (
+            <CartCard
+              key={producto.id}
+              id={producto.id}
+              name={producto.name}
+              description={producto.description}
+              types={producto.type}
+              stock={producto.stock}
+              price={producto.price}
+              image={producto.image}
+              category={producto.CategoryId}
+              deleteProduct={deleteProduct}
+            />
+          ))}
+          <button> finalizar compra </button>
+        </div>
+      </div>
     </div>
-  ); */
+  );
 }
 
 export default ShoppingCart;
-
