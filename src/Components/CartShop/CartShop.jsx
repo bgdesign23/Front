@@ -1,5 +1,5 @@
 import CartCard from "../CartShop/CartCard";
-import Styles from "../CartShop/cartShop.module.css";
+import Styles from "../CartShop/CartShop.module.css";
 import { useState } from "react";
 
 function ShoppingCart() {
