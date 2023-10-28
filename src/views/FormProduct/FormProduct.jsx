@@ -1,168 +1,197 @@
-import  React, { useState } from 'react';
-import axios from 'axios';
-import styles from './FormProduct.module.css'
+import { useState } from "react";
+import styles from "./FormProduct.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import validationForm from "./ValidationFormProduct";
+import { postProduct } from "../../Redux/actions.js";
 
 function FormProduct() {
-  const [formProduct, setFormProduct] = useState({ 
-    name: '',
-    type:'',
-    material: '', 
-    price: '',
-    image: '',
-    color: '',
-    description: ''
- });
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.categories);
+  const [errors, setErrors] = useState({});
+  const [formProduct, setFormProduct] = useState({
+    name: "",
+    description: "",
+    category: "",
+    newCategory: "",
+    type: "",
+    material: "",
+    color: "",
+    price: "",
+    stock: "",
+    image: "",
+  });
 
-  const [errors, setErrors] = useState({}) //objeto vacío para los errores
-
-  const validationForm = () => {
-    const newErrors = {}
-     
-    if(formProduct.Nombre.trim() === ''){
-
-      newErrors.Nombre = 'El nombre es obligatorio'    
-    }
-
-  return newErrors
-}
-
-  const handleChange = (e) => {
+  const handleChange = (event) => {
     setFormProduct({
       ...formProduct,
-
-      [e.target.name]: e.target.value
-    })
+      [event.target.name]: event.target.value,
+    });
 
     setErrors(
       validationForm({
         ...formProduct,
-        [e.target.name]: e.target.value
+        [event.target.name]: event.target.value,
       })
-    )
-
+    );
   };
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setFormProduct({ ...formProduct, image: file });
+  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(formProduct);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("name", formProduct.name);
+    formData.append("description", formProduct.description);
+    formData.append(
+      "category",
+      formProduct.newCategory ? formProduct.newCategory : formProduct.category
+    );
+    formData.append("type", formProduct.type);
+    formData.append("material", formProduct.material);
+    formData.append("color", formProduct.color);
+    formData.append("price", formProduct.price);
+    formData.append("stock", formProduct.stock);
+    formData.append("image", formProduct.image);
+    dispatch(postProduct(formData));
+  };
 
-    try {
-      const response = await axios.post('url', formProduct)
-      
-      if(response.status === 201){
-        alert('Creación exitosa')
-        setFormProduct({
-          Nombre: '',
-          Tipo:'',
-          Material: '', 
-          Precio: '',
-          Image: '',
-          Color: '',
-          Descripción: ''
-        })
-      } else {
-        console.error('Error al crear el producto')
-      }
-    } catch (error) {
-      console.error('Ha ocurrido un error:', error)
-
-    }
-    
-    }
-  
   return (
     <div className={styles.containerFor}>
       <form onSubmit={handleSubmit}>
-        <input 
-
-          type="text" 
-          name="Nombre" 
-          value={formProduct.Nombre}
+        <input
+          type="text"
+          name="name"
+          value={formProduct.name}
           onChange={handleChange}
           placeholder="Nombre"
           required
-
-         />
-        {errors.Nombre && <div className={styles.error}>{errors.Nombre}</div>}
-         <br />
-         <br />
-
-        <input
-          type="text" 
-          name="Tipo" 
-          value={formProduct.Tipo}
-          onChange={handleChange}
-          placeholder="Tipo de mueble"
-          required
-
-         />
-         <br />
-         <br />
-        <input
+        />
+        {errors.name && <div className={styles.error}>{errors.name}</div>}
+        <br />
+        <textarea
           type="text"
-          name="Material"
-
-          value={formProduct.Material}
+          name="description"
+          value={formProduct.description}
           onChange={handleChange}
-          placeholder="Material del mueble"          
-
+          placeholder="Descripción..."
+          rows="4"
           required
         />
+        {errors.description && (
+          <div className={styles.error}>{errors.description}</div>
+        )}
+        <br />
+        <br />
+        <label htmlFor="categories">Categoria del producto: </label>
+        <select
+          name="category"
+          value={formProduct.category}
+          onChange={handleChange}
+        >
+          <option value="">Seleccione una categoría</option>
+          {categories
+            .sort((a, b) => a.name > b.name)
+            .map((cat) => (
+              <option key={cat.id} value={cat.name}>
+                {cat.name}
+              </option>
+            ))}
+          <option value="nueva_categoria">Crear nueva categoría</option>
+        </select>
+        {formProduct.category === "nueva_categoria" && (
+          <input
+            type="text"
+            name="newCategory"
+            placeholder="Nueva categoría..."
+            value={formProduct.newCategory}
+            onChange={handleChange}
+          />
+        )}
+        {errors.category && (
+          <div className={styles.error}>{errors.category}</div>
+        )}
         <br />
         <br />
         <input
           type="text"
-
-          name="Precio"
-          value={formProduct.Precio}
-
-          name="precio"
-          value={formData.Precio}
-
+          name="type"
+          value={formProduct.type}
           onChange={handleChange}
-          placeholder="Precio"
-          pattern="[0-9]+"
+          placeholder="Tipo de ambiente (ej.: Oficina, Comercial, Hogar)"
           required
         />
+        {errors.type && <div className={styles.error}>{errors.type}</div>}
         <br />
-        <br />       
+        <br />
         <input
           type="text"
-          name="Color"
-
-          value={formProduct.Color}
-
+          name="material"
+          value={formProduct.material}
+          onChange={handleChange}
+          placeholder="Material del mueble (ej.: Pino, Roble, Vidrio, Tela)"
+          required
+        />
+        {errors.material && (
+          <div className={styles.error}>{errors.material}</div>
+        )}
+        <br />
+        <br />
+        <input
+          type="text"
+          name="color"
+          value={formProduct.color}
           onChange={handleChange}
           placeholder="Color"
           required
         />
+        {errors.color && <div className={styles.error}>{errors.color}</div>}
         <br />
         <br />
-        Imagen: 
         <input
-          type="file"
-          name="Image"
-          accept="image/*"
-
-          value={formProduct.Image}
-
+          type="number"
+          min="0"
+          name="price"
+          value={formProduct.price}
           onChange={handleChange}
-          placeholder="Image"
+          placeholder="Precio"
           required
         />
+        {errors.price && <div className={styles.error}>{errors.price}</div>}
         <br />
         <br />
-        <textarea
-          type="text"  
-          name="Descripción"
-
-          value={formProduct.Descripción}
-
-          onChange={handleChange}
-          placeholder="Descripción"
-          rows="4"
-          required
+        <label>
+          <input
+            id="En Stock"
+            type="radio"
+            name="stock"
+            value="En Stock"
+            onChange={handleChange}
+          />{" "}
+          En Stock
+        </label>
+        <label>
+          <input
+            id="Sin Stock"
+            type="radio"
+            name="stock"
+            value="Sin Stock"
+            onChange={handleChange}
+          />{" "}
+          Sin Stock
+        </label>
+        {errors.stock && <div className={styles.error}>{errors.stock}</div>}
+        <br />
+        <br />
+        Imagen:
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          onChange={handleImageChange}
+          placeholder="Image"
         />
         <br />
         <br />
