@@ -1,6 +1,4 @@
-
 import styles from "../FormRegistro/FormRegistro.module.css"
-import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -48,7 +46,6 @@ export default function FormRegistro() {
 
 
     function handleChange(event) { 
-        console.log(input); 
         setInput({ 
             ...input,
             [event.target.name]: event.target.value 
@@ -63,7 +60,6 @@ export default function FormRegistro() {
       event.preventDefault();
       setErrors(validation(input));
       setInput((prevInput) => ({ ...prevInput, formSubmitted: true }));
-      
       if (
         Object.keys(errors).length === 0 &&
         input.username !== "" &&
@@ -72,7 +68,7 @@ export default function FormRegistro() {
         input.password !== "" &&
         input.confirmPassword !== ""
       ) {
-        dispatch(registerUser()); 
+        dispatch(registerUser(input)); 
         dispatch(filterRestart());
         alert("USUARIO CREADO CON ÉXITO, POR FAVOR INICIE SESIÓN");
         setInput({
