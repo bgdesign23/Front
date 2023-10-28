@@ -3,16 +3,16 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
-    position: relative; /* Agregar posición relativa para posicionar el logo de manera absoluta respecto a la barra de navegación */
-    margin-bottom: 30px;
+    height: 70px;
+    background-color: #191919;
+    z-index: 100;
 }
 
 .logo {
-    position: absolute; /* Hacer que el logo se posicione de manera absoluta */
-    top: 45%; /* Posicionar el logo en el centro verticalmente */
-    left: 50%; /* Posicionar el logo en el centro horizontalmente */
-    transform: translate(-50%, -50%); /* Corregir la posición para que esté exactamente en el centro */
-    height: auto;
+    position: absolute; 
+    top: 5%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
     max-width: 270px;
 }
 
