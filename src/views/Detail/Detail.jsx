@@ -6,7 +6,7 @@ import styles from "../Detail/Detail.module.css";
 import { useLocalStorage } from "../../localStorage/localStorage";
 
 const Detail = () => {
-  const [thing, setThing] = useLocalStorage("cart", []); //localStorage estadoLocal *no borrar sabandijas*
+  const [thing, setThing] = useLocalStorage("cart", []); //localStorage del carrito
   const { id } = useParams();
   const detailProduct = useSelector((state) => state.products_Details);
   const dispatch = useDispatch();
@@ -24,8 +24,6 @@ const Detail = () => {
     //agregando al carrito el producto
     setThing([...thing, detailProduct]);
   };
-
-  console.log(thing);
 
   return (
     <>
