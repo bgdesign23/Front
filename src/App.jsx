@@ -1,6 +1,6 @@
 import styles from "./App.module.css";
 import { useEffect, useState } from "react";
-import { Routes, Route, /* useNavigate, useLocation */ } from "react-router-dom";
+import { Routes, Route /* useNavigate, useLocation */ } from "react-router-dom";
 import Home from "./views/Home/Home";
 import SideBar from "./Components/SideBar/SideBar";
 import Product from "./views/Product/Product";
@@ -14,6 +14,7 @@ import { getCategories, getProductsAction } from "../src/Redux/actions";
 import Detail from "./views/Detail/Detail";
 import ButtonSide from "./Components/ButtonSide/ButtonSide";
 import FormProduct from "./views/FormProduct/FormProduct";
+import CartShop from "./Components/CartShop/CartShop";
 
 function App() {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
@@ -21,35 +22,45 @@ function App() {
   const productos = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(getProductsAction())
-    dispatch(getCategories())
+    dispatch(getProductsAction());
+    dispatch(getCategories());
   }, [dispatch]);
 
   return (
     <div className={styles.App}>
-    <>
-    <NavBar/>
-    <div className={styles.sideBar}>
-      <SideBar isOpen={isOpenSideBar} onClick={() => setIsOpenSideBar(!isOpenSideBar)}/>
-    </div>
+      <>
+        <NavBar />
+        <div className={styles.sideBar}>
+          <SideBar
+            isOpen={isOpenSideBar}
+            onClick={() => setIsOpenSideBar(!isOpenSideBar)}
+          />
+        </div>
 
-    <button className={styles.toggleSidebarBtn} onClick={() => setIsOpenSideBar(!isOpenSideBar)}> 
-      <ButtonSide/>
-    </button>
+        <button
+          className={styles.toggleSidebarBtn}
+          onClick={() => setIsOpenSideBar(!isOpenSideBar)}
+        >
+          <ButtonSide />
+        </button>
 
-    <div className={styles.contentContainer}>
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/home/decoracion' element={<Decoracion/>} />
-        <Route path="/form/decoracion" element={<FormDecoracion/>}/>
-        <Route path="/home/product" element={<Product productos={productos}/>} />
-        <Route path="/home/nuevo" element={<FormProduct/>} />
-        <Route path="/form/login" element={<LoginForm/>}/>
-        <Route path="/form/register" element={<FormRegistro/>} />
-        <Route path="/detail/:id" element={<Detail/>}/>
-      </Routes>  
-      </div>
-    </>
+        <div className={styles.contentContainer}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home/decoracion" element={<Decoracion />} />
+            <Route path="/form/decoracion" element={<FormDecoracion />} />
+            <Route
+              path="/home/product"
+              element={<Product productos={productos} />}
+            />
+            <Route path="/home/nuevo" element={<FormProduct />} />
+            <Route path="/form/login" element={<LoginForm />} />
+            <Route path="/form/register" element={<FormRegistro />} />
+            <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/cartShop" element={<CartShop />} />
+          </Routes>
+        </div>
+      </>
     </div>
   );
 }

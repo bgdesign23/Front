@@ -1,0 +1,79 @@
+.CartCard_Container {
+    display: flex;
+    width: 700px;
+    height: 10  0px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(220, 31, 31, 0.1);
+    border-radius: 0;
+    background-color: rgb(235, 224, 224);   
+    align-items: center;
+}
+
+
+
+h2 {
+    color: #000;
+    text-align: center;
+    font-family: Barlow;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+h3 {
+    color: #211f1f;
+    margin: 0;
+    text-align: center;
+    font-family: 'Barlow';
+    font-size: 20px;
+    font-weight: 700;
+    line-height: normal;
+}
+
+button{
+    flex-shrink: 0;
+    background: #191919;
+    color: #FFF;
+    text-align: center;
+    font-family: 'Barlow';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0px;
+}
+.imagen {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 0;
+        }
+    
+.botonera{
+            display: flex;
+                width: 300px;
+                justify-content: center;
+    } 
+    
+.botonesCantidad {
+    margin-inline: 4.5px;
+    }  
+
+    .name_container{
+       width: 400px;
+    }
+
+        .details{
+            width: 400px;
+        }
+
+                .imagen_container{
+                    width: 100px;
+                    align-items: center;
+                }
+
+                .numero{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
