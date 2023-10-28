@@ -1,4 +1,4 @@
-import Styles from "../CartShop/CartCard.module.css";
+import Styles from "../CartShop/cartCard.module.css";
 
 function CartCard({ id, name, image, price, deleteProduct }) {
   return (
