@@ -1,0 +1,23 @@
+.all_container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-block: 2rem;
+}
+
+
+.ShoppingCart_container {
+    border: 2px solid white;
+    padding: 2rem;
+    display: flex;
+    margin-left: 55px;
+    margin-bottom: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    order: 2;
+    justify-content: center;
+    align-items: center;
+    max-width: 900px;
+}

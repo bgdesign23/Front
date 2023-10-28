@@ -1,0 +1,36 @@
+.navBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 70px;
+    background-color: #191919;
+    z-index: 100;
+}
+
+.logo {
+    position: absolute; 
+    top: 5%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    max-width: 270px;
+}
+
+
+.buttonCarrito {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    color: white;
+    top: 10%;
+  }
+    
+.buttonCarrito:hover {
+      opacity: 0.7;
+}
+
+.noStyleButton, .buttonCarrito {
+    margin: 0; /* Asegúrate de que no haya márgenes */
+}

@@ -1,0 +1,39 @@
+.sideBar {
+    width: 200px;      
+    height: 100vh;      
+    position: fixed;   
+    left: -250px;       
+    top: 0;             
+    background-color: #333; 
+    color: white;      
+    overflow-y: auto;   
+    z-index: 10;
+    padding-top: 60px;
+    transition: 1s ease-in-out;
+  }
+  
+  .sideBar.open {
+    left: 0px;    
+}
+  
+
+  .sideBar a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+  
+    &:hover {
+      background-color: #444; /* Un poco más oscuro cuando pases el mouse por encima */
+    }
+  }
+  
+  .buttonslogin{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    bottom: 4rem;
+  }
