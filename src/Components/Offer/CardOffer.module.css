@@ -1,0 +1,57 @@
+.cardContainer {
+  width: 200px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(220, 31, 31, 0.1);
+  border-radius: 0;
+  background-color: rgba(25, 25, 25, 1);
+  position: relative; /* Establecemos la posición relativa en el contenedor padre */
+
+  .imagen {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 0;
+  }
+
+  /* Agregar otros estilos necesarios para la información adicional */
+}
+
+.offerMessage {
+  position: absolute;
+  top: 5px; /* Ajusta la posición vertical según tus preferencias */
+  right: 5px; /* Ajusta la posición horizontal según tus preferencias */
+  background-color: red;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cardContainer h2 {
+  margin-top: 5px;
+  color: #fff;
+  text-align: center;
+  font-family: 'Barlow';
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.cardContainer h3 {
+  color: #fff;
+  text-align: center;
+  font-family: 'Barlow';
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.cardContainer button {
+  background: #fff;
+  color: #191919;
+  text-align: center;
+  font-family: 'Barlow';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 10px;
+}
