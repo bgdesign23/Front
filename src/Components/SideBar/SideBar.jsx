@@ -4,10 +4,6 @@ import styles from './SideBar.module.css'
 
 const SideBar = ({isOpen}) => {
 
-    const back = () => {
-       window.history.back()
-    }
-
     return (
         <div className={`${styles.sideBar} ${isOpen ? styles.open : ''}`}>
           <Link to="/">

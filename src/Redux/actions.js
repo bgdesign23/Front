@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 import {
   CLEAR_DETAIL,
   GET_ALL_PRODUCTS,
@@ -22,8 +23,8 @@ import {
   GET_DESING
 } from "../Redux/actionsTypes";
 
-const URL = "http://localhost:3001";
-// const URL = "https://backend-muebles.vercel.app";
+// const URL = "http://localhost:3001";
+const URL = "https://backend-muebles.vercel.app";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -189,7 +190,7 @@ export const registerUser = (userData) => async (dispatch) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:3001/register",
+      `${URL}/users/register`,
       userData
     );
     dispatch({
@@ -213,7 +214,7 @@ export const loginUser = (credentials) => async (dispatch) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:3001/login",
+      `${URL}/users/login`,
       credentials
     );
     dispatch({
@@ -255,3 +256,22 @@ export const getDesings = () => {
     }
   }
 }
+
+export const postProduct = (formData) => {
+  return async function () {
+    try {
+      await axios.post(`${URL}/products/create`, formData);
+      await Swal.fire({
+        title: "¡Creación exitosa!",
+        text: "Producto agregado correctamente.",
+        icon: "success",
+      });
+    } catch (error) {
+      await Swal.fire({
+        title: "Error",
+        text: error.response.data.message,
+        icon: "error",
+      });
+    }
+  };
+};

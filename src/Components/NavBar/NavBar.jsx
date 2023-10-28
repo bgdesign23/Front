@@ -5,6 +5,7 @@ import ButtonCarrito from "../SearchBar/ButtonCarrito/ButtonCarrito";
 
 
 
+
 const NavBar = () => {
 
     return (

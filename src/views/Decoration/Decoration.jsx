@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getDesings } from '../../Redux/actions';
-
+import FormaSvg from './FormaSvg/FormaSvg';
+import styles from "../Decoration/Decoration.module.css";
 
 const Decoracion = () => {
 const dispatch = useDispatch();
@@ -14,20 +15,32 @@ useEffect(() => {
 }, [])
 
     return (
-        <div>
+        <div className={styles.contentContainer} >
+            <section className={styles.contenedor}>
            {
-            service.map(serv => (
-                <div >
+               service.map(serv => (
+                <div className={styles.containerDeco}>
+                    <section className={styles.imgSection}>
+                     <img src={serv.image} alt={serv.name}/>
+                    </section> 
+
+                   <section className={styles.textSection}>
                     <h1>{serv.name}</h1>
-                    <img src={serv.image} alt={serv.name}/>
-                    <h2>{serv.type}</h2>
-                    <p>{serv.description}</p>
+                    <span>{serv.description}</span>
+                    <p>Estilo: {serv.type}</p>
+                 <Link to='/form/decoracion'>
+                   <button> Solicitar servicio </button>
+                 </Link>
+                 </section>
+
                 </div>
             ))
-           }
-            <Link to='/form/decoracion'>
-                <button> Solicitar decoración </button>
-            </Link>
+        }
+        </section>
+        <section className={styles.forma}>
+          <FormaSvg/>
+        </section>
+       
         </div>
     )
 

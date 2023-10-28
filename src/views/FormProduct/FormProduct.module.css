@@ -29,3 +29,7 @@
     margin: 10px 0;
   }
   
+  .error {
+    color: rgb(233, 21, 21);
+    font-weight: bold;
+}
