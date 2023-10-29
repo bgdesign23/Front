@@ -285,15 +285,29 @@ export const getDesings = () => {
   }
 }
 
-export const postProduct = (formData) => {
-  return async function () {
+export const postProduct = (formData, navigate) => {
+  return async function (dispatch) {
     try {
       await axios.post(`${URL}/products/create`, formData);
+      dispatch(getProductsAction());
+      dispatch(getCategories());
       await Swal.fire({
         title: "¡Creación exitosa!",
         text: "Producto agregado correctamente.",
         icon: "success",
       });
+      await Swal.fire({
+        icon: "question",
+        showDenyButton: true,
+        confirmButtonText: 'Agregar otro producto',
+        denyButtonText: 'Ver Productos',
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          window.location.reload()
+        } else {
+          navigate("/home/product");
+        }
+      })
     } catch (error) {
       await Swal.fire({
         title: "Error",
