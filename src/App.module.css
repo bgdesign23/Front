@@ -1,9 +1,15 @@
-
 #root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   width: 100%;
   margin: 0 auto;
   text-align: center;
   padding-top: 70px;
+}
+
+.mainContent {
+    flex: 1;
 }
 
 .toggleSidebarBtn {
@@ -19,7 +25,7 @@
   border-radius: 5px;
   width: 30px; /* Tamaño del SVG */
   height: 30px; /* Tamaño del SVG */
-  color:#ffffff
+  color:#ffffff; /* Color inicial (blanco) */
 }
 
 .toggleSidebarBtn:hover {
@@ -27,9 +33,10 @@
 }
 
 .toggleSidebarBtn.open {
-  background-color: white;
-  color: #ffffff;
+  color: #000000; /* Color cuando está abierto (negro) */
 }
+
+
 
 .sideBar {
   z-index: 10; 
