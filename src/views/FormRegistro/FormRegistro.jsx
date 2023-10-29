@@ -88,7 +88,10 @@ export default function FormRegistro() {
 <div>
       <form className={styles.loginContainer} onSubmit={handleSubmit}>
         <div className={styles.login}>
-          <div>
+
+     <section  className={styles.formimput}> 
+        <div className={styles.columna}>
+          <div className={styles.labelimput}>
             <label>Nombre Completo:</label>
             <input
               type="text"
@@ -100,7 +103,7 @@ export default function FormRegistro() {
             {errors.username && <p className={styles.error}> {errors.username} </p>}
           </div>
 
-          <div>
+          <div className={styles.labelimput}>
             <label>Localidad:</label>
             <input
               type="text"
@@ -112,7 +115,7 @@ export default function FormRegistro() {
             {errors.location && <p className={styles.error}>{errors.location}</p>}
           </div>
 
-          <div>
+          <div className={styles.labelimput}>
             <label>Teléfono:</label>
             <input
               type="text"
@@ -123,8 +126,11 @@ export default function FormRegistro() {
             />
             {errors.phone && <p className={styles.error}>{errors.phone}</p>}
           </div>
+          
+        </div>
 
-          <div>
+        <div className={styles.columna}>
+          <div className={styles.labelimput}>
             <label>Correo Electrónico:</label>
             <input
               type="email"
@@ -136,7 +142,7 @@ export default function FormRegistro() {
             {errors.email && <p className={styles.error}>{errors.email}</p>}
           </div>
 
-          <div>
+          <div className={styles.labelimput}>
             <label>Contraseña:</label>
             <input
               type="password"
@@ -148,7 +154,7 @@ export default function FormRegistro() {
             {errors.password && <p className={styles.error}>{errors.password}</p>}
           </div>
 
-          <div>
+          <div className={styles.labelimput}>
             <label>Confirmar Contraseña:</label>
             <input
               type="password"
@@ -158,7 +164,10 @@ export default function FormRegistro() {
               required
             />
             {errors.confirmPassword && <p className={styles.error}>{errors.confirmPassword}</p>}
-          </div> 
+          </div>
+        </div>  
+      </section>     
+
           <div className={styles.buttonContainer}>
           <button type="submit">REGISTRARSE</button>
           <Link to="/form/login">
