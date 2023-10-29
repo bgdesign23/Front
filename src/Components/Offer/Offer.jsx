@@ -32,11 +32,12 @@ function Offer() {
   };
 
   return (
+    <div className={Style.offerBackground}>
     <div className={Style.offer}>
       <h1>Productos en oferta</h1>
       <Slider {...sliderSettings}>
         {productsInOffer.map((product) => (
-          <div key={product.id}>
+          <div key={product.id} className={Style.cardOferta}>
             <CardOffer
               id={product.id}
               name={product.name}
@@ -50,7 +51,7 @@ function Offer() {
           </div>
         ))}
       </Slider>
-      
+    </div>
     </div>
   );
 

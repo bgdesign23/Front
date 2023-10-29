@@ -6,33 +6,13 @@ import Offer from "../../Components/Offer/Offer";
 import repisa from "../../images/repisa1.jpg";
 import repisas from "../../images/repisa2.jpg";
 import muebles from "../../images/muebles.jpg";
-import decoracion from "../../images/deco.jpg";
+import decoracion from "../../images/deco.jpg"
 
 const Home = () => {
   const navigate = useNavigate();
 
-  const [showFooter, setShowFooter] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if(window.scrollY < 100){
-        setShowFooter(false)
-        console.log("El footer debería mostrarse");
-      } else {
-        setShowFooter(true)
-        console.log("El footer debería mostrarse");
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
-
   return (
+    <div className={style.contentWrapper}>
     <div className={style.home}>
       <div className={style.quienes}>
          <h1>¿Quienes</h1>
@@ -47,10 +27,10 @@ const Home = () => {
       <img src={repisa} className={style.repisa}/>
       <img src={repisas} className={style.repisas} />
 
-      <div className={style.offerBackground}>
-      <Offer />  
+     <div>
+      <Offer/>  
+     </div>
 
-      </div>
 
   <div className={style.contenedor}>
     <h1>Servicios</h1>
@@ -67,8 +47,8 @@ const Home = () => {
         </div>
     </div>
 </div>  
-
-     { showFooter && <Footer/>}
+   <Footer/>
+    </div>
     </div>
   );
 };
