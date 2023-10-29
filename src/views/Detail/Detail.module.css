@@ -18,12 +18,11 @@
     align-items: center;
 }
 
-
-
 .imageContainer {
     flex: 1;
+    overflow-clip-margin: content-box;
+    overflow: clip;
 }
-
 .image {
     width: 300px;
     height: 300px;
@@ -46,22 +45,25 @@
     font-weight: 400;
     line-height: normal;
     color: white;
+   
 }
 
 .description, .type {
     color: white;
+  
 }
 
 .buttons {
-    height: 40px;
-    background: #D9D9D9;
-    color: #000;
+    flex-shrink: 0;
+    background: #191919;
+    color: #FFF;
     text-align: center;
-    font-family: Cinzel;
-    font-size: 15px;
-    font-style: normal;
+    font-family: 'Barlow';
+    font-size: 14px;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: 0px;
+
 }
 
 .backButton {
@@ -93,15 +95,31 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    
+    
 }
 
 .detailsContainer h2{
-    text-align: left; 
     
+    text-align: left; 
     margin-top: -5px;
+    color: #ede0e0;
+    margin: 0;
+    text-align: center;
+    font-family: 'Barlow';
+    font-size: 20px;
+    font-weight: 700;
+    line-height: normal;
 }
 /* Alinear los elementos en cada fila */
 .filas h3 {
+    font-family: 'Barlow';
+    display: block;
+    font-size: 15px;
+background-color: rgba(0, 255, 255, 0);
+    
+    color: white;
+    text-size-adjust:  0px;
     width: 45%; /* El 48% permite espacio para el espaciado entre las columnas */
     text-align: left;
     margin: 0;
