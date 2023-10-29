@@ -50,6 +50,10 @@ const Detail = () => {
         <h3 className={styles.stock}>{detailProduct?.stock}</h3>
         </div>
           <h2  className={styles.price}>${detailProduct?.price},00</h2>
+          <a href={`https://wa.me/2477516585/?text=Hola,%20quisiera%20tener%20más%20información%20sobre%20el%20producto`} 
+          target="_blank">
+          <button>Contactar en WhatsApp</button>
+          </a>
           <button onClick={addToCart} className={styles.button}>
             Agregar al Carrito
           </button>
