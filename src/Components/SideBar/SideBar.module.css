@@ -4,7 +4,7 @@
     position: fixed;   
     left: -250px;       
     top: 0;             
-    background-color: #333; 
+    background-color: #D9D9D9; 
     color: white;      
     overflow-y: auto;   
     z-index: 10;
@@ -20,13 +20,11 @@
   .sideBar a {
     display: block;
     padding: 10px 15px;
-    color: white;
+    color: #191919;
     text-decoration: none;
     transition: 0.3s;
-  
-    &:hover {
-      background-color: #444; /* Un poco más oscuro cuando pases el mouse por encima */
-    }
+    font-family: 'Barlow', sans-serif;
+    font-weight: bold;
   }
   
   .buttonslogin{

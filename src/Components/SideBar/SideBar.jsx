@@ -22,6 +22,10 @@ const SideBar = ({isOpen}) => {
                     Iniciar Sesion
                 </Link>
           </div>
+
+                <Link to="/home/nuevo">
+                    Nuevo Mueble
+                </Link>
         </div>
     )
 

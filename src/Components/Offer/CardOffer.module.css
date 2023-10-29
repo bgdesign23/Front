@@ -4,7 +4,7 @@
   box-shadow: 0 4px 6px rgba(220, 31, 31, 0.1);
   border-radius: 0;
   background-color: rgba(25, 25, 25, 1);
-  position: relative; /* Establecemos la posición relativa en el contenedor padre */
+  position: relative; 
 
   .imagen {
     width: 100%;
@@ -12,8 +12,6 @@
     object-fit: cover;
     border-radius: 0;
   }
-
-  /* Agregar otros estilos necesarios para la información adicional */
 }
 
 .offerMessage {
@@ -49,9 +47,9 @@
   background: #fff;
   color: #191919;
   text-align: center;
-  font-family: 'Barlow';
-  font-size: 14px;
+  font-family: 'Barlow', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
   font-weight: 400;
-  line-height: normal;
   margin-bottom: 10px;
 }
