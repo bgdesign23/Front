@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../Redux/actions.js';
-
+import Style from "../LoginForm/LoginForm.module.css"
 function LoginForm() {
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -32,7 +32,8 @@ function LoginForm() {
   };
 
   return (
-    <div>
+    <div className={Style.loginContainer}>
+    <div className={Style.login}>
       <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -59,6 +60,7 @@ function LoginForm() {
 
         <button type="submit">INICIAR SESIÓN</button>
       </form>
+    </div>
     </div>
   );
 }

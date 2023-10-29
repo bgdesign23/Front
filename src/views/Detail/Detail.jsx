@@ -41,12 +41,15 @@ const Detail = () => {
           <span className={styles.description}>
             {detailProduct?.description}
           </span>
-          <h3 className={styles.type}>{detailProduct?.type}</h3>
-          <h3 className={styles.stock}>{detailProduct?.stock}</h3>
-          <h3 className={styles.color}>{detailProduct?.color}</h3>
-          <h3 className={styles.material}>{detailProduct?.material}</h3>
-          <h3 className={styles.category}>{detailProduct?.category?.name}</h3>
-          <h2 className={styles.price}>${detailProduct?.price},00</h2>
+          <div className={styles.filas}>
+          <h3 className={styles.type}>Ambiente: {detailProduct?.type}</h3>
+          
+          <h3 className={styles.color}>Color: {detailProduct?.color}</h3>
+          <h3 className={styles.material}>Material: {detailProduct?.material}</h3>
+          <h3 className={styles.category}> {detailProduct?.category?.name}</h3>
+        <h3 className={styles.stock}>{detailProduct?.stock}</h3>
+        </div>
+          <h2  className={styles.price}>${detailProduct?.price},00</h2>
           <button onClick={addToCart} className={styles.button}>
             Agregar al Carrito
           </button>
