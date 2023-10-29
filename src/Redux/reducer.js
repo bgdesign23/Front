@@ -17,6 +17,9 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  UPDATE_USER_SUCCESS, 
+  UPDATE_USER_FAILURE,
+  LOGOUT,
   FILTER_BY_MATERIAL,
   GET_DESING,
 } from "./actionsTypes";
@@ -28,6 +31,7 @@ let initialState = {
   products_Details: {},
   user: null,
   loading: false,
+  authenticated: false,
   categories: [],
   categories_Copy: [],
   desings: [],
@@ -143,6 +147,25 @@ const Reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+      case UPDATE_USER_SUCCESS: 
+      return {
+        ...state,
+        user: action.payload, 
+        loading: false,
+        error: null,
+      };
+    
+    case UPDATE_USER_FAILURE: 
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case LOGOUT:return {
+        ...state,
+        ...state,
+    authenticated: false,
       };
 
     case FILTER_BY_MATERIAL:

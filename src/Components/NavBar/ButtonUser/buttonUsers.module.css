@@ -1,0 +1,35 @@
+.buttonUser {
+    background: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+
+  }
+
+ 
+    .userMenu {
+  position: relative; /* Asegúrate de que el menú se superponga al contenido */
+  background-color: white;
+  }
+  
+  .buttonUser {
+    cursor: pointer;
+  }
+  
+  .userDropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .userDropdown p {
+    margin: 0;
+  }
+  .menuButton {
+    display: inline; 
+  }

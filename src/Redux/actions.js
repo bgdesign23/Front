@@ -17,6 +17,10 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGOUT,
+  UPDATE_USER_REQUEST, 
+  UPDATE_USER_SUCCESS, 
+  UPDATE_USER_FAILURE,
   GET_CATEGORIES,
   FILTER_BY_CATEGORIES,
   FILTER_BY_MATERIAL,
@@ -227,6 +231,30 @@ export const loginUser = (credentials) => async (dispatch) => {
       payload: error.message,
     });
   }
+};
+
+export const updateUser = (userData) => async (dispatch) => {
+  dispatch({ type: UPDATE_USER_REQUEST });
+
+  try {
+   
+    const response = await axios.put(`${URL}/users/${userData.id}`, userData);
+
+    dispatch({
+      type: UPDATE_USER_SUCCESS,
+      payload: response.data, 
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_USER_FAILURE,
+      payload: error.message,
+    });
+  }
+};
+
+export const logoutUser = () => (dispatch) => {
+  localStorage.removeItem('jwtToken');
+  dispatch({ type: LOGOUT });
 };
 
 export const filterByMaterial = (byMaterial, product) => {
