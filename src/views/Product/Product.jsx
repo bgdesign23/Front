@@ -3,13 +3,15 @@ import Styles from "./Product.module.css";
 import Card from "../Product/Card";
 import Filters from "../../Components/Filters/Filters";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
-export default function Cards({ productos }) {
+export default function Cards( {productos} ) {
   const [paged, setPaged] = useState(10);
 
   const handlePaged = () => {
     setPaged(paged + 10);
   };
+
 
   const pagedSection = productos.slice(0, paged);
   return (
