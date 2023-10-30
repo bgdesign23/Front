@@ -12,11 +12,11 @@ function validation(input) {
     errors.username = "Debe contener un Nombre. Ej: Maria Luna";
   }
   if (!input.location || !/^(?:[A-Z][a-zA-Z]*)(?:-[A-Z][a-zA-Z]*){0,1}$/.test(input.location)) {
-    errors.location = "Debe tener un Nombre válido";
+    errors.location = "Debe contener una localidad válida";
   }
   if (!/^\(\d{3}\)\d{4}-\d{4}$/.test(input.phone)) {
     errors.phone =
-      "Debe contener un número de teléfono válido. Ej (000)0000-0000 ";
+      "Debe contener un número válido. Ej (000)0000-0000 ";
   }
   if (!/^\S+@\S+\.\S+$/.test(input.email)) {
     errors.email = "Debe ser un email válido";

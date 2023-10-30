@@ -204,7 +204,7 @@ export const registerUser = (userData, navigate) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: response.data,
     });
-    navigate("/form/perfil");
+    navigate("/form/login");
   } catch (error) {
     await Swal.fire({
       title: "Hubo un problema",
@@ -222,7 +222,7 @@ export const filterRestart = () => (dispatch) => {
   dispatch({ type: FILTER_RESTART });
 };
 
-export const loginUser = (credentials) => async (dispatch) => {
+export const loginUser = (credentials, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
 
   try {
@@ -232,10 +232,21 @@ export const loginUser = (credentials) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: response.data,
     });
+    await Swal.fire({
+      title: `¡Hola ${response.data.user.username}!`,
+      text: "Has iniciado sesión correctamente",
+      icon: "success",
+    });
+    navigate("/");
   } catch (error) {
     dispatch({
       type: LOGIN_FAILURE,
       payload: error.message,
+    });
+    await Swal.fire({
+      title: "Error al iniciar sesión",
+      text: error.response.data.error,
+      icon: "error",
     });
   }
 };

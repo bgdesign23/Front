@@ -1,4 +1,5 @@
-import Styles from "../Product/Product.module.css";
+/* eslint-disable react/prop-types */
+import Styles from "./Product.module.css";
 import Card from "../Product/Card";
 import Filters from "../../Components/Filters/Filters";
 import { useState } from "react";
@@ -17,7 +18,7 @@ export default function Cards({ productos }) {
         <Filters />
         {!productos.length ? (
           <div>
-            <h1>No se encontraron productos relacionados</h1>
+            <h1 className={Styles.h1}>No se encontraron productos relacionados</h1>
           </div>
         ) : (
           <>

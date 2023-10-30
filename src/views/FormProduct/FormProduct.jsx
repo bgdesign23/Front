@@ -21,6 +21,7 @@ function FormProduct() {
     price: "",
     stock: "",
     image: "",
+    amount: "",
   });
 
   const handleChange = (event) => {
@@ -57,6 +58,7 @@ function FormProduct() {
     formData.append("price", formProduct.price);
     formData.append("stock", formProduct.stock);
     formData.append("image", formProduct.image);
+    formData.append("amount", formProduct.amount);
     dispatch(postProduct(formData, navigate));
   };
 
@@ -173,6 +175,18 @@ function FormProduct() {
           />{" "}
           En Stock
         </label>
+        {formProduct.stock === "En Stock" && (
+          <input
+          type="text"
+          pattern="[0-9]*"
+          name="amount"
+          value={formProduct.amount}
+          onChange={handleChange}
+          placeholder="Cantidad en stock"
+          required
+        />
+        )}
+        {formProduct.stock === "En Stock" && errors.amount && <div className={styles.error}>{errors.amount}</div>}
         <br />
         <label>
           <input

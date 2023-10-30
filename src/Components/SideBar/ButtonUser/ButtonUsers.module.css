@@ -17,8 +17,25 @@
 .userDropdown p {
   margin: 0;
 }
+
 .menuButton {
   display: inline;
+  background-color: grey;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.menuButton:hover {
+  display: inline;
+  background-color: grey;
+  cursor: pointer;
+}
+
+.menuButton:active {
+  display: inline;
+  background-color: grey;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 .p {
@@ -27,4 +44,25 @@
 
 .buttonUser {
   width: 100%;
+  background-color: grey;
+  border-radius: 10px;
+}
+
+.buttonUser:hover {
+  width: 100%;
+  background-color: grey;
+  cursor: pointer;
+}
+
+.buttonUser:active {
+  background-color: grey;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.divUsers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
