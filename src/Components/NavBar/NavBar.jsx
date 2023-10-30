@@ -2,13 +2,12 @@ import SearchBar from "../../Components/SearchBar/SearchBar";
 import styles from "../NavBar/NavBar.module.css";
 import logo from "../../images/logo.png";
 import ButtonCarrito from "../SearchBar/ButtonCarrito/ButtonCarrito";
-import ButtonUserAuth from "./ButtonUser/ButtonUserAuth";
+import ButtonUserAuth from "../../Components/NavBar/ButtonUser/ButtonUserAuth"
 import ButtonUser from "../../Components/NavBar/ButtonUser/ButtonUser"
 import {useSelector} from "react-redux"
 
 const NavBar = () => {
   const authenticated = useSelector((state) => {
-  console.log("Authenticated value:", state.authenticated);
   return state.authenticated;
 });
     return (

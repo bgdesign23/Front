@@ -169,9 +169,9 @@ export default function FormRegistro() {
       </section>     
 
           <div className={styles.buttonContainer}>
-          <button type="submit">REGISTRARSE</button>
+c
           <Link to="/form/login">
-            <button>INICIAR SESIÓN</button>
+            <button>REGISTRARSE</button>
           </Link>
         </div>
         </div>

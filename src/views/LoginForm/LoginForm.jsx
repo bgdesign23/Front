@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../Redux/actions.js';
 import Style from "../LoginForm/LoginForm.module.css"
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -9,6 +10,8 @@ function LoginForm() {
     email: '',
     password: '',
   });
+    const navigate = useNavigate();
+
 
   const handleChange = (event) => {
     setInput({
@@ -26,11 +29,16 @@ function LoginForm() {
     };
 
     try {
-      await dispatch(loginUser(credentials)); 
+      await dispatch(loginUser(credentials));
+
+      navigate('/');
+
     } catch (error) {
       console.error('Error al iniciar sesión:', error.message);
     }
   };
+
+  
 
   return (
     <div className={Style.loginBackground}>
@@ -60,8 +68,8 @@ function LoginForm() {
             required
           />
         </div>
-
         <button type="submit">INICIAR SESIÓN</button>
+
       </form>
     </div>
     </div>

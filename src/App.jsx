@@ -15,6 +15,7 @@ import Detail from "./views/Detail/Detail";
 import ButtonSide from "./Components/ButtonSide/ButtonSide";
 import FormProduct from "./views/FormProduct/FormProduct";
 import CartShop from "./Components/CartShop/CartShop";
+import PerfilUser from "./views/PerfilUser/PerfilUser";
 
 function App() {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
@@ -56,6 +57,7 @@ function App() {
             <Route path="/home/nuevo" element={<FormProduct />} />
             <Route path="/form/login" element={<LoginForm />} />
             <Route path="/form/register" element={<FormRegistro />} />
+             <Route path="/form/perfil" element={<PerfilUser/>} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/cartShop" element={<CartShop />} />
           </Routes>
