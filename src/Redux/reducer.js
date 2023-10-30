@@ -90,7 +90,7 @@ const Reducer = (state = initialState, action) => {
     case GET_BY_HASHTAG:
       return {
         ...state,
-        products: [...state.products, ...action.payload],
+        products: action.payload,
       };
     case CLEAR_PRODUCTS:
       return {

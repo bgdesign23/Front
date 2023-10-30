@@ -47,7 +47,7 @@ function ButtonAuth() {
       </svg>
       </button>
       {menuVisible && (
-        <div>
+        <div className={styles.divUsers}>
           <button onClick={redirectToUserProfile} className={styles.menuButton}>
             Ver perfil
           </button>

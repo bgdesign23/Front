@@ -58,6 +58,13 @@ const validationForm = (formProduct) => {
     newErrors.stock = "Debe indicar si tiene stock del producto";
   }
 
+  if (!formProduct.amount || formProduct.amount < 1) {
+    newErrors.amount = "La cantidad disponible debe ser mayor a 0";
+  }
+  if (/[^\d]/g.test(formProduct.amount)) {
+    newErrors.amount = "La cantidad debe ser un número entero";
+  }
+
   return newErrors;
 };
 

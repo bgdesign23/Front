@@ -42,7 +42,7 @@ function ButtonUser() {
       </svg>
       </button>
       {menuVisible && (
-        <div >
+        <div className={styles.divUsers}>
           <p className={styles.p}>Usuario no registrado</p>
           <button onClick={redirectToLogin} className={styles.menuButton}>Iniciar sesión</button> 
           <button onClick={redirectToRegistro} className={styles.menuButton} >Registrarse</button>

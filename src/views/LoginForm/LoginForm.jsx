@@ -28,14 +28,8 @@ function LoginForm() {
       password: input.password,
     };
 
-    try {
-      await dispatch(loginUser(credentials)).then(navigate("/")) 
-    } catch (error) {
-      console.error('Error al iniciar sesión:', error.message);
-    }
+      dispatch(loginUser(credentials, navigate))
   };
-
-  
 
   return (
     <div className={Style.loginBackground}>

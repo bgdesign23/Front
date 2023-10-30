@@ -1,7 +1,7 @@
 .loginContainer {
   background-image: url("../LoginForm/fondo.png");
   background-repeat: no-repeat;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   background-size: cover;
   margin-top: -65px;
   padding-top: 80px;
@@ -60,7 +60,7 @@
 
 .login p {
   color: red;
-  font-size: 12px;
+  font-size: 17px;
   margin-top: 1px;
 }
 
