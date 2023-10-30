@@ -8,6 +8,7 @@ const NavBar = () => {
     <nav className={styles.navBar}>
       <img src={logo} className={styles.logo} alt="Logo" />
       <SearchBar />
+
       <button type="button" className={styles.buttonCarrito}>
         <ButtonCarrito />
       </button>
