@@ -24,11 +24,12 @@ import {
   GET_CATEGORIES,
   FILTER_BY_CATEGORIES,
   FILTER_BY_MATERIAL,
-  GET_DESING
+  GET_DESING,
+  SET_USER
 } from "../Redux/actionsTypes";
 
- const URL = "http://localhost:3001";
-//const URL = "https://backend-muebles.vercel.app";
+const URL = "http://localhost:3001";
+// const URL = "https://backend-muebles.vercel.app";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -189,19 +190,30 @@ export const reset_ProductList = () => {
   };
 };
 
-export const registerUser = (userData) => async (dispatch) => {
+export const registerUser = (userData, navigate) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST });
-
   try {
     const response = await axios.post(
       `${URL}/users/register`,
       userData
     );
+    await Swal.fire({
+      title: "¡Registro exitoso!",
+      text: "Usuario registrado exitosamente.",
+      icon: "success",
+    });
+    localStorage.setItem("token", response.data.token);
     dispatch({
       type: REGISTER_SUCCESS,
       payload: response.data,
     });
+    navigate("/form/perfil");
   } catch (error) {
+    await Swal.fire({
+      title: "Hubo un problema",
+      text: error.response.data.error,
+      icon: "error",
+    });
     dispatch({
       type: REGISTER_FAILURE,
       payload: error.message,
@@ -221,6 +233,7 @@ export const loginUser = (credentials) => async (dispatch) => {
       `${URL}/users/login`,
       credentials
     );
+    localStorage.setItem("token", response.data.token);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: response.data,
@@ -231,6 +244,24 @@ export const loginUser = (credentials) => async (dispatch) => {
       payload: error.message,
     });
   }
+};
+
+export const getUser = () => async (dispatch) => {
+    try {
+      const token = localStorage.getItem("token");
+      const config = {
+        headers: {
+          authorization: token,
+        },
+      };
+      let response = await axios.post(`${URL}/users`, {}, config);
+      dispatch({
+        type: SET_USER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
 };
 
 export const updateUser = (userData) => async (dispatch) => {
@@ -252,8 +283,9 @@ export const updateUser = (userData) => async (dispatch) => {
   }
 };
 
-export const logoutUser = () => (dispatch) => {
-  localStorage.removeItem('jwtToken');
+export const logoutUser = (navigate) => (dispatch) => {
+  localStorage.removeItem('token');
+  navigate("/form/login")
   dispatch({ type: LOGOUT });
 };
 

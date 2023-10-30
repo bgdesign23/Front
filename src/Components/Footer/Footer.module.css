@@ -5,11 +5,10 @@
   display: grid;
   font-family: 'Barlow', sans-serif;
   font-weight: bold;
-  width: 1409px;
+  width: 100vw;
   height: 300px;
-  margin-left: -100px;
-  margin-right: -100px;
-  bottom: 0px;
+  margin-left: -50px;
+  margin-bottom: -50px;
 }
 
 .mainContent {

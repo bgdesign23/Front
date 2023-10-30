@@ -1,0 +1,30 @@
+.userMenu {
+  position: relative;
+  background-color: white;
+}
+
+.userDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.userDropdown p {
+  margin: 0;
+}
+.menuButton {
+  display: inline;
+}
+
+.p {
+  color: black;
+}
+
+.buttonUser {
+  width: 100%;
+}
