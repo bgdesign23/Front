@@ -3,13 +3,14 @@
     cursor: pointer;
     outline: none;
     color: white;
+    margin-left: 50px;
 
   }
 
  
     .userMenu {
-  position: relative; /* Asegúrate de que el menú se superponga al contenido */
-  background-color: white;
+  position: relative; 
+  background-color: rgb(243, 235, 235);
   }
   
   .buttonUser {

@@ -140,6 +140,8 @@ const Reducer = (state = initialState, action) => {
         user: action.payload,
         loading: false,
         error: null,
+      authenticated: true, 
+
       };
 
     case LOGIN_FAILURE:

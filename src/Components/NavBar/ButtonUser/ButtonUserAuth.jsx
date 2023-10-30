@@ -22,7 +22,9 @@ function ButtonAuth() {
 
   const handleLogout = () => {
      dispatch(logoutUser());
+         navigate('/');
     setMenuVisible(false);
+    
   };
 
 return (
@@ -38,6 +40,8 @@ return (
     
     {menuVisible && (
       <div>
+                <p>Usuario registrado</p>
+
         <button onClick={redirectToUserProfile} className={styles.menuButton}>
           Ver perfil
         </button>

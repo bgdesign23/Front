@@ -1,8 +1,8 @@
 
-import  { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom"; 
-import { updateUser } from "../../Redux/actions"
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../Redux/actions";
+import styles from "../../views/PerfilUser/PerfilUser.module.css"
 
 
 function validation(input) {
@@ -28,126 +28,140 @@ function validation(input) {
   return errors;
 }
 
-function PerfilUser() {
 
+function PerfilUsuario() {
   const dispatch = useDispatch();
-  const { username } = useParams(); 
-  const [errors, setErrors] = useState({})
-  const [input, setInput] = useState({
-    username: username, 
-    phone: "",
-    location: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const user = useSelector((state) => state.user); 
+  const [errors, setErrors] = useState({});
+  const [input, setInput] = useState({ ...user, confirmPassword: "", formSubmitted: false });
+
+  useEffect(() => {
+    setInput({ ...user, confirmPassword: "", formSubmitted: false });
+  }, [user]);
 
   function handleChange(event) {
     setInput({
       ...input,
       [event.target.name]: event.target.value,
     });
+    setErrors(validation({
+      ...input,
+      [event.target.name]: event.target.value,
+    }));
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     setErrors(validation(input));
-      setInput((prevInput) => ({ ...prevInput, formSubmitted: true }));
-      if (
+    setInput((prevInput) => ({ ...prevInput, formSubmitted: true }));
+    if (
         Object.keys(errors).length === 0 &&
         input.username !== "" &&
         input.location !== "" &&
         input.email !== "" &&
         input.password !== "" &&
         input.confirmPassword !== ""
-      )
-    dispatch(updateUser(input));
-    
+      ) {
+      dispatch(updateUser(input)); 
+    } else {
+      alert("Debe ingresar todos los datos.");
+    }
   }
 
-  return (
-    <div>
-      <h2>Modificar Perfil</h2>
-      <form onSubmit={handleSubmit}>
-          <div>
-          <label>Nombre Completo:</label>
-          <input
-            type="text"
-            name="username"
-            value={input.username}
-            onChange={(event) => handleChange(event)}
-            required
-          />
-          {errors.username && <p className="error-message">{errors.username}</p>}
+        return (
+<div>
+      <form className={styles.loginContainer} onSubmit={handleSubmit}>
+        <div className={styles.login}>
+
+     <section  className={styles.formimput}> 
+        <div className={styles.columna}>
+          <div className={styles.labelimput}>
+            <label>Nombre Completo:</label>
+            <input
+              type="text"
+              name="username"
+              value={input.username}
+              onChange={(event) => handleChange(event)}
+              required
+            />
+            {errors.username && <p className={styles.error}> {errors.username} </p>}
+          </div>
+
+          <div className={styles.labelimput}>
+            <label>Localidad:</label>
+            <input
+              type="text"
+              name="location"
+              value={input.location}
+              onChange={(event) => handleChange(event)}
+              required
+            />
+            {errors.location && <p className={styles.error}>{errors.location}</p>}
+          </div>
+
+          <div className={styles.labelimput}>
+            <label>Teléfono:</label>
+            <input
+              type="text"
+              name="phone"
+              value={input.phone}
+              onChange={(event) => handleChange(event)}
+              required
+            />
+            {errors.phone && <p className={styles.error}>{errors.phone}</p>}
+          </div>
+          
         </div>
 
-        <div>
-          <label>Localidad:</label>
-          <input
-            type="text"
-            name="location"
-            value={input.location}
-             onChange={(event) => handleChange(event)}
-            required
-          />
-          {errors.location && <p className="error-message">{errors.location}</p>}
+        <div className={styles.columna}>
+          <div className={styles.labelimput}>
+            <label>Correo Electrónico:</label>
+            <input
+              type="email"
+              name="email"
+              value={input.email}
+              onChange={(event) => handleChange(event)}
+              required
+            />
+            {errors.email && <p className={styles.error}>{errors.email}</p>}
+          </div>
+
+          <div className={styles.labelimput}>
+            <label>Contraseña:</label>
+            <input
+              type="password"
+              name="password"
+              value={input.password}
+              onChange={(event) => handleChange(event)}
+              required
+            />
+            {errors.password && <p className={styles.error}>{errors.password}</p>}
+          </div>
+
+          <div className={styles.labelimput}>
+            <label>Confirmar Contraseña:</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={input.confirmPassword}
+              onChange={(event) => handleChange(event)}
+              required
+            />
+            {errors.confirmPassword && <p className={styles.error}>{errors.confirmPassword}</p>}
+          </div>
+        </div>  
+      </section>     
+
+          <div className={styles.buttonContainer}>
+c
+          
+            <button type= "submit"> Modificar Datos </button>
         </div>
-
-        <div>
-          <label>Telefono:</label>
-          <input
-            type="text"
-            name="phone"
-            value={input.phone}
-            onChange={(event) => handleChange(event)}
-            required
-          />
-          {errors.phone && <p className="error-message">{errors.phone}</p>}
         </div>
-
-        <div>
-          <label>Correo Electrónico:</label>
-          <input
-            type="email"
-            name="email"
-            value={input.email}
-            onChange={(event) => handleChange(event)}
-
-            required
-          />
-          {errors.email && <p className="error-message">{errors.email}</p>}
-        </div>
-
-        <div>
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            name="password"
-            value={input.password}
-            onChange={(event) => handleChange(event)}
-            required
-          />
-          {errors.password && <p className="error-message">{errors.password}</p>}
-        </div>
-
-        <div>
-          <label>Confirmar Contraseña:</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={input.confirmPassword}
-            onChange={(event) => handleChange(event)}
-            required
-          />
-          {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
-        </div>
-
-
-        <button type="submit">Guardar Cambios</button>
+       
       </form>
     </div>
   );
 }
 
-export default PerfilUser;
-
+export default PerfilUsuario;
