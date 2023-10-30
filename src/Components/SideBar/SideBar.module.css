@@ -1,37 +1,31 @@
 .sideBar {
-    width: 200px;      
-    height: 100vh;      
-    position: fixed;   
-    left: -250px;       
-    top: 0;             
-    background-color: #D9D9D9; 
-    color: white;      
-    overflow-y: auto;   
-    z-index: 10;
-    padding-top: 60px;
-    transition: 1s ease-in-out;
-  }
-  
-  .sideBar.open {
-    left: 0px;    
+  width: 200px;
+  height: 100vh;
+  position: fixed;
+  left: -250px;
+  top: 0;
+  background-color: #d9d9d9;
+  color: white;
+  overflow-y: auto;
+  z-index: 10;
+  padding-top: 60px;
+  transition: 1s ease-in-out;
 }
-  
 
-  .sideBar a {
-    display: block;
-    padding: 10px 15px;
-    color: #191919;
-    text-decoration: none;
-    transition: 0.3s;
-    font-family: 'Barlow', sans-serif;
-    font-weight: bold;
-  }
-  
-  .buttonslogin{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    position: absolute;
-    bottom: 4rem;
-  }
+.sideBar.open {
+  left: 0px;
+}
+
+.sideBar a {
+  display: block;
+  padding: 10px 15px;
+  color: #191919;
+  text-decoration: none;
+  transition: 0.3s;
+  font-family: "Barlow", sans-serif;
+  font-weight: bold;
+}
+
+.divUser {
+  padding: 10px 15px;
+}

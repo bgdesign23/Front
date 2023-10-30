@@ -12,14 +12,14 @@ import 'slick-carousel/slick/slick-theme.css';
 function Offer() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
-  console.log(allProducts.oferr);
+  // console.log(allProducts.oferr);
 
   useEffect(() => {
     dispatch(getProductsAction());
   }, [dispatch]);
 
   const productsInOffer = allProducts.filter(product => product.offer);
-  console.log(productsInOffer);
+  // console.log(productsInOffer);
 
 
 

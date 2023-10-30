@@ -6,11 +6,11 @@ import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     email: '',
     password: '',
   });
-    const navigate = useNavigate();
 
 
   const handleChange = (event) => {
@@ -29,10 +29,7 @@ function LoginForm() {
     };
 
     try {
-      await dispatch(loginUser(credentials));
-
-      navigate('/');
-
+      await dispatch(loginUser(credentials)).then(navigate("/")) 
     } catch (error) {
       console.error('Error al iniciar sesión:', error.message);
     }

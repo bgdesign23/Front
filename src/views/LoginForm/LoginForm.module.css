@@ -1,7 +1,7 @@
 .loginContainer{
-  background-image: url(C:\Users\USUARIO\OneDrive\Escritorio\Pf\Front\src\views\LoginForm\fondo.png);
+  background-image: url("fondo.png");
   background-repeat: no-repeat;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   background-size: cover;
   margin-top: -65px;
   padding-top: 80px;
