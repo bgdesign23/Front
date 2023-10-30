@@ -63,9 +63,9 @@ const SearchBar = () => {
       >
         <ButtonSearch />
       </button>
-      <button className={styles.btnReset} onClick={handle_reset}>
+      {/* <button className={styles.btnReset} onClick={handle_reset}>
         Mostrar todo
-      </button>
+      </button> */}
     </div>
   );
 };
