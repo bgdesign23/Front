@@ -6,6 +6,8 @@ import { registerUser, filterRestart } from "../../Redux/actions";
 
 function validation(input) {
   const errors = {};
+  //(!input.username || !/^(?:[A-Za-z][a-zA-Z]*)(?: [A-Za-z][a-zA-Z]*){0,2}$/.test(input.username)
+  
   if (!input.username || !/^(?:[A-Z][a-zA-Z]*)(?: [A-Z][a-zA-Z]*){0,2}$/.test(input.username)) {
     errors.username = "Debe contener un Nombre. Ej: Maria Luna";
   }
@@ -82,103 +84,110 @@ export default function FormRegistro() {
   }
 
   return (
-    <div>
-      <form className={styles.loginContainer} onSubmit={handleSubmit}>
-        <div className={styles.login}>
-          <section className={styles.formimput}>
-            <div className={styles.columna}>
-              <div className={styles.labelimput}>
-                <label>Nombre Completo:</label>
-                <input
-                  type="text"
-                  name="username"
-                  value={input.username}
-                  onChange={(event) => handleChange(event)}
-                  required
-                />
-                {errors.username && (
-                  <p className={styles.error}> {errors.username} </p>
-                )}
-              </div>
-
-              <div className={styles.labelimput}>
-                <label>Localidad:</label>
-                <input
-                  type="text"
-                  name="location"
-                  value={input.location}
-                  onChange={(event) => handleChange(event)}
-                  required
-                />
-                {errors.location && (
-                  <p className={styles.error}>{errors.location}</p>
-                )}
-              </div>
-
-              <div className={styles.labelimput}>
-                <label>Teléfono:</label>
-                <input
-                  type="text"
-                  name="phone"
-                  value={input.phone}
-                  onChange={(event) => handleChange(event)}
-                  required
-                />
-                {errors.phone && <p className={styles.error}>{errors.phone}</p>}
-              </div>
+    <div className={styles.loginContainer}>
+    <form onSubmit={handleSubmit}>
+      <div className={styles.login}>
+        
+        <section className={styles.formimput}>
+          <div className={styles.columna}>
+            <div className={styles.labelimput}>
+              <label>Nombre Completo:</label>
+              <input
+                type="text"
+                name="username"
+                value={input.username}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.username && (
+                <p className={styles.error}> {errors.username} </p>
+              )}
             </div>
-
-            <div className={styles.columna}>
-              <div className={styles.labelimput}>
-                <label>Correo Electrónico:</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={input.email}
-                  onChange={(event) => handleChange(event)}
-                  required
-                />
-                {errors.email && <p className={styles.error}>{errors.email}</p>}
-              </div>
-
-              <div className={styles.labelimput}>
-                <label>Contraseña:</label>
-                <input
-                  type="password"
-                  name="password"
-                  value={input.password}
-                  onChange={(event) => handleChange(event)}
-                  required
-                />
-                {errors.password && (
-                  <p className={styles.error}>{errors.password}</p>
-                )}
-              </div>
-
-              <div className={styles.labelimput}>
-                <label>Confirmar Contraseña:</label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={input.confirmPassword}
-                  onChange={(event) => handleChange(event)}
-                  required
-                />
-                {errors.confirmPassword && (
-                  <p className={styles.error}>{errors.confirmPassword}</p>
-                )}
-              </div>
+  
+            <div className={styles.labelimput}>
+              <label>Localidad:</label>
+              <input
+                type="text"
+                name="location"
+                value={input.location}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.location && (
+                <p className={styles.error}>{errors.location}</p>
+              )}
             </div>
-          </section>
-
-          <div className={styles.buttonContainer}>
+            <div className={styles.labelimput}>
+              <label>Contraseña:</label>
+              <input
+                type="password"
+                name="password"
+                value={input.password}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.password && (
+                <p className={styles.error}>{errors.password}</p>
+              )}
+            </div>
+  
+  
+           <div className={styles.buttonContainer}>
             <button type="submit">REGISTRARSE</button>
-            <Link to="/form/login">
-              <button>INICIAR SESIÓN</button>
-            </Link>
+        
+      </div>
           </div>
-        </div>
-      </form>
-    </div>
+  
+          <div className={styles.columna}>
+            <div className={styles.labelimput}>
+              <label>Correo Electrónico:</label>
+              <input
+                type="email"
+                name="email"
+                value={input.email}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.email && <p className={styles.error}>{errors.email}</p>}
+            </div> 
+            <div className={styles.labelimput}>
+              <label>Teléfono:</label>
+              <input
+                type="text"
+                name="phone"
+                value={input.phone}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.phone && <p className={styles.error}>{errors.phone}</p>}
+            </div>
+  
+            
+            <div className={styles.labelimput}>
+              <label>Confirmar Contraseña:</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={input.confirmPassword}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.confirmPassword && (
+                <p className={styles.error}>{errors.confirmPassword}</p>
+              )}
+            </div>
+            <div className={styles.iniciarsesion}>
+            <Link to="/form/login">
+          <button >INICIAR SESIÓN</button>
+        </Link>
+          </div>
+          </div>
+        </section>
+        
+      </div>
+      
+    </form>
+  </div>
+  
   );
 }

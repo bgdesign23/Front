@@ -9,13 +9,20 @@
   height: 88.4vh;
 }
 
-.login {
+.login  {
   max-width: 800px;
+   height: 360px; 
   margin: 80px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 50px;
   background-color: rgba(217, 217, 217, 1);
+
+  
+}
+
+.todo{
+  background-color: blueviolet;
 }
 
 .login h1 {
@@ -53,8 +60,8 @@
 
 .login p {
   color: red;
-  font-size: 11px;
-  margin-top: 2px;
+  font-size: 12px;
+  margin-top: 1px;
 }
 
 .loginContainer section {
@@ -76,16 +83,24 @@
 }
 
 
-.loginContainer button {
-  margin-top: 300px;
+
+.login button {
+  margin-top: 25px;
   border-radius: 8px;
   background: #191919;
   width: 160px;
-  height: 40px;
-  margin-left: 20px;
-  flex-shrink: 0;
+  height: 40px; 
+  margin-bottom: 10px;
 }
 
-.loginContainer button:hover {
+.login button:hover {
   background-color: #555556;
+} 
+
+.buttonContainer button{
+ margin-left: 200px;
+  
+}
+.iniciarsesion button{
+  margin-right: 200px;
 }
