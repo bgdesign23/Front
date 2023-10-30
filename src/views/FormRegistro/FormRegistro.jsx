@@ -7,10 +7,10 @@ import { registerUser, filterRestart } from "../../Redux/actions";
 function validation(input) {
   const errors = {};
   if (!input.username || !/^(?:[A-Z][a-zA-Z]*)(?: [A-Z][a-zA-Z]*){0,2}$/.test(input.username)) {
-    errors.username = "Debe tener un nombre válido con la primera letra mayúscula y permitir nombres compuestos de hasta 255 caracteres.";
+    errors.username = "Debe contener un Nombre. Ej: Maria Luna";
   }
   if (!input.location || !/^(?:[A-Z][a-zA-Z]*)(?:-[A-Z][a-zA-Z]*){0,1}$/.test(input.location)) {
-    errors.location = "Debe tener un nombre válido, con la primera letra mayúscula. Permite compuestos separados por un guión (-)";
+    errors.location = "Debe tener un Nombre válido";
   }
   if (!/^\(\d{3}\)\d{4}-\d{4}$/.test(input.phone)) {
     errors.phone = "Debe contener un número de teléfono válido. Ej (000)0000-0000 ";

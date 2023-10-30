@@ -4,11 +4,10 @@
     align-items: center;
     min-height: 100vh;
 }
-.offerBackground {
-    background: #D9D9D9; 
-    padding-left: 110px;     /* Antes era 90px */
-    padding-right: 100px;    /* Antes era 80px */
-    padding-bottom: 40px;    /* Agregado */
+
+
+.contentWrapper {
+    min-height: calc(100vh - [altura del footer]);
   }
 
 .quienes h1 {
@@ -38,20 +37,18 @@
 }
 
 
-
-
 .repisas {
-    position: absolute;
-    top: 100px;        /* Alinea al inicio de .home */
-    right: 23px;      /* Alinea a la derecha */
+    position: relative;
+    top: -300px;        /* Alinea al inicio de .home */
+    right: -350px;      /* Alinea a la derecha */
     width: 300px;  /* Ajusta a tu necesidad */
     height: 500px;  /* Mantiene la relación de aspecto */
 }
 
 .repisa {
-    position: absolute;
-    top: 100px;        /* Alinea al inicio de .home */
-    right: 350px;      /* Alinea a la derecha */
+    position: relative;
+    top: -300px;        /* Alinea al inicio de .home */
+    right: -325px;      /* Alinea a la derecha */
     width: 300px;  /* Ajusta a tu necesidad */
     height: 500px;  /* Mantiene la relación de aspecto */
 }
@@ -63,6 +60,8 @@
     justify-content: center; /* Centra los elementos verticalmente */
     width: 100%; /* Ocupa todo el ancho disponible */
     margin-top: 50px;
+    position: relative;
+    top: -200px;
 }
 
 .contenedor h1 {
@@ -70,7 +69,7 @@
     margin: 20px 0; /* Espacio arriba y abajo del título */
     color: white;
     font-family: Cinzel;
-    font-size: 30px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 400;
 }
@@ -79,7 +78,7 @@
     display: flex; /* Alinea la imagen y el título horizontalmente */
     flex-direction: column; /* Organiza los elementos verticalmente */
     align-items: center; /* Centra los elementos horizontalmente */
-    margin: 0 90px; /* Espacio entre las imágenes/títulos */
+    margin: 60px 90px; /* Espacio entre las imágenes/títulos */
 }
 
 .contenedor .servicios {
