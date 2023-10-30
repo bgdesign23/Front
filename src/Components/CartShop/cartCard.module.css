@@ -1,15 +1,20 @@
 .CartCard_Container {
     display: flex;
-    width: 700px;
+    width: 1200px;
     height: 10  0px;
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(220, 31, 31, 0.1);
     border-radius: 0;
     background-color: rgb(235, 224, 224);   
     align-items: center;
+    border-width: 2px 0;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, 0.764);
 }
 
-
+.eliminar{
+    color: rgb(20, 103, 237);
+    }
 
 h2 {
     color: #000;
@@ -22,6 +27,7 @@ h2 {
 }
 
 h3 {
+    width: 100px;
     color: #211f1f;
     margin: 0;
     text-align: center;
@@ -50,21 +56,30 @@ button{
         }
     
 .botonera{
+      margin-left: 1rem;
             display: flex;
-                width: 300px;
-                justify-content: center;
-    } 
+                width: 700px;
+                justify-content: right;
+                align-items: center;
+                /* border: 1px solid black; */
+                gap: 1rem;
+                } 
+
     
 .botonesCantidad {
-    margin-inline: 4.5px;
+    margin-inline:10px;
+    width: 60px;
+    border-radius: 5px;
+    cursor: pointer;
     }  
 
     .name_container{
-       width: 400px;
+       width: 300px;
     }
 
         .details{
-            width: 400px;
+            width: 100px;
+            margin: 0px;
         }
 
                 .imagen_container{
@@ -76,4 +91,9 @@ button{
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    height: 40px;
                 }
+.cantidad_Container{
+    display: flex;
+}
+
