@@ -1,7 +1,10 @@
 import styles from "./App.module.css";
 import { useEffect, useState } from "react";
-import { Routes, Route, /* useNavigate, useLocation */ 
-useLocation} from "react-router-dom";
+import {
+  Routes,
+  Route /* useNavigate, useLocation */,
+  useLocation,
+} from "react-router-dom";
 import Home from "./views/Home/Home";
 import SideBar from "./Components/SideBar/SideBar";
 import Product from "./views/Product/Product";
@@ -26,8 +29,8 @@ function App() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location.pathname])
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     !user &&

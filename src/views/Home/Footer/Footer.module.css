@@ -1,0 +1,73 @@
+.Footer {
+  background-color: #d9d9d9;
+  color: #191919;
+  display: flex;
+  flex-direction: column;
+  font-family: "Barlow", sans-serif;
+  height: 250px;
+  width: calc(100vw - 17px);
+  margin-left: -40px;
+}
+
+.sectionFooterOne {
+  display: flex;
+}
+
+.imagenFooter {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagenFooter img {
+  height: 200px;
+  width: auto;
+}
+
+.containerTeam {
+  flex: 1;
+}
+
+.TeamSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+ul {
+  list-style: none;
+}
+
+.Footer a {
+  text-decoration: none;
+  color: black;
+}
+
+.Footer a:hover {
+  text-decoration: underline;
+}
+
+.contactos {
+  flex: 1;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactoOne {
+  display: flex;
+  justify-content: right;
+  text-align: right;
+  align-items: right;
+  margin-right: 0;
+  position: relative;
+  right: -20px;
+  top: -25px;
+}
+
+.FooterCopyright {
+  text-align: center;
+}
