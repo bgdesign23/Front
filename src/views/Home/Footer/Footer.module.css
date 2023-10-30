@@ -5,7 +5,7 @@
   flex-direction: column;
   font-family: "Barlow", sans-serif;
   height: 250px;
-  width: calc(100vw - 17px);
+  width: 100vw;
   margin-left: -40px;
 }
 
