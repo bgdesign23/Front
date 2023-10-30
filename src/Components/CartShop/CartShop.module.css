@@ -1,23 +1,47 @@
 .all_container {
     display: flex;
-    justify-content: left;
-    align-items: center;
-    padding-block: 2rem;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: center; */
+    margin-block    : 2rem;
+    /* border: 2px solid white; */
 }
 
 
 .ShoppingCart_container {
-    border: 2px solid white;
-    padding: 2rem;
-    display: flex;
-    margin-left: 55px;
+    border: 2px solid rgba(255, 255, 255, 0.462);
+    background-color: rgba(0, 0, 0, 0.296);
+    padding-block: 2rem;
+    display: block;
+    margin-inline: 60px;
     margin-bottom: 30px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
     cursor: pointer;
     margin-top: 1rem;
-    order: 2;
     justify-content: center;
     align-items: center;
-    max-width: 900px;
+    width: 1200px;
 }
+
+
+.resumeCart{
+    width: 600px;
+    height: 600px;
+    border: 2px solid rgba(255, 255, 255, 0.462);
+    color: antiquewhite;
+    margin-right: 60px;
+    margin-block: 1rem;
+    
+}
+.tittle{
+    width: 300px;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: antiquewhite;
+}
+
+.cupon{
+    color: rgb(20, 103, 237);
+}
+

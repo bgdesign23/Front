@@ -18,14 +18,14 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
-  UPDATE_USER_REQUEST, 
-  UPDATE_USER_SUCCESS, 
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
   UPDATE_USER_FAILURE,
   GET_CATEGORIES,
   FILTER_BY_CATEGORIES,
   FILTER_BY_MATERIAL,
   GET_DESING,
-  SET_USER
+  SET_USER,
 } from "../Redux/actionsTypes";
 
 // const URL = "http://localhost:3001";
@@ -159,7 +159,7 @@ export const getCategories = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${URL}/categories`);
-      
+
       return dispatch({
         type: GET_CATEGORIES,
         payload: data,
@@ -193,10 +193,7 @@ export const reset_ProductList = () => {
 export const registerUser = (userData, navigate) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST });
   try {
-    const response = await axios.post(
-      `${URL}/users/register`,
-      userData
-    );
+    const response = await axios.post(`${URL}/users/register`, userData);
     await Swal.fire({
       title: "¡Registro exitoso!",
       text: "Usuario registrado exitosamente.",
@@ -229,10 +226,7 @@ export const loginUser = (credentials) => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
 
   try {
-    const response = await axios.post(
-      `${URL}/users/login`,
-      credentials
-    );
+    const response = await axios.post(`${URL}/users/login`, credentials);
     localStorage.setItem("token", response.data.token);
     dispatch({
       type: LOGIN_SUCCESS,
@@ -247,33 +241,32 @@ export const loginUser = (credentials) => async (dispatch) => {
 };
 
 export const getUser = () => async (dispatch) => {
-    try {
-      const token = localStorage.getItem("token");
-      const config = {
-        headers: {
-          authorization: token,
-        },
-      };
-      let response = await axios.post(`${URL}/users`, {}, config);
-      dispatch({
-        type: SET_USER,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  try {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        authorization: token,
+      },
+    };
+    let response = await axios.post(`${URL}/users`, {}, config);
+    dispatch({
+      type: SET_USER,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const updateUser = (userData) => async (dispatch) => {
   dispatch({ type: UPDATE_USER_REQUEST });
 
   try {
-   
     const response = await axios.put(`${URL}/users/${userData.id}`, userData);
 
     dispatch({
       type: UPDATE_USER_SUCCESS,
-      payload: response.data, 
+      payload: response.data,
     });
   } catch (error) {
     dispatch({
@@ -284,8 +277,8 @@ export const updateUser = (userData) => async (dispatch) => {
 };
 
 export const logoutUser = (navigate) => (dispatch) => {
-  localStorage.removeItem('token');
-  navigate("/form/login")
+  localStorage.removeItem("token");
+  navigate("/form/login");
   dispatch({ type: LOGOUT });
 };
 
@@ -304,18 +297,17 @@ export const filterByMaterial = (byMaterial, product) => {
 export const getDesings = () => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(`${URL}/designs`)
+      const { data } = await axios.get(`${URL}/designs`);
 
       return dispatch({
-        type: GET_DESING, 
-        payload: data
-      })
-
+        type: GET_DESING,
+        payload: data,
+      });
     } catch (error) {
       console.log("No esta llegando la info");
     }
-  }
-}
+  };
+};
 
 export const postProduct = (formData, navigate) => {
   return async function (dispatch) {
@@ -331,15 +323,15 @@ export const postProduct = (formData, navigate) => {
       await Swal.fire({
         icon: "question",
         showDenyButton: true,
-        confirmButtonText: 'Agregar otro producto',
-        denyButtonText: 'Ver Productos',
+        confirmButtonText: "Agregar otro producto",
+        denyButtonText: "Ver Productos",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          window.location.reload()
+          window.location.reload();
         } else {
           navigate("/home/product");
         }
-      })
+      });
     } catch (error) {
       await Swal.fire({
         title: "Error",
