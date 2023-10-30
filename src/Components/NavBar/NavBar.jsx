@@ -6,9 +6,10 @@ import ButtonCarrito from "../SearchBar/ButtonCarrito/ButtonCarrito";
 const NavBar = () => {
   return (
     <nav className={styles.navBar}>
-      <img src={logo} className={styles.logo} alt="Logo" />
+      <img src={logo} className={styles.logo} alt="Black Group Design" />
+      {location.pathname !== "/CartShop" &&
       <SearchBar />
-
+  }
       <button type="button" className={styles.buttonCarrito}>
         <ButtonCarrito />
       </button>

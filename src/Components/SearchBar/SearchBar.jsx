@@ -1,6 +1,6 @@
 import styles from "../SearchBar/SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   getByName,
@@ -14,7 +14,7 @@ import ButtonSearch from "./ButtonSearch/ButtonSearch";
 const SearchBar = () => {
   const copy = useSelector((state) => state.products_Copy);
   const products = useSelector((state) => state.products);
-
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchState, setSearchState] = useState("");
@@ -63,9 +63,6 @@ const SearchBar = () => {
       >
         <ButtonSearch />
       </button>
-      {/* <button className={styles.btnReset} onClick={handle_reset}>
-        Mostrar todo
-      </button> */}
     </div>
   );
 };

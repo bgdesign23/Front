@@ -175,6 +175,7 @@ function FormProduct() {
           />{" "}
           En Stock
         </label>
+        <br />
         {formProduct.stock === "En Stock" && (
           <input
           type="text"

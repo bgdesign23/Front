@@ -28,16 +28,16 @@
     color: white;           
     transition: border-color 0.3s ease; 
     margin-top: 5px;
-    margin-left: -50px;
+    margin-left: -75px;
   }
   
   .lineInput:focus {
     border-color: #888;     /* Cambia el color al hacer foco, ajusta según tu diseño */
   }
-
- .btnReset {
-  margin: 0 10px;
-  border-radius: 5px;
+  
+  .btnReset {
+    margin: 0 10px;
+    border-radius: 5px;
  }
 
  .btnReset:hover {
