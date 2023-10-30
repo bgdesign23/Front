@@ -1,6 +1,10 @@
 import styles from "./App.module.css";
 import { useEffect, useState } from "react";
-import { Routes, Route /* useNavigate, useLocation */ } from "react-router-dom";
+import {
+  Routes,
+  Route /* useNavigate, useLocation */,
+  useLocation,
+} from "react-router-dom";
 import Home from "./views/Home/Home";
 import SideBar from "./Components/SideBar/SideBar";
 import Product from "./views/Product/Product";
@@ -10,21 +14,31 @@ import LoginForm from "./views/LoginForm/LoginForm";
 import FormRegistro from "./views/FormRegistro/FormRegistro";
 import NavBar from "./Components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories, getProductsAction } from "../src/Redux/actions";
+import { getCategories, getProductsAction, getUser } from "../src/Redux/actions";
 import Detail from "./views/Detail/Detail";
 import ButtonSide from "./Components/ButtonSide/ButtonSide";
 import FormProduct from "./views/FormProduct/FormProduct";
 import CartShop from "./Components/CartShop/CartShop";
+import PerfilUser from "./views/PerfilUser/PerfilUser";
 
 function App() {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products);
+  const location = useLocation();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    !user &&
+      localStorage.getItem("token") &&
+      dispatch(getUser());
     dispatch(getProductsAction());
     dispatch(getCategories());
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   return (
     <div className={styles.App}>
@@ -56,6 +70,7 @@ function App() {
             <Route path="/home/nuevo" element={<FormProduct />} />
             <Route path="/form/login" element={<LoginForm />} />
             <Route path="/form/register" element={<FormRegistro />} />
+            <Route path="/form/perfil" element={<PerfilUser />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/cartShop" element={<CartShop />} />
           </Routes>

@@ -17,8 +17,12 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILURE,
+  LOGOUT,
   FILTER_BY_MATERIAL,
   GET_DESING,
+  SET_USER,
 } from "./actionsTypes";
 
 let initialState = {
@@ -31,7 +35,7 @@ let initialState = {
   categories: [],
   categories_Copy: [],
   desings: [],
-  desings_Copy: []
+  desings_Copy: [],
 };
 
 const Reducer = (state = initialState, action) => {
@@ -42,7 +46,6 @@ const Reducer = (state = initialState, action) => {
         products: action.payload,
         products_Copy: action.payload,
       };
-
     case ORDERBYPRICE:
       return {
         ...state,
@@ -87,7 +90,7 @@ const Reducer = (state = initialState, action) => {
     case GET_BY_HASHTAG:
       return {
         ...state,
-        products: [...state.products, ...action.payload],
+        products: action.payload,
       };
     case CLEAR_PRODUCTS:
       return {
@@ -100,7 +103,6 @@ const Reducer = (state = initialState, action) => {
         loading: true,
         error: null,
       };
-
     case REGISTER_SUCCESS:
       return {
         ...state,
@@ -108,19 +110,22 @@ const Reducer = (state = initialState, action) => {
         loading: false,
         error: null,
       };
-
     case REGISTER_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
-
     case FILTER_RESTART:
       return {
         ...state,
-        user: null,
         loading: false,
+        error: null,
+      };
+    case SET_USER:
+      return {
+        ...state,
+        user: action.payload,
         error: null,
       };
     case LOGIN_REQUEST:
@@ -129,33 +134,51 @@ const Reducer = (state = initialState, action) => {
         loading: true,
         error: null,
       };
-
     case LOGIN_SUCCESS:
       return {
         ...state,
         user: action.payload,
         loading: false,
         error: null,
-      };
+      authenticated: true, 
 
+      };
     case LOGIN_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
-
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        loading: false,
+        error: null,
+      };
+    case UPDATE_USER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        user: null,
+        token: null,
+      };
     case FILTER_BY_MATERIAL:
       return {
         ...state,
         products: action.payload,
       };
-    case GET_DESING: 
+    case GET_DESING:
       return {
-        ...state, 
-        desings: action.payload, 
-        desings_Copy: action.payload
-      }
+        ...state,
+        desings: action.payload,
+        desings_Copy: action.payload,
+      };
 
     default:
       return { ...state };

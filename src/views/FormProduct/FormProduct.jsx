@@ -3,9 +3,11 @@ import styles from "./FormProduct.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import validationForm from "./ValidationFormProduct";
 import { postProduct } from "../../Redux/actions.js";
+import { useNavigate } from "react-router-dom";
 
 function FormProduct() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const categories = useSelector((state) => state.categories);
   const [errors, setErrors] = useState({});
   const [formProduct, setFormProduct] = useState({
@@ -19,6 +21,7 @@ function FormProduct() {
     price: "",
     stock: "",
     image: "",
+    amount: "",
   });
 
   const handleChange = (event) => {
@@ -55,7 +58,8 @@ function FormProduct() {
     formData.append("price", formProduct.price);
     formData.append("stock", formProduct.stock);
     formData.append("image", formProduct.image);
-    dispatch(postProduct(formData));
+    formData.append("amount", formProduct.amount);
+    dispatch(postProduct(formData, navigate));
   };
 
   return (
@@ -85,13 +89,12 @@ function FormProduct() {
         )}
         <br />
         <br />
-        <label htmlFor="categories">Categoria del producto: </label>
         <select
           name="category"
           value={formProduct.category}
           onChange={handleChange}
         >
-          <option value="">Seleccione una categoría</option>
+          <option value="">Seleccione una categoría de producto</option>
           {categories
             .sort((a, b) => a.name > b.name)
             .map((cat) => (
@@ -151,8 +154,8 @@ function FormProduct() {
         <br />
         <br />
         <input
-          type="number"
-          min="0"
+          type="text"
+          pattern="[0-9]*"
           name="price"
           value={formProduct.price}
           onChange={handleChange}
@@ -172,6 +175,20 @@ function FormProduct() {
           />{" "}
           En Stock
         </label>
+        <br />
+        {formProduct.stock === "En Stock" && (
+          <input
+          type="text"
+          pattern="[0-9]*"
+          name="amount"
+          value={formProduct.amount}
+          onChange={handleChange}
+          placeholder="Cantidad en stock"
+          required
+        />
+        )}
+        {formProduct.stock === "En Stock" && errors.amount && <div className={styles.error}>{errors.amount}</div>}
+        <br />
         <label>
           <input
             id="Sin Stock"
@@ -185,13 +202,13 @@ function FormProduct() {
         {errors.stock && <div className={styles.error}>{errors.stock}</div>}
         <br />
         <br />
-        Imagen:
+        Seleccionar imagen del producto
+        <br />
         <input
           type="file"
           name="image"
           accept="image/*"
           onChange={handleImageChange}
-          placeholder="Image"
         />
         <br />
         <br />

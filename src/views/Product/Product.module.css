@@ -1,4 +1,3 @@
-/*  */
 .products_container {
     display: grid;
     margin-left: 55px;
@@ -30,3 +29,6 @@ font-weight: 400;
 line-height: normal;
 }
 
+.h1 {
+    color: white;
+}

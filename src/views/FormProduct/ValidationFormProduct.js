@@ -46,13 +46,23 @@ const validationForm = (formProduct) => {
   if (/[0-9$%|<>#@]/g.test(formProduct.color)) {
     newErrors.color = "No se permiten caracteres especiales";
   }
-
+  
   if (!formProduct.price || formProduct.price < 1) {
     newErrors.price = "El precio del producto debe ser mayor a 0";
+  }
+  if (/[^\d]/g.test(formProduct.price)) {
+    newErrors.price = "El precio del producto debe ser un número entero";
   }
 
   if (!formProduct.stock) {
     newErrors.stock = "Debe indicar si tiene stock del producto";
+  }
+
+  if (!formProduct.amount || formProduct.amount < 1) {
+    newErrors.amount = "La cantidad disponible debe ser mayor a 0";
+  }
+  if (/[^\d]/g.test(formProduct.amount)) {
+    newErrors.amount = "La cantidad debe ser un número entero";
   }
 
   return newErrors;

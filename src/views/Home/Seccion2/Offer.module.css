@@ -1,0 +1,26 @@
+.offerSection {
+  position: relative;
+}
+
+.offer {
+  padding-top: 10px;
+  background: #d9d9d9;
+  height: 450px;
+  width: 100vw;
+  margin-left: -40px;
+}
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cardOferta {
+  margin: 5px auto;
+}
+
+.offer h1 {
+  font-family: Cinzel;
+  font-size: 40px;
+  font-weight: 400;
+  margin: 10px auto;
+}

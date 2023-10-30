@@ -1,13 +1,92 @@
 .home {
-    padding: 40px 40px 40px 40px;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+  padding-inline: 40px;
+  justify-content: center;
 }
-.offerBackground {
-    background: #D9D9D9; /* El color que deseas */
-    padding-left: 90px;
-    padding-right: 80px;
-    padding-bottom: 25px; /* Añade relleno si es necesario */
-    /* Otros estilos según tus preferencias */
-  }
+
+/* Seccion 1 */
+
+.primerseccion {
+  padding-inline: 20px;
+  position: relative;
+  height: 500px;
+}
+.quienes h1 {
+  color: white;
+  font-family: Cinzel;
+  font-size: 60px;
+  font-weight: 400;
+  text-align: left;
+  margin-bottom: -50px;
+}
+
+.quienes h1:first-child {
+  margin-bottom: -35px;
+  font-size: 70px;
+}
+
+.texto {
+  display: block;
+  max-width: 600px;
+  text-align: left;
+  color: white;
+  margin-top: 70px;
+  font-family: "Barlow", sans-serif;
+}
+
+.repisas {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 300px; /* Ajusta a tu necesidad */
+  height: 500px; /* Mantiene la relación de aspecto */
+}
+
+.repisa {
+  position: absolute;
+  bottom: 0;
+  right: 320px;
+  width: 300px; /* Ajusta a tu necesidad */
+  height: 500px; /* Mantiene la relación de aspecto */
+}
+
+/*  Section 3 */
+
+.contenedor {
+  position: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 600px;
+}
+
+.contenedor h1 {
+  text-align: center;
+  color: white;
+  font-family: Cinzel;
+  font-size: 40px;
+  font-weight: 400;
+  margin: 20px auto;
+}
+
+.servicios {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+
+.servicio {
+  display: flex; /* Alinea la imagen y el título horizontalmente */
+  flex-direction: column; /* Organiza los elementos verticalmente */
+  align-items: center;
+}
+
+.muebles {
+  height: 400px;
+  width: 400px;
+}
+
+.servicio h1 {
+  margin: 20px auto;
+  font-size: 30px;
+}

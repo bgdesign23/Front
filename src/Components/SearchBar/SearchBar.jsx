@@ -1,19 +1,20 @@
 import styles from "../SearchBar/SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   getByName,
   getByHashtag,
-  reset_ProductList,
+  getProductsAction,
+  // reset_ProductList,
 } from "../../Redux/actions";
 import ButtonSearch from "./ButtonSearch/ButtonSearch";
-import ButtonCarrito from "./ButtonCarrito/ButtonCarrito";
+// import ButtonCarrito from "./ButtonCarrito/ButtonCarrito";
 
 const SearchBar = () => {
   const copy = useSelector((state) => state.products_Copy);
   const products = useSelector((state) => state.products);
-
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchState, setSearchState] = useState("");
@@ -35,6 +36,15 @@ const SearchBar = () => {
     setSearchState(event.target.value);
   };
 
+  const handle_reset = () => {
+    setSearchState("");
+    const selectElements = document.querySelectorAll("select");
+    selectElements.forEach((select) => {
+      select.value = "";
+    });
+    dispatch(getProductsAction());
+  };
+
   return (
     <div className={styles.searchBar_Container}>
       <form onSubmit={handle_Submit}>
@@ -43,12 +53,20 @@ const SearchBar = () => {
           placeholder="Buscar "
           type="text"
           value={searchState}
-          onChange={handle_input}
+          onChange={(event) => handle_input(event)}
         />
       </form>
-      <button type="submit" className={styles.noStyleButton}>
+      <button
+        type="submit"
+        className={styles.noStyleButton}
+        onClick={(event) => handle_Submit(event)}
+      >
         <ButtonSearch />
       </button>
+      {location.pathname === "/home/product" &&
+      <button className={styles.btnReset} onClick={handle_reset}>
+        Mostrar todo
+      </button>}
     </div>
   );
 };

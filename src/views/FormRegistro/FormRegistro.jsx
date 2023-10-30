@@ -1,19 +1,22 @@
-import styles from "../FormRegistro/FormRegistro.module.css"
+import styles from "../FormRegistro/FormRegistro.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerUser, filterRestart } from "../../Redux/actions";
 
 function validation(input) {
   const errors = {};
+  //(!input.username || !/^(?:[A-Za-z][a-zA-Z]*)(?: [A-Za-z][a-zA-Z]*){0,2}$/.test(input.username)
+  
   if (!input.username || !/^(?:[A-Z][a-zA-Z]*)(?: [A-Z][a-zA-Z]*){0,2}$/.test(input.username)) {
-    errors.username = "Debe tener un nombre válido con la primera letra mayúscula y permitir nombres compuestos de hasta 255 caracteres.";
+    errors.username = "Debe contener un Nombre. Ej: Maria Luna";
   }
   if (!input.location || !/^(?:[A-Z][a-zA-Z]*)(?:-[A-Z][a-zA-Z]*){0,1}$/.test(input.location)) {
-    errors.location = "Debe tener un nombre válido, con la primera letra mayúscula. Permite compuestos separados por un guión (-)";
+    errors.location = "Debe contener una localidad válida";
   }
   if (!/^\(\d{3}\)\d{4}-\d{4}$/.test(input.phone)) {
-    errors.phone = "Debe contener un número de teléfono válido. Ej (000)0000-0000 ";
+    errors.phone =
+      "Debe contener un número válido. Ej (000)0000-0000 ";
   }
   if (!/^\S+@\S+\.\S+$/.test(input.email)) {
     errors.email = "Debe ser un email válido";
@@ -27,152 +30,164 @@ function validation(input) {
   return errors;
 }
 
-
 export default function FormRegistro() {
-    const dispatch = useDispatch() 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
 
-    const [errors, setErrors] = useState({})
+  const [input, setInput] = useState({
+    username: "",
+    phone: "",
+    location: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    formSubmitted: false,
+  });
 
-    const [input, setInput] = useState({
-      username: "",
-      phone: "",
-      location: "",
-      email: "",
-      password: "",
-      confirmPassword:"",
-      formSubmitted: false
-
+  function handleChange(event) {
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
     });
+    setErrors(
+      validation({
+        ...input,
+        [event.target.name]: event.target.value,
+      })
+    );
+  }
 
-
-    function handleChange(event) { 
-        setInput({ 
-            ...input,
-            [event.target.name]: event.target.value 
-        }) 
-        setErrors(validation({
-            ...input,
-            [event.target.name]: event.target.value
-        }))   
+  function handleSubmit(event) {
+    event.preventDefault();
+    setErrors(validation(input));
+    setInput((prevInput) => ({ ...prevInput, formSubmitted: true }));
+    if (
+      Object.keys(errors).length === 0 &&
+      input.username !== "" &&
+      input.location !== "" &&
+      input.email !== "" &&
+      input.password !== "" &&
+      input.confirmPassword !== ""
+    ) {
+      dispatch(registerUser(input, navigate));
+      dispatch(filterRestart());
+      setInput({
+        username: "",
+        phone: "",
+        location: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
     }
+  }
 
-    function handleSubmit(event) {
-      event.preventDefault();
-      setErrors(validation(input));
-      setInput((prevInput) => ({ ...prevInput, formSubmitted: true }));
-      if (
-        Object.keys(errors).length === 0 &&
-        input.username !== "" &&
-        input.location !== "" &&
-        input.email !== "" &&
-        input.password !== "" &&
-        input.confirmPassword !== ""
-      ) {
-        dispatch(registerUser(input)); 
-        dispatch(filterRestart());
-        alert("USUARIO CREADO CON ÉXITO, POR FAVOR INICIE SESIÓN");
-        setInput({
-          username: "",
-          phone: "",
-          location: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-        });
-      } else {
-        alert("Debe ingresar todos los datos.");
-      }
-    }
-
-      return (
-    <div>
-      <h2>Registro de Usuario</h2>
-      <form className={styles.containerRegistro} onSubmit={handleSubmit}>
-        <div>
-          <label>Nombre Completo:</label>
-          <input
-            type="text"
-            name="username"
-            value={input.username}
-            onChange={(event) => handleChange(event)}
-            required
-          />
-          {errors.username && <p className="error-message">{errors.username}</p>}
-        </div>
-
-        <div>
-          <label>Localidad:</label>
-          <input
-            type="text"
-            name="location"
-            value={input.location}
-             onChange={(event) => handleChange(event)}
-            required
-          />
-          {errors.location && <p className="error-message">{errors.location}</p>}
-        </div>
-
-        <div>
-          <label>Telefono:</label>
-          <input
-            type="text"
-            name="phone"
-            value={input.dob}
-            onChange={(event) => handleChange(event)}
-            required
-          />
-          {errors.phone && <p className="error-message">{errors.phone}</p>}
-        </div>
-
-        <div>
-          <label>Correo Electrónico:</label>
-          <input
-            type="email"
-            name="email"
-            value={input.email}
-            onChange={(event) => handleChange(event)}
-
-            required
-          />
-          {errors.email && <p className="error-message">{errors.email}</p>}
-        </div>
-
-        <div>
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            name="password"
-            value={input.password}
-            onChange={(event) => handleChange(event)}
-            required
-          />
-          {errors.password && <p className="error-message">{errors.password}</p>}
-        </div>
-
-        <div>
-          <label>Confirmar Contraseña:</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={input.confirmPassword}
-            onChange={(event) => handleChange(event)}
-            required
-          />
-          {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
-        </div>
-
-        <button type="submit"
-               > REGISTRARSE </button>
-
-        <Link to="/form/login">
-
-                <button> INICIAR SESION </button>
-
-            </Link>
-      </form>
-    </div>
+  return (
+    <div className={styles.loginContainer}>
+    <form onSubmit={handleSubmit}>
+      <div className={styles.login}>
+        
+        <section className={styles.formimput}>
+          <div className={styles.columna}>
+            <div className={styles.labelimput}>
+              <label>Nombre Completo:</label>
+              <input
+                type="text"
+                name="username"
+                value={input.username}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.username && (
+                <p className={styles.error}> {errors.username} </p>
+              )}
+            </div>
+  
+            <div className={styles.labelimput}>
+              <label>Localidad:</label>
+              <input
+                type="text"
+                name="location"
+                value={input.location}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.location && (
+                <p className={styles.error}>{errors.location}</p>
+              )}
+            </div>
+            <div className={styles.labelimput}>
+              <label>Contraseña:</label>
+              <input
+                type="password"
+                name="password"
+                value={input.password}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.password && (
+                <p className={styles.error}>{errors.password}</p>
+              )}
+            </div>
+  
+  
+           <div className={styles.buttonContainer}>
+            <button type="submit">REGISTRARSE</button>
+        
+      </div>
+          </div>
+  
+          <div className={styles.columna}>
+            <div className={styles.labelimput}>
+              <label>Correo Electrónico:</label>
+              <input
+                type="email"
+                name="email"
+                value={input.email}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.email && <p className={styles.error}>{errors.email}</p>}
+            </div> 
+            <div className={styles.labelimput}>
+              <label>Teléfono:</label>
+              <input
+                type="text"
+                name="phone"
+                value={input.phone}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.phone && <p className={styles.error}>{errors.phone}</p>}
+            </div>
+  
+            
+            <div className={styles.labelimput}>
+              <label>Confirmar Contraseña:</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={input.confirmPassword}
+                onChange={(event) => handleChange(event)}
+                required
+              />
+              {errors.confirmPassword && (
+                <p className={styles.error}>{errors.confirmPassword}</p>
+              )}
+            </div>
+            <div className={styles.iniciarsesion}>
+            <Link to="/form/login">
+          <button >INICIAR SESIÓN</button>
+        </Link>
+          </div>
+          </div>
+        </section>
+        
+      </div>
+      
+    </form>
+  </div>
+  
   );
 }
-
-      
-         

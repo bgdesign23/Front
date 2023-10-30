@@ -1,12 +1,13 @@
-import Styles from "../Product/card.module.css";
 import { useNavigate } from "react-router-dom";
+import Styles from "./CardOffer.module.css";
 
-export default function Card({ id, name, price, image }) {
+export default function CardOffer({ id, name, price, image }) {
   const navigate = useNavigate();
-
   return (
     <>
       <div className={Styles.cardContainer}>
+        <div className={Styles.offerMessage}>Oferta</div>
+
         <img
           className={Styles.imagen}
           src={image}

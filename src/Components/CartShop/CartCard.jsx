@@ -1,6 +1,18 @@
 import Styles from "../CartShop/cartCard.module.css";
+import { useNavigate } from "react-router-dom";
 
-function CartCard({ id, name, image, price, deleteProduct }) {
+function CartCard({
+  id,
+  name,
+  image,
+  amount,
+  totalPrice,
+  deleteProduct,
+  handleAmount_Up,
+  handleAmount_Down,
+}) {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className={Styles.CartCard_Container}>
@@ -15,18 +27,32 @@ function CartCard({ id, name, image, price, deleteProduct }) {
         <div className={Styles.name_container}>
           <h2>{name}</h2>
         </div>
-        <div className={Styles.details}>
-          <h3>Precio: ${price}</h3>
-        </div>
         <div className={Styles.botonera}>
-          <button onClick={() => deleteProduct(id)}>quitar </button>
-          <div>
-            <button className={Styles.botonesCantidad}> + </button>
-            <button className={Styles.botonesCantidad}> - </button>
+          <div className={Styles.cantidad_Container}>
+            <button
+              onClick={() => handleAmount_Up(id)}
+              className={Styles.botonesCantidad}
+            >
+              {" "}
+              +{" "}
+            </button>
+            <div className={Styles.numero}>
+              <p>{amount}</p>
+            </div>
+            <button
+              onClick={() => handleAmount_Down(id)}
+              className={Styles.botonesCantidad}
+            >
+              {" "}
+              -{" "}
+            </button>
           </div>
-          <div className={Styles.numero}>
-            <p>1</p>
+          <div className={Styles.details}>
+            <h3>${totalPrice}</h3>
           </div>
+          <p className={Styles.eliminar} onClick={() => deleteProduct(id)}>
+            Eliminar{" "}
+          </p>
         </div>
       </div>
     </>

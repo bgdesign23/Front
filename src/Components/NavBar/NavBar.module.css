@@ -32,5 +32,15 @@
 }
 
 .noStyleButton, .buttonCarrito {
-    margin: 0; /* Asegúrate de que no haya márgenes */
+    margin: 0; 
+}
+
+.buttonUser {
+    background: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    margin-left: 90px;
+    border-bottom: none;
+    border: none;
 }

@@ -17,10 +17,15 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGOUT,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILURE,
   GET_CATEGORIES,
   FILTER_BY_CATEGORIES,
   FILTER_BY_MATERIAL,
-  GET_DESING
+  GET_DESING,
+  SET_USER,
 } from "../Redux/actionsTypes";
 
 // const URL = "http://localhost:3001";
@@ -154,7 +159,7 @@ export const getCategories = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${URL}/categories`);
-      
+
       return dispatch({
         type: GET_CATEGORIES,
         payload: data,
@@ -185,19 +190,27 @@ export const reset_ProductList = () => {
   };
 };
 
-export const registerUser = (userData) => async (dispatch) => {
+export const registerUser = (userData, navigate) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST });
-
   try {
-    const response = await axios.post(
-      `${URL}/users/register`,
-      userData
-    );
+    const response = await axios.post(`${URL}/users/register`, userData);
+    await Swal.fire({
+      title: "¡Registro exitoso!",
+      text: "Usuario registrado exitosamente.",
+      icon: "success",
+    });
+    localStorage.setItem("token", response.data.token);
     dispatch({
       type: REGISTER_SUCCESS,
       payload: response.data,
     });
+    navigate("/form/login");
   } catch (error) {
+    await Swal.fire({
+      title: "Hubo un problema",
+      text: error.response.data.error,
+      icon: "error",
+    });
     dispatch({
       type: REGISTER_FAILURE,
       payload: error.message,
@@ -209,24 +222,75 @@ export const filterRestart = () => (dispatch) => {
   dispatch({ type: FILTER_RESTART });
 };
 
-export const loginUser = (credentials) => async (dispatch) => {
+export const loginUser = (credentials, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
 
   try {
-    const response = await axios.post(
-      `${URL}/users/login`,
-      credentials
-    );
+    const response = await axios.post(`${URL}/users/login`, credentials);
+    localStorage.setItem("token", response.data.token);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: response.data,
     });
+    await Swal.fire({
+      title: `¡Hola ${response.data.user.username}!`,
+      text: "Has iniciado sesión correctamente",
+      icon: "success",
+    });
+    navigate("/");
   } catch (error) {
     dispatch({
       type: LOGIN_FAILURE,
       payload: error.message,
     });
+    await Swal.fire({
+      title: "Error al iniciar sesión",
+      text: error.response.data.error,
+      icon: "error",
+    });
   }
+};
+
+export const getUser = () => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        authorization: token,
+      },
+    };
+    let response = await axios.post(`${URL}/users`, {}, config);
+    dispatch({
+      type: SET_USER,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateUser = (userData) => async (dispatch) => {
+  dispatch({ type: UPDATE_USER_REQUEST });
+
+  try {
+    const response = await axios.put(`${URL}/users/${userData.id}`, userData);
+
+    dispatch({
+      type: UPDATE_USER_SUCCESS,
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_USER_FAILURE,
+      payload: error.message,
+    });
+  }
+};
+
+export const logoutUser = (navigate) => (dispatch) => {
+  localStorage.removeItem("token");
+  navigate("/form/login");
+  dispatch({ type: LOGOUT });
 };
 
 export const filterByMaterial = (byMaterial, product) => {
@@ -244,27 +308,40 @@ export const filterByMaterial = (byMaterial, product) => {
 export const getDesings = () => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(`${URL}/designs`)
+      const { data } = await axios.get(`${URL}/designs`);
 
       return dispatch({
-        type: GET_DESING, 
-        payload: data
-      })
-
+        type: GET_DESING,
+        payload: data,
+      });
     } catch (error) {
       console.log("No esta llegando la info");
     }
-  }
-}
+  };
+};
 
-export const postProduct = (formData) => {
-  return async function () {
+export const postProduct = (formData, navigate) => {
+  return async function (dispatch) {
     try {
       await axios.post(`${URL}/products/create`, formData);
+      dispatch(getProductsAction());
+      dispatch(getCategories());
       await Swal.fire({
         title: "¡Creación exitosa!",
         text: "Producto agregado correctamente.",
         icon: "success",
+      });
+      await Swal.fire({
+        icon: "question",
+        showDenyButton: true,
+        confirmButtonText: "Agregar otro producto",
+        denyButtonText: "Ver Productos",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        } else {
+          navigate("/home/product");
+        }
       });
     } catch (error) {
       await Swal.fire({
