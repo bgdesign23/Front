@@ -70,7 +70,7 @@ const Reducer = (state = initialState, action) => {
     case FILTER_BY_CATEGORIES:
       return {
         ...state,
-        products: action.payload,
+        products: action.payload,        
       };
     case FILTER_BY_COLOR:
       return {
@@ -86,16 +86,17 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+        products_Copy: action.payload
       };
     case GET_BY_HASHTAG:
       return {
         ...state,
         products: action.payload,
       };
-    case CLEAR_PRODUCTS:
+    case CLEAR_PRODUCTS:      
       return {
         ...state,
-        products: state.products_Copy,
+        products: [...state.products_Copy],
       };
     case REGISTER_REQUEST:
       return {
@@ -121,6 +122,7 @@ const Reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: null,
+        
       };
     case SET_USER:
       return {
@@ -172,6 +174,7 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+        products_Copy: action.payload
       };
     case GET_DESING:
       return {
