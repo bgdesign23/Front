@@ -5,13 +5,12 @@ import Filters from "../../Components/Filters/Filters";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-export default function Cards( {productos} ) {
+export default function Cards({ productos }) {
   const [paged, setPaged] = useState(10);
 
   const handlePaged = () => {
     setPaged(paged + 10);
   };
-
 
   const pagedSection = productos.slice(0, paged);
   return (
@@ -20,7 +19,9 @@ export default function Cards( {productos} ) {
         <Filters />
         {!productos.length ? (
           <div>
-            <h1 className={Styles.h1}>No se encontraron productos relacionados</h1>
+            <h1 className={Styles.h1}>
+              No se encontraron productos relacionados
+            </h1>
           </div>
         ) : (
           <>
@@ -40,7 +41,9 @@ export default function Cards( {productos} ) {
                 />
               ))}
             </div>
-            <button onClick={handlePaged}>Más Productos</button>
+            {productos.length > paged && (
+              <button onClick={handlePaged}>Más Productos</button>
+            )}
           </>
         )}
       </>

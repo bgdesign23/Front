@@ -178,16 +178,18 @@ function FormProduct() {
         <br />
         {formProduct.stock === "En Stock" && (
           <input
-          type="text"
-          pattern="[0-9]*"
-          name="amount"
-          value={formProduct.amount}
-          onChange={handleChange}
-          placeholder="Cantidad en stock"
-          required
-        />
+            type="text"
+            pattern="[0-9]*"
+            name="amount"
+            value={formProduct.amount}
+            onChange={handleChange}
+            placeholder="Cantidad en stock"
+            required
+          />
         )}
-        {formProduct.stock === "En Stock" && errors.amount && <div className={styles.error}>{errors.amount}</div>}
+        {formProduct.stock === "En Stock" && errors.amount && (
+          <div className={styles.error}>{errors.amount}</div>
+        )}
         <br />
         <label>
           <input
