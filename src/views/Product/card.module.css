@@ -1,53 +1,37 @@
 .cardContainer {
-    width: 230px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(220, 31, 31, 0.1);
-    border-radius: 0;
-    background-color: rgb(235, 224, 224);
-    position: relative; /* Establecemos la posición relativa en el contenedor padre */
-  
-    .imagen {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      border-radius: 0;
-    }
-  
-    /* Agregar otros estilos necesarios para la información adicional */
-  }
-  
+  width: 230px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(220, 31, 31, 0.1);
+  border-radius: 0;
+  background-color: rgb(235, 224, 224);
+  position: relative; /* Establecemos la posición relativa en el contenedor padre */
 
-  
-  .cardContainer h2 {
-    color: #000;
-text-align: center;
-font-family: Barlow;
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  .imagen {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 0;
   }
-  
-  .cardContainer h3 {
-    color: #211f1f;
-    margin-top: 3px;
-    text-align: center;
-    font-family: 'Barlow';
-    font-size: 20px;
-    font-weight: 700;
-    line-height: normal;
-  }
- 
-  .cardContainer button {
-    width: 139.423px;
-    height: 26.8px;
-    flex-shrink: 0;
-    background: #191919;
-    color: #FFF;
-    text-align: center;
-    font-family: 'Barlow';
-    font-size: 14px;
-    font-weight: 400;
-    line-height: normal;
-    margin-bottom: 10px;
+
+  /* Agregar otros estilos necesarios para la información adicional */
+}
+
+.cardContainer h2 {
+  color: #000;
+  text-align: center;
+  font-family: Barlow;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.details h4 {
+  color: #000;
+  text-align: center;
+  font-family: "Barlow", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: -5px;
 }
