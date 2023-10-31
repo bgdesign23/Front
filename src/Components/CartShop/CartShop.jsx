@@ -1,6 +1,7 @@
 import CartCard from "../CartShop/CartCard";
 import Styles from "../CartShop/CartShop.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 function ShoppingCart() {
   const [cart, setCart] = useState(
@@ -8,7 +9,7 @@ function ShoppingCart() {
   );
 
   //total a pagar
-  const total = cart.reduce((accumulator, producto) => {
+  const numero = cart.reduce((accumulator, producto) => {
     return accumulator + producto.amount * producto.price;
   }, 0);
 
@@ -18,7 +19,6 @@ function ShoppingCart() {
   }, 0);
 
   const deleteProduct = (productId) => {
-    console.log(productId);
     // Filtra el producto con el id especificado y actualiza el carrito
     const updatedCart = cart.filter((product) => product.id !== productId);
     // Actualiza el estado y el localStorage
@@ -37,11 +37,12 @@ function ShoppingCart() {
     // Actualiza el estado y el localStorage
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    toast.success("Producto añadido");
   };
 
   const handleAmount_Down = (id) => {
     const updatedCart = cart.map((product) => {
-      if (product.id === id) {
+      if (product.id === id && product.amount > 1) {
         // Clona el producto y actualiza la propiedad amount
         return { ...product, amount: (product.amount -= 1) };
       }
@@ -50,11 +51,18 @@ function ShoppingCart() {
     // Actualiza el estado y el localStorage
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    if (updatedCart.length > 1) {
+      toast.success("Producto eliminado");
+    }
   };
 
   const calculateTotalPrice = (product) => {
     return product.amount * product.price;
   };
+
+  function formatthousand(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
 
   return (
     <div className={Styles.all_container}>
@@ -78,18 +86,34 @@ function ShoppingCart() {
               deleteProduct={deleteProduct}
               handleAmount_Up={handleAmount_Up}
               handleAmount_Down={handleAmount_Down}
-              totalPrice={calculateTotalPrice(producto)}
+              totalPriceProduct={calculateTotalPrice(producto)}
+              formatthousand={formatthousand}
+              disableDecreaseButton={producto.amount === 1}
             />
           ))}
         </div>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            className: "",
+            style: {
+              // marginTop: "900px",
+              // marginLeft: "1800px",
+              border: "1px solid #713200",
+              padding: "16px",
+              color: "#191919",
+              background: "#ffff",
+            },
+          }}
+        />
       </div>
       <div className={Styles.resumeCart}>
         <div>
           <p>Resumen de compra</p>
         </div>
         <div>
-          <p>Productos {cantidad}</p>
-          <p>Total: ${total},00</p>
+          <p>Cantidad productos: {cantidad}</p>
+          <p>Total a pagar: ${formatthousand(numero)}</p>
           <p className={Styles.cupon}>Ingresar cupón descuento</p>
         </div>
         <button>Continuar con la compra</button>

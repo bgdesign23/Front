@@ -6,10 +6,12 @@ function CartCard({
   name,
   image,
   amount,
-  totalPrice,
+  totalPriceProduct,
   deleteProduct,
   handleAmount_Up,
   handleAmount_Down,
+  formatthousand,
+  disableDecreaseButton,
 }) {
   const navigate = useNavigate();
 
@@ -40,6 +42,7 @@ function CartCard({
               <p>{amount}</p>
             </div>
             <button
+              disabled={disableDecreaseButton}
               onClick={() => handleAmount_Down(id)}
               className={Styles.botonesCantidad}
             >
@@ -48,7 +51,7 @@ function CartCard({
             </button>
           </div>
           <div className={Styles.details}>
-            <h3>${totalPrice}</h3>
+            <h3>${formatthousand(totalPriceProduct)}</h3>
           </div>
           <p className={Styles.eliminar} onClick={() => deleteProduct(id)}>
             Eliminar{" "}
