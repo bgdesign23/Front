@@ -1,6 +1,6 @@
-import styles from "./ButtonUsers.module.css"
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import styles from "./ButtonUsers.module.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ButtonUser() {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -11,12 +11,12 @@ function ButtonUser() {
   };
 
   const redirectToLogin = () => {
-    navigate('/form/login');
+    navigate("/form/login");
     setMenuVisible(false);
   };
 
   const redirectToRegistro = () => {
-    navigate('/form/register');
+    navigate("/form/register");
     setMenuVisible(false);
   };
 
@@ -31,22 +31,27 @@ function ButtonUser() {
         className={styles.buttonUser}
         onClick={handleButtonClick}
       >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="30px"
-        viewBox="0 0 640 512"
-        onClick={toggleMenu} 
-      >
-      <path fill="currentColor" d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM471 143c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
-      
-      </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill="currentColor"
+            fillRule="evenodd"
+            d="M1 14s-1 0-1-1s1-4 6-4s6 3 6 4s-1 1-1 1H1zm5-6a3 3 0 1 0 0-6a3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"
+          />
+        </svg>
       </button>
       {menuVisible && (
         <div className={styles.divUsers}>
-          <p className={styles.p}>Usuario no registrado</p>
-          <button onClick={redirectToLogin} className={styles.menuButton}>Iniciar sesión</button> 
-          <button onClick={redirectToRegistro} className={styles.menuButton} >Registrarse</button>
-          
+          <button onClick={redirectToLogin} className={styles.menuButton}>
+            Iniciar sesión
+          </button>
+          <button onClick={redirectToRegistro} className={styles.menuButton}>
+            Registrarse
+          </button>
         </div>
       )}
     </div>
@@ -54,14 +59,3 @@ function ButtonUser() {
 }
 
 export default ButtonUser;
-
-
-
-
-
-
-
-
-<svg xmlns="http://www.w3.org/2000/svg" width="30px" viewBox="0 0 640 512">
-  
-</svg>

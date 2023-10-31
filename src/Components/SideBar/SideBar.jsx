@@ -4,16 +4,21 @@ import { useSelector } from "react-redux";
 import ButtonUserAuth from "./ButtonUser/ButtonUserAuth";
 import ButtonUser from "./ButtonUser/ButtonUser";
 
-// eslint-disable-next-line react/prop-types
-const SideBar = ({ isOpen }) => {
+const SideBar = ({ isOpen, closeSideBar }) => {
   const user = useSelector((state) => state.user);
 
   return (
     <div className={`${styles.sideBar} ${isOpen ? styles.open : ""}`}>
-      <Link to="/">Inicio</Link>
-      <Link to="/home/product">Productos</Link>
+      <Link to="/" onClick={closeSideBar}>
+        Inicio
+      </Link>
+      <Link to="/home/product" onClick={closeSideBar}>
+        Productos
+      </Link>
       {user && user.user.role === 1 ? (
-        <Link to="/home/nuevo">Nuevo Mueble</Link>
+        <Link to="/home/nuevo" onClick={closeSideBar}>
+          Nuevo Mueble
+        </Link>
       ) : null}
 
       <div className={styles.divUser}>
