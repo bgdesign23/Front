@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import CartCard from "../CartShop/CartCard";
 import Styles from "../CartShop/CartShop.module.css";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 function ShoppingCart() {
+  const navigate = useNavigate();
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
@@ -19,11 +22,31 @@ function ShoppingCart() {
   }, 0);
 
   const deleteProduct = (productId) => {
-    // Filtra el producto con el id especificado y actualiza el carrito
-    const updatedCart = cart.filter((product) => product.id !== productId);
-    // Actualiza el estado y el localStorage
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    // show alert confirmation
+    Swal.fire({
+      title: "ojo!",
+      text: "Estas sacando un producto de tu orden, estas seguro?",
+      icon: "Atención",
+      showCancelButton: true,
+      background: "#1A1A1A",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // delete pokemon if is confirmed
+        const updatedCart = cart.filter((product) => product.id !== productId);
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        Swal.fire({
+          title: "Eliminado",
+          text: "El producto ya no esta en cariito",
+          background: "#1A1A1A",
+          confirmButtonColor: "#3085d6",
+        });
+      }
+    });
   };
 
   const handleAmount_Up = (id) => {
@@ -51,7 +74,7 @@ function ShoppingCart() {
     // Actualiza el estado y el localStorage
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-    if (updatedCart.length > 1) {
+    if (updatedCart.length) {
       toast.success("Producto eliminado");
     }
   };
@@ -66,6 +89,7 @@ function ShoppingCart() {
 
   return (
     <div className={Styles.all_container}>
+      <button onClick={() => navigate("/home/product")}>Back</button>
       <div className={Styles.ShoppingCart_container}>
         <div className={Styles.tittle}>
           <h1>tu carrito de compras</h1>
@@ -97,8 +121,6 @@ function ShoppingCart() {
           toastOptions={{
             className: "",
             style: {
-              // marginTop: "900px",
-              // marginLeft: "1800px",
               border: "1px solid #713200",
               padding: "16px",
               color: "#191919",

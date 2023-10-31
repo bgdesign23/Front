@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { cleanDetail, getDetail } from "../../Redux/actions";
 import styles from "../Detail/Detail.module.css";
 import { useLocalStorage } from "../../localStorage/localStorage";
+import toast, { Toaster } from "react-hot-toast";
 
 const Detail = () => {
   const [thing, setThing] = useLocalStorage("cart", []); //localStorage hook
@@ -34,6 +35,7 @@ const Detail = () => {
     } else {
       setThing([...thing, detailProduct]);
     }
+    toast.success("se agrego al carrito de compras");
   };
 
   return (
@@ -75,6 +77,18 @@ const Detail = () => {
             Agregar al Carrito
           </button>
         </div>
+        <Toaster
+          position="buttom-right"
+          toastOptions={{
+            className: "",
+            style: {
+              border: "1px solid #713200",
+              padding: "16px",
+              color: "#191919",
+              background: "#ffff",
+            },
+          }}
+        />
       </div>
       <button className={styles.backButton} onClick={back}>
         Back

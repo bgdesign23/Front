@@ -100,16 +100,16 @@ export const filterByColor = (byColor, product) => {
 export const filteredByType = (products, selectedCategory) => {
   try {
     let orderedProducts;
-    
+
     if (selectedCategory === "Hogar") {
       orderedProducts = products.filter((product) => product.type === "Hogar");
     } else if (selectedCategory === "Oficina") {
       orderedProducts = products.filter(
-        (product) => product.type === "Oficina",
+        (product) => product.type === "Oficina"
       );
     } else if (selectedCategory === "Comercial") {
       orderedProducts = products.filter(
-        (product) => product.type === "Comercial",
+        (product) => product.type === "Comercial"
       );
     } else {
       // Si no se selecciona una categoría específica, mostrar todos los productos

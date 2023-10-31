@@ -32,22 +32,22 @@ function CartCard({
         <div className={Styles.botonera}>
           <div className={Styles.cantidad_Container}>
             <button
-              onClick={() => handleAmount_Up(id)}
-              className={Styles.botonesCantidad}
-            >
-              {" "}
-              +{" "}
-            </button>
-            <div className={Styles.numero}>
-              <p>{amount}</p>
-            </div>
-            <button
               disabled={disableDecreaseButton}
               onClick={() => handleAmount_Down(id)}
               className={Styles.botonesCantidad}
             >
               {" "}
               -{" "}
+            </button>
+            <div className={Styles.numero}>
+              <p>{amount}</p>
+            </div>
+            <button
+              onClick={() => handleAmount_Up(id)}
+              className={Styles.botonesCantidad}
+            >
+              {" "}
+              +{" "}
             </button>
           </div>
           <div className={Styles.details}>
