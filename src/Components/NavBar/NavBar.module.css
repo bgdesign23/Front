@@ -1,7 +1,7 @@
 .navBar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content:space-around;
     padding: 0 30px;
     height: 70px;
     background-color: #191919;
@@ -9,6 +9,7 @@
 }
 
 .logo {
+    cursor: pointer;
     position: absolute; 
     top: 5%; 
     left: 50%; 
@@ -25,6 +26,8 @@
     outline: none;
     color: white;
     top: 10%;
+    margin: 0px; 
+    padding: 0px;
   }
     
 .buttonCarrito:hover {
@@ -32,8 +35,10 @@
 }
 
 .noStyleButton, .buttonCarrito {
-    margin: 0; 
+    margin: 0px; 
+    padding: 0px;
 }
+
 
 .buttonUser {
     background: none;
