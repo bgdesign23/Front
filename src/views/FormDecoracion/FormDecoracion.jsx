@@ -1,5 +1,6 @@
-import  React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './formDecoracion.module.css'
+import Swal from 'sweetalert2';
 
 function FormDecoracion() {
   const [formData, setFormData] = useState({ 
@@ -44,7 +45,15 @@ function FormDecoracion() {
     e.preventDefault();
 
     if(validationForm()){
-      alert('Creación exitosa')
+      Swal.fire({
+        title: "Envío exitoso 📤",
+        text: "Solicitud enviada exitosamente",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 3000,
+        background: "#3b3838",
+        color: "#ffffff"
+      });
       setFormData({
         Nombre: '',
         Apellido:'',
