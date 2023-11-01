@@ -28,7 +28,7 @@ import {
   SET_USER,
 } from "../Redux/actionsTypes";
 
-const URL = import.meta.env.VITE_URL_BACK || "http://localhost:3001";
+const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
