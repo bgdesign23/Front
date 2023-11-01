@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../Redux/actions.js';
+import { googleUser, loginUser } from '../../Redux/actions.js';
 import Style from "../LoginForm/LoginForm.module.css"
 import { useNavigate } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
+import Swal from 'sweetalert2';
+
+const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -29,6 +33,36 @@ function LoginForm() {
     };
 
       dispatch(loginUser(credentials, navigate))
+  };
+
+  const handleOnGoogle = () => {
+    const width = 500;
+    const height = 600;
+    const top = Math.max(
+      (window.screen.availHeight - height) / 2,
+      0
+    ).toString();
+    const left = Math.max((window.screen.availWidth - width) / 2, 0).toString();
+
+    window.open(
+      `${URL}/users/google`,
+      "Google Login",
+      `width=${width}, height=${height}, left=${left}, top=${top}`
+    );
+
+    window.addEventListener("message", async function (event) {
+      if (event.data.type === "AUTH_SUCCESS") {
+        dispatch(googleUser(event.data.payload));
+        navigate("/");
+      } else if (event.data.type === "AUTH_ERROR") {
+        await Swal.fire({
+          title: event.data.payload.error,
+          icon: "error",
+          background: "#1A1A1A",
+          color: "#ffffff",
+        });
+      }
+    });
   };
 
   return (
@@ -62,6 +96,11 @@ function LoginForm() {
         <button type="submit">INICIAR SESIÓN</button>
 
       </form>
+      <div className={Style.divGoogle}>
+        <button onClick={() => handleOnGoogle()}>
+          <FcGoogle /> CONTINUAR CON GOOGLE
+        </button>
+      </div>
     </div>
     </div>
     </div>

@@ -28,8 +28,7 @@ import {
   SET_USER,
 } from "../Redux/actionsTypes";
 
-const URL = "http://localhost:3001";
-// const URL = "https://backend-muebles.vercel.app";
+const URL = import.meta.env.VITE_URL_BACK || "http://localhost:3001";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -197,6 +196,10 @@ export const registerUser = (userData, navigate) => async (dispatch) => {
       title: "¡Registro exitoso!",
       text: "Usuario registrado exitosamente.",
       icon: "success",
+      showConfirmButton: false,
+      timer: 3000,
+      background: "#3b3838",
+      color: "#ffffff"
     });
     localStorage.setItem("token", response.data.token);
     dispatch({
@@ -206,9 +209,11 @@ export const registerUser = (userData, navigate) => async (dispatch) => {
     navigate("/form/login");
   } catch (error) {
     await Swal.fire({
-      title: "Hubo un problema",
+      title: "Error al registrarse 🤔",
       text: error.response.data.error,
       icon: "error",
+      background: "#3b3838",
+      color: "#ffffff"
     });
     dispatch({
       type: REGISTER_FAILURE,
@@ -232,9 +237,13 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
       payload: response.data,
     });
     await Swal.fire({
-      title: `¡Hola ${response.data.user.username}!`,
-      text: "Has iniciado sesión correctamente",
+      title: `¡Hola ${response.data.user.username}! 👋`,
+      text: "Has iniciado sesión exitosamente",
       icon: "success",
+      showConfirmButton: false,
+      timer: 3000,
+      background: "#3b3838",
+      color: "#ffffff"
     });
     navigate("/");
   } catch (error) {
@@ -243,9 +252,11 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
       payload: error.message,
     });
     await Swal.fire({
-      title: "Error al iniciar sesión",
+      title: "Error al iniciar sesión 😧",
       text: error.response.data.error,
       icon: "error",
+      background: "#3b3838",
+      color: "#ffffff"
     });
   }
 };
@@ -288,6 +299,15 @@ export const updateUser = (userData) => async (dispatch) => {
 
 export const logoutUser = (navigate) => (dispatch) => {
   localStorage.removeItem("token");
+  Swal.fire({
+    title: "Has cerrado sesión",
+    text: "Esperamos verte pronto 👋",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 3000,
+    background: "#3b3838",
+    color: "#ffffff"
+  });
   navigate("/form/login");
   dispatch({ type: LOGOUT });
 };
@@ -326,15 +346,23 @@ export const postProduct = (formData, navigate) => {
       dispatch(getProductsAction());
       dispatch(getCategories());
       await Swal.fire({
-        title: "¡Creación exitosa!",
-        text: "Producto agregado correctamente.",
+        title: "¡Creación exitosa! 😎",
+        text: "Producto agregado exitosamente.",
         icon: "success",
+        showConfirmButton: false,
+        timer: 3000,
+        background: "#3b3838",
+        color: "#ffffff"
       });
       await Swal.fire({
         icon: "question",
         showDenyButton: true,
         confirmButtonText: "Agregar otro producto",
         denyButtonText: "Ver Productos",
+        confirmButtonColor: "#394754",
+        denyButtonColor: "#394754",
+        background: "#3b3838",
+        color: "#ffffff"
       }).then(async (result) => {
         if (result.isConfirmed) {
           window.location.reload();
@@ -347,7 +375,38 @@ export const postProduct = (formData, navigate) => {
         title: "Error",
         text: error.response.data.message,
         icon: "error",
+        background: "#3b3838",
+        color: "#ffffff"
       });
     }
   };
+};
+
+export const googleUser = (payload) => {
+	return async function (dispatch) {
+		try {
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: payload,
+      });
+      localStorage.setItem("token", payload.token);
+			await Swal.fire({
+				title: `¡Hola ${payload.user.username}! 👋`,
+				text: 'Has iniciado sesión exitosamente',
+				icon: 'success',
+        showConfirmButton: false,
+        timer: 3000,
+        background: "#3b3838",
+        color: "#ffffff"
+			});
+		} catch (error) {
+      await Swal.fire({
+        title: "Hubo un error al iniciar con google",
+        text: error.response.data.error,
+        icon: "error",
+        background: "#3b3838",
+        color: "#ffffff"
+      });
+		}
+	};
 };
