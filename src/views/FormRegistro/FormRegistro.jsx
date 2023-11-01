@@ -6,8 +6,8 @@ import { registerUser, filterRestart, googleUser } from "../../Redux/actions";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 
-// const URL = "http://localhost:3001";
-const URL = "https://backend-muebles.vercel.app";
+ const URL = "http://localhost:3001";
+//const URL = "https://backend-muebles.vercel.app";
 
 function validation(input) {
   const errors = {};
@@ -34,7 +34,8 @@ function validation(input) {
   if (input.password.length < 8) {
     errors.password = "Debe contener mínimo 8 caracteres";
   }
-  if (input.password !== input.confirmPassword) {
+ if (input.password && input.password.length < 8) {
+
     errors.confirmPassword = "Las contraseñas no coinciden";
   }
   return errors;

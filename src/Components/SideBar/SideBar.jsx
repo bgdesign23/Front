@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./SideBar.module.css";
 import { useSelector } from "react-redux";
-import ButtonUserAuth from "./ButtonUser/ButtonUserAuth";
-import ButtonUser from "./ButtonUser/ButtonUser";
 
 const SideBar = ({ isOpen, closeSideBar }) => {
   const user = useSelector((state) => state.user);
@@ -21,9 +19,7 @@ const SideBar = ({ isOpen, closeSideBar }) => {
         </Link>
       ) : null}
 
-      <div className={styles.divUser}>
-        {user && user.authenticated ? <ButtonUserAuth /> : <ButtonUser />}
-      </div>
+    
     </div>
   );
 };
