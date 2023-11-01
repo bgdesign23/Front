@@ -38,7 +38,7 @@ function ButtonAuth() {
       {menuVisible && (
         <div >
           <button onClick={redirectToUserProfile} >
-            Ver perfil
+            Perfil
           </button>
           <button onClick={handleLogout}>
             Cerrar sesión
