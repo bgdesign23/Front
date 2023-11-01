@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import Swal from 'sweetalert2';
 
-const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
+// const URL = "http://localhost:3001";
+const URL = "https://backend-muebles.vercel.app";
 
 function LoginForm() {
   const dispatch = useDispatch();
