@@ -19,7 +19,8 @@ import Detail from "./views/Detail/Detail";
 import ButtonSide from "../src/Components/SideBar/ButtonSide/ButtonSide";
 import FormProduct from "./views/FormProduct/FormProduct";
 import CartShop from "./Components/CartShop/CartShop";
-import PerfilUser from "./views/PerfilUser/PerfilUser";
+import PerfilUser from "./views/PerfilUser/PerfilUser"
+
 
 function App() {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
