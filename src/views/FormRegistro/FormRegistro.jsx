@@ -1,98 +1,32 @@
 import styles from "../FormRegistro/FormRegistro.module.css";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser, filterRestart, googleUser } from "../../Redux/actions";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
+import InputMask from "react-input-mask";
 
- const URL = "http://localhost:3001";
+const URL = "http://localhost:3001";
 //const URL = "https://backend-muebles.vercel.app";
-
-function validation(input) {
-  const errors = {};
-  //(!input.username || !/^(?:[A-Za-z][a-zA-Z]*)(?: [A-Za-z][a-zA-Z]*){0,2}$/.test(input.username)
-
-  if (
-    !input.username ||
-    !/^(?:[A-Z][a-zA-Z]*)(?: [A-Z][a-zA-Z]*){0,2}$/.test(input.username)
-  ) {
-    errors.username = "Debe contener un Nombre. Ej: Maria Luna";
-  }
-  if (
-    !input.location ||
-    !/^(?:[A-Z][a-zA-Z]*)(?:-[A-Z][a-zA-Z]*){0,1}$/.test(input.location)
-  ) {
-    errors.location = "Debe contener una localidad válida";
-  }
-  if (!/^\(\d{3}\)\d{4}-\d{4}$/.test(input.phone)) {
-    errors.phone = "Debe contener un número válido. Ej (000)0000-0000 ";
-  }
-  if (!/^\S+@\S+\.\S+$/.test(input.email)) {
-    errors.email = "Debe ser un email válido";
-  }
-  if (input.password.length < 8) {
-    errors.password = "Debe contener mínimo 8 caracteres";
-  }
- if (input.password && input.password.length < 8) {
-
-    errors.confirmPassword = "Las contraseñas no coinciden";
-  }
-  return errors;
-}
 
 export default function FormRegistro() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [errors, setErrors] = useState({});
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+    watch,
+  } = useForm();
 
-  const [input, setInput] = useState({
-    username: "",
-    phone: "",
-    location: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    formSubmitted: false,
-  });
+  const password = watch("password");
 
-  function handleChange(event) {
-    setInput({
-      ...input,
-      [event.target.name]: event.target.value,
-    });
-    setErrors(
-      validation({
-        ...input,
-        [event.target.name]: event.target.value,
-      })
-    );
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    setErrors(validation(input));
-    setInput((prevInput) => ({ ...prevInput, formSubmitted: true }));
-    if (
-      Object.keys(errors).length === 0 &&
-      input.username !== "" &&
-      input.location !== "" &&
-      input.email !== "" &&
-      input.password !== "" &&
-      input.confirmPassword !== ""
-    ) {
-      dispatch(registerUser(input, navigate));
-      dispatch(filterRestart());
-      setInput({
-        username: "",
-        phone: "",
-        location: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-    }
-  }
+  const onSubmit = (data) => {
+    dispatch(registerUser(data, navigate));
+    dispatch(filterRestart());
+  };
 
   const handleOnGoogle = () => {
     const width = 500;
@@ -126,7 +60,7 @@ export default function FormRegistro() {
 
   return (
     <div className={styles.loginContainer}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.login}>
           <section className={styles.formimput}>
             <div className={styles.columna}>
@@ -134,13 +68,20 @@ export default function FormRegistro() {
                 <label>Nombre Completo:</label>
                 <input
                   type="text"
-                  name="username"
-                  value={input.username}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  {...register("username", {
+                    required: "Este campo es requerido",
+                    pattern: {
+                      value: /^(?:[A-Z][a-zA-Z]*)(?: [A-Z][a-zA-Z]*){1,} *$/,
+                      message:
+                        "El nombre y el apellido deben comenzar con mayuscula",
+                    },
+                  })}
+                  onBlur={() => {
+                    setError("username", { shouldFocus: true });
+                  }}
                 />
                 {errors.username && (
-                  <p className={styles.error}> {errors.username} </p>
+                  <p className={styles.error}>{errors.username.message}</p>
                 )}
               </div>
 
@@ -148,26 +89,38 @@ export default function FormRegistro() {
                 <label>Localidad:</label>
                 <input
                   type="text"
-                  name="location"
-                  value={input.location}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  {...register("location", {
+                    required: "Este campo es requerido",
+                    pattern: {
+                      value: /^(?:[A-ZÁÉÍÓÚ][a-záéíóúü]+[\s-]?)+$/,
+                      message: "Debe contener una localidad válida",
+                    },
+                  })}
+                  onBlur={() => {
+                    setError("location", { shouldFocus: true });
+                  }}
                 />
                 {errors.location && (
-                  <p className={styles.error}>{errors.location}</p>
+                  <p className={styles.error}>{errors.location.message}</p>
                 )}
               </div>
               <div className={styles.labelimput}>
                 <label>Contraseña:</label>
                 <input
                   type="password"
-                  name="password"
-                  value={input.password}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  {...register("password", {
+                    required: "Este campo es requerido",
+                    minLength: {
+                      value: 8,
+                      message: "Debe contener mínimo 8 caracteres",
+                    },
+                  })}
+                  onBlur={() => {
+                    setError("password", { shouldFocus: true });
+                  }}
                 />
                 {errors.password && (
-                  <p className={styles.error}>{errors.password}</p>
+                  <p className={styles.error}>{errors.password.message}</p>
                 )}
               </div>
 
@@ -181,36 +134,54 @@ export default function FormRegistro() {
                 <label>Correo Electrónico:</label>
                 <input
                   type="email"
-                  name="email"
-                  value={input.email}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  {...register("email", {
+                    required: "Este campo es requerido",
+                    pattern: {
+                      value: /^\S+@\S+\.\S+$/,
+                      message: "Debe ser un email válido",
+                    },
+                  })}
+                  onBlur={() => {
+                    setError("email", { shouldFocus: true });
+                  }}
                 />
-                {errors.email && <p className={styles.error}>{errors.email}</p>}
+                {errors.email && (
+                  <p className={styles.error}>{errors.email.message}</p>
+                )}
               </div>
               <div className={styles.labelimput}>
                 <label>Teléfono:</label>
-                <input
-                  type="text"
-                  name="phone"
-                  value={input.phone}
-                  onChange={(event) => handleChange(event)}
-                  required
+                <InputMask
+                  mask="+54 999 9999 - 9999" // Establece la máscara
+                  {...register("phone", {
+                    required: "Este campo es requerido",
+                  })}
+                  onBlur={() => {
+                    setError("phone", { shouldFocus: true });
+                  }}
                 />
-                {errors.phone && <p className={styles.error}>{errors.phone}</p>}
+                {errors.phone && (
+                  <p className={styles.error}>{errors.phone.message}</p>
+                )}
               </div>
 
               <div className={styles.labelimput}>
                 <label>Confirmar Contraseña:</label>
                 <input
                   type="password"
-                  name="confirmPassword"
-                  value={input.confirmPassword}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  {...register("confirmPassword", {
+                    required: "Este campo es requerido",
+                    validate: (value) =>
+                      value === password || "Las contraseñas no coinciden",
+                  })}
+                  onBlur={() => {
+                    setError("confirmPassword", { shouldFocus: true });
+                  }}
                 />
                 {errors.confirmPassword && (
-                  <p className={styles.error}>{errors.confirmPassword}</p>
+                  <p className={styles.error}>
+                    {errors.confirmPassword.message}
+                  </p>
                 )}
               </div>
               <div className={styles.iniciarsesion}>
@@ -222,14 +193,11 @@ export default function FormRegistro() {
           </section>
         </div>
       </form>
-<<<<<<< Updated upstream
       <div className={styles.divGoogle}>
         <button onClick={() => handleOnGoogle()}>
           <FcGoogle /> CONTINUAR CON GOOGLE
         </button>
       </div>
-=======
->>>>>>> Stashed changes
     </div>
   );
 }
