@@ -5,10 +5,38 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import {  applyCoupon } from "../../Redux/actions"
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
+
+function validateCoupon(couponCode) {
+  const currentDate = new Date();
+
+  const welcomeCoupon = {
+    status: "activo",
+    expiration: "2023-12-31",
+    discount: 0.20,
+    usagesAvailable: 1,
+    code: "bgdesign",
+  };
+
+  if (
+    welcomeCoupon.code === couponCode &&
+    welcomeCoupon.status === "activo" &&
+    new Date(welcomeCoupon.expiration) >= currentDate &&
+    welcomeCoupon.usagesAvailable > 0
+  ) {
+    return welcomeCoupon.discount;
+  }
+
+  return 0;
+}
 function ShoppingCart() {
   const [preferenceId, setPreferenceId] = useState(null);
+  const [couponCode, setCouponCode] = useState("");
+  const dispatch = useDispatch(); 
+
   initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e");
   const navigate = useNavigate();
   const [cart, setCart] = useState(
@@ -53,6 +81,7 @@ function ShoppingCart() {
     });
   };
 
+
   const handleAmount_Up = (id) => {
     const updatedCart = cart.map((product) => {
       if (product.id === id) {
@@ -94,7 +123,8 @@ function ShoppingCart() {
   const createPreference = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/payment/create-order",
+        // "http://localhost:3001/payment/create-order",
+        "https://backend-muebles.vercel.app/payment/create-order",
         cart
       );
 
@@ -104,13 +134,32 @@ function ShoppingCart() {
       console.log(error);
     }
   };
-
-  const handleBuy = async (cart) => {
-    const id = await createPreference(cart);
-    if (id) {
-      setPreferenceId(id);
-    }
+  const handleApplyCoupon = () => {
+    dispatch(applyCoupon(couponCode));
+  
+    setCouponCode("");
   };
+ 
+  const handleBuy = async (cart) => {
+  const id = await createPreference(cart);
+  if (id) {
+    
+    const discount = validateCoupon(couponCode);
+
+    if (discount > 0) {
+    
+      const totalWithDiscount = numero * (1 - discount);
+
+      // Aquí puedes realizar el pago con el total con descuento
+      // Y proporcionar el `totalWithDiscount` al sistema de pago
+
+    } else {
+      // Si no hay descuento el total original
+    }
+
+    setPreferenceId(id);
+  }
+};
 
   return (
     <div className={Styles.all_container}>
@@ -162,6 +211,13 @@ function ShoppingCart() {
           <p>Cantidad productos: {cantidad}</p>
           <p>Total a pagar: ${formatthousand(numero)}</p>
           <p className={Styles.cupon}>Ingresar cupón descuento</p>
+  <input
+    type="text"
+    placeholder="Ingresa el código del cupón"
+    value={couponCode}
+    onChange={(e) => setCouponCode(e.target.value)}
+  />
+  <button onClick={handleApplyCoupon}>Aplicar Cupón</button>
         </div>
         <button onClick={handleBuy}>Continuar con la compra</button>
         {preferenceId && <Wallet initialization={{ preferenceId }} />}

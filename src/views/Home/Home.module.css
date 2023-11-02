@@ -30,7 +30,7 @@
   text-align: left;
   color: white;
   margin-top: 70px;
-  font-family: "Barlow", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .repisas {
@@ -45,8 +45,8 @@
   position: absolute;
   bottom: 0;
   right: 320px;
-  width: 300px; /* Ajusta a tu necesidad */
-  height: 500px; /* Mantiene la relación de aspecto */
+  width: 300px;
+  height: 500px;
 }
 
 /*  Section 3 */

@@ -1,14 +1,8 @@
 import styles from "./ButtonUsers.module.css";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function ButtonUser() {
-  const [menuVisible, setMenuVisible] = useState(false);
   const navigate = useNavigate();
-
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
 
   const redirectToLogin = () => {
     navigate("/form/login");
@@ -20,29 +14,23 @@ function ButtonUser() {
     setMenuVisible(false);
   };
 
-  const handleButtonClick = () => {
-    toggleMenu();
-  };
-
   return (
-    <div className= {styles.btn}>
-      <div  onClick={handleButtonClick}>
-        Usuario No Registrado
-        {menuVisible ? "▲" : "▼"} 
-      </div>
-
-      {menuVisible && (
-        <div >
-          <button onClick={redirectToRegistro} >
-                               Registrarse          </button>
-          <button onClick={redirectToLogin}>
-            Iniciar Sesion
-          </button>
-        </div>
-      )}
+    <div className={styles.Filters}>
+      <select
+        onChange={(event) => {
+          if (event.target.value === "register") {
+            redirectToRegistro();
+          } else if (event.target.value === "login") {
+            redirectToLogin();
+          }
+        }}
+      >
+        <option value="">Usuario</option>
+        <option value="register">Registrarse</option>
+        <option value="login">Iniciar Sesion</option>
+      </select>
     </div>
   );
-  
 }
 
 export default ButtonUser;
