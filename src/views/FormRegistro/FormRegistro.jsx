@@ -222,11 +222,14 @@ export default function FormRegistro() {
           </section>
         </div>
       </form>
+<<<<<<< Updated upstream
       <div className={styles.divGoogle}>
         <button onClick={() => handleOnGoogle()}>
           <FcGoogle /> CONTINUAR CON GOOGLE
         </button>
       </div>
+=======
+>>>>>>> Stashed changes
     </div>
   );
 }
