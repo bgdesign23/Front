@@ -1,9 +1,7 @@
-/* eslint-disable react/prop-types */
 import Styles from "./Product.module.css";
 import Card from "../Product/Card";
 import Filters from "../../Components/Filters/Filters";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 export default function Cards({ productos }) {
   const [paged, setPaged] = useState(10);
