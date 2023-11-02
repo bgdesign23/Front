@@ -37,7 +37,7 @@ h3 {
     line-height: normal;
 }
 
-button{
+/* button{
     flex-shrink: 0;
     background: #191919;
     color: #FFF;
@@ -47,7 +47,7 @@ button{
     font-weight: 400;
     line-height: normal;
     margin-bottom: 0px;
-}
+} */
 .imagen {
         width: 70px;
         height: 70px;
@@ -67,11 +67,20 @@ button{
 
     
 .botonesCantidad {
-    margin-inline:10px;
+    /* margin-inline:10px; */
     width: 60px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
+    background-color: transparent;
+    color: #211f1f;
+    border: 2px solid black;
+        height: 60px;
     }  
+
+.botonesCantidad:hover{
+            background-color: #211f1f;
+            color: #FFF;
+        }
 
     .name_container{
        width: 300px;
@@ -88,11 +97,12 @@ button{
                 }
 
                 .numero{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 40px;
+                            width: 50px;
+                            background-color: transparent;
+                            color: #211f1f;
+                            /* border: 2px solid black; */
                 }
+
 .cantidad_Container{
     display: flex;
 }
