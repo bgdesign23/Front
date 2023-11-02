@@ -13,9 +13,9 @@
 
 .logo {
   cursor: pointer;
-  position: absolute;
-  top: 30%;
-  left: 50%;
+  position: relative;
+  margin-top: 35%;
+  left: 630px;
   transform: translate(-50%, -50%);
   max-width: 270px;
 }
@@ -32,7 +32,7 @@
   align-items: center;
   margin-left: auto;
   position: relative;
-  right: 690px;
+  right: 140%;
 }
 
 .navLink {
