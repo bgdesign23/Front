@@ -1,6 +1,6 @@
 body {
   background-color: #191919;
   margin: 0; /* Para eliminar el espacio de margen predeterminado en el body */
-  padding: 0
+  padding: 0;
+  max-width: 2000px;
 }
-

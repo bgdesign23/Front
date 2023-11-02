@@ -3,15 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styles from "./ButtonUsers.module.css";
 import { logoutUser } from "../../../Redux/actions";
 import { useDispatch } from "react-redux";
+import IconoUser from "../Icono/IconoUser";
 
 function ButtonAuth() {
-  const [menuVisible, setMenuVisible] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
 
   const redirectToUserProfile = () => {
     navigate("/form/perfil");
@@ -23,33 +19,24 @@ function ButtonAuth() {
     setMenuVisible(false);
   };
 
-  const handleButtonClick = () => {
-    toggleMenu();
-  };
-  
- 
-   return (
-    <div className= {styles.btn}>
-      <div  onClick={handleButtonClick}>
-        Usuario Registrado
-        {menuVisible ? "▲" : "▼"} 
-      </div>
+  return (
+    <div className={styles.Filters}>
+      <select
+        onChange={(event) => {
+          if (event.target.value === "perfil") {
+            redirectToUserProfile();
+          } else if (event.target.value === "logout") {
+            handleLogout();
+          }
+        }}
+      >
+        <option value="perfil">Perfil</option>
+        <option value="logout">Cerrar sesión</option>
+      </select>
+      <button onClick={() => navigate("/cupones")}>Cupones</button>
 
-      {menuVisible && (
-        <div >
-          <button onClick={redirectToUserProfile} >
-            Perfil
-          </button>
-
-          <button onClick={() => navigate("/cupones")}>Cupones</button>
-
-          <button onClick={handleLogout}>
-            Cerrar sesión
-          </button>
-        </div>
-      )}
     </div>
   );
-    }
+}
 
 export default ButtonAuth;
