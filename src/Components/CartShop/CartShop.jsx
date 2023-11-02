@@ -213,7 +213,7 @@ function ShoppingCart() {
           <div className={Styles.cupon_container}>
             <input
               type="text"
-              placeholder="Ingresa el código del cupón"
+              placeholder=" Ingresa el código del cupón"
               value={couponCode}
               onChange={(e) => setCouponCode(e.target.value)}
             />
