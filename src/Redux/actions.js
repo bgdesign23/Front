@@ -26,10 +26,14 @@ import {
   FILTER_BY_MATERIAL,
   GET_DESING,
   SET_USER,
+  CREATE_COUPON, 
+  GET_USER_COUPONS, 
+  APPLY_COUPON,
+  COUPONS_ERROR
 } from "../Redux/actionsTypes";
 
-// const URL = "http://localhost:3001";
-const URL = "https://backend-muebles.vercel.app";
+ const URL = "http://localhost:3001";
+//const URL = "https://backend-muebles.vercel.app";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -409,5 +413,41 @@ export const googleUser = (payload) => {
         color: "#ffffff",
       });
     }
+  };
+};
+
+
+
+export const createCoupon = (coupon) => {
+  return {
+    type: CREATE_COUPON,
+    payload: coupon,
+  };
+};
+
+
+export const getUserCoupons = () => {
+  return (dispatch) => {
+    axios.get(`${URL}/coupon`)
+      .then((response) => {
+        dispatch({
+          type: GET_USER_COUPONS,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: COUPONS_ERROR,
+          payload: error.response.data, 
+        });
+      });
+  };
+};
+
+
+export const applyCoupon = (couponCode) => {
+  return {
+    type: APPLY_COUPON,
+    payload: couponCode,
   };
 };

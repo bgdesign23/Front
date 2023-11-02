@@ -24,5 +24,10 @@ export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 export const FILTER_BY_MATERIAL = "FILTER_BY_MATERIAL";
 export const GET_DESING = "GET_DESING";
 export const SET_USER = "SET_USER";
+export const CREATE_COUPON = 'CREATE_COUPON';
+export const GET_USER_COUPONS = 'GET_USER_COUPONS';
+export const APPLY_COUPON = 'APPLY_COUPON';
+export const COUPONS_ERROR = 'COUPONS_ERROR';
+
 
 
