@@ -5,7 +5,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { applyCoupon } from "../../Redux/actions";
+import { applyCoupon, createPreference } from "../../Redux/actions";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
@@ -118,41 +118,31 @@ function ShoppingCart() {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
-  const createPreference = async () => {
-    try {
-      const response = await axios.post(
-        // "http://localhost:3001/payment/create-order",
-        "https://backend-muebles.vercel.app/payment/create-order",
-        cart
-      );
-
-      const { id } = response.data;
-      return id;
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const handleApplyCoupon = () => {
     dispatch(applyCoupon(couponCode));
 
     setCouponCode("");
   };
 
-  const handleBuy = async (cart) => {
-    const id = await createPreference(cart);
-    if (id) {
-      const discount = validateCoupon(couponCode);
+  const handleBuy = async () => {
+    try {
+      const id = await dispatch(createPreference(cart));
 
-      if (discount > 0) {
-        const totalWithDiscount = numero * (1 - discount);
+      if (id) {
+        const discount = validateCoupon(couponCode);
 
-        // Aquí puedes realizar el pago con el total con descuento
-        // Y proporcionar el `totalWithDiscount` al sistema de pago
-      } else {
-        // Si no hay descuento el total original
+        if (discount > 0) {
+          const totalWithDiscount = numero * (1 - discount);
+          // Realiza el pago con el total con descuento
+          // Proporciona el `totalWithDiscount` al sistema de pago
+        } else {
+          // Si no hay descuento, utiliza el total original
+        }
+
+        setPreferenceId(id);
       }
-
-      setPreferenceId(id);
+    } catch (error) {
+      console.log("Error al crear la preferencia:", error);
     }
   };
 
