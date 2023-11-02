@@ -1,139 +1,112 @@
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: black;
-    background: linear-gradient(to bottom right, #3b3b3b, #000000);
-    border-radius: 5px;
-    margin: 30px auto;
-    max-width: 50%;
-    padding: 20px;
-    color: white;
-    text-align: left;
+/* Estilos para el botón "Back" */
+.backButton {
+  position: absolute;
+  bottom: 10px; /* Ajusta la distancia desde la parte inferior de la página */
+  left: 10px; /* Ajusta la distancia desde el borde izquierdo de la página */
+  background-color: #5e320d;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
 }
 
-.content {
-    display: flex;
-    flex-direction: row; /* La imagen a la izquierda y los detalles a la derecha */
-    align-items: center;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #d9d9d9;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .imageContainer {
-    flex: 1;
-    overflow-clip-margin: content-box;
-    overflow: clip;
+  flex: 1;
+  overflow: clip;
 }
 .image {
-    width: 300px;
-    height: 300px;
-    display: block;
-    margin: 0 auto;
+  width: 400px;
+  height: 500px;
 }
 
 .detailsContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-family: 'Barlow', sans-serif;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
+  gap: 10px;
 }
 
 .name {
-    font-family: Cinzel;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    color: white;
-   
+  text-align: center;
+  font-family: Cinzel;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-.description, .type {
-    color: white;
-  
+.description,
+.type {
+  color: #000;
+  text-align: left;
+  font-family: Barlow;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-
-.buttonContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .button {
-    background: #191919;
-    color: #FFF;
-    text-align: center;
-    font-family: 'Barlow';
-    font-size: 14px;
-    font-weight: 400;
-    line-height: normal;
-    
-    margin-bottom: 10px;
-  }
-  
-  .backButton {
-    background: #D9D9D9;
-    color: #000;
-    text-align: center;
-    font-family: Cinzel;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    height: 40px;
-    width: 100px;
-    margin-top: 20px;
-  }
 
 @media (max-width: 998px) {
-    .container {
-        flex-direction: column; /* Cambia a dirección de columna en pantallas pequeñas */
-        text-align: center;
-    }
-}
-
-
-
-/* Estilos para organizar los elementos en dos filas con dos columnas */
-.filas {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    
-    
-}
-
-.detailsContainer h2{
-    
-    text-align: left; 
-    margin-top: -5px;
-    color: #ede0e0;
-    margin: 0;
+  .container {
+    flex-direction: column; /* Cambia a dirección de columna en pantallas pequeñas */
     text-align: center;
-    font-family: 'Barlow';
-    font-size: 20px;
-    font-weight: 700;
-    line-height: normal;
+  }
+}
+
+.detailsContainer h2 {
+  color: #000;
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: right;
+  margin-top: -20px;
 }
 /* Alinear los elementos en cada fila */
 .filas h3 {
-    font-family: 'Barlow';
-    display: block;
-    font-size: 15px;
-background-color: rgba(0, 255, 255, 0);
-    
-    color: white;
-    text-size-adjust:  0px;
-    width: 45%; /* El 48% permite espacio para el espaciado entre las columnas */
-    text-align: left;
-    margin: 0;
-    padding: 5px 0;
+  margin-top: 10px;
+  text-align: left;
+  margin-left: 10px;
+  color: #000;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: Barlow;
+
+  font-size: 23px;
+  font-weight: 400;
+  line-height: normal;
+  line-height: 1.5;
+}
+/* Estilos para la imagen de WhatsApp */
+.detailsContainer a {
+  text-align: right;
+  margin-bottom: -10px;
+  /* Establece el ancho que desees para la imagen */
 }
 
-/* Alinear los elementos en la segunda columna */
-.filas h3:nth-child(odd) {
-    text-align: left;
+.detailsContainer button {
+  margin-top: -30px;
+  transform: translate(
+    0%,
+    -50%
+  ); /* Centrar verticalmente en la mitad de la pantalla y mantenerlo a la izquierda */
+  width: 280px; /* Establece el ancho que desees */
+  height: 50px; /* Establece la altura que desees */
+  font-size: 14px; /* Tamaño de fuente */
+  padding: 5px 10px; /* Ajusta el relleno según tus preferencias */
 }
-
-

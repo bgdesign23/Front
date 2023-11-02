@@ -5,6 +5,7 @@ import { cleanDetail, getDetail } from "../../Redux/actions";
 import styles from "../Detail/Detail.module.css";
 import { useLocalStorage } from "../../localStorage/localStorage";
 import toast, { Toaster } from "react-hot-toast";
+import logoWhatsapp from "../Detail/whatsapp (1).png";
 
 const Detail = () => {
   const [thing, setThing] = useLocalStorage("cart", []); //localStorage hook
@@ -39,7 +40,7 @@ const Detail = () => {
   };
 
   return (
-    <>
+    <div className={styles.todo}>
       <div className={styles.container}>
         <div className={styles.imageContainer}>
           <img
@@ -54,16 +55,16 @@ const Detail = () => {
             {detailProduct?.description}
           </span>
           <div className={styles.filas}>
-            <h3 className={styles.type}>Ambiente: {detailProduct?.type}</h3>
+            <h3 className={styles.type}>Ambiente:{detailProduct?.type}</h3>
 
-            <h3 className={styles.color}>Color: {detailProduct?.color}</h3>
+            <h3 className={styles.color}>Color:{detailProduct?.color}</h3>
             <h3 className={styles.material}>
-              Material: {detailProduct?.material}
+              Material:{detailProduct?.material}
             </h3>
-            <h3 className={styles.category}>
+            {/* <h3 className={styles.category}>
               {" "}
               {detailProduct?.category?.name}
-            </h3>
+            </h3> */}
             <h3 className={styles.stock}>{detailProduct?.stock}</h3>
           </div>
           <h2 className={styles.price}>${detailProduct?.price},00</h2>
@@ -71,7 +72,7 @@ const Detail = () => {
             href={`https://wa.me/2477516585/?text=Hola,%20quisiera%20tener%20más%20información%20sobre%20el%20producto`}
             target="_blank"
           >
-            <button>Contactar en WhatsApp</button>
+            <img src={logoWhatsapp} alt="" style={{ width: "55px" }} />
           </a>
           <button onClick={addToCart} className={styles.button}>
             Agregar al Carrito
@@ -93,7 +94,7 @@ const Detail = () => {
       <button className={styles.backButton} onClick={back}>
         Back
       </button>
-    </>
+    </div>
   );
 };
 
