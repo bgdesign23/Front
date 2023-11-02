@@ -90,11 +90,12 @@
 }
 
 .buttonContainer button {
-  margin-left: 200px;
+  position: relative;
+  bottom: -270px; /* Ajusta la distancia desde la parte inferior de la página */
 }
-.iniciarsesion button {
-  margin-right: 200px;
-  cursor: pointer;
+.iniciarsesion {
+  position: relative;
+  bottom: -280px;
 }
 
 .divGoogle button {
