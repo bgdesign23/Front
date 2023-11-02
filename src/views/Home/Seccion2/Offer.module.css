@@ -6,8 +6,10 @@
   padding-top: 10px;
   background: #d9d9d9;
   height: 450px;
-  width: 100vw;
-  margin-left: -40px;
+  max-width: 100vw;
+  margin-right: center;
+  justify-content: center;
+  align-items: center;
 }
 .container {
   width: 90%;
