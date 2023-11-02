@@ -37,9 +37,7 @@ const NavBar = () => {
           <Link to="/" className={styles.navLink}>
             Inicio{" "}
           </Link>
-          <Link to="/home/product" className={styles.navLink}>
-            Productos
-          </Link>
+          <Link to="/home/product">Productos</Link>
         </div>
 
         {user && user.user.role === 1 ? (
