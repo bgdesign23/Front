@@ -1,12 +1,9 @@
 .products_container {
   display: grid;
-  margin-left: 55px;
+  margin-left: 10px;
   margin-bottom: 30px;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.5rem;
-  cursor: pointer;
   margin-top: 1rem;
-  order: 2;
 }
 
 @media (min-width: 1200px) {
@@ -15,20 +12,23 @@
   }
 }
 
-.contenCard button {
-  width: 200px;
-  height: 40px;
-  flex-shrink: 0;
-  background: #d9d9d9;
-  color: #000;
-  text-align: center;
-  font-family: Cinzel;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+.buttonPrimary {
+  color: #191919;
+  position: relative;
+  margin-right: -50px;
+  padding: 0.5em 1.7em;
+  font-size: 18px;
+  background: #ffffff;
+  border: 1px solid #777777;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px #000000, -6px -6px 12px #000000;
+  font-family: "Open Sans", sans-serif;
 }
 
-.h1 {
-  color: white;
+.buttonPrimary:hover {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.buttonPrimary:active {
+  box-shadow: 4px 4px 12px #000000, -4px -4px 12px #000000;
 }

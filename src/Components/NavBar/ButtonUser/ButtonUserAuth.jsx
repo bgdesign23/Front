@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ButtonUsers.module.css";
 import { logoutUser } from "../../../Redux/actions";
@@ -34,8 +33,8 @@ function ButtonAuth() {
         }}
       >
         <option value="perfil">Perfil</option>
-        <option value="logout">Cerrar sesión</option>
         <option value="cupon">Cupones</option>
+        <option value="logout">Cerrar sesión</option>
       </select>
     </div>
   );
