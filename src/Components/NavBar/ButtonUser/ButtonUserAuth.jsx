@@ -11,12 +11,14 @@ function ButtonAuth() {
 
   const redirectToUserProfile = () => {
     navigate("/form/perfil");
-    setMenuVisible(false);
   };
 
   const handleLogout = () => {
     dispatch(logoutUser(navigate));
-    setMenuVisible(false);
+  };
+
+  const redirectCupon = () => {
+    navigate("/cupones");
   };
 
   return (
@@ -27,14 +29,15 @@ function ButtonAuth() {
             redirectToUserProfile();
           } else if (event.target.value === "logout") {
             handleLogout();
+          } else if (event.target.value === "cupon") {
+            redirectCupon();
           }
         }}
       >
         <option value="perfil">Perfil</option>
         <option value="logout">Cerrar sesión</option>
+        <option value="cupon">Cupones</option>
       </select>
-      <button onClick={() => navigate("/cupones")}>Cupones</button>
-
     </div>
   );
 }
