@@ -32,8 +32,8 @@ import {
   COUPONS_ERROR,
 } from "../Redux/actionsTypes";
 
-const URL = "http://localhost:3001";
-// const URL = "https://backend-muebles.vercel.app";
+// const URL = "http://localhost:3001";
+const URL = "https://backend-muebles.vercel.app";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -446,5 +446,18 @@ export const applyCoupon = (couponCode) => {
   return {
     type: APPLY_COUPON,
     payload: couponCode,
+  };
+};
+
+export const createPreference = (cart) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${URL}/payment/create-order`, cart);
+      const { id } = response.data;
+      return id;
+    } catch (error) {
+      console.log("Error al crear la preferencia:", error);
+      return null;
+    }
   };
 };
