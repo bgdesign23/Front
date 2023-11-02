@@ -123,7 +123,8 @@ function ShoppingCart() {
   const createPreference = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/payment/create-order",
+        // "http://localhost:3001/payment/create-order",
+        "https://backend-muebles.vercel.app/payment/create-order",
         cart
       );
 

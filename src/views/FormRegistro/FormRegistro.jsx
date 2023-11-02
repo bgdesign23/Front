@@ -7,8 +7,8 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
 
-const URL = "http://localhost:3001";
-//const URL = "https://backend-muebles.vercel.app";
+// const URL = "http://localhost:3001";
+const URL = "https://backend-muebles.vercel.app";
 
 export default function FormRegistro() {
   const dispatch = useDispatch();
