@@ -26,13 +26,13 @@ import {
   FILTER_BY_MATERIAL,
   GET_DESING,
   SET_USER,
-  CREATE_COUPON, 
-  GET_USER_COUPONS, 
+  CREATE_COUPON,
+  GET_USER_COUPONS,
   APPLY_COUPON,
-  COUPONS_ERROR
+  COUPONS_ERROR,
 } from "../Redux/actionsTypes";
 
- // const URL = "http://localhost:3001";
+// const URL = "http://localhost:3001";
 const URL = "https://backend-muebles.vercel.app";
 
 export const getProductsAction = () => {
@@ -416,8 +416,6 @@ export const googleUser = (payload) => {
   };
 };
 
-
-
 export const createCoupon = (coupon) => {
   return {
     type: CREATE_COUPON,
@@ -425,10 +423,10 @@ export const createCoupon = (coupon) => {
   };
 };
 
-
 export const getUserCoupons = () => {
   return (dispatch) => {
-    axios.get(`${URL}/coupon`)
+    axios
+      .get(`${URL}/coupon`)
       .then((response) => {
         dispatch({
           type: GET_USER_COUPONS,
@@ -438,12 +436,11 @@ export const getUserCoupons = () => {
       .catch((error) => {
         dispatch({
           type: COUPONS_ERROR,
-          payload: error.response.data, 
+          payload: error.response.data,
         });
       });
   };
 };
-
 
 export const applyCoupon = (couponCode) => {
   return {
