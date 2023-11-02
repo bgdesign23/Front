@@ -1,7 +1,6 @@
 .loginContainer {
   background-image: url("../LoginForm/fondo.png");
   background-repeat: no-repeat;
-  /* background-color: aquamarine; */
   background-size: cover;
   margin-top: -65px;
   padding-top: 80px;
@@ -50,7 +49,6 @@
   border-top: 1px solid #ccc;
 }
 
-
 .login p {
   color: red;
   font-size: 11px;
@@ -65,7 +63,7 @@
 
 .loginContainer .columna {
   flex: 1;
-  flex-direction: row;;
+  flex-direction: row;
   padding-left: 20px;
 }
 
@@ -74,7 +72,6 @@
   flex-direction: column;
   height: 100px;
 }
-
 
 .loginContainer button {
   margin-top: 300px;

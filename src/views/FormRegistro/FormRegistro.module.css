@@ -12,14 +12,12 @@
   max-width: 900px;
   height: 360px;
   margin: 80px auto;
+  height: 360px;
+
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 50px;
   background-color: rgba(217, 217, 217, 1);
-}
-
-.todo {
-  background-color: blueviolet;
 }
 
 .login h1 {
@@ -61,7 +59,6 @@
 }
 
 .loginContainer section {
-  border-color: blueviolet;
   display: flex;
   height: 20px;
 }
