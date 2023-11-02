@@ -28,7 +28,7 @@
     width: 600px;
     height: 520px;
     border: 2px solid rgba(255, 255, 255, 0.462);
-    color: antiquewhite;
+    color: rgb(255, 255, 255);
     margin-right: 60px;
     margin-block: 1rem;
     border-radius: 15px;
@@ -66,3 +66,53 @@
 }
 
 
+.btn{
+    margin-block: .5rem;
+    width: 490px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid rgb(177, 171, 171);
+    height: 50px;}
+
+        .btn:hover {
+            color: #211f1f;
+            background-color:aliceblue;
+        }
+.cupon_container{
+    display: flex;
+    justify-content: center;
+}
+
+.btncupon{
+    width: 230px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid rgb(177, 171, 171);
+    height: 50px;
+    margin-inline: .5rem;
+                }
+input{
+    width: 230px;
+    border-radius: 8px;
+    margin-inline: .5rem;
+}
+
+.btncupon:hover {
+    color: #211f1f;
+    background-color: aliceblue;
+}
+
+.backBtn{
+    position: absolute;
+    right: 1800px;
+    top: 150px;
+    border: none;
+    background: none;
+    text-decoration: none;
+    color: white ;
+    cursor: pointer;
+}

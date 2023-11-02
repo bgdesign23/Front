@@ -5,10 +5,9 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import {  applyCoupon } from "../../Redux/actions"
+import { applyCoupon } from "../../Redux/actions";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-
 
 function validateCoupon(couponCode) {
   const currentDate = new Date();
@@ -16,7 +15,7 @@ function validateCoupon(couponCode) {
   const welcomeCoupon = {
     status: "activo",
     expiration: "2023-12-31",
-    discount: 0.20,
+    discount: 0.2,
     usagesAvailable: 1,
     code: "bgdesign",
   };
@@ -35,7 +34,7 @@ function validateCoupon(couponCode) {
 function ShoppingCart() {
   const [preferenceId, setPreferenceId] = useState(null);
   const [couponCode, setCouponCode] = useState("");
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e");
   const navigate = useNavigate();
@@ -80,7 +79,6 @@ function ShoppingCart() {
       }
     });
   };
-
 
   const handleAmount_Up = (id) => {
     const updatedCart = cart.map((product) => {
@@ -136,35 +134,37 @@ function ShoppingCart() {
   };
   const handleApplyCoupon = () => {
     dispatch(applyCoupon(couponCode));
-  
+
     setCouponCode("");
   };
- 
+
   const handleBuy = async (cart) => {
-  const id = await createPreference(cart);
-  if (id) {
-    
-    const discount = validateCoupon(couponCode);
+    const id = await createPreference(cart);
+    if (id) {
+      const discount = validateCoupon(couponCode);
 
-    if (discount > 0) {
-    
-      const totalWithDiscount = numero * (1 - discount);
+      if (discount > 0) {
+        const totalWithDiscount = numero * (1 - discount);
 
-      // Aquí puedes realizar el pago con el total con descuento
-      // Y proporcionar el `totalWithDiscount` al sistema de pago
+        // Aquí puedes realizar el pago con el total con descuento
+        // Y proporcionar el `totalWithDiscount` al sistema de pago
+      } else {
+        // Si no hay descuento el total original
+      }
 
-    } else {
-      // Si no hay descuento el total original
+      setPreferenceId(id);
     }
-
-    setPreferenceId(id);
-  }
-};
+  };
 
   return (
     <div className={Styles.all_container}>
-      <button onClick={() => navigate("/home/product")}>Back</button>
       <div className={Styles.ShoppingCart_container}>
+        <button
+          className={Styles.backBtn}
+          onClick={() => navigate("/home/product")}
+        >
+          Back
+        </button>
         <div className={Styles.tittle}>
           <h1>tu carrito de compras</h1>
         </div>
@@ -210,16 +210,21 @@ function ShoppingCart() {
         <div>
           <p>Cantidad productos: {cantidad}</p>
           <p>Total a pagar: ${formatthousand(numero)}</p>
-          <p className={Styles.cupon}>Ingresar cupón descuento</p>
-  <input
-    type="text"
-    placeholder="Ingresa el código del cupón"
-    value={couponCode}
-    onChange={(e) => setCouponCode(e.target.value)}
-  />
-  <button onClick={handleApplyCoupon}>Aplicar Cupón</button>
+          <div className={Styles.cupon_container}>
+            <input
+              type="text"
+              placeholder=" Ingresa el código del cupón"
+              value={couponCode}
+              onChange={(e) => setCouponCode(e.target.value)}
+            />
+            <button className={Styles.btncupon} onClick={handleApplyCoupon}>
+              Aplicar Cupón
+            </button>
+          </div>
         </div>
-        <button onClick={handleBuy}>Continuar con la compra</button>
+        <button className={Styles.btn} onClick={handleBuy}>
+          Continuar con la compra
+        </button>
         {preferenceId && <Wallet initialization={{ preferenceId }} />}
       </div>
     </div>
