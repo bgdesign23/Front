@@ -23,6 +23,10 @@ import {
   FILTER_BY_MATERIAL,
   GET_DESING,
   SET_USER,
+  CREATE_COUPON, 
+  GET_USER_COUPONS, 
+  APPLY_COUPON,
+  COUPONS_ERROR
 } from "./actionsTypes";
 
 let initialState = {
@@ -36,6 +40,8 @@ let initialState = {
   categories_Copy: [],
   desings: [],
   desings_Copy: [],
+  userCoupons: [], 
+  appliedCoupons: [],
 };
 
 const Reducer = (state = initialState, action) => {
@@ -183,6 +189,29 @@ const Reducer = (state = initialState, action) => {
         desings_Copy: action.payload,
       };
 
+ case CREATE_COUPON:
+      return {
+        ...state,
+        userCoupons: [...state.userCoupons, action.payload],
+      };
+
+    case GET_USER_COUPONS:
+      return {
+        ...state,
+        userCoupons: action.payload,
+      };
+
+    case APPLY_COUPON:
+      return {
+        ...state,
+        appliedCoupons: [...state.appliedCoupons, action.payload],
+      };
+       case COUPONS_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      }
+            
     default:
       return { ...state };
   }

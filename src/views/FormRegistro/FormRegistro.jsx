@@ -21,9 +21,19 @@ export default function FormRegistro() {
     watch,
   } = useForm();
 
+ 
   const password = watch("password");
 
+  const cuponBienvenida = {
+    code: "bgdesign",
+    discount: 0.20, 
+    expiration: '2023-12-31', 
+    usagesAvailable: 1, 
+    status: 'activo'
+  }
+
   const onSubmit = (data) => {
+    data.coupon = cuponBienvenida;
     dispatch(registerUser(data, navigate));
     dispatch(filterRestart());
   };

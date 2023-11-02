@@ -40,6 +40,9 @@ function ButtonAuth() {
           <button onClick={redirectToUserProfile} >
             Perfil
           </button>
+
+          <button onClick={() => navigate("/cupones")}>Cupones</button>
+
           <button onClick={handleLogout}>
             Cerrar sesión
           </button>
