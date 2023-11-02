@@ -4,8 +4,12 @@ import Styles from "../CartShop/CartShop.module.css";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import axios from "axios";
 
 function ShoppingCart() {
+  const [preferenceId, setPreferenceId] = useState(null);
+  initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e");
   const navigate = useNavigate();
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
@@ -87,6 +91,27 @@ function ShoppingCart() {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
+  const createPreference = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/payment/create-order",
+        cart
+      );
+
+      const { id } = response.data;
+      return id;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleBuy = async (cart) => {
+    const id = await createPreference(cart);
+    if (id) {
+      setPreferenceId(id);
+    }
+  };
+
   return (
     <div className={Styles.all_container}>
       <button onClick={() => navigate("/home/product")}>Back</button>
@@ -138,7 +163,8 @@ function ShoppingCart() {
           <p>Total a pagar: ${formatthousand(numero)}</p>
           <p className={Styles.cupon}>Ingresar cupón descuento</p>
         </div>
-        <button>Continuar con la compra</button>
+        <button onClick={handleBuy}>Continuar con la compra</button>
+        {preferenceId && <Wallet initialization={{ preferenceId }} />}
       </div>
     </div>
   );
