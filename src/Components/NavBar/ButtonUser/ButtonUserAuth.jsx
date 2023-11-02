@@ -33,6 +33,8 @@ function ButtonAuth() {
         <option value="perfil">Perfil</option>
         <option value="logout">Cerrar sesión</option>
       </select>
+      <button onClick={() => navigate("/cupones")}>Cupones</button>
+
     </div>
   );
 }

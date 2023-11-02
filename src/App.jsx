@@ -18,7 +18,9 @@ import {
 import Detail from "./views/Detail/Detail";
 import FormProduct from "./views/FormProduct/FormProduct";
 import CartShop from "./Components/CartShop/CartShop";
-import PerfilUser from "./views/PerfilUser/PerfilUser";
+import PerfilUser from "./views/PerfilUser/PerfilUser"
+import CouponUser from "../src/views/PerfilUser/CouponUser"
+
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +55,7 @@ function App() {
             <Route path="/form/login" element={<LoginForm />} />
             <Route path="/form/register" element={<FormRegistro />} />
             <Route path="/form/perfil" element={<PerfilUser />} />
+            <Route path="/cupones" element={<CouponUser />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/cartShop" element={<CartShop />} />
           </Routes>

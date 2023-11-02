@@ -26,10 +26,14 @@ import {
   FILTER_BY_MATERIAL,
   GET_DESING,
   SET_USER,
+  CREATE_COUPON, 
+  GET_USER_COUPONS, 
+  APPLY_COUPON,
+  COUPONS_ERROR
 } from "../Redux/actionsTypes";
 
- const URL = "http://localhost:3001";
-//const URL = "https://backend-muebles.vercel.app";
+ // const URL = "http://localhost:3001";
+const URL = "https://backend-muebles.vercel.app";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -200,7 +204,7 @@ export const registerUser = (userData, navigate) => async (dispatch) => {
       showConfirmButton: false,
       timer: 3000,
       background: "#3b3838",
-      color: "#ffffff"
+      color: "#ffffff",
     });
     localStorage.setItem("token", response.data.token);
     dispatch({
@@ -214,7 +218,7 @@ export const registerUser = (userData, navigate) => async (dispatch) => {
       text: error.response.data.error,
       icon: "error",
       background: "#3b3838",
-      color: "#ffffff"
+      color: "#ffffff",
     });
     dispatch({
       type: REGISTER_FAILURE,
@@ -244,7 +248,7 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
       showConfirmButton: false,
       timer: 3000,
       background: "#3b3838",
-      color: "#ffffff"
+      color: "#ffffff",
     });
     navigate("/");
   } catch (error) {
@@ -257,7 +261,7 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
       text: error.response.data.error,
       icon: "error",
       background: "#3b3838",
-      color: "#ffffff"
+      color: "#ffffff",
     });
   }
 };
@@ -307,7 +311,7 @@ export const logoutUser = (navigate) => (dispatch) => {
     showConfirmButton: false,
     timer: 3000,
     background: "#3b3838",
-    color: "#ffffff"
+    color: "#ffffff",
   });
   navigate("/form/login");
   dispatch({ type: LOGOUT });
@@ -353,7 +357,7 @@ export const postProduct = (formData, navigate) => {
         showConfirmButton: false,
         timer: 3000,
         background: "#3b3838",
-        color: "#ffffff"
+        color: "#ffffff",
       });
       await Swal.fire({
         icon: "question",
@@ -363,7 +367,7 @@ export const postProduct = (formData, navigate) => {
         confirmButtonColor: "#394754",
         denyButtonColor: "#394754",
         background: "#3b3838",
-        color: "#ffffff"
+        color: "#ffffff",
       }).then(async (result) => {
         if (result.isConfirmed) {
           window.location.reload();
@@ -377,37 +381,73 @@ export const postProduct = (formData, navigate) => {
         text: error.response.data.message,
         icon: "error",
         background: "#3b3838",
-        color: "#ffffff"
+        color: "#ffffff",
       });
     }
   };
 };
 
 export const googleUser = (payload) => {
-	return async function (dispatch) {
-		try {
+  return async function (dispatch) {
+    try {
       dispatch({
         type: REGISTER_SUCCESS,
         payload: payload,
       });
       localStorage.setItem("token", payload.token);
-			await Swal.fire({
-				title: `¡Hola ${payload.user.username}! 👋`,
-				text: 'Has iniciado sesión exitosamente',
-				icon: 'success',
+      await Swal.fire({
+        title: `¡Hola ${payload.user.username}! 👋`,
+        text: "Has iniciado sesión exitosamente",
+        icon: "success",
         showConfirmButton: false,
         timer: 3000,
         background: "#3b3838",
-        color: "#ffffff"
-			});
-		} catch (error) {
+        color: "#ffffff",
+      });
+    } catch (error) {
       await Swal.fire({
         title: "Hubo un error al iniciar con google",
         text: error.response.data.error,
         icon: "error",
         background: "#3b3838",
-        color: "#ffffff"
+        color: "#ffffff",
       });
-		}
-	};
+    }
+  };
+};
+
+
+
+export const createCoupon = (coupon) => {
+  return {
+    type: CREATE_COUPON,
+    payload: coupon,
+  };
+};
+
+
+export const getUserCoupons = () => {
+  return (dispatch) => {
+    axios.get(`${URL}/coupon`)
+      .then((response) => {
+        dispatch({
+          type: GET_USER_COUPONS,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: COUPONS_ERROR,
+          payload: error.response.data, 
+        });
+      });
+  };
+};
+
+
+export const applyCoupon = (couponCode) => {
+  return {
+    type: APPLY_COUPON,
+    payload: couponCode,
+  };
 };
