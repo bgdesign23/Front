@@ -22,6 +22,8 @@ const Detail = () => {
     window.history.back();
   };
 
+  console.log(thing);
+
   // si existe el producto entonces aumenta la cantidad
   //sino agregalo al carrito
   const addToCart = () => {
