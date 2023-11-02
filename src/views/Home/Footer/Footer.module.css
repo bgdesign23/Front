@@ -2,11 +2,11 @@
   background-color: #d9d9d9;
   color: #191919;
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  font-family: "Barlow", sans-serif;
+  font-family: "Open Sans", sans-serif;
   height: 250px;
-  width: 100vw;
-  margin-left: -40px;
+  max-width: 100vw;
 }
 
 .sectionFooterOne {
@@ -18,6 +18,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  margin-bottom: -50px;
 }
 
 .imagenFooter img {

@@ -21,16 +21,15 @@ export default function FormRegistro() {
     watch,
   } = useForm();
 
- 
   const password = watch("password");
 
   const cuponBienvenida = {
     code: "bgdesign",
-    discount: 0.20, 
-    expiration: '2023-12-31', 
-    usagesAvailable: 1, 
-    status: 'activo'
-  }
+    discount: 0.2,
+    expiration: "2023-12-31",
+    usagesAvailable: 1,
+    status: "activo",
+  };
 
   const onSubmit = (data) => {
     data.coupon = cuponBienvenida;
@@ -94,7 +93,6 @@ export default function FormRegistro() {
                   <p className={styles.error}>{errors.username.message}</p>
                 )}
               </div>
-
               <div className={styles.labelimput}>
                 <label>Localidad:</label>
                 <input
@@ -132,11 +130,7 @@ export default function FormRegistro() {
                 {errors.password && (
                   <p className={styles.error}>{errors.password.message}</p>
                 )}
-              </div>
-
-              <div className={styles.buttonContainer}>
-                <button type="submit">REGISTRARSE</button>
-              </div>
+              </div>{" "}
             </div>
 
             <div className={styles.columna}>
@@ -194,13 +188,14 @@ export default function FormRegistro() {
                   </p>
                 )}
               </div>
-              <div className={styles.iniciarsesion}>
-                <Link to="/form/login">
-                  <button>INICIAR SESIÓN</button>
-                </Link>
-              </div>
             </div>
           </section>
+          <div className={styles.iniciarsesion}>
+            ¿Ya tenés una cuenta? <Link to="/form/login">Iniciá sesión</Link>
+          </div>
+          <div className={styles.buttonContainer}>
+            <button type="submit">REGISTRARSE</button>
+          </div>
         </div>
       </form>
       <div className={styles.divGoogle}>
