@@ -42,7 +42,9 @@ export default function Cards({ productos }) {
               ))}
             </div>
             {productos.length > paged && (
-              <button onClick={handlePaged}>Más Productos</button>
+              <button onClick={handlePaged} className={Styles.buttonPrimary}>
+                Más Productos
+              </button>
             )}
           </>
         )}

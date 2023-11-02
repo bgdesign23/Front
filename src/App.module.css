@@ -1,4 +1,4 @@
-/* #root {
+#root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -6,10 +6,10 @@
   margin: 0 auto;
   text-align: center;
   padding-top: 70px;
-} */
+}
 
 .mainContent {
-    flex: 1;
+  flex: 1;
 }
 
 .toggleSidebarBtn {
@@ -25,7 +25,7 @@
   border-radius: 5px;
   width: 30px; /* Tamaño del SVG */
   height: 30px; /* Tamaño del SVG */
-  color:#ffffff; /* Color inicial (blanco) */
+  color: #ffffff; /* Color inicial (blanco) */
 }
 
 .toggleSidebarBtn:hover {
@@ -36,10 +36,8 @@
   color: #000000; /* Color cuando está abierto (negro) */
 }
 
-
-
 .sideBar {
-  z-index: 10; 
+  z-index: 10;
 }
 
 .sideBar.open {
@@ -47,10 +45,7 @@
 }
 
 .contentContainer {
-margin: 0 auto; 
-padding: 0px 0px;
-text-align: center; 
+  margin: 0 auto;
+  padding: 0px 0px;
+  text-align: center;
 }
-
-
-

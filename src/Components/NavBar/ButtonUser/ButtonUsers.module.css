@@ -1,4 +1,16 @@
-.btn {
+.Filters select {
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
+  background-color: #191919;
+  border-color: #191919;
+}
 
-padding: 40%;
+.Filters option {
+  background: #d9d9d9;
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
 }

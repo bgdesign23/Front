@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./views/Home/Home";
 import SideBar from "./Components/SideBar/SideBar";
@@ -16,14 +16,11 @@ import {
   getUser,
 } from "../src/Redux/actions";
 import Detail from "./views/Detail/Detail";
-import ButtonSide from "../src/Components/SideBar/ButtonSide/ButtonSide";
 import FormProduct from "./views/FormProduct/FormProduct";
 import CartShop from "./Components/CartShop/CartShop";
-import PerfilUser from "./views/PerfilUser/PerfilUser"
-
+import PerfilUser from "./views/PerfilUser/PerfilUser";
 
 function App() {
-  const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products);
   const location = useLocation();
@@ -43,21 +40,6 @@ function App() {
     <div className={styles.App}>
       <>
         <NavBar />
-        <div className={styles.sideBar}>
-          <SideBar
-            isOpen={isOpenSideBar}
-            onClick={() => setIsOpenSideBar(!isOpenSideBar)}
-            closeSideBar={() => setIsOpenSideBar(false)}
-          />
-        </div>
-
-        <button
-          className={styles.toggleSidebarBtn}
-          onClick={() => setIsOpenSideBar(!isOpenSideBar)}
-        >
-          <ButtonSide />
-        </button>
-
         <div className={styles.contentContainer}>
           <Routes>
             <Route path="/" element={<Home />} />
