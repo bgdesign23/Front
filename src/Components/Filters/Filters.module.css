@@ -1,5 +1,7 @@
 .Filters {
-  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  padding-top: 150px;
 }
 
 .Filters select {

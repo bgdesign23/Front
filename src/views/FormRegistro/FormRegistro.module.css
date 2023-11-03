@@ -2,10 +2,9 @@
   background-image: url("../LoginForm/fondo.png");
   background-repeat: no-repeat;
   background-size: cover;
-  margin-top: -64px;
-  padding-top: 80px;
+  padding-top: 180px;
   width: 100%;
-  height: 87.8vh;
+  height: 100vh;
 }
 
 .login {
@@ -13,7 +12,6 @@
   height: 360px;
   margin: 80px auto;
   height: 360px;
-
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 50px;
