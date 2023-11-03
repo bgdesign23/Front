@@ -17,11 +17,10 @@ import {
 import Detail from "./views/Detail/Detail";
 import FormProduct from "./views/FormProduct/FormProduct";
 import CartShop from "./Components/CartShop/CartShop";
-import PerfilUser from "./views/PerfilUser/PerfilUser"
-import CouponUser from "../src/views/PerfilUser/CouponUser"
+import PerfilUser from "./views/PerfilUser/PerfilUser";
+import CouponUser from "../src/views/PerfilUser/CouponUser";
 import Success from "./views/MercadoPago/Success";
 import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
-
 
 
 function App() {
