@@ -6,7 +6,6 @@ import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { applyCoupon, createPreference } from "../../Redux/actions";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 
 function validateCoupon(couponCode) {

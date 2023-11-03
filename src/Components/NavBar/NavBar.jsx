@@ -29,9 +29,10 @@ const NavBar = () => {
 
         {location.pathname !== "/CartShop" && <SearchBar />}
 
+        {(user || localStorage.getItem("token")) && 
         <button type="button" className={styles.buttonCarrito}>
           <ButtonCarrito />
-        </button>
+        </button>}
 
         <div className={styles.buttonsNav}>
           <Link to="/" className={styles.navLink}>
