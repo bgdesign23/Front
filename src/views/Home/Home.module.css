@@ -1,5 +1,5 @@
 .home {
-  padding-inline: 40px;
+  /* padding-inline: 40px; */
   justify-content: center;
   align-items: center;
 }
@@ -7,15 +7,41 @@
 /* Seccion 1 */
 
 .primerseccion {
-  top: 20px;
-  padding-inline: 20px;
-  position: relative;
-  height: 500px;
+  display: flex;
+  /* margin-top: .5rem; */
+  width: cover;
+  bottom: 30px;
+  /* padding-inline: 20px; */
+  justify-content: right;
+  height: 850px;
+  z-index: 999;
 }
+
+.quienes{
+  width: 1500px;
+  position: relative;
+    display: block;
+      top: 250px;
+      padding-left: 45px;
+      justify-content: center;
+}
+
+.logo{
+width: 500px;
+right: 200px;
+padding-bottom: 2rem;
+position: relative;
+
+}
+
+
+
+
+
 .quienes h1 {
   color: white;
   font-family: Cinzel;
-  font-size: 60px;
+  font-size: 100px;
   font-weight: 400;
   text-align: left;
   margin-bottom: -50px;
@@ -35,20 +61,13 @@
   font-family: "Open Sans", sans-serif;
 }
 
-.repisas {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 300px; /* Ajusta a tu necesidad */
-  height: 500px; /* Mantiene la relación de aspecto */
-}
+
 
 .repisa {
-  position: absolute;
-  bottom: 0;
-  right: 320px;
-  width: 300px;
-  height: 500px;
+  position: relative;
+  width: 1000px;
+  height: 1000px;
+  /* z-index: 1; */
 }
 
 /*  Section 3 */

@@ -1,35 +1,37 @@
 .all_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-block: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .ShoppingCart_container {
-  border: 2px solid rgba(255, 255, 255, 0.462);
-  background-color: rgba(0, 0, 0, 0.296);
-  padding-block: 2rem;
-  display: block;
-  margin-inline: 60px;
-  margin-bottom: 30px;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.5rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  justify-content: center;
-  align-items: center;
-  width: 1200px;
-  border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.462);
+    background-color: rgba(0, 0, 0, 0.296);
+    padding-block: 2rem;
+    display: block;
+    margin-inline: 60px;
+    margin-bottom: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    cursor: pointer;
+    margin-top: 10rem;
+    justify-content: center;
+    align-items: center;
+    width: 1200px;
+    border-radius: 15px;
 }
 
-.resumeCart {
-  width: 600px;
-  height: 520px;
-  border: 2px solid rgba(255, 255, 255, 0.462);
-  color: rgb(255, 255, 255);
-  margin-right: 60px;
-  margin-block: 1rem;
-  border-radius: 15px;
+
+.resumeCart{
+    width: 600px;
+    height: 520px;
+    border: 2px solid rgba(255, 255, 255, 0.462);
+    color: rgb(255, 255, 255);
+    margin-right: 60px;
+    margin-block: 10rem;
+    border-radius: 15px;
+    
+
 }
 .tittle {
   width: 300px;
