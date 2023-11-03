@@ -12,39 +12,44 @@ const NavBar = () => {
   const user = useSelector((state) => state.user);
 
   return (
-    <nav className={styles.navBar}>
-      <section className={styles.sectionLeft}>
+    <div className={styles.navBar}>
+      <div className={styles.uno}>
+        <div className={styles.user}>
+          {user && user.authenticated ? <ButtonUserAuth /> : <ButtonUser />}
+        </div>
+      </div>
+      <div className={styles.dos}>
+        <button onClick={() => navigate("/")} className={styles.btn}>
+          Inicio
+        </button>
+        <button
+          onClick={() => navigate("/home/product")}
+          className={styles.btn}
+        >
+          Productos
+        </button>
+      </div>
+
+      <div className={styles.tres}>
         <img
           onClick={() => navigate("/")}
           src={logo}
           className={styles.logo}
           alt="Black Group Design"
         />
-      </section>
+      </div>
 
-      <section className={styles.sectionRight}>
-        <div className={styles.buttonsLogin}>
-          {user && user.authenticated ? <ButtonUserAuth /> : <ButtonUser />}
-        </div>
-
+      <div className={styles.cuatro}>
         {location.pathname !== "/CartShop" && <SearchBar />}
-
-        <button type="button" className={styles.buttonCarrito}>
+        {(user || localStorage.getItem("token")) &&
+        <button className={styles.buttonCarrito}>
           <ButtonCarrito />
-        </button>
-
-        <div className={styles.buttonsNav}>
-          <Link to="/" className={styles.navLink}>
-            Inicio{" "}
-          </Link>
-          <Link to="/home/product">Productos</Link>
-        </div>
-
-        {user && user.user.role === 1 ? (
-          <Link to="/home/nuevo">Nuevo Mueble</Link>
-        ) : null}
-      </section>
-    </nav>
+        </button>}
+      </div>
+      {user && user.user.role === 1 ? (
+        <Link to="/home/nuevo">Nuevo Mueble</Link>
+      ) : null}
+    </div>
   );
 };
 

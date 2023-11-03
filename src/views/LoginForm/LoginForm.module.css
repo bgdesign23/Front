@@ -1,16 +1,10 @@
 .loginContainer {
   background-image: url("fondo.png");
   background-repeat: no-repeat;
-  /* background-color: aquamarine; */
   background-size: cover;
-  margin-top: -65px;
-  padding-top: 80px;
   width: 100%;
   height: 88.4vh;
-  /* background: url(C:\Users\USUARIO\OneDrive\Escritorio\Pf\Front\src\views\LoginForm\fondodellogin.jpg), lightgray 10% / cover no-repeat;
-  width: 650px;
-  height: 880.4px;
-  flex-shrink: 0; */
+  overflow-y: hidden; /* Evita el scroll vertical */
   .login {
     max-width: 500px;
     margin: 100px auto;
