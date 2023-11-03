@@ -10,34 +10,29 @@
   display: flex;
   width: cover;
   bottom: 30px;
-  justify-content: right;
+  /* justify-content: right; */
   height: 100vh;
   z-index: 999;
 }
 
-.imagen{
-  width:100%;
-
+.imagen {
+  width: 100%;
 }
 
-.quienes{
-  width: 1500px;
+.quienes {
+  width: cover;
   position: relative;
-    display: block;
-      top: 250px;
-      padding-left: 45px;
-      justify-content: center;
+  display: block;
+  top: 250px;
+  padding-left: 45px;
+  justify-content: center;
 }
 
-.logo{
-width: 500px;
-right: 200px;
-padding-bottom: 2rem;
+.logo {
+  width: 500px;
+  right: 200px;
+  padding-bottom: 2rem;
 }
-
-
-
-
 
 .quienes h1 {
   color: white;
@@ -62,13 +57,11 @@ padding-bottom: 2rem;
   font-family: "Open Sans", sans-serif;
 }
 
-
-
-/* .fondocontainer {
+.fondocontainer {
   left: 300px;
   width: 100%;
   height: cover;
-} */
+}
 
 /*  Section 3 */
 
