@@ -28,6 +28,11 @@ export const CREATE_COUPON = 'CREATE_COUPON';
 export const GET_USER_COUPONS = 'GET_USER_COUPONS';
 export const APPLY_COUPON = 'APPLY_COUPON';
 export const COUPONS_ERROR = 'COUPONS_ERROR';
+export const GET_ALL_USERS =  'GET_ALL_USERS'
+export const DELETE_USER = 'DELETE_USER'
+export const RESTORE_USER = 'RESTORE_USER'
+export const DELETE_COUPON = 'DELETE_COUPON'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 
 
 
