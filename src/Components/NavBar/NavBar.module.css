@@ -11,6 +11,8 @@
   position: relative;
 }
 
+/* Section Left*/
+
 .logo {
   cursor: pointer;
   position: relative;
@@ -18,13 +20,6 @@
   left: 630px;
   transform: translate(-50%, -50%);
   max-width: 270px;
-}
-
-.sectionRight {
-  display: flex;
-  justify-content: center;
-  margin: 140px;
-  padding: 30px;
 }
 
 .buttonsNav {
@@ -36,12 +31,19 @@
 }
 
 .navLink {
-  margin-right: 60px;
+  margin-right: 50px;
 }
 
 .buttonsNav a {
   text-decoration: none;
   color: white;
+}
+
+.sectionRight {
+  display: flex;
+  justify-content: center;
+  margin: 130px;
+  padding: 30px;
 }
 
 .buttonCarrito {
@@ -53,7 +55,7 @@
   color: white;
   top: 10%;
   position: relative;
-  left: 380px;
+  left: 315px;
 }
 
 .buttonCarrito:hover {
