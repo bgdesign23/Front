@@ -32,8 +32,7 @@ import {
   COUPONS_ERROR,
 } from "../Redux/actionsTypes";
 
- const URL = "http://localhost:3001";
-//const URL = "https://backend-muebles.vercel.app";
+import { URL } from "../../utils/toggleUrl.js";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
