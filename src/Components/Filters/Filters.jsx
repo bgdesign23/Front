@@ -26,9 +26,6 @@ const Filters = () => {
 
   const filteredProducts = applyCombinedFilters(product, selectedFilters);
 
-  console.log("Productos filtrados: ", filteredProducts);
-  console.log("Filtros seleccionados :", selectedFilters);
-
   useEffect(() => {
     const filteredProducts = applyCombinedFilters(product, selectedFilters);
   }, [product, selectedFilters, dispatch]);
