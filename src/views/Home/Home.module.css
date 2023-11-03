@@ -8,13 +8,16 @@
 
 .primerseccion {
   display: flex;
-  /* margin-top: .5rem; */
   width: cover;
   bottom: 30px;
-  /* padding-inline: 20px; */
   justify-content: right;
-  height: 850px;
+  height: 100vh;
   z-index: 999;
+}
+
+.imagen{
+  width:100%;
+
 }
 
 .quienes{
@@ -30,8 +33,6 @@
 width: 500px;
 right: 200px;
 padding-bottom: 2rem;
-position: relative;
-
 }
 
 
@@ -63,12 +64,11 @@ position: relative;
 
 
 
-.repisa {
-  position: relative;
-  width: 1000px;
-  height: 1000px;
-  /* z-index: 1; */
-}
+/* .fondocontainer {
+  left: 300px;
+  width: 100%;
+  height: cover;
+} */
 
 /*  Section 3 */
 

@@ -148,13 +148,13 @@ function ShoppingCart() {
 
   return (
     <div className={Styles.all_container}>
+      <button
+        className={Styles.backBtn}
+        onClick={() => navigate("/home/product")}
+      >
+        Back
+      </button>
       <div className={Styles.ShoppingCart_container}>
-        <button
-          className={Styles.backBtn}
-          onClick={() => navigate("/home/product")}
-        >
-          Back
-        </button>
         <div className={Styles.tittle}>
           <h1>tu carrito de compras</h1>
         </div>
@@ -194,12 +194,14 @@ function ShoppingCart() {
         />
       </div>
       <div className={Styles.resumeCart}>
-        <div>
+        <div className={Styles.titulo}>
           <p>Resumen de compra</p>
         </div>
         <div>
-          <p>Cantidad productos: {cantidad}</p>
-          <p>Total a pagar: ${formatthousand(numero)}</p>
+          <div className={Styles.details}>
+            <p>Cantidad productos: {cantidad}</p>
+            <p>Total a pagar: ${formatthousand(numero)}</p>
+          </div>
           <div className={Styles.cupon_container}>
             <input
               type="text"

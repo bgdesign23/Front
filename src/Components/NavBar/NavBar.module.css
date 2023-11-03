@@ -16,7 +16,7 @@
 
 
 .logo {
-  position: relative;
+  /* position: relative; */
   cursor: pointer;
   justify-content: center;
   width: 300px;
@@ -50,7 +50,7 @@
   align-items: center;
 justify-content: right;
 display: flex;
-width: 500px; 
+width: 400px; 
       gap: 1rem;
 }
 
