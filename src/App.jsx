@@ -20,6 +20,8 @@ import CartShop from "./Components/CartShop/CartShop";
 import PerfilUser from "./views/PerfilUser/PerfilUser"
 import CouponUser from "../src/views/PerfilUser/CouponUser"
 import Success from "./views/MercadoPago/Success";
+import Productos from "./views/ProductosDb/ProductsDb";
+import Usuarios from "./views/Users/Users";
 
 
 function App() {
@@ -57,6 +59,8 @@ function App() {
             <Route path="/form/perfil" element={<PerfilUser />} />
             <Route path="/cupones" element={<CouponUser />} />
             <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/productos" element={<Productos />} />
+            <Route path="/usuarios" element={<Usuarios />} />
             {(user || localStorage.getItem("token")) && <Route path="/cartShop" element={<CartShop />} />}
             <Route path="/home/success" element={<Success />} />
           </Routes>
