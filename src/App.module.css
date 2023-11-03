@@ -11,38 +11,6 @@
   flex: 1;
 }
 
-.toggleSidebarBtn {
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  position: fixed;
-  top: 10px;
-  left: 70px;
-  z-index: 11;
-  border: none;
-  background: none;
-  border-radius: 5px;
-  width: 30px; /* Tamaño del SVG */
-  height: 30px; /* Tamaño del SVG */
-  color: #ffffff; /* Color inicial (blanco) */
-}
-
-.toggleSidebarBtn:hover {
-  opacity: 0.7;
-}
-
-.toggleSidebarBtn.open {
-  color: #000000; /* Color cuando está abierto (negro) */
-}
-
-.sideBar {
-  z-index: 10;
-}
-
-.sideBar.open {
-  background-color: black;
-}
-
 .contentContainer {
   margin: 0 auto;
   padding: 0px 0px;
