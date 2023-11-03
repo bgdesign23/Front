@@ -10,6 +10,7 @@ import logoWhatsapp from "../Detail/whatsapp (1).png";
 const Detail = () => {
   const [thing, setThing] = useLocalStorage("cart", []); //localStorage hook
   const { id } = useParams();
+  const user = useSelector((state) => state.user);
   const detailProduct = useSelector((state) => state.products_Details);
   const dispatch = useDispatch();
 
@@ -23,7 +24,7 @@ const Detail = () => {
     window.history.back();
   };
 
-  console.log(thing);
+  // console.log(thing);
 
   // si existe el producto entonces aumenta la cantidad
   //sino agregalo al carrito
@@ -76,9 +77,10 @@ const Detail = () => {
           >
             <img src={logoWhatsapp} alt="" style={{ width: "55px" }} />
           </a>
+          {(user || localStorage.getItem("token")) &&
           <button onClick={addToCart} className={styles.button}>
             Agregar al Carrito
-          </button>
+          </button>}
         </div>
         <Toaster
           position="buttom-right"
