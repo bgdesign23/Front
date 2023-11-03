@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import imagennForm from "../LoginForm/fondodellogin.jpg";
-
 import { URL } from "../../utils/toggleUrl.js";
 
 function LoginForm() {
