@@ -5,26 +5,26 @@
   margin-top: -104px;
   padding-top: 80px;
 } */
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* Evita el scroll vertical en el cuerpo */
-}
 
 /* Estilos para la imagen de fondo */
+.pageContainer {
+  height: -777vh;
+  overflow-y: hidden;
+}
 .imagennForm {
+  overflow: hidden !important ;
   display: flex;
   position: absolute;
   z-index: 1;
-  width: 100%;
-  height: 100%;
+  width: 99%;
+  height: 99%;
   object-fit: cover;
-  overflow: hidden; /* Evita el scroll vertical en la imagen */
+  /* Evita el scroll vertical en la imagen */
 }
 
 /* Establece overflow: hidden en el contenedor de la imagen */
 .container {
-  overflow: hidden;
+  overflow: hidden !important ;
 }
 
 .loginContainer {
