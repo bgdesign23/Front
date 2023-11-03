@@ -1,6 +1,7 @@
 import Styles from "../CartShop/cartCard.module.css";
 import { useNavigate } from "react-router-dom";
 
+
 function CartCard({
   id,
   name,
@@ -14,6 +15,7 @@ function CartCard({
   disableDecreaseButton,
 }) {
   const navigate = useNavigate();
+  
 
   return (
     <>

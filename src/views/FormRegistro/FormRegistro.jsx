@@ -8,8 +8,8 @@ import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
 import imagennForm from "../LoginForm/fondodellogin.jpg";
 
-// const URL = "http://localhost:3001";
-const URL = "https://backend-muebles.vercel.app";
+ const URL = "http://localhost:3001";
+//const URL = "https://backend-muebles.vercel.app";
 
 export default function FormRegistro() {
   const dispatch = useDispatch();
@@ -23,8 +23,8 @@ export default function FormRegistro() {
   } = useForm();
 
   const password = watch("password");
-
-  const cuponBienvenida = {
+  
+  const welcomeCoupon = {
     code: "bgdesign",
     discount: 0.2,
     expiration: "2023-12-31",
@@ -33,10 +33,10 @@ export default function FormRegistro() {
   };
 
   const onSubmit = (data) => {
-    data.coupon = cuponBienvenida;
-    dispatch(registerUser(data, navigate));
-    dispatch(filterRestart());
-  };
+    if (isFirstPurchase) {
+      data.total = data.total - data.total * discount;
+      setIsFirstPurchase(false); 
+    }
 
   const handleOnGoogle = () => {
     const width = 500;
@@ -71,7 +71,7 @@ export default function FormRegistro() {
   return (
     <div className={styles.pageContainer}>
       <div className={styles.loginContainer}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit}>
           <div className={styles.login}>
             <section className={styles.formimput}>
               <div className={styles.columna}>
@@ -211,4 +211,5 @@ export default function FormRegistro() {
       </div>
     </div>
   );
+}
 }
