@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
+import imagennForm from "../LoginForm/fondodellogin.jpg";
 
 // const URL = "http://localhost:3001";
 const URL = "https://backend-muebles.vercel.app";
@@ -68,140 +69,145 @@ export default function FormRegistro() {
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.login}>
-          <section className={styles.formimput}>
-            <div className={styles.columna}>
-              <div className={styles.labelimput}>
-                <label>Nombre Completo:</label>
-                <input
-                  type="text"
-                  {...register("username", {
-                    required: "Este campo es requerido",
-                    pattern: {
-                      value: /^(?:[A-Z][a-zA-Z]*)(?: [A-Z][a-zA-Z]*){1,} *$/,
-                      message:
-                        "El nombre y el apellido deben comenzar con mayuscula",
-                    },
-                  })}
-                  onBlur={() => {
-                    setError("username", { shouldFocus: true });
-                  }}
-                />
-                {errors.username && (
-                  <p className={styles.error}>{errors.username.message}</p>
-                )}
-              </div>
-              <div className={styles.labelimput}>
-                <label>Localidad:</label>
-                <input
-                  type="text"
-                  {...register("location", {
-                    required: "Este campo es requerido",
-                    pattern: {
-                      value: /^(?:[A-ZÁÉÍÓÚ][a-záéíóúü]+[\s-]?)+$/,
-                      message: "Debe contener una localidad válida",
-                    },
-                  })}
-                  onBlur={() => {
-                    setError("location", { shouldFocus: true });
-                  }}
-                />
-                {errors.location && (
-                  <p className={styles.error}>{errors.location.message}</p>
-                )}
-              </div>
-              <div className={styles.labelimput}>
-                <label>Contraseña:</label>
-                <input
-                  type="password"
-                  {...register("password", {
-                    required: "Este campo es requerido",
-                    minLength: {
-                      value: 8,
-                      message: "Debe contener mínimo 8 caracteres",
-                    },
-                  })}
-                  onBlur={() => {
-                    setError("password", { shouldFocus: true });
-                  }}
-                />
-                {errors.password && (
-                  <p className={styles.error}>{errors.password.message}</p>
-                )}
-              </div>{" "}
-            </div>
-
-            <div className={styles.columna}>
-              <div className={styles.labelimput}>
-                <label>Correo Electrónico:</label>
-                <input
-                  type="email"
-                  {...register("email", {
-                    required: "Este campo es requerido",
-                    pattern: {
-                      value: /^\S+@\S+\.\S+$/,
-                      message: "Debe ser un email válido",
-                    },
-                  })}
-                  onBlur={() => {
-                    setError("email", { shouldFocus: true });
-                  }}
-                />
-                {errors.email && (
-                  <p className={styles.error}>{errors.email.message}</p>
-                )}
-              </div>
-              <div className={styles.labelimput}>
-                <label>Teléfono:</label>
-                <InputMask
-                  mask="+54 999 9999 - 9999" // Establece la máscara
-                  {...register("phone", {
-                    required: "Este campo es requerido",
-                  })}
-                  onBlur={() => {
-                    setError("phone", { shouldFocus: true });
-                  }}
-                />
-                {errors.phone && (
-                  <p className={styles.error}>{errors.phone.message}</p>
-                )}
+    <div className={styles.pageContainer}>
+      <div className={styles.loginContainer}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.login}>
+            <section className={styles.formimput}>
+              <div className={styles.columna}>
+                <div className={styles.labelimput}>
+                  <label>Nombre Completo:</label>
+                  <input
+                    type="text"
+                    {...register("username", {
+                      required: "Este campo es requerido",
+                      pattern: {
+                        value: /^(?:[A-Z][a-zA-Z]*)(?: [A-Z][a-zA-Z]*){1,} *$/,
+                        message:
+                          "El nombre y apellido deben comenzar con mayúscula",
+                      },
+                    })}
+                    onBlur={() => {
+                      setError("username", { shouldFocus: true });
+                    }}
+                  />
+                  {errors.username && (
+                    <p className={styles.error}>{errors.username.message}</p>
+                  )}
+                </div>
+                <div className={styles.labelimput}>
+                  <label>Localidad:</label>
+                  <input
+                    type="text"
+                    {...register("location", {
+                      required: "Este campo es requerido",
+                      pattern: {
+                        value: /^(?:[A-ZÁÉÍÓÚ][a-záéíóúü]+[\s-]?)+$/,
+                        message: "Debe contener una localidad válida",
+                      },
+                    })}
+                    onBlur={() => {
+                      setError("location", { shouldFocus: true });
+                    }}
+                  />
+                  {errors.location && (
+                    <p className={styles.error}>{errors.location.message}</p>
+                  )}
+                </div>
+                <div className={styles.labelimput}>
+                  <label>Contraseña:</label>
+                  <input
+                    type="password"
+                    {...register("password", {
+                      required: "Este campo es requerido",
+                      minLength: {
+                        value: 8,
+                        message: "Debe contener mínimo 8 caracteres",
+                      },
+                    })}
+                    onBlur={() => {
+                      setError("password", { shouldFocus: true });
+                    }}
+                  />
+                  {errors.password && (
+                    <p className={styles.error}>{errors.password.message}</p>
+                  )}
+                </div>{" "}
               </div>
 
-              <div className={styles.labelimput}>
-                <label>Confirmar Contraseña:</label>
-                <input
-                  type="password"
-                  {...register("confirmPassword", {
-                    required: "Este campo es requerido",
-                    validate: (value) =>
-                      value === password || "Las contraseñas no coinciden",
-                  })}
-                  onBlur={() => {
-                    setError("confirmPassword", { shouldFocus: true });
-                  }}
-                />
-                {errors.confirmPassword && (
-                  <p className={styles.error}>
-                    {errors.confirmPassword.message}
-                  </p>
-                )}
+              <div className={styles.columna}>
+                <div className={styles.labelimput}>
+                  <label>Correo Electrónico:</label>
+                  <input
+                    type="email"
+                    {...register("email", {
+                      required: "Este campo es requerido",
+                      pattern: {
+                        value: /^\S+@\S+\.\S+$/,
+                        message: "Debe ser un email válido",
+                      },
+                    })}
+                    onBlur={() => {
+                      setError("email", { shouldFocus: true });
+                    }}
+                  />
+                  {errors.email && (
+                    <p className={styles.error}>{errors.email.message}</p>
+                  )}
+                </div>
+                <div className={styles.labelimput}>
+                  <label>Teléfono:</label>
+                  <InputMask
+                    mask="+54 999 9999 - 9999" // Establece la máscara
+                    {...register("phone", {
+                      required: "Este campo es requerido",
+                    })}
+                    onBlur={() => {
+                      setError("phone", { shouldFocus: true });
+                    }}
+                  />
+                  {errors.phone && (
+                    <p className={styles.error}>{errors.phone.message}</p>
+                  )}
+                </div>
+
+                <div className={styles.labelimput}>
+                  <label>Confirmar Contraseña:</label>
+                  <input
+                    type="password"
+                    {...register("confirmPassword", {
+                      required: "Este campo es requerido",
+                      validate: (value) =>
+                        value === password || "Las contraseñas no coinciden",
+                    })}
+                    onBlur={() => {
+                      setError("confirmPassword", { shouldFocus: true });
+                    }}
+                  />
+                  {errors.confirmPassword && (
+                    <p className={styles.error}>
+                      {errors.confirmPassword.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </section>
+            <div className={styles.iniciarsesion}>
+              ¿Ya tenés una cuenta? <Link to="/form/login">Iniciá sesión</Link>
+            </div>
+            <div className={styles.buttonContainer}>
+              <button type="submit">REGISTRARSE</button>\
+              <div className={styles.divGoogle}>
+                <button onClick={() => handleOnGoogle()}>
+                  <FcGoogle /> CONTINUAR CON GOOGLE
+                </button>
               </div>
             </div>
-          </section>
-          <div className={styles.iniciarsesion}>
-            ¿Ya tenés una cuenta? <Link to="/form/login">Iniciá sesión</Link>
           </div>
-          <div className={styles.buttonContainer}>
-            <button type="submit">REGISTRARSE</button>
-          </div>
-        </div>
-      </form>
-      <div className={styles.divGoogle}>
-        <button onClick={() => handleOnGoogle()}>
-          <FcGoogle /> CONTINUAR CON GOOGLE
-        </button>
+        </form>
+      </div>
+      <div className={styles.imagennForm}>
+        <img src={imagennForm} alt="" />
       </div>
     </div>
   );

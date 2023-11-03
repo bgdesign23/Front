@@ -237,6 +237,9 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
   try {
     const response = await axios.post(`${URL}/users/login`, credentials);
     localStorage.setItem("token", response.data.token);
+    if (response.data.user.cart.products) {
+      localStorage.setItem("cart", response.data.user.cart.products[0]);
+    }
     dispatch({
       type: LOGIN_SUCCESS,
       payload: response.data,
@@ -303,18 +306,25 @@ export const updateUser = (userData) => async (dispatch) => {
 };
 
 export const logoutUser = (navigate) => (dispatch) => {
-  localStorage.removeItem("token");
   Swal.fire({
-    title: "Has cerrado sesión",
-    text: "Esperamos verte pronto 👋",
-    icon: "success",
-    showConfirmButton: false,
-    timer: 3000,
+    icon: "warning",
+    title: "Te vas? 😢",
+    showDenyButton: true,
+    confirmButtonText: "Así es",
+    denyButtonText: "Volver",
+    confirmButtonColor: "#d10a06",
+    denyButtonColor: "#394754",
     background: "#3b3838",
     color: "#ffffff",
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      dispatch(saveCart());
+      localStorage.removeItem("token");
+      localStorage.removeItem("cart");
+      navigate("/form/login");
+      dispatch({ type: LOGOUT });
+    }
   });
-  navigate("/form/login");
-  dispatch({ type: LOGOUT });
 };
 
 export const filterByMaterial = (byMaterial, product) => {
@@ -394,6 +404,9 @@ export const googleUser = (payload) => {
         type: REGISTER_SUCCESS,
         payload: payload,
       });
+      if (payload.user.cart.products) {
+        localStorage.setItem("cart", payload.user.cart.products[0]);
+      }
       localStorage.setItem("token", payload.token);
       await Swal.fire({
         title: `¡Hola ${payload.user.username}! 👋`,
@@ -450,7 +463,7 @@ export const applyCoupon = (couponCode) => {
 };
 
 export const createPreference = (cart) => {
-  return async (dispatch) => {
+  return async () => {
     try {
       const response = await axios.post(`${URL}/payment/create-order`, cart);
       const { id } = response.data;
@@ -458,6 +471,51 @@ export const createPreference = (cart) => {
     } catch (error) {
       console.log("Error al crear la preferencia:", error);
       return null;
+    }
+  };
+};
+
+export const createCart = (cart, token) => {
+  return async function () {
+    try {
+      const config = {
+        headers: {
+          authorization: token,
+        },
+      };
+      await axios.post(`${URL}/payment/success`, [cart], config);
+      localStorage.removeItem("cart");
+    } catch (error) {
+      await Swal.fire({
+        title: "Hubo un error al crear el carrito",
+        text: error.response.data.error,
+        icon: "error",
+        background: "#3b3838",
+        color: "#ffffff",
+      });
+    }
+  };
+};
+
+export const saveCart = () => {
+  return async function () {
+    const token = localStorage.getItem("token");
+    const cart = localStorage.getItem("cart");
+    try {
+      const config = {
+        headers: {
+          authorization: token,
+        },
+      };
+      await axios.post(`${URL}/payment/save`, [cart], config);
+    } catch (error) {
+      await Swal.fire({
+        title: "Hubo un error al guardar el carrito",
+        text: error.response.data.error,
+        icon: "error",
+        background: "#3b3838",
+        color: "#ffffff",
+      });
     }
   };
 };
