@@ -36,13 +36,7 @@ import {
   DELETE_COUPON,
   DELETE_PRODUCT
 } from "../Redux/actionsTypes";
-<<<<<<< HEAD
-
- const URL = "http://localhost:3001";
-// const URL = "https://backend-muebles.vercel.app";
-=======
 import { URL } from "../utils/toggleUrl";
->>>>>>> 5ff1f2ab91657038a6e8c8f026b3751acf244a75
 
 export const getProductsAction = () => {
   return async (dispatch) => {
