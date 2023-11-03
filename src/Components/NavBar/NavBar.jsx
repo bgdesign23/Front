@@ -41,9 +41,11 @@ const NavBar = () => {
 
       <div className={styles.cuatro}>
         {location.pathname !== "/CartShop" && <SearchBar />}
-        <button className={styles.buttonCarrito}>
-          <ButtonCarrito />
-        </button>
+        {(user || localStorage.getItem("token")) && (
+          <button className={styles.buttonCarrito}>
+            <ButtonCarrito />
+          </button>
+        )}
       </div>
       {user && user.user.role === 1 ? (
         <Link to="/home/nuevo">Nuevo Mueble</Link>

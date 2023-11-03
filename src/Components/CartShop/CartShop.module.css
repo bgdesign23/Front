@@ -3,9 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    /* margin-block    : 5rem; */
 }
-
 
 .ShoppingCart_container {
     border: 2px solid rgba(255, 255, 255, 0.462);
@@ -34,7 +32,6 @@
     margin-right: 60px;
     margin-top: 10rem;
     border-radius: 15px;
-
 }
 
 .details{
@@ -58,15 +55,16 @@ padding-block: 1rem ;
     color: antiquewhite;
 }
 
-.cupon{
-    color: rgb(20, 103, 237);
+.cupon {
+  color: rgb(20, 103, 237);
 }
 
-.iconCartContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.iconCartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
  .carritoNum{
     border-radius: .7rem;
@@ -74,13 +72,23 @@ padding-block: 1rem ;
     height: 1rem;
  }
 
-.carritoNum p{
-    justify-content: center;
-        margin: 0px;
-        /* padding-block : .1rem; */
-        padding: 0;
+.carritoNum p {
+  justify-content: center;
+  margin: 0px;
+  /* padding-block : .1rem; */
+  padding: 0;
 }
 
+.btn {
+  margin-block: 0.5rem;
+  width: 490px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgb(177, 171, 171);
+  height: 50px;
+}
 
 .btn{
     margin-block: 1rem;
@@ -112,7 +120,8 @@ padding-block: 1rem ;
     border: 2px solid rgb(177, 171, 171);
     height: 50px;
     margin-inline: .5rem;
-                }
+ }
+
 input{
     width: 230px;
     border-radius: 8px;
@@ -120,8 +129,8 @@ input{
 }
 
 .btncupon:hover {
-    color: #211f1f;
-    background-color: aliceblue;
+  color: #211f1f;
+  background-color: aliceblue;
 }
 
 .backBtn{
@@ -135,3 +144,4 @@ input{
     color: white ;
     cursor: pointer;
 }
+

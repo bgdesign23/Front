@@ -2,7 +2,6 @@ import styles from "./App.module.css";
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./views/Home/Home";
-import SideBar from "./Components/SideBar/SideBar";
 import Product from "./views/Product/Product";
 import Decoracion from "./views/Decoration/Decoration";
 import FormDecoracion from "./views/FormDecoracion/FormDecoracion";
@@ -18,9 +17,11 @@ import {
 import Detail from "./views/Detail/Detail";
 import FormProduct from "./views/FormProduct/FormProduct";
 import CartShop from "./Components/CartShop/CartShop";
-import PerfilUser from "./views/PerfilUser/PerfilUser"
-import CouponUser from "../src/views/PerfilUser/CouponUser"
-
+import PerfilUser from "./views/PerfilUser/PerfilUser";
+import CouponUser from "../src/views/PerfilUser/CouponUser";
+import Success from "./views/MercadoPago/Success";
+import Productos from "./views/ProductosDb/ProductsDb";
+import Usuarios from "./views/Users/Users";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ function App() {
   return (
     <div className={styles.App}>
       <>
-        <NavBar />
+        {location.pathname !== "/home/success" && <NavBar />}
         <div className={styles.contentContainer}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -57,7 +58,11 @@ function App() {
             <Route path="/form/perfil" element={<PerfilUser />} />
             <Route path="/cupones" element={<CouponUser />} />
             <Route path="/detail/:id" element={<Detail />} />
-            <Route path="/cartShop" element={<CartShop />} />
+
+            <Route path="/productos" element={<Productos />} />
+            <Route path="/usuarios" element={<Usuarios />} />
+            {(user || localStorage.getItem("token")) && <Route path="/cartShop" element={<CartShop />} />}
+            <Route path="/home/success" element={<Success />} />
           </Routes>
         </div>
       </>

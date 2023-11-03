@@ -1,3 +1,4 @@
+
 .loginContainer {
   background-image: url("../LoginForm/fondo.png");
   background-repeat: no-repeat;
@@ -7,9 +8,15 @@
   height: 100vh;
 }
 
+.loginContainer {
+  top: 20%;
+  left: 25%;
+  right: 25%;
+  position: absolute;
+  z-index: 6;
+}
 .login {
   max-width: 900px;
-  height: 360px;
   margin: 80px auto;
   height: 360px;
   padding: 20px;
@@ -34,26 +41,19 @@
 }
 
 .login input {
-  height: 30px;
+  margin-top: 5px;
+  height: 15px;
+  width: 85%;
   background-color: rgba(255, 245, 245, 1);
-  width: 95%;
-  padding: 6px;
-  margin: 10px 0;
+  padding: 13px;
   border: 1px solid #ccc;
   border-radius: 3px;
-  margin-bottom: 2px;
-}
-
-.login hr {
-  margin: 1px 0;
-  border: none;
-  border-top: 1px solid #ccc;
 }
 
 .login p {
   color: red;
-  font-size: 17px;
-  margin-top: 1px;
+  font-size: 16.5px;
+  margin-top: 1.3px;
 }
 
 .loginContainer section {
@@ -64,10 +64,11 @@
 .loginContainer .columna {
   flex: 1;
   flex-direction: row;
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 .loginContainer .labelimput {
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
   height: 100px;
@@ -90,21 +91,35 @@
 .buttonContainer button {
   position: relative;
   bottom: -270px; /* Ajusta la distancia desde la parte inferior de la página */
+  right: 110px;
 }
+
 .iniciarsesion {
   position: relative;
-  bottom: -280px;
+  bottom: -319px;
 }
 
 .divGoogle button {
-  margin-top: -2rem;
-  border-radius: 8px;
-  background: #191919;
-  width: 200px;
-  height: 40px;
+  max-width: 320px;
+  display: flex;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  gap: 0.75rem;
+  color: rgb(65, 63, 63);
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.6s ease;
+  margin-left: 50px;
+  margin-top: -129px;
 }
 
 .divGoogle button:hover {
-  background-color: #555556;
-  cursor: pointer;
+  transform: scale(1.02);
 }
