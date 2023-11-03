@@ -1,52 +1,76 @@
 .navBar {
+  padding-inline: 40px;
+  width: 1800px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
-  height: 70px;
+  height: 100px;
   background-color: #191919;
-  z-index: 1000;
   font-family: "Open Sans", sans-serif;
   font-size: 15px;
-  position: relative;
+
 }
 
 /* Section Left*/
 
 .logo {
   cursor: pointer;
-  position: relative;
-  margin-top: 35%;
-  left: 630px;
-  transform: translate(-50%, -50%);
-  max-width: 270px;
-}
-
-.buttonsNav {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  position: relative;
-  right: 140%;
-}
-
-.navLink {
-  margin-right: 50px;
-}
-
-.buttonsNav a {
-  text-decoration: none;
-  color: white;
-}
-
-.sectionRight {
-  display: flex;
   justify-content: center;
-  margin: 130px;
-  padding: 30px;
+  width: 500px;
 }
 
-.buttonCarrito {
+
+.uno{
+  align-items: center;
+  justify-content: left;
+  display: flex;
+  left: 200px;
+  gap: 1.5;
+      width: 100px;
+}
+
+.dos{
+  display: flex;
+        gap: 1rem;
+}
+
+.tres{
+  display: flex;
+  width: 500px;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+
+.cuatro{
+  align-items: center;
+justify-content: right;
+display: flex;
+width: 500px; 
+      gap: 1rem;
+}
+
+
+.btn{
+    color: #fff;
+      text-align: center;
+      font-size: 15px;
+      font-family: "Open Sans", sans-serif;
+      background-color: #191919;
+      background: none;
+      border: none;
+      font-family: Cinzel;
+      font-size: 15px;
+
+}
+
+.user{
+  padding-right: 3rem;
+}
+
+ .buttonCarrito {
   background: none;
   border: none;
   cursor: pointer;
@@ -54,17 +78,7 @@
   outline: none;
   color: white;
   top: 10%;
-  position: relative;
-  left: 315px;
-}
+  left: 380px;
+} 
 
-.buttonCarrito:hover {
-  opacity: 0.7;
-}
 
-.buttonsLogin {
-  display: flex;
-  position: relative;
-  right: 590px;
-  bottom: -8px;
-}

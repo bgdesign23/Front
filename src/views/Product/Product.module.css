@@ -1,6 +1,7 @@
 .products_container {
   display: grid;
-  margin-left: 10px;
+  place-items: center;
+  margin-inline: 10px;
   margin-bottom: 30px;
   gap: 1.5rem;
   margin-top: 1rem;
