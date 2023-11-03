@@ -84,12 +84,18 @@ h3 {
                     width: 100px;
                     align-items: center;
                 }
-
+                
                 .numero{
+                    display: flex;
                             width: 50px;
                             background-color: transparent;
                             color: #211f1f;
-                            /* border: 2px solid black; */
+                            justify-content:  center;
+
+                }
+
+                .numero p{
+                   padding-top: 20px;
                 }
 
 .cantidad_Container{
