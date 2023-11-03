@@ -32,7 +32,7 @@ import {
   COUPONS_ERROR,
 } from "../Redux/actionsTypes";
 
-import { URL } from "../../utils/toggleUrl.js";
+import { URL } from "../utils/toggleUrl";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
