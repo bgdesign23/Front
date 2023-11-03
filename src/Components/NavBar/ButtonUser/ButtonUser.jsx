@@ -6,12 +6,12 @@ function ButtonUser() {
 
   const redirectToLogin = () => {
     navigate("/form/login");
-    setMenuVisible(false);
+    // setMenuVisible(false);
   };
 
   const redirectToRegistro = () => {
     navigate("/form/register");
-    setMenuVisible(false);
+    // setMenuVisible(false);
   };
 
   return (
