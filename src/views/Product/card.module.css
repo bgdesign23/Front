@@ -2,18 +2,16 @@
   width: 230px;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(220, 31, 31, 0.1);
-  border-radius: 0;
+  border-radius: 8px;
   background-color: rgb(235, 224, 224);
-  position: relative; /* Establecemos la posición relativa en el contenedor padre */
+  position: relative;
 
   .imagen {
     width: 100%;
     height: 190px;
     object-fit: cover;
-    border-radius: 0;
+    border-radius: 8px;
   }
-
-  /* Agregar otros estilos necesarios para la información adicional */
 }
 
 .cardContainer h2 {

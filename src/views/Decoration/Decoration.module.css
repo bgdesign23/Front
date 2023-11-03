@@ -1,110 +1,109 @@
-
-.forma{
-    width: 100%;
-    overflow: hidden;
-    height: 100%;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+.forma {
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+.contenedor {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
 }
 
-.contenedor{
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-}
-
-.contentContainer{
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    height: 540vh;
-    padding-top: 70px;
+.contentContainer {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  height: 540vh;
+  padding-top: 70px;
 }
 .containerDeco {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    gap: 10px;
-    max-width: 50%;
-    margin: 30px auto;
-    background-color: black;
-    background: linear-gradient(to bottom right, #3b3b3b , #000000);
-    border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  gap: 10px;
+  max-width: 50%;
+  margin: 30px auto;
+  background-color: black;
+  background: linear-gradient(to bottom right, #3b3b3b, #000000);
+  border-radius: 5px;
 }
 .toggleSidebarBtn {
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    position: fixed;
-    top: 10px;
-    left: 70px;
-    z-index: 101;
-    border: none;
-    background: none;
-    border-radius: 5px;
-    width: 30px;
-    height: 30px;
-    color: #ffffff;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  left: 70px;
+  z-index: 101;
+  border: none;
+  background: none;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  color: #ffffff;
 }
 
 .toggleSidebarBtn:hover {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 .toggleSidebarBtn.open {
-    background-color: white;
-    color: #ffffff;
+  background-color: white;
+  color: #ffffff;
 }
 
 @media (min-width: 768px) {
-    .containerDeco:nth-child(odd) {
-        margin-left: 10%; /* La carta se alinea a la derecha */
-        margin-right: auto; /* Ajusta para que no esté pegado al borde */
-    }
-    .containerDeco:nth-child(even) {
-        margin-left: auto; /* La carta se alinea a la izquierda con espacio al borde */
-        margin-right: 10%;
-    }
+  .containerDeco:nth-child(odd) {
+    margin-left: 10%; /* La carta se alinea a la derecha */
+    margin-right: auto; /* Ajusta para que no esté pegado al borde */
+  }
+  .containerDeco:nth-child(even) {
+    margin-left: auto; /* La carta se alinea a la izquierda con espacio al borde */
+    margin-right: 10%;
+  }
 }
 
-.imgSection, .textSection {
-    flex: 1;
-    padding: 20px;
+.imgSection,
+.textSection {
+  flex: 1;
+  padding: 20px;
 }
 
 .textSection {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-family: 'Barlow', sans-serif;
-    color: white;
-    align-items: flex-start;
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "Barlow", sans-serif;
+  color: white;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .containerDeco img {
-    width: 300px;
-    height: 300px;
-    display: block;
-    margin: 0 auto;
+  width: 300px;
+  height: 300px;
+  display: block;
+  margin: 0 auto;
 }
 
 .textSection h1 {
-    font-family: Cinzel;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    color: white;
+  font-family: Cinzel;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: white;
 }
 
 .boton {
-height: 40px;
-background: #D9D9D9;
-color: #000;
-text-align: center;
-font-family: Cinzel;
-font-size: 15px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  height: 40px;
+  background: #d9d9d9;
+  color: #000;
+  text-align: center;
+  font-family: Cinzel;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
