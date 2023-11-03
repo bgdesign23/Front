@@ -1,13 +1,15 @@
+.loginBackground img {
+  position: fixed; /* Mantiene la imagen fija en la ventana del navegador */
+  top: 15px; /* Ajusta la distancia desde la parte superior */
+  left: 20px; /* Ajusta la distancia desde la izquierda */
+  z-index: -1; /* Coloca la imagen detrás de otros elementos */
+}
+
 .loginContainer {
-  background-image: url("fondo.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 88.4vh;
-  overflow-y: hidden; /* Evita el scroll vertical */
   .login {
+    z-index: 8px;
     max-width: 500px;
-    margin: 100px auto;
+    margin: 130px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
