@@ -1,118 +1,115 @@
 .all_container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-block    : 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-block: 5rem;
 }
-
 
 .ShoppingCart_container {
-    border: 2px solid rgba(255, 255, 255, 0.462);
-    background-color: rgba(0, 0, 0, 0.296);
-    padding-block: 2rem;
-    display: block;
-    margin-inline: 60px;
-    margin-bottom: 30px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    cursor: pointer;
-    margin-top: 1rem;
-    justify-content: center;
-    align-items: center;
-    width: 1200px;
-    border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.462);
+  background-color: rgba(0, 0, 0, 0.296);
+  padding-block: 2rem;
+  display: block;
+  margin-inline: 60px;
+  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 1200px;
+  border-radius: 15px;
 }
 
-
-.resumeCart{
-    width: 600px;
-    height: 520px;
-    border: 2px solid rgba(255, 255, 255, 0.462);
-    color: rgb(255, 255, 255);
-    margin-right: 60px;
-    margin-block: 1rem;
-    border-radius: 15px;
-    
+.resumeCart {
+  width: 600px;
+  height: 520px;
+  border: 2px solid rgba(255, 255, 255, 0.462);
+  color: rgb(255, 255, 255);
+  margin-right: 60px;
+  margin-block: 1rem;
+  border-radius: 15px;
 }
-.tittle{
-    width: 300px;
-    font-size: 10px;
-    text-transform: uppercase;
-    color: antiquewhite;
+.tittle {
+  width: 300px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: antiquewhite;
 }
 
-.cupon{
-    color: rgb(20, 103, 237);
+.cupon {
+  color: rgb(20, 103, 237);
 }
 
-.iconCartContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.iconCartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
- /* .carritoNum{
+/* .carritoNum{
     border-radius: .7rem;
     width: 1rem;
     height: 1rem;
     background-color: red;
  } */
 
-.carritoNum p{
-    justify-content: center;
-        margin: 0px;
-        /* padding-block : .1rem; */
-        padding: 0;
+.carritoNum p {
+  justify-content: center;
+  margin: 0px;
+  /* padding-block : .1rem; */
+  padding: 0;
 }
 
-
-.btn{
-    margin-block: .5rem;
-    width: 490px;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid rgb(177, 171, 171);
-    height: 50px;}
-
-        .btn:hover {
-            color: #211f1f;
-            background-color:aliceblue;
-        }
-.cupon_container{
-    display: flex;
-    justify-content: center;
+.btn {
+  margin-block: 0.5rem;
+  width: 490px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgb(177, 171, 171);
+  height: 50px;
 }
 
-.btncupon{
-    width: 230px;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid rgb(177, 171, 171);
-    height: 50px;
-    margin-inline: .5rem;
-                }
-input{
-    width: 230px;
-    border-radius: 8px;
-    margin-inline: .5rem;
+.btn:hover {
+  color: #211f1f;
+  background-color: aliceblue;
+}
+.cupon_container {
+  display: flex;
+  justify-content: center;
+}
+
+.btncupon {
+  width: 230px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgb(177, 171, 171);
+  height: 50px;
+  margin-inline: 0.5rem;
+}
+input {
+  width: 230px;
+  border-radius: 8px;
+  margin-inline: 0.5rem;
 }
 
 .btncupon:hover {
-    color: #211f1f;
-    background-color: aliceblue;
+  color: #211f1f;
+  background-color: aliceblue;
 }
 
-.backBtn{
-    position: absolute;
-    right: 1800px;
-    top: 150px;
-    border: none;
-    background: none;
-    text-decoration: none;
-    color: white ;
-    cursor: pointer;
+.backBtn {
+  position: absolute;
+  right: 1800px;
+  top: 150px;
+  border: none;
+  background: none;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
 }
