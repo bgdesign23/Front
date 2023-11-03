@@ -1,19 +1,46 @@
-.loginContainer {
+/* .loginContainer {
   background-image: url("../LoginForm/fondo.png");
   background-repeat: no-repeat;
   background-size: cover;
-  margin-top: -64px;
+  margin-top: -104px;
   padding-top: 80px;
-  width: 100%;
-  height: 87.8vh;
+} */
+
+/* Estilos para la imagen de fondo */
+.pageContainer {
+  height: -777vh;
+  overflow-y: hidden;
+}
+.imagennForm {
+  overflow: hidden !important ;
+  display: flex;
+  position: absolute;
+  z-index: 1;
+  width: 99%;
+  height: 99%;
+  object-fit: cover;
+  /* Evita el scroll vertical en la imagen */
+}
+
+/* Establece overflow: hidden en el contenedor de la imagen */
+.container {
+  overflow: hidden !important ;
+}
+
+.loginContainer {
+  position: absolute;
+  top: 45%; /* Posición en el 50% de la altura de la pantalla */
+  left: 50%; /* Posición en el 50% del ancho de la pantalla */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Centra el elemento horizontal y verticalmente */
+  z-index: 6;
 }
 
 .login {
-  max-width: 900px;
-  height: 360px;
-  margin: 80px auto;
-  height: 360px;
-
+  margin: 30px auto;
+  height: 395px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 50px;
@@ -31,48 +58,44 @@
 .login label {
   text-align: left;
   display: block;
-  margin-top: 20px;
+  margin-top: 30px;
   font-weight: bold;
 }
 
 .login input {
-  height: 30px;
+  padding: 13px 20px;
+  margin-top: 5px;
+  height: 15px;
+
   background-color: rgba(255, 245, 245, 1);
-  width: 95%;
-  padding: 6px;
-  margin: 10px 0;
+  padding: 13px;
   border: 1px solid #ccc;
   border-radius: 3px;
-  margin-bottom: 2px;
-}
-
-.login hr {
-  margin: 1px 0;
-  border: none;
-  border-top: 1px solid #ccc;
 }
 
 .login p {
   color: red;
-  font-size: 17px;
-  margin-top: 1px;
+  font-size: 15.5px;
+  margin-top: 1.3px;
+  margin-right: 7px;
 }
 
 .loginContainer section {
   display: flex;
-  height: 20px;
+  height: 24px;
 }
 
 .loginContainer .columna {
   flex: 1;
   flex-direction: row;
-  padding-left: 20px;
+  padding-left: 25px;
 }
 
 .loginContainer .labelimput {
   display: flex;
   flex-direction: column;
   height: 100px;
+  margin-top: 5px;
 }
 
 .login button {
@@ -91,11 +114,11 @@
 
 .buttonContainer button {
   position: relative;
-  bottom: -270px; /* Ajusta la distancia desde la parte inferior de la página */
+  bottom: -295px; /* Ajusta la distancia desde la parte inferior de la página */
 }
 .iniciarsesion {
   position: relative;
-  bottom: -280px;
+  bottom: -315px;
 }
 
 .divGoogle button {

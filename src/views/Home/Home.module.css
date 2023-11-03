@@ -1,11 +1,13 @@
 .home {
   padding-inline: 40px;
   justify-content: center;
+  align-items: center;
 }
 
 /* Seccion 1 */
 
 .primerseccion {
+  top: 20px;
   padding-inline: 20px;
   position: relative;
   height: 500px;
