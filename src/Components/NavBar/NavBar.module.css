@@ -11,11 +11,14 @@
 
 }
 
+/* Section Left*/
+
 .logo {
   cursor: pointer;
   justify-content: center;
   width: 500px;
 }
+
 
 .uno{
   align-items: center;
@@ -38,6 +41,7 @@
   justify-content: center;
 
 }
+
 
 
 .cuatro{
@@ -76,4 +80,5 @@ width: 500px;
   top: 10%;
   left: 380px;
 } 
+
 

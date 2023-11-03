@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { googleUser, loginUser } from '../../Redux/actions.js';
-import Style from "../LoginForm/LoginForm.module.css"
-import { useNavigate } from 'react-router-dom';
-import { FcGoogle } from 'react-icons/fc';
-import Swal from 'sweetalert2';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { googleUser, loginUser } from "../../Redux/actions.js";
+import Style from "../LoginForm/LoginForm.module.css";
+import { useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import Swal from "sweetalert2";
 
 // const URL = "http://localhost:3001";
 const URL = "https://backend-muebles.vercel.app";
@@ -13,10 +13,9 @@ function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [input, setInput] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
-
 
   const handleChange = (event) => {
     setInput({
@@ -33,7 +32,7 @@ function LoginForm() {
       password: input.password,
     };
 
-      dispatch(loginUser(credentials, navigate))
+    dispatch(loginUser(credentials, navigate));
   };
 
   const handleOnGoogle = () => {
@@ -68,44 +67,41 @@ function LoginForm() {
 
   return (
     <div className={Style.loginBackground}>
-    
-    <div className={Style.loginContainer}>
-    <div className={Style.login}>
-      <h2>Iniciar Sesión</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Correo Electrónico:</label>
-          <input
-            type="email"
-            name="email"
-            value={input.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      <div className={Style.loginContainer}>
+        <div className={Style.login}>
+          <h2>Iniciar Sesión</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>Correo Electrónico:</label>
+              <input
+                type="email"
+                name="email"
+                value={input.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-        <div>
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            name="password"
-            value={input.password}
-            onChange={handleChange}
-            required
-          />
+            <div>
+              <label>Contraseña:</label>
+              <input
+                type="password"
+                name="password"
+                value={input.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type="submit">INICIAR SESIÓN</button>
+          </form>
+          <div className={Style.divGoogle}>
+            <button onClick={() => handleOnGoogle()}>
+              <FcGoogle /> CONTINUAR CON GOOGLE
+            </button>
+          </div>
         </div>
-        <button type="submit">INICIAR SESIÓN</button>
-
-      </form>
-      <div className={Style.divGoogle}>
-        <button onClick={() => handleOnGoogle()}>
-          <FcGoogle /> CONTINUAR CON GOOGLE
-        </button>
       </div>
     </div>
-    </div>
-    </div>
-    
   );
 }
 
