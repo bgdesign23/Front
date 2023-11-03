@@ -1,17 +1,20 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { cleanDetail, getDetail } from "../../Redux/actions";
 import styles from "../Detail/Detail.module.css";
 import { useLocalStorage } from "../../localStorage/localStorage";
 import toast, { Toaster } from "react-hot-toast";
 import logoWhatsapp from "../Detail/whatsapp (1).png";
+import Swal from "sweetalert2";
 
 const Detail = () => {
   const [thing, setThing] = useLocalStorage("cart", []); //localStorage hook
   const { id } = useParams();
+  const user = useSelector((state) => state.user);
   const detailProduct = useSelector((state) => state.products_Details);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //monta el producto
   useEffect(() => {
@@ -23,10 +26,30 @@ const Detail = () => {
     window.history.back();
   };
 
-  console.log(thing);
+  // console.log(thing);
 
   // si existe el producto entonces aumenta la cantidad
   //sino agregalo al carrito
+  const handle_addToCart = () => {
+    if (user || localStorage.getItem("token")) return addToCart();
+    else Swal.fire({
+      title: "Usuario no registrado",
+      text: "Inicia sesión para agregar productos al carrito",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "Iniciar sesión",
+      denyButtonText: "Cancelar",
+      confirmButtonColor: "#394754",
+      denyButtonColor: "#394754",
+      background: "#3b3838",
+      color: "#ffffff",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        navigate("/form/login");
+      }
+    });
+  };
+
   const addToCart = () => {
     const existingProduct = thing.find(
       (product) => product.id === detailProduct.id
@@ -39,7 +62,7 @@ const Detail = () => {
       setThing([...thing, detailProduct]);
     }
     toast.success("se agrego al carrito de compras");
-  };
+  }
 
   return (
     <div className={styles.todo}>
@@ -76,7 +99,7 @@ const Detail = () => {
           >
             <img src={logoWhatsapp} alt="" style={{ width: "55px" }} />
           </a>
-          <button onClick={addToCart} className={styles.button}>
+          <button onClick={handle_addToCart} className={styles.button}>
             Agregar al Carrito
           </button>
         </div>
