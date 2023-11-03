@@ -1,46 +1,21 @@
-/* .loginContainer {
-  background-image: url("../LoginForm/fondo.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-top: -104px;
-  padding-top: 80px;
-} */
-
-/* Estilos para la imagen de fondo */
-.pageContainer {
-  height: -777vh;
-  overflow-y: hidden;
-}
-.imagennForm {
-  overflow: hidden !important ;
-  display: flex;
-  position: absolute;
-  z-index: 1;
-  width: 99%;
-  height: 99%;
-  object-fit: cover;
-  /* Evita el scroll vertical en la imagen */
-}
-
-/* Establece overflow: hidden en el contenedor de la imagen */
-.container {
-  overflow: hidden !important ;
+.pageContainer img {
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  z-index: -1;
 }
 
 .loginContainer {
+  top: 20%;
+  left: 25%;
+  right: 25%;
   position: absolute;
-  top: 45%; /* Posición en el 50% de la altura de la pantalla */
-  left: 50%; /* Posición en el 50% del ancho de la pantalla */
-  transform: translate(
-    -50%,
-    -50%
-  ); /* Centra el elemento horizontal y verticalmente */
   z-index: 6;
 }
-
 .login {
-  margin: 30px auto;
-  height: 395px;
+  max-width: 900px;
+  margin: 80px auto;
+  height: 398px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 50px;
@@ -58,15 +33,14 @@
 .login label {
   text-align: left;
   display: block;
-  margin-top: 30px;
+  margin-top: 20px;
   font-weight: bold;
 }
 
 .login input {
-  padding: 13px 20px;
   margin-top: 5px;
   height: 15px;
-
+  width: 85%;
   background-color: rgba(255, 245, 245, 1);
   padding: 13px;
   border: 1px solid #ccc;
@@ -75,27 +49,26 @@
 
 .login p {
   color: red;
-  font-size: 15.5px;
+  font-size: 16.5px;
   margin-top: 1.3px;
-  margin-right: 7px;
 }
 
 .loginContainer section {
   display: flex;
-  height: 24px;
+  height: 20px;
 }
 
 .loginContainer .columna {
   flex: 1;
   flex-direction: row;
-  padding-left: 25px;
+  padding-left: 10px;
 }
 
 .loginContainer .labelimput {
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
   height: 100px;
-  margin-top: 5px;
 }
 
 .login button {
@@ -120,7 +93,7 @@
 
 .iniciarsesion {
   position: relative;
-  bottom: -315px;
+  bottom: -319px;
 }
 
 .divGoogle button {
@@ -140,7 +113,7 @@
   background-color: #fff;
   cursor: pointer;
   transition: all 0.6s ease;
-  margin-left: 690px;
+  margin-left: 50px;
   margin-top: -129px;
 }
 
