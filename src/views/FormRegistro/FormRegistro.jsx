@@ -22,19 +22,11 @@ export default function FormRegistro() {
 
   const password = watch("password");
 
-  const cuponBienvenida = {
-    code: "bgdesign",
-    discount: 0.2,
-    expiration: "2023-12-31",
-    usagesAvailable: 1,
-    status: "activo",
-  };
-
   const onSubmit = (data) => {
-    data.coupon = cuponBienvenida;
     dispatch(registerUser(data, navigate));
     dispatch(filterRestart());
   };
+
 
   const handleOnGoogle = () => {
     const width = 500;
@@ -69,6 +61,7 @@ export default function FormRegistro() {
   return (
     <div className={styles.pageContainer}>
       <div className={styles.loginContainer}>
+        <p className={styles.titulo}>Completa los datos para crear tu cuenta</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.login}>
             <section className={styles.formimput}>
@@ -191,7 +184,10 @@ export default function FormRegistro() {
               </div>
             </section>
             <div className={styles.iniciarsesion}>
-              ¿Ya tenés una cuenta? <Link to="/form/login">Iniciá sesión</Link>
+              <h4>¿Ya tenés una cuenta?</h4>
+              <button onClick={() => navigate("/form/login")}>
+                Iniciá sesión
+              </button>
             </div>
             <div className={styles.buttonContainer}>
               <button type="submit">REGISTRARSE</button>\

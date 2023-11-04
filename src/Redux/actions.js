@@ -41,6 +41,7 @@ import {
   GET_BY_ID_ADMIN,
   DELETE_ADMIN
 } from "../Redux/actionsTypes";
+
 import { URL } from "../utils/toggleUrl";
 
 export const getProductsAction = () => {
@@ -57,18 +58,18 @@ export const getProductsAction = () => {
   };
 };
 
-export const deleteProduct =  (id) => {
+export const deleteProduct = (id) => {
   return async (dispatch) => {
-  try {
-    const { data } = await axios.delete(`${URL}/products/delete/${id}`)
-    return dispatch({
-      type: DELETE_PRODUCT,
-      payload: data,
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
-  }
+    try {
+      const { data } = await axios.delete(`${URL}/products/delete/${id}`);
+      return dispatch({
+        type: DELETE_PRODUCT,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 };
 
 export const getAllUsers = () => {
@@ -85,32 +86,32 @@ export const getAllUsers = () => {
   };
 };
 
-export const deleteUser =  (id) => {
+export const deleteUser = (id) => {
   return async (dispatch) => {
-  try {
-    const { data } = await axios.delete(`${URL}/users/delete/${id}`)
-    return dispatch({
-      type: DELETE_USER,
-      payload: data,
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
-  }
+    try {
+      const { data } = await axios.delete(`${URL}/users/delete/${id}`);
+      return dispatch({
+        type: DELETE_USER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 };
 
-export const restoreUser =  (id) => {
+export const restoreUser = (id) => {
   return async (dispatch) => {
-  try {
-    const { data } = await axios.post(`${URL}/users/restore/${id}`)
-    return dispatch({
-      type: RESTORE_USER,
-      payload: data,
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
-  }
+    try {
+      const { data } = await axios.post(`${URL}/users/restore/${id}`);
+      return dispatch({
+        type: RESTORE_USER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 };
 
 export const getAdmin = () => {
@@ -535,20 +536,19 @@ export const createCoupon = (coupon) => {
   };
 };
 
-export const deleteCoupon =  (id) => {
+export const deleteCoupon = (id) => {
   return async (dispatch) => {
-  try {
-    const { data } = await axios.delete(`${URL}/coupon/delete/${id}`)
-    return dispatch({
-      type: DELETE_COUPON,
-      payload: data,
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
-  }
+    try {
+      const { data } = await axios.delete(`${URL}/coupon/delete/${id}`);
+      return dispatch({
+        type: DELETE_COUPON,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 };
-
 
 export const getUserCoupons = () => {
   return (dispatch) => {
