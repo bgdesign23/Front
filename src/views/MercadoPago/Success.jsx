@@ -1,29 +1,46 @@
-import { useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createCart, getUser } from "../../Redux/actions";
-import styles from "./Success.module.css";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Success() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const cart = localStorage.getItem("cart");
   const navigate = useNavigate();
+  const [sweet, setSweet] = useState(false);
 
   useEffect(() => {
-    dispatch(getUser());
+    const fetchData = async () => {
+      await dispatch(getUser());
+      setSweet(true);
+    };
+    fetchData();
   }, [dispatch]);
 
-  const onClick_Handler = () => {
-    dispatch(createCart(cart, user.token));
+  useEffect(() => {
+    if (sweet) {
+      Swal.fire({
+        title: "¡Compra realizada con éxito!",
+        icon: "success",
+        background: "#3b3838",
+        color: "#ffffff",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          handleConfirm();
+        }
+      });
+    }
+  }, [sweet]);
+
+  const handleConfirm = async () => {
+    await dispatch(createCart(cart, user.token));
     navigate("/home/product");
   };
 
-  return (
-    <div className={styles.divSuccess}>
-      <button onClick={onClick_Handler}>Compra exitosa. Haga clic aquí para continuar</button>
-    </div>
-  );
+  return <></>;
 }
 
 export default Success;
