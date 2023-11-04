@@ -30,6 +30,9 @@ import {
   GET_ALL_USERS,
   GET_ADMIN,
   CLEAR_ERRORS,
+  DELETE_PRODUCT,
+  DELETE_USER
+
 } from "./actionsTypes";
 
 let initialState = {
@@ -60,12 +63,24 @@ const Reducer = (state = initialState, action) => {
         products: action.payload,
         products_Copy: action.payload,
       };
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        products: action.payload,
+        products_Copy: action.payload
+      }
     case GET_ALL_USERS:
       return {
         ...state,
         users: action.payload,
         users_copy: action.payload,
       };
+    case DELETE_USER:
+      return {
+        ...state,
+        users: action.payload,
+        users_copy: action.payload
+      }
     case GET_ADMIN:
       return {
         ...state,

@@ -61,7 +61,8 @@ export const getProductsAction = () => {
 export const deleteProduct = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.delete(`${URL}/products/delete/${id}`);
+      await axios.delete(`${URL}/products/delete/${id}`);
+      const { data } = await axios.get(`${URL}/products`);
       return dispatch({
         type: DELETE_PRODUCT,
         payload: data,
@@ -89,7 +90,8 @@ export const getAllUsers = () => {
 export const deleteUser = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.delete(`${URL}/users/delete/${id}`);
+      await axios.delete(`${URL}/users/${id}`);
+      const { data } = await axios.get(`${URL}/users`);
       return dispatch({
         type: DELETE_USER,
         payload: data,
