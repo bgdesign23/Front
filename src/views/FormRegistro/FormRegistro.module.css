@@ -1,28 +1,46 @@
-
-.loginContainer {
-  background-image: url("../LoginForm/fondo.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding-top: 180px;
-  width: 100%;
-  height: 100vh;
-}
-
-.loginContainer {
-  top: 20%;
-  left: 25%;
-  right: 25%;
+.pageContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  z-index: 6;
 }
+
+.imagennForm{
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  display: flex;
+  height: 99vh;
+}
+
+.loginContainer {
+  z-index: 1000;
+ display: block;
+ justify-content: center;
+ align-items: left;
+ width: 900px;
+ height: cover;
+ top: 25%;
+ left: 80%;
+ right: 25%;
+ position: absolute;
+}
+
+.titulo{
+  color:white;
+  font-size: 25px;
+  padding-bottom: 1rem;
+  font-family: barlow,;
+}
+
+
 .login {
-  max-width: 900px;
-  margin: 80px auto;
-  height: 360px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 50px;
-  background-color: rgba(217, 217, 217, 1);
+  max-width: 950px;
+  height: 500px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background-color: rgba(217, 217, 217, 0.482);
 }
 
 .login h1 {
@@ -31,6 +49,8 @@
 
 .login label {
   font-family: Barlow;
+  position: left;
+  
 }
 
 .login label {
@@ -38,12 +58,13 @@
   display: block;
   margin-top: 20px;
   font-weight: bold;
+  padding-block: .5rem;
 }
 
 .login input {
-  margin-top: 5px;
-  height: 15px;
-  width: 85%;
+  margin: 0;
+  height: 45px;
+  width: 90%;
   background-color: rgba(255, 245, 245, 1);
   padding: 13px;
   border: 1px solid #ccc;
@@ -70,8 +91,14 @@
 .loginContainer .labelimput {
   margin-top: 8px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   height: 100px;
+}
+
+.labelimput label{
+width: 390px;
 }
 
 .login button {
@@ -84,23 +111,52 @@
 }
 
 .login button:hover {
-  background-color: #555556;
+  background-color: #191919;
   cursor: pointer;
+  color: white;
+}
+
+.buttonContainer{ 
+  align-items: center;
+  justify-content: center;
+  padding-top: 300px;
+  display: flex;
 }
 
 .buttonContainer button {
-  position: relative;
-  bottom: -270px; /* Ajusta la distancia desde la parte inferior de la página */
-  right: 110px;
+border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgb(177, 171, 171);
+display: block;
+justify-content: center;
+align-items: center;
+cursor: pointer;
 }
 
 .iniciarsesion {
+  font-family: Barlow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   bottom: -319px;
+  gap: .5rem;
+
 }
+.iniciarsesion button{
+margin-block: 1rem;
+  width: 250px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgb(177, 171, 171);
+  height: 50px;}
 
 .divGoogle button {
-  max-width: 320px;
+  width: 320px;
   display: flex;
   padding: 0.5rem 1.2rem;
   font-size: 0.875rem;
@@ -111,13 +167,11 @@
   align-items: center;
   border-radius: 0.5rem;
   border: 1px solid rgba(0, 0, 0, 0.25);
-  gap: 0.75rem;
   color: rgb(65, 63, 63);
   background-color: #fff;
   cursor: pointer;
   transition: all 0.6s ease;
-  margin-left: 50px;
-  margin-top: -129px;
+  gap: .5rem;
 }
 
 .divGoogle button:hover {

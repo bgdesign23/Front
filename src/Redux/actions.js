@@ -30,10 +30,14 @@ import {
   GET_USER_COUPONS,
   APPLY_COUPON,
   COUPONS_ERROR,
+  GET_ALL_USERS,
+  DELETE_USER,
+  RESTORE_USER,
+  DELETE_COUPON,
+  DELETE_PRODUCT,
 } from "../Redux/actionsTypes";
 
-const URL = "http://localhost:3001";
-// const URL = "https://backend-muebles.vercel.app";
+import { URL } from "../utils/toggleUrl";
 
 export const getProductsAction = () => {
   return async (dispatch) => {
@@ -41,6 +45,62 @@ export const getProductsAction = () => {
       const { data } = await axios.get(`${URL}/products`);
       return dispatch({
         type: GET_ALL_PRODUCTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const deleteProduct = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(`${URL}/products/delete/${id}`);
+      return dispatch({
+        type: DELETE_PRODUCT,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const getAllUsers = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/users`);
+      return dispatch({
+        type: GET_ALL_USERS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const deleteUser = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(`${URL}/users/delete/${id}`);
+      return dispatch({
+        type: DELETE_USER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const restoreUser = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(`${URL}/users/restore/${id}`);
+      return dispatch({
+        type: RESTORE_USER,
         payload: data,
       });
     } catch (error) {
@@ -433,6 +493,20 @@ export const createCoupon = (coupon) => {
   return {
     type: CREATE_COUPON,
     payload: coupon,
+  };
+};
+
+export const deleteCoupon = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(`${URL}/coupon/delete/${id}`);
+      return dispatch({
+        type: DELETE_COUPON,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 };
 

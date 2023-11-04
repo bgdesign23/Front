@@ -6,9 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import imagennForm from "../LoginForm/fondodellogin.jpg";
-
-// const URL = "http://localhost:3001";
-const URL = "https://backend-muebles.vercel.app";
+import { URL } from "../../utils/toggleUrl.js";
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -72,8 +70,8 @@ function LoginForm() {
         <div className={Style.loginContainer}>
           <div className={Style.login}>
             <h2>Iniciar Sesión</h2>
-            <form onSubmit={handleSubmit}>
-              <div>
+            <form className={Style.inputPadre} onSubmit={handleSubmit}>
+              <div className={Style.input1}>
                 <label>Correo Electrónico:</label>
                 <input
                   type="email"
@@ -84,7 +82,7 @@ function LoginForm() {
                 />
               </div>
 
-              <div>
+              <div className={Style.input1}>
                 <label>Contraseña:</label>
                 <input
                   type="password"
@@ -95,16 +93,16 @@ function LoginForm() {
                 />
               </div>
               <button type="submit">INICIAR SESIÓN</button>
+              <div className={Style.divGoogle}>
+                <button onClick={() => handleOnGoogle()}>
+                  <FcGoogle /> CONTINUAR CON GOOGLE
+                </button>
+              </div>
             </form>
-            <div className={Style.divGoogle}>
-              <button onClick={() => handleOnGoogle()}>
-                <FcGoogle /> CONTINUAR CON GOOGLE
-              </button>
-            </div>
           </div>
         </div>
 
-        <img src={imagennForm} alt="" />
+        {/* <img src={imagennForm} alt="" /> */}
       </div>
     </div>
   );

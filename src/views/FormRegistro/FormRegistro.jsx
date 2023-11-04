@@ -7,9 +7,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
 import imagennForm from "../LoginForm/fondodellogin.jpg";
-
-// const URL = "http://localhost:3001";
-const URL = "https://backend-muebles.vercel.app";
+import { URL } from "../../utils/toggleUrl.js";
 
 export default function FormRegistro() {
   const dispatch = useDispatch();
@@ -71,6 +69,7 @@ export default function FormRegistro() {
   return (
     <div className={styles.pageContainer}>
       <div className={styles.loginContainer}>
+        <p className={styles.titulo}>Completa los datos para crear tu cuenta</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.login}>
             <section className={styles.formimput}>
@@ -193,7 +192,10 @@ export default function FormRegistro() {
               </div>
             </section>
             <div className={styles.iniciarsesion}>
-              ¿Ya tenés una cuenta? <Link to="/form/login">Iniciá sesión</Link>
+              <h4>¿Ya tenés una cuenta?</h4>
+              <button onClick={() => navigate("/form/login")}>
+                Iniciá sesión
+              </button>
             </div>
             <div className={styles.buttonContainer}>
               <button type="submit">REGISTRARSE</button>\
