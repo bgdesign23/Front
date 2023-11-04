@@ -16,7 +16,7 @@ import {getProductsAction,
         deleteAdmin,
         clearErrors        
         } from "../../Redux/actions"
-import Swal from "sweetalert2"
+
 
 const AdminDashboard = () => {
 
