@@ -9,7 +9,7 @@ export default function Seccion3() {
     <section className={style.contenedor}>
       <h1>Servicios</h1>
 
-      <article className={style.servicios}>
+      <div className={style.servicios}>
         <div className={style.servicio}>
           <img
             src={muebles}
@@ -29,7 +29,7 @@ export default function Seccion3() {
           />
           <h1>DECORACION</h1>
         </div>
-      </article>
+      </div>
     </section>
   );
 }

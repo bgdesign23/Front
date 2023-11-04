@@ -1,5 +1,4 @@
 .home {
-  /* padding-inline: 40px; */
   justify-content: center;
   align-items: center;
 }
@@ -10,7 +9,6 @@
   display: flex;
   width: cover;
   bottom: 30px;
-  /* justify-content: right; */
   height: 100vh;
   z-index: 999;
 }
@@ -26,12 +24,6 @@
   top: 250px;
   padding-left: 45px;
   justify-content: center;
-}
-
-.logo {
-  width: 500px;
-  right: 200px;
-  padding-bottom: 2rem;
 }
 
 .quienes h1 {
@@ -61,6 +53,48 @@
   left: 300px;
   width: 100%;
   height: cover;
+}
+
+.mobileText {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .primerseccion {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .quienes {
+    display: none;
+  }
+
+  .imagen {
+    display: none;
+  }
+
+  .mobileText {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    max-width: 310px;
+    margin: 0 auto;
+    position: relative;
+    bottom: -120px;
+  }
+
+  .textPrinc {
+    color: white;
+    position: relative;
+    bottom: -70px;
+  }
+
+  .textPrinc h1 {
+    font-size: 40px;
+    font-family: Cinzel;
+    font-weight: lighter;
+  }
 }
 
 /*  Section 3 */
@@ -103,4 +137,26 @@
 .servicio h1 {
   margin: 20px auto;
   font-size: 30px;
+}
+
+@media (max-width: 480px) {
+  .servicios {
+    display: inline;
+    justify-content: left;
+    gap: 100px;
+  }
+  .contenedor {
+    display: inline;
+    max-width: 400px;
+  }
+
+  .contenedor h1 {
+    font-size: 25px;
+    margin: 10px auto;
+  }
+
+  .muebles {
+    height: 200px;
+    width: 200px;
+  }
 }
