@@ -27,7 +27,9 @@ import {
   GET_USER_COUPONS, 
   APPLY_COUPON,
   COUPONS_ERROR,
-  GET_ALL_USERS
+  GET_ALL_USERS,
+  GET_ADMIN,
+  CLEAR_ERRORS,
 } from "./actionsTypes";
 
 let initialState = {
@@ -44,7 +46,10 @@ let initialState = {
   userCoupons: [], 
   appliedCoupons: [],
   users: [],
-  users_copy: []
+  users_copy: [],
+  admin: [],
+  admin_copy: [],
+  errors: {},
 };
 
 const Reducer = (state = initialState, action) => {
@@ -61,6 +66,13 @@ const Reducer = (state = initialState, action) => {
         users: action.payload,
         users_copy: action.payload,
       };
+    case GET_ADMIN:
+      return {
+        ...state,
+        admin: action.payload,
+        admin_copy: action.payload,
+      };  
+
     case ORDERBYPRICE:
       return {
         ...state,
@@ -220,6 +232,11 @@ const Reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       }
+      case CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: {},
+      };
             
     default:
       return { ...state };
