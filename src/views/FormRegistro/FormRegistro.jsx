@@ -27,7 +27,6 @@ export default function FormRegistro() {
     dispatch(filterRestart());
   };
 
-
   const handleOnGoogle = () => {
     const width = 500;
     const height = 600;
@@ -183,19 +182,23 @@ export default function FormRegistro() {
                 </div>
               </div>
             </section>
-            <div className={styles.iniciarsesion}>
+            {/* <div className={styles.iniciarsesion}>
               <h4>¿Ya tenés una cuenta?</h4>
-              <button onClick={() => navigate("/form/login")}>
+              <button
+                className={styles.btn}
+                onClick={() => navigate("/form/login")}
+              >
                 Iniciá sesión
               </button>
-            </div>
+            </div> */}
             <div className={styles.buttonContainer}>
-              <button type="submit">REGISTRARSE</button>\
-              <div className={styles.divGoogle}>
-                <button onClick={() => handleOnGoogle()}>
-                  <FcGoogle /> CONTINUAR CON GOOGLE
-                </button>
-              </div>
+              <button className={styles.btn} type="submit">
+                REGISTRARSE
+              </button>
+
+              <button className={styles.btn} onClick={() => handleOnGoogle()}>
+                <FcGoogle /> CONTINUAR CON GOOGLE
+              </button>
             </div>
           </div>
         </form>
