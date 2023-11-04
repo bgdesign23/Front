@@ -202,4 +202,3 @@ export default function FormRegistro() {
     </div>
   );
 }
-}
