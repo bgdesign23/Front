@@ -22,7 +22,6 @@ import CouponUser from "../src/views/PerfilUser/CouponUser";
 import Success from "./views/MercadoPago/Success";
 import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
 
-
 function App() {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products);
@@ -59,7 +58,9 @@ function App() {
             <Route path="/cupones" element={<CouponUser />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/admin" element={<AdminDashboard />} />
-            {(user || localStorage.getItem("token")) && <Route path="/cartShop" element={<CartShop />} />}
+            {(user || localStorage.getItem("token")) && (
+              <Route path="/cartShop" element={<CartShop />} />
+            )}
             <Route path="/home/success" element={<Success />} />
           </Routes>
         </div>

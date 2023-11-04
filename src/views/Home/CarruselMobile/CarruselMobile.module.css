@@ -1,0 +1,17 @@
+@media (min-width: 481px) {
+  .carruselMobile {
+    display: none; /* Oculta el carrusel en pantallas más anchas */
+  }
+}
+
+.carruselMobile {
+  padding: 30px;
+  background-color: white;
+  margin-top: -140px;
+}
+
+.carruselMobile img {
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+}

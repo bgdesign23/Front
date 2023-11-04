@@ -1,6 +1,6 @@
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import styles from "../NavBar/NavBar.module.css";
-import logo from "../../images/logo.png";
+import logo from "../../images/home9.png";
 import ButtonCarrito from "../SearchBar/ButtonCarrito/ButtonCarrito";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonUserAuth from "./ButtonUser/ButtonUserAuth";
