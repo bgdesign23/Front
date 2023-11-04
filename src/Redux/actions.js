@@ -34,7 +34,12 @@ import {
   DELETE_USER,
   RESTORE_USER,
   DELETE_COUPON,
-  DELETE_PRODUCT
+  DELETE_PRODUCT,
+  CLEAR_ERRORS,
+  GET_ADMIN,
+  CREATE_ADMIN,
+  GET_BY_ID_ADMIN,
+  DELETE_ADMIN
 } from "../Redux/actionsTypes";
 import { URL } from "../utils/toggleUrl";
 
@@ -106,6 +111,41 @@ export const restoreUser =  (id) => {
     console.log(error.message);
   }
   }
+};
+
+export const getAdmin = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/admin`);
+      return dispatch({
+        type: GET_ADMIN,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    };
+  };
+};
+
+export const createAdmin = (admin) => {
+  return {
+    type: CREATE_ADMIN,
+    payload: admin,
+  };
+};
+
+export const deleteAdmin =  (id) => {
+  return async (dispatch) => {
+  try {
+    const { data } = await axios.delete(`${URL}/admin/delete/${id}`)
+    return dispatch({
+      type: DELETE_ADMIN,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error.message);
+  };
+  };
 };
 
 export const getDetail = (id) => {
@@ -593,3 +633,11 @@ export const saveCart = () => {
     }
   };
 };
+
+export function clearErrors() {
+  return async function (dispatch) {
+    dispatch({
+      type: CLEAR_ERRORS,
+    });
+  };
+}

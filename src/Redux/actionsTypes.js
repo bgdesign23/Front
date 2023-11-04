@@ -33,6 +33,11 @@ export const DELETE_USER = 'DELETE_USER'
 export const RESTORE_USER = 'RESTORE_USER'
 export const DELETE_COUPON = 'DELETE_COUPON'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+export const CLEAR_ERRORS = 'CLEAR_ERRORS'
+export const GET_ADMIN = 'GET_ADMIN'
+export const CREATE_ADMIN = 'CREATE_ADMIN'
+export const GET_BY_ID_ADMIN = 'GET_BY_ID_ADMIN'
+export const DELETE_ADMIN = 'DELETE_ADMIN'
 
 
 
