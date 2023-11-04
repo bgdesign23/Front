@@ -29,6 +29,7 @@ import {
   COUPONS_ERROR,
   GET_ALL_USERS,
   GET_ADMIN,
+  CLEAR_ERRORS,
 } from "./actionsTypes";
 
 let initialState = {
@@ -48,6 +49,7 @@ let initialState = {
   users_copy: [],
   admin: [],
   admin_copy: [],
+  errors: {},
 };
 
 const Reducer = (state = initialState, action) => {
@@ -230,6 +232,11 @@ const Reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       }
+      case CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: {},
+      };
             
     default:
       return { ...state };
