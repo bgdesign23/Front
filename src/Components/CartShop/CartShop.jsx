@@ -160,80 +160,80 @@ const handleBuy = async () => {
   }
 };
 
- 
-  
- return (
-  <div className={Styles.all_container}>
-    <div className={Styles.ShoppingCart_container}>
+  return (
+    <div className={Styles.all_container}>
       <button
         className={Styles.backBtn}
         onClick={() => navigate("/home/product")}
       >
         Back
       </button>
-      <div className={Styles.tittle}>
-        <h1>tu carrito de compras</h1>
+      <div className={Styles.ShoppingCart_container}>
+        <div className={Styles.tittle}>
+          <h1>tu carrito de compras</h1>
+        </div>
+        <div>
+          {cart.map((producto, index) => (
+            <CartCard
+              key={producto.id}
+              id={producto.id}
+              name={producto.name}
+              description={producto.description}
+              types={producto.type}
+              stock={producto.stock}
+              price={producto.price}
+              image={producto.image}
+              category={producto.CategoryId}
+              amount={producto.amount}
+              deleteProduct={deleteProduct}
+              handleAmount_Up={handleAmount_Up}
+              handleAmount_Down={handleAmount_Down}
+              totalPriceProduct={calculateTotalPrice(producto)}
+              formatthousand={formatthousand}
+              disableDecreaseButton={producto.amount === 1}
+            />
+          ))}
+        </div>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            className: "",
+            style: {
+              border: "1px solid #713200",
+              padding: "16px",
+              color: "#191919",
+              background: "#ffff",
+            },
+          }}
+        />
       </div>
-      <div>
-        {cart.map((producto, index) => (
-          <CartCard
-            key={producto.id}
-            id={producto.id}
-            name={producto.name}
-            description={producto.description}
-            types={producto.type}
-            stock={producto.stock}
-            price={producto.price}
-            image={producto.image}
-            category={producto.CategoryId}
-            amount={producto.amount}
-            deleteProduct={deleteProduct}
-            handleAmount_Up={handleAmount_Up}
-            handleAmount_Down={handleAmount_Down}
-            totalPriceProduct={calculateTotalPrice(producto)}
-            formatthousand={formatthousand}
-            disableDecreaseButton={producto.amount === 1}
-          />
-        ))}
-      </div>
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          className: "",
-          style: {
-            border: "1px solid #713200",
-            padding: "16px",
-            color: "#191919",
-            background: "#ffff",
-          },
-        }}
-      />
-    </div>
-    <div className={Styles.resumeCart}>
-      <div>
-        <p>Resumen de compra</p>
-      </div>
-      <div>
-        <p>Cantidad productos: {cantidad}</p>
-        <p>Total a pagar: ${formatthousand(numero)}</p> {/* Total sin descuento */}
+      <div className={Styles.resumeCart}>
+        <div className={Styles.titulo}>
+          <p>Resumen de compra</p>
+        </div>
+        <div>
+          <div className={Styles.details}>
+            <p>Cantidad productos: {cantidad}</p>
+            <p>Total a pagar: ${formatthousand(numero)}</p> {/* Total sin descuento */}
         {discount > 0 && (
           <p>Total a pagar con descuento: ${formatthousand(totalWithDiscount)}</p>
         )} {/* Total con descuento, mostrar solo si hay descuento */}
-      </div>
-      <div className={Styles.cupon_container}>
-        <input
-          type="text"
-          placeholder="Ingresa el código del cupón"
-          value={couponCode}
-          onChange={(e) => setCouponCode(e.target.value)}
-        />
-        <button className={Styles.btncupon} onClick={handleApplyCoupon}>
-          Aplicar Cupón
+          </div>
+          <div className={Styles.cupon_container}>
+            <input
+              type="text"
+              placeholder=" Ingresa el código del cupón"
+              value={couponCode}
+              onChange={(e) => setCouponCode(e.target.value)}
+            />
+            <button className={Styles.btncupon} onClick={handleApplyCoupon}>
+              Aplicar Cupón
+            </button>
+          </div>
+        </div>
+        <button className={Styles.btn} onClick={handleBuy}>
+          Continuar con la compra
         </button>
-      </div>
-      <button className={Styles.btn} onClick={handleBuy}>
-        Continuar con la compra
-      </button>
       {preferenceId && <Wallet initialization={{ preferenceId }} />}
     </div>
   </div>

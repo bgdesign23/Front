@@ -26,7 +26,8 @@ import {
   CREATE_COUPON, 
   GET_USER_COUPONS, 
   APPLY_COUPON,
-  COUPONS_ERROR
+  COUPONS_ERROR,
+  GET_ALL_USERS
 } from "./actionsTypes";
 
 let initialState = {
@@ -42,6 +43,8 @@ let initialState = {
   desings_Copy: [],
   userCoupons: [], 
   appliedCoupons: [],
+  users: [],
+  users_copy: []
 };
 
 const Reducer = (state = initialState, action) => {
@@ -51,6 +54,12 @@ const Reducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
         products_Copy: action.payload,
+      };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        users_copy: action.payload,
       };
     case ORDERBYPRICE:
       return {
