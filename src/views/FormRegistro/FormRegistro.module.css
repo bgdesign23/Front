@@ -1,4 +1,107 @@
-.pageContainer{
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.login section{
+  display: flex;
+}
+.imagennForm {
+  position: relative;
+  width: 100%;
+  display: flex;
+  height: 99vh;
+  z-index: 1;
+}
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.loginContainer .columna {
+  flex: 2;
+  flex-direction: row;
+  padding-left: 10px;
+}
+
+
+.titulo {
+  color: #ffffff;
+  font-size: 25px;
+  padding-bottom: 1rem;
+  font-family: barlow;
+}
+
+.login {
+  display: block;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 34px;
+  background-color: rgba(217, 217, 217, 0.482);
+}
+
+.login label {
+  font-family: Barlow;
+  text-align: left;
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  padding-block: 0.5rem;
+}
+
+.login input {
+  margin: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 45px;
+  padding: 5px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.login button {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgb(177, 171, 171);
+  height: 60px;
+  margin-inline: 0.5rem;
+  margin-block: 0.5rem;
+}
+.login button:hover {
+  background-color: #191919;
+}
+
+
+
+@media (max-width: 768px) {
+  .loginContainer {
+    top: 20%;
+  }
+
+  .login input,
+  .login button {
+    max-width: 100%;
+  }
+}
+
+ /* .pageContainer{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,6 +116,8 @@
   height: 99vh;
 }
 
+
+
 .loginContainer {
   z-index: 1000;
  display: block;
@@ -20,14 +125,16 @@
  align-items: left;
  width: 900px;
  height: cover;
- top: 25%;
- left: 80%;
+ top: 20%;
+ left: 130%;
  right: 25%;
  position: absolute;
 }
 
+
+
 .titulo{
-  color:white;
+  color:#ffffff;
   font-size: 25px;
   padding-bottom: 1rem;
   font-family: barlow,;
@@ -35,8 +142,8 @@
 
 
 .login {
-  max-width: 950px;
-  height: 500px;
+  width: 950px;
+  height: 600px;
   align-items: center;
   justify-content: center;
   border-radius: 15px;
@@ -65,9 +172,9 @@
   margin: 0;
   height: 45px;
   width: 90%;
-  background-color: rgba(255, 245, 245, 1);
+  background-color:  #ffffff;
   padding: 13px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   border-radius: 3px;
 }
 
@@ -101,20 +208,7 @@
 width: 390px;
 }
 
-.login button {
-  margin-top: 25px;
-  border-radius: 8px;
-  background: #191919;
-  width: 200px;
-  height: 40px;
-  margin-bottom: 10px;
-}
 
-.login button:hover {
-  background-color: #191919;
-  cursor: pointer;
-  color: white;
-}
 
 .buttonContainer{ 
   align-items: center;
@@ -123,57 +217,30 @@ width: 390px;
   display: flex;
 }
 
-.buttonContainer button {
-border-radius: 8px;
-  cursor: pointer;
-  background-color: transparent;
-  color: #ffffff;
-  border: 2px solid rgb(177, 171, 171);
-display: block;
-justify-content: center;
-align-items: center;
-cursor: pointer;
-}
-
 .iniciarsesion {
   font-family: Barlow;
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   position: relative;
   bottom: -319px;
-  gap: .5rem;
-
+  padding-block: 1rem;
 }
-.iniciarsesion button{
-margin-block: 1rem;
-  width: 250px;
+
+
+
+.btn {
+  width: 400px;
   border-radius: 8px;
   cursor: pointer;
   background-color: transparent;
   color: #ffffff;
   border: 2px solid rgb(177, 171, 171);
-  height: 50px;}
-
-.divGoogle button {
-  width: 320px;
-  display: flex;
-  padding: 0.5rem 1.2rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 700;
-  text-align: center;
-  text-transform: uppercase;
-  align-items: center;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  color: rgb(65, 63, 63);
-  background-color: #fff;
-  cursor: pointer;
-  transition: all 0.6s ease;
-  gap: .5rem;
+  height: 60px;
+  margin-inline: .5rem;
+  margin-block: .5rem;
 }
 
-.divGoogle button:hover {
-  transform: scale(1.02);
-}
+.login button:hover {
+  background-color: #555556;
+}  */

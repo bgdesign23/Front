@@ -25,10 +25,10 @@ function validateCoupon(couponCode) {
     new Date(welcomeCoupon.expiration) >= currentDate &&
     welcomeCoupon.usagesAvailable > 0
   ) {
-    return welcomeCoupon.discount; 
+    return welcomeCoupon.discount;
   }
 
-  return 0; 
+  return 0;
 }
 function ShoppingCart() {
   const [preferenceId, setPreferenceId] = useState(null);
@@ -36,7 +36,6 @@ function ShoppingCart() {
   const dispatch = useDispatch();
   const [discount, setDiscount] = useState(0);
   const [totalWithDiscount, setTotalWithDiscount] = useState(0); // Nuevo estado para el total con descuento
-
 
   initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e");
   const navigate = useNavigate();
@@ -114,51 +113,48 @@ function ShoppingCart() {
 
   const calculateTotalPrice = (product) => {
     const discountedPrice = product.price * (1 - discount);
-  return product.amount * discountedPrice;
+    return product.amount * discountedPrice;
   };
 
   function formatthousand(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
+  const [localCouponCode, setLocalCouponCode] = useState("");
 
-const [localCouponCode, setLocalCouponCode] = useState("");
+  const handleApplyCoupon = () => {
+    const newDiscount = validateCoupon(couponCode);
 
-const handleApplyCoupon = () => {
-  const newDiscount = validateCoupon(couponCode);
-  
+    setLocalCouponCode(couponCode);
 
-  setLocalCouponCode(couponCode);
+    setDiscount(newDiscount);
+    dispatch(applyCoupon(couponCode));
+    setCouponCode("");
+  };
 
-  setDiscount(newDiscount);
-  dispatch(applyCoupon(couponCode));
-  setCouponCode("");
-};
+  const handleBuy = async () => {
+    console.log("La función handleBuy se está ejecutando.");
 
-const handleBuy = async () => {
-  console.log("La función handleBuy se está ejecutando.");
+    try {
+      const id = await dispatch(createPreference(cart));
 
-  try {
-    const id = await dispatch(createPreference(cart));
-    
+      const newDiscount = validateCoupon(localCouponCode);
 
-    const newDiscount = validateCoupon(localCouponCode);
+      if (newDiscount > 0) {
+        const totalWithDiscount = numero * (1 - newDiscount);
 
-    if (newDiscount > 0) {
-      const totalWithDiscount = numero * (1 - newDiscount);
-      
-      setDiscount(newDiscount);
-      setTotalWithDiscount(totalWithDiscount);
-    } else {
-      setDiscount(0);
-      setTotalWithDiscount(numero);
+        setDiscount(newDiscount);
+        setTotalWithDiscount(totalWithDiscount);
+      } else {
+        setDiscount(0);
+        setTotalWithDiscount(numero);
+      }
+
+      setPreferenceId(id);
+    } catch (error) {
+      console.log("Error al crear la preferencia:", error);
     }
-
-    setPreferenceId(id);
-  } catch (error) {
-    console.log("Error al crear la preferencia:", error);
-  }
-};
+  };
 
   return (
     <div className={Styles.all_container}>
@@ -170,7 +166,7 @@ const handleBuy = async () => {
       </button>
       <div className={Styles.ShoppingCart_container}>
         <div className={Styles.tittle}>
-          <h1>tu carrito de compras</h1>
+          <p>Tu carrito de compras</p>
         </div>
         <div>
           {cart.map((producto, index) => (
@@ -213,11 +209,18 @@ const handleBuy = async () => {
         </div>
         <div>
           <div className={Styles.details}>
-            <p>Cantidad productos: {cantidad}</p>
-            <p>Total a pagar: ${formatthousand(numero)}</p> {/* Total sin descuento */}
-        {discount > 0 && (
-          <p>Total a pagar con descuento: ${formatthousand(totalWithDiscount)}</p>
-        )} {/* Total con descuento, mostrar solo si hay descuento */}
+            <div className={Styles.detailsHijo}>
+              <p>Cantidad productos: {cantidad}</p>
+              <p>Total a pagar: ${formatthousand(numero)}</p>
+            </div>{" "}
+            {/* Total sin descuento */}
+            {discount > 0 && (
+              <p>
+                Total a pagar con descuento: $
+                {formatthousand(totalWithDiscount)}
+              </p>
+            )}{" "}
+            {/* Total con descuento, mostrar solo si hay descuento */}
           </div>
           <div className={Styles.cupon_container}>
             <input
@@ -232,12 +235,12 @@ const handleBuy = async () => {
           </div>
         </div>
         <button className={Styles.btn} onClick={handleBuy}>
-          Continuar con la compra
+          CONTINUAR CON LA COMPRA
         </button>
-      {preferenceId && <Wallet initialization={{ preferenceId }} />}
+        {preferenceId && <Wallet initialization={{ preferenceId }} />}
+      </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default ShoppingCart;

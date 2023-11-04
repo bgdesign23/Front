@@ -1,58 +1,106 @@
 .all_container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
 }
 
+@media (max-width: 700px) {
+    .all_container {
+        flex-direction: column;
+        align-items: center;}
+    }
+
 .ShoppingCart_container {
     border: 2px solid rgba(255, 255, 255, 0.462);
-    background-color: rgba(0, 0, 0, 0.296);
-    padding-block: 2rem;
+    background-color: rgba(255, 255, 255, 0.843);
+    padding-bottom: 2rem;
     display: block;
     margin-inline: 60px;
-    margin-bottom: 30px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
     cursor: pointer;
-    margin-top: 10rem;
+    margin-top: 12rem;
     justify-content: center;
     align-items: center;
-    width: 800%;
-    height: 400px;
+    width: 90%;
+    height: cover;
     border-radius: 15px;
 }
 
+@media (max-width: 700px) {
+    .ShoppingCart_container  {
+        margin-top: 1rem;
+    }
+}
+
+.ShoppingCart_container p{
+        font-family: barlow;
+            font-size: 20px;
+            color: rgb(0, 0, 0);
+            padding-block: 1rem;
+}
 
 .resumeCart{
+    
     display: block;
     width: 100vh;
+    max-width: 100%;
+    margin-right: 200px;
     border: 2px solid rgba(255, 255, 255, 0.462);
-    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.843);
+    color: 0000;
     margin-right: 60px;
-    margin-top: 10rem;
-    border-radius: 15px;
+    margin-top: 12rem;
+    border-radius: 15px; 
+    width: 90%;
+
 }
+
+@media (max-width: 600px) {
+    .resumeCart {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
+        margin-inline: 2px;
+    }
+}
+
+
+
 
 .details{
 display: inline-block;
 padding-block: 1rem ;
 }
+
+.detailsHijo {
+    display: inline-block ;
+    width: 500px;
+    justify-content: left;
+}
+.detailsHijo p{
+text-align: left;
+}
+
+
 .details p{
     padding-block: .5rem ;
 
 }
 
 .titulo{
+    font-family: barlow;
     padding-block: 1rem;
-    box-shadow: 0px 10px 10px -10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 10px 10px -10px rgba(1, 1, 1, 0.3);
 }
 
 .tittle{
-    width: 300px;
-    font-size: 10px;
-    text-transform: uppercase;
-    color: antiquewhite;
+
+        font-family: barlow;
+        box-shadow: 0px 10px 10px -10px rgba(1, 1, 1, 0.3);
+    
+    
 }
 
 .cupon {
@@ -75,35 +123,27 @@ padding-block: 1rem ;
 .carritoNum p {
   justify-content: center;
   margin: 0px;
-  /* padding-block : .1rem; */
   padding: 0;
 }
 
-.btn {
-  margin-block: 0.5rem;
-  width: 490px;
-  border-radius: 8px;
-  cursor: pointer;
-  background-color: transparent;
-  color: #ffffff;
-  border: 2px solid rgb(177, 171, 171);
-  height: 50px;
-}
+
 
 .btn{
     margin-block: 1rem;
-    width: 490px;
+    width: 100%;
     border-radius: 8px;
     cursor: pointer;
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid rgb(177, 171, 171);
+    background-color: white;
+    color: #191919;
+    border: 1px solid rgb(255, 255, 255);
     height: 50px;}
 
         .btn:hover {
-            color: #211f1f;
-            background-color:aliceblue;
+            font-weight: bold;
+            color: white;
+            background-color:#191919;
         }
+        
 .cupon_container{
     display: flex;
     justify-content: center;
@@ -112,12 +152,11 @@ padding-block: 1rem ;
 
 
 .btncupon{
-    width: 230px;
+    border: none;
+    width: 240px;
     border-radius: 8px;
     cursor: pointer;
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid rgb(177, 171, 171);
+    color: #191919;
     height: 50px;
     margin-inline: .5rem;
  }
@@ -129,8 +168,9 @@ input{
 }
 
 .btncupon:hover {
+    font-weight: bold;
   color: #211f1f;
-  background-color: aliceblue;
+  background-color: rgb(61, 152, 231);
 }
 
 .backBtn{
@@ -143,5 +183,15 @@ input{
     text-decoration: none;
     color: white ;
     cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .backBtn {
+
+        margin-bottom: 3rem;
+        margin-right: 22rem;
+
+    
+    }
 }
 

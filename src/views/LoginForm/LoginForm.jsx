@@ -65,11 +65,14 @@ function LoginForm() {
   };
 
   return (
-    <div className="page-container">
+    <div className={Style.pageContainer}>
       <div className={Style.loginBackground}>
+        <div className={Style.imagennForm}>
+          <img src={imagennForm} alt="" />
+        </div>
         <div className={Style.loginContainer}>
+          <h2>Iniciar Sesión</h2>
           <div className={Style.login}>
-            <h2>Iniciar Sesión</h2>
             <form className={Style.inputPadre} onSubmit={handleSubmit}>
               <div className={Style.input1}>
                 <label>Correo Electrónico:</label>
@@ -92,17 +95,18 @@ function LoginForm() {
                   required
                 />
               </div>
-              <button type="submit">INICIAR SESIÓN</button>
-              <div className={Style.divGoogle}>
-                <button onClick={() => handleOnGoogle()}>
+              <div className={Style.botonera}>
+                <button className={Style.btn} type="submit">
+                  INICIAR SESIÓN
+                </button>
+
+                <button className={Style.btn} onClick={() => handleOnGoogle()}>
                   <FcGoogle /> CONTINUAR CON GOOGLE
                 </button>
               </div>
             </form>
           </div>
         </div>
-
-        {/* <img src={imagennForm} alt="" /> */}
       </div>
     </div>
   );
