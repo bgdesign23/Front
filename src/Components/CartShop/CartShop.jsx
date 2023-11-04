@@ -126,8 +126,7 @@ const [localCouponCode, setLocalCouponCode] = useState("");
 
 const handleApplyCoupon = () => {
   const newDiscount = validateCoupon(couponCode);
-  console.log("Validacion de coupon:", couponCode);
-  console.log("Nuevo descuento aplicado:", newDiscount);
+  
 
   setLocalCouponCode(couponCode);
 

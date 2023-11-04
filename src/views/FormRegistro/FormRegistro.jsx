@@ -21,20 +21,12 @@ export default function FormRegistro() {
   } = useForm();
 
   const password = watch("password");
-  
-  const welcomeCoupon = {
-    code: "bgdesign",
-    discount: 0.2,
-    expiration: "2023-12-31",
-    usagesAvailable: 1,
-    status: "activo",
-  };
 
   const onSubmit = (data) => {
-    if (isFirstPurchase) {
-      data.total = data.total - data.total * discount;
-      setIsFirstPurchase(false); 
-    }
+    dispatch(registerUser(data, navigate));
+    dispatch(filterRestart());
+  };
+
 
   const handleOnGoogle = () => {
     const width = 500;
@@ -69,7 +61,7 @@ export default function FormRegistro() {
   return (
     <div className={styles.pageContainer}>
       <div className={styles.loginContainer}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.login}>
             <section className={styles.formimput}>
               <div className={styles.columna}>
@@ -209,5 +201,4 @@ export default function FormRegistro() {
       </div>
     </div>
   );
-}
 }
