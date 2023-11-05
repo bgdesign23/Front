@@ -59,6 +59,10 @@
   display: none;
 }
 
+.textPrinc {
+  display: none;
+}
+
 @media (max-width: 480px) {
   .primerseccion {
     flex-direction: column;

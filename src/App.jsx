@@ -23,12 +23,21 @@ import Success from "./views/MercadoPago/Success";
 import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
 import RequestPasswordReset from "./views/Password/RequestPasswordReset";
 import PasswordReset from "./views/Password/PasswordReset";
+import { useState } from "react";
+import SideBar from "./Components/SideBar/SideBar";
+import ButtonSide from "./Components/SideBar/ButtonSide/ButtonSide";
 
 function App() {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products);
   const location = useLocation();
   const user = useSelector((state) => state.user);
+
+  const [isOpenSideBar, setIsOpenSideBar] = useState(false);
+
+  const toggleSideBar = () => {
+    setIsOpenSideBar(!isOpenSideBar);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,7 +52,17 @@ function App() {
   return (
     <div className={styles.App}>
       <>
-        {location.pathname !== "/home/success" && <NavBar />}
+        {/* <div className={styles.sideBar}>
+          <button className={styles.toggleButton} onClick={toggleSideBar}>
+            <ButtonSide />
+          </button>
+          <SideBar isOpen={isOpenSideBar} toggleSideBar={toggleSideBar} />
+        </div> */}
+
+        <div className={styles.navBar}>
+          {location.pathname !== "/home/success" && <NavBar />}
+        </div>
+
         <div className={styles.contentContainer}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -51,6 +70,7 @@ function App() {
             <Route path="/form/decoracion" element={<FormDecoracion />} />
             <Route
               path="/home/product"
+              ñ
               element={<Product productos={productos} />}
             />
             <Route path="/home/nuevo" element={<FormProduct />} />
@@ -64,8 +84,14 @@ function App() {
               <Route path="/cartShop" element={<CartShop />} />
             )}
             <Route path="/home/success" element={<Success />} />
-            <Route path={'/form/login/request-password-reset'} element={<RequestPasswordReset />} />
-            <Route path={'/form/login/password-reset'} element={<PasswordReset />} />
+            <Route
+              path={"/form/login/request-password-reset"}
+              element={<RequestPasswordReset />}
+            />
+            <Route
+              path={"/form/login/password-reset"}
+              element={<PasswordReset />}
+            />
           </Routes>
         </div>
       </>

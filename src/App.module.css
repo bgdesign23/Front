@@ -16,3 +16,20 @@
   padding: 0px 0px;
   text-align: center;
 }
+
+.toggleButton {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+  color: black;
+  background: white;
+}
+
+@media (min-width: 480px) {
+  .sideBar {
+    display: none;
+  }
+}
