@@ -7,4 +7,5 @@
 body {
   background-color: #191919;
   max-width: cover;
+  overflow-y: scroll;
 }
