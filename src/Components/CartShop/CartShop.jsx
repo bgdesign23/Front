@@ -38,14 +38,10 @@ function ShoppingCart() {
   const [preferenceId, setPreferenceId] = useState(null);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
-
   const [totalWithDiscount, setTotalWithDiscount] = useState(0);
-
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
-
-  initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e");
 
   //total a pagar
   const numero = cart.reduce((accumulator, producto) => {
@@ -59,13 +55,13 @@ function ShoppingCart() {
 
   const deleteProduct = (productId) => {
     Swal.fire({
-      title: "ojo!",
+      title: "Ojo!",
       text: "Estas sacando un producto de tu orden, estas seguro?",
-      icon: "Atención",
+      icon: "warning",
       showCancelButton: true,
       background: "#1A1A1A",
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#394754",
       confirmButtonText: "Eliminar",
       cancelButtonText: "cancelar",
     }).then((result) => {
@@ -75,9 +71,9 @@ function ShoppingCart() {
         localStorage.setItem("cart", JSON.stringify(updatedCart));
         Swal.fire({
           title: "Eliminado",
-          text: "El producto ya no esta en cariito",
+          text: "El producto ya no está en tu carrito",
           background: "#1A1A1A",
-          confirmButtonColor: "#3085d6",
+          confirmButtonColor: "#394754",
         });
       }
     });
@@ -167,7 +163,7 @@ function ShoppingCart() {
         </div>
         <div>
           {cart.length === 0 ? (
-            <h1 className={Styles.carVacio}>tu carrito esta vacio!</h1>
+            <h1 className={Styles.carVacio}>Tu carrito esta vacío!</h1>
           ) : (
             cart.map((producto, index) => (
               <CartCard
@@ -232,22 +228,6 @@ function ShoppingCart() {
               </p>
             )}{" "}
           </div>
-
-          <div className={Styles.cupon_container}>
-            <input
-              type="text"
-              placeholder=" Ingresa el código del cupón"
-              value={couponCode}
-              onChange={(e) => setCouponCode(e.target.value)}
-            />
-            <button
-              className={Styles.btncupon}
-              onClick={handleApplyCoupon}
-            >
-              Aplicar Cupón
-            </button>
-          </div>
-
         </div>
         <button className={Styles.btn} onClick={handleBuy}>
           CONTINUAR CON LA COMPRA
