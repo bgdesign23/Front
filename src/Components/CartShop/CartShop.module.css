@@ -54,6 +54,7 @@
     margin-top: 12rem;
     border-radius: 15px; 
     width: 90%;
+    height: 50%;
 
 }
 
@@ -67,7 +68,9 @@
 }
 
 
-
+.carVacio{
+    margin-top: 10%;
+}
 
 .details{
 display: inline-block;
@@ -78,6 +81,7 @@ padding-block: 1rem ;
     display: inline-block ;
     width: 500px;
     justify-content: left;
+    font-weight: bold;
 }
 .detailsHijo p{
 text-align: left;
