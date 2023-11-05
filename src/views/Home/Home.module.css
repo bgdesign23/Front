@@ -18,11 +18,11 @@
 }
 
 .quienes {
-  width: cover;
+  width: 800px;
   position: relative;
   display: block;
   top: 250px;
-  padding-left: 45px;
+  padding-inline: 50px;
   justify-content: center;
 }
 
@@ -31,7 +31,7 @@
   font-family: Cinzel;
   font-size: 100px;
   font-weight: 400;
-  text-align: left;
+  text-align: justify;
   margin-bottom: -50px;
 }
 
@@ -56,6 +56,10 @@
 }
 
 .mobileText {
+  display: none;
+}
+
+.textPrinc {
   display: none;
 }
 

@@ -74,6 +74,14 @@ ul {
   text-align: center;
 }
 
+.mercadopago {
+  display: none;
+}
+
+.metodoPago {
+  display: none;
+}
+
 @media (max-width: 480px) {
   .Footer {
     height: 200px;

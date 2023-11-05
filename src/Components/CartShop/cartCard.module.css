@@ -1,12 +1,15 @@
 .CartCard_Container {
-  width: 100%;
-  display: flex;
-  height: 10%;
-  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.18);
-  border-radius: 0;
-  background-color: #ffffffac;
-  align-items: center;
-  margin-block: 0.5rem;
+
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    height: 10%;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.18);
+    border-radius: 0;
+    background-color: #ffffffac;
+    align-items: center;
+    /* justify-content: center; */
+   margin-block: .5rem;
 }
 
 @media (max-width: 600px) {
@@ -18,9 +21,7 @@
   }
 }
 
-.eliminar {
-  color: rgb(20, 103, 237);
-}
+
 
 h2 {
   color: #000;
@@ -44,10 +45,26 @@ h3 {
 }
 
 .imagen {
-  width: 70px;
-  height: 70px;
-  border-radius: 0;
-}
+        width: 70px;
+        height: 70px;
+        border-radius: 0;
+        }
+
+        .imagen_container{
+            display: flex;
+            justify-content: center;
+            height: 70%
+        }
+    
+.botonera{
+      margin-left: 5rem;
+            display: flex;
+                width: 400px;
+                justify-content: right;
+                align-items: center;
+                gap: 1rem;
+                } 
+
 
 .imagen_container {
   display: flex;
