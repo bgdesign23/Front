@@ -18,8 +18,8 @@ export default function CardOffer({ id, name, price, image, stock }) {
         <h2>{name}</h2>
 
         <div className={Styles.details}>
-          <h3>${price}</h3>
-          <h2>{stock}</h2>
+          <h2>Precio</h2>
+          <h4>${price}.-</h4>
         </div>
       </div>
     </div>

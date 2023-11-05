@@ -1,13 +1,12 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getProductsAction } from '../../Redux/actions';
-import Style from "../Offer/Offer.module.css"
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProductsAction } from "../../Redux/actions";
+import Style from "../Offer/Offer.module.css";
 
-import CardOffer from './CardOffer';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
+import CardOffer from "./CardOffer";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function Offer() {
   const dispatch = useDispatch();
@@ -18,10 +17,8 @@ function Offer() {
     dispatch(getProductsAction());
   }, [dispatch]);
 
-  const productsInOffer = allProducts.filter(product => product.offer);
+  const productsInOffer = allProducts.filter((product) => product.offer);
   //console.log(productsInOffer);
-
-
 
   const sliderSettings = {
     dots: true, // Muestra los puntos indicadores
@@ -50,10 +47,8 @@ function Offer() {
           </div>
         ))}
       </Slider>
-      
     </div>
   );
-
 }
 
 export default Offer;
