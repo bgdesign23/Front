@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
+
 }
 
 @media (max-width: 700px) {
@@ -24,6 +25,7 @@
     justify-content: center;
     align-items: center;
     width: 90%;
+        max-width: 900px;
     height: cover;
     border-radius: 15px;
 }
@@ -44,8 +46,8 @@
 .resumeCart{
     
     display: block;
-    width: 100vh;
-    max-width: 100%;
+    /* width: 100vh; */
+    max-width: 500px;
     margin-right: 200px;
     border: 2px solid rgba(255, 255, 255, 0.462);
     background-color: rgba(255, 255, 255, 0.843);
@@ -73,15 +75,16 @@
 }
 
 .details{
+    max-width: 450px;
 display: inline-block;
 padding-block: 1rem ;
 }
 
 .detailsHijo {
     display: inline-block ;
-    width: 500px;
+    width: 420px;
+    font-family:Arial, Helvetica, sans-serif;
     justify-content: left;
-    font-weight: bold;
 }
 .detailsHijo p{
 text-align: left;
@@ -133,24 +136,28 @@ text-align: left;
 
 
 .btn{
-    margin-block: 1rem;
+    margin-bottom: 1rem;
+    max-width: 420px;
     width: 100%;
     border-radius: 8px;
     cursor: pointer;
     background-color: white;
     color: #191919;
-    border: 1px solid rgb(255, 255, 255);
+    border: none;
     height: 50px;}
 
         .btn:hover {
             font-weight: bold;
             color: white;
             background-color:#191919;
+            transition: 0.8s;
         }
         
 .cupon_container{
     display: flex;
     justify-content: center;
+    margin-block: .5rem;
+    padding-right: 1rem;
 }
 
 
@@ -161,25 +168,27 @@ text-align: left;
     border-radius: 8px;
     cursor: pointer;
     color: #191919;
-    height: 50px;
+    height: 30px;
     margin-inline: .5rem;
+    align-items: left;
+    justify-content: center;
  }
 
 input{
     width: 230px;
     border-radius: 8px;
-    margin-inline: .5rem;
+    
 }
 
 .btncupon:hover {
     font-weight: bold;
-  color: #211f1f;
-  background-color: rgb(61, 152, 231);
+  color: white;
+  background-color: #009EE3;
 }
 
 .backBtn{
     top: 110px;
-    left: 70px;
+    left: -71px;
     height: 100px;
     position: relative;
     border: none;
@@ -187,6 +196,7 @@ input{
     text-decoration: none;
     color: white ;
     cursor: pointer;
+    position: relative;
 }
 
 @media (max-width: 600px) {

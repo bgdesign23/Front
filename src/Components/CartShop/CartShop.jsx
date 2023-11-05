@@ -214,10 +214,20 @@ function ShoppingCart() {
         <div>
           <div className={Styles.details}>
             <div className={Styles.detailsHijo}>
-              <p>Cantidad productos: {cantidad}</p>
-              <p>Total a pagar: ${formatthousand(numero)}</p>
+              <p>Productos: ({cantidad})</p>
+              <div className={Styles.cupon_container}>
+                <input
+                  type="text"
+                  placeholder=" Ingresa el código del cupón"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                />
+                <button className={Styles.btncupon} onClick={handleApplyCoupon}>
+                  Aplicar Cupón
+                </button>
+              </div>
+              <p>Total: ${formatthousand(numero)}</p>
             </div>{" "}
-            {/* Total sin descuento */}
             {discount > 0 && (
               <p>
                 Total a pagar con descuento: $
@@ -225,17 +235,6 @@ function ShoppingCart() {
               </p>
             )}{" "}
             {/* Total con descuento, mostrar solo si hay descuento */}
-          </div>
-          <div className={Styles.cupon_container}>
-            <input
-              type="text"
-              placeholder=" Ingresa el código del cupón"
-              value={couponCode}
-              onChange={(e) => setCouponCode(e.target.value)}
-            />
-            <button className={Styles.btncupon} onClick={handleApplyCoupon}>
-              Aplicar Cupón
-            </button>
           </div>
         </div>
         <button className={Styles.btn} onClick={handleBuy}>
