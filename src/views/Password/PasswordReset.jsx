@@ -75,7 +75,9 @@ const PasswordReset = () => {
                   </p>
                 )}
               </div>
-              <button type="submit">ENVIAR</button>
+              <div className={styles.botonera}>
+              <button className={styles.btn} type="submit">ENVIAR</button>
+              </div>
             </form>
           </div>
         </div>
