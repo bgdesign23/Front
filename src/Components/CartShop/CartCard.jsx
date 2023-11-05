@@ -1,6 +1,6 @@
 import Styles from "../CartShop/cartCard.module.css";
 import { useNavigate } from "react-router-dom";
-
+import ButtonDelete from "./ButtonDelete";
 
 function CartCard({
   id,
@@ -15,7 +15,6 @@ function CartCard({
   disableDecreaseButton,
 }) {
   const navigate = useNavigate();
-  
 
   return (
     <>
@@ -55,9 +54,10 @@ function CartCard({
           <div className={Styles.details}>
             <h3>${formatthousand(totalPriceProduct)}</h3>
           </div>
-          <p className={Styles.eliminar} onClick={() => deleteProduct(id)}>
-            Eliminar{" "}
-          </p>
+
+          <div onClick={() => deleteProduct(id)}>
+            <ButtonDelete />
+          </div>
         </div>
       </div>
     </>

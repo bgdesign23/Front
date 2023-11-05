@@ -1,11 +1,13 @@
 .CartCard_Container {
     width: 100%;
+    max-width: 900px;
     display: flex;
     height: 10%;
     box-shadow: 0 5px 6px rgba(0, 0, 0, 0.18);
     border-radius: 0;
     background-color: #ffffffac;
     align-items: center;
+    /* justify-content: center; */
    margin-block: .5rem;
 }
 
@@ -18,10 +20,6 @@
     }
 }
 
-.eliminar{
-    color: rgb(20, 103, 237);
-
-    }
 
 h2 {
     color: #000;
@@ -57,7 +55,7 @@ h3 {
         }
     
 .botonera{
-      margin-left: 1rem;
+      margin-left: 5rem;
             display: flex;
                 width: 400px;
                 justify-content: right;

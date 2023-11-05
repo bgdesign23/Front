@@ -31,17 +31,17 @@ function validateCoupon(couponCode) {
   return 0;
 }
 function ShoppingCart() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [preferenceId, setPreferenceId] = useState(null);
   const [couponCode, setCouponCode] = useState("");
-  const dispatch = useDispatch();
   const [discount, setDiscount] = useState(0);
   const [totalWithDiscount, setTotalWithDiscount] = useState(0); // Nuevo estado para el total con descuento
-
-  initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e");
-  const navigate = useNavigate();
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
+
+  initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e");
 
   //total a pagar
   const numero = cart.reduce((accumulator, producto) => {
@@ -169,26 +169,30 @@ function ShoppingCart() {
           <p>Tu carrito de compras</p>
         </div>
         <div>
-          {cart.map((producto, index) => (
-            <CartCard
-              key={producto.id}
-              id={producto.id}
-              name={producto.name}
-              description={producto.description}
-              types={producto.type}
-              stock={producto.stock}
-              price={producto.price}
-              image={producto.image}
-              category={producto.CategoryId}
-              amount={producto.amount}
-              deleteProduct={deleteProduct}
-              handleAmount_Up={handleAmount_Up}
-              handleAmount_Down={handleAmount_Down}
-              totalPriceProduct={calculateTotalPrice(producto)}
-              formatthousand={formatthousand}
-              disableDecreaseButton={producto.amount === 1}
-            />
-          ))}
+          {cart.length === 0 ? (
+            <h1 className={Styles.carVacio}>tu carrito esta vacio!</h1>
+          ) : (
+            cart.map((producto, index) => (
+              <CartCard
+                key={producto.id}
+                id={producto.id}
+                name={producto.name}
+                description={producto.description}
+                types={producto.type}
+                stock={producto.stock}
+                price={producto.price}
+                image={producto.image}
+                category={producto.CategoryId}
+                amount={producto.amount}
+                deleteProduct={deleteProduct}
+                handleAmount_Up={handleAmount_Up}
+                handleAmount_Down={handleAmount_Down}
+                totalPriceProduct={calculateTotalPrice(producto)}
+                formatthousand={formatthousand}
+                disableDecreaseButton={producto.amount === 1}
+              />
+            ))
+          )}
         </div>
         <Toaster
           position="top-right"
@@ -210,10 +214,20 @@ function ShoppingCart() {
         <div>
           <div className={Styles.details}>
             <div className={Styles.detailsHijo}>
-              <p>Cantidad productos: {cantidad}</p>
-              <p>Total a pagar: ${formatthousand(numero)}</p>
+              <p>Productos: ({cantidad})</p>
+              <div className={Styles.cupon_container}>
+                <input
+                  type="text"
+                  placeholder=" Ingresa el código del cupón"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                />
+                <button className={Styles.btncupon} onClick={handleApplyCoupon}>
+                  Aplicar Cupón
+                </button>
+              </div>
+              <p>Total: ${formatthousand(numero)}</p>
             </div>{" "}
-            {/* Total sin descuento */}
             {discount > 0 && (
               <p>
                 Total a pagar con descuento: $
@@ -221,17 +235,6 @@ function ShoppingCart() {
               </p>
             )}{" "}
             {/* Total con descuento, mostrar solo si hay descuento */}
-          </div>
-          <div className={Styles.cupon_container}>
-            <input
-              type="text"
-              placeholder=" Ingresa el código del cupón"
-              value={couponCode}
-              onChange={(e) => setCouponCode(e.target.value)}
-            />
-            <button className={Styles.btncupon} onClick={handleApplyCoupon}>
-              Aplicar Cupón
-            </button>
           </div>
         </div>
         <button className={Styles.btn} onClick={handleBuy}>
