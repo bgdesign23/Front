@@ -1,8 +1,6 @@
-import Styles from "../CartShop/ButonDelete.module.css";
-
 export default function ButtonDelete() {
   return (
-    <div className={Styles.buttonDelete}>
+    <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="1em"
