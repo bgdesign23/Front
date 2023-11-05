@@ -1,15 +1,16 @@
 .all_container {
+
     display: flex;
-    flex-direction: row;
     justify-content: center;
     width: 100%;
 }
 
 @media (max-width: 700px) {
-    .all_container {
-        flex-direction: column;
-        align-items: center;}
-    }
+  .all_container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .ShoppingCart_container {
     border: 2px solid rgba(255, 255, 255, 0.462);
@@ -24,28 +25,30 @@
     justify-content: center;
     align-items: center;
     width: 90%;
+    max-width: 900px;
     height: cover;
     border-radius: 15px;
 }
 
 @media (max-width: 700px) {
-    .ShoppingCart_container  {
-        margin-top: 1rem;
-    }
+  .ShoppingCart_container {
+    margin-top: 1rem;
+  }
 }
 
-.ShoppingCart_container p{
-        font-family: barlow;
-            font-size: 20px;
-            color: rgb(0, 0, 0);
-            padding-block: 1rem;
+.ShoppingCart_container p {
+  font-family: barlow;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  padding-block: 1rem;
 }
+
 
 .resumeCart{
     
     display: block;
-    width: 100vh;
-    max-width: 100%;
+    /* width: 100vh; */
+    max-width: 500px;
     margin-right: 200px;
     border: 2px solid rgba(255, 255, 255, 0.462);
     background-color: rgba(255, 255, 255, 0.843);
@@ -54,53 +57,55 @@
     margin-top: 12rem;
     border-radius: 15px; 
     width: 90%;
+    height: 50%;
+
 
 }
 
 @media (max-width: 600px) {
-    .resumeCart {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 2rem;
-        margin-inline: 2px;
-    }
+  .resumeCart {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    margin-inline: 2px;
+  }
 }
 
 
 
+.carVacio{
+    margin-top: 10%;
+}
 
 .details{
+    max-width: 450px;
 display: inline-block;
 padding-block: 1rem ;
 }
 
 .detailsHijo {
     display: inline-block ;
-    width: 500px;
+    width: 420px;
+    font-family:Arial, Helvetica, sans-serif;
     justify-content: left;
 }
-.detailsHijo p{
-text-align: left;
+.detailsHijo p {
+  text-align: left;
 }
 
-
-.details p{
-    padding-block: .5rem ;
-
+.details p {
+  padding-block: 0.5rem;
 }
 
-.titulo{
-    font-family: barlow;
-    padding-block: 1rem;
-    box-shadow: 0px 10px 10px -10px rgba(1, 1, 1, 0.3);
+.titulo {
+  font-family: barlow;
+  padding-block: 1rem;
+  box-shadow: 0px 10px 10px -10px rgba(1, 1, 1, 0.3);
 }
 
-.tittle{
-
-        font-family: barlow;
-        box-shadow: 0px 10px 10px -10px rgba(1, 1, 1, 0.3);
-    
-    
+.tittle {
+  font-family: barlow;
+  box-shadow: 0px 10px 10px -10px rgba(1, 1, 1, 0.3);
 }
 
 .cupon {
@@ -113,12 +118,11 @@ text-align: left;
   align-items: center;
 }
 
-
- .carritoNum{
-    border-radius: .7rem;
-    width: 1rem;
-    height: 1rem;
- }
+.carritoNum {
+  border-radius: 0.7rem;
+  width: 1rem;
+  height: 1rem;
+}
 
 .carritoNum p {
   justify-content: center;
@@ -128,27 +132,42 @@ text-align: left;
 
 
 
+
 .btn{
-    margin-block: 1rem;
+    margin-bottom: 1rem;
+    max-width: 420px;
     width: 100%;
     border-radius: 8px;
     cursor: pointer;
     background-color: white;
     color: #191919;
-    border: 1px solid rgb(255, 255, 255);
+    border: none;
     height: 50px;}
 
         .btn:hover {
             font-weight: bold;
             color: white;
             background-color:#191919;
+            transition: 0.8s;
         }
         
 .cupon_container{
     display: flex;
     justify-content: center;
+    margin-block: .5rem;
+    padding-right: 1rem;
 }
 
+.btn:hover {
+  font-weight: bold;
+  color: white;
+  background-color: #191919;
+}
+
+.cupon_container {
+  display: flex;
+  justify-content: center;
+}
 
 
 .btncupon{
@@ -157,25 +176,27 @@ text-align: left;
     border-radius: 8px;
     cursor: pointer;
     color: #191919;
-    height: 50px;
+    height: 30px;
     margin-inline: .5rem;
+    align-items: left;
+    justify-content: center;
  }
 
 input{
     width: 230px;
     border-radius: 8px;
-    margin-inline: .5rem;
+    
 }
 
 .btncupon:hover {
     font-weight: bold;
-  color: #211f1f;
-  background-color: rgb(61, 152, 231);
+  color: white;
+  background-color: #009EE3;
 }
 
 .backBtn{
     top: 110px;
-    left: 70px;
+    left: -71px;
     height: 100px;
     position: relative;
     border: none;
@@ -183,15 +204,13 @@ input{
     text-decoration: none;
     color: white ;
     cursor: pointer;
+    position: relative;
+
 }
 
 @media (max-width: 600px) {
-    .backBtn {
-
-        margin-bottom: 3rem;
-        margin-right: 22rem;
-
-    
-    }
+  .backBtn {
+    margin-bottom: 3rem;
+    margin-right: 22rem;
+  }
 }
-

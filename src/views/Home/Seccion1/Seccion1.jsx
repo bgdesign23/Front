@@ -11,11 +11,14 @@ export default function Seccion1() {
         <p className={style.texto}>
           Black Group Desing es una empresa familiar,
           <br />
-          dedicada a la venta de muebles y diseño de espacios. dedicada a la
-          venta de muebles y diseño de espacios. dedicada a la venta de muebles
-          y diseño de espacios. dedicada a la venta de muebles y diseño de
-          espacios.
-          <br /> aca hay que poner chamuyo
+          Somos una empresa dedicada a la venta de muebles y diseño de espacios,
+          con una rica y amplia trayectoria que se remonta a casi 80 años atrás.
+          Nuestra historia comienza con un joven soñador italiano que llegó a
+          una tierra nueva, llena de ilusiones y sueños por cumplir. Hoy, sus
+          bisnietos continuamos con este proyecto, brindándole un enfoque actual
+          y actualizando la creación de muebles para adaptarla a los estándares
+          contemporáneos.
+          <br />
         </p>
       </div>
       <div className={style.imagen}>

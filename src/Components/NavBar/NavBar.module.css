@@ -14,12 +14,6 @@
   box-shadow: 0px 10px 10px -10px rgba(26, 25, 25, 0.5);
 }
 
-.logo {
-  /* position: relative; */
-  cursor: pointer;
-  justify-content: center;
-  width: 200px;
-}
 
 .uno {
   align-items: center;
@@ -36,11 +30,29 @@
 }
 
 .tres {
+ position: relative;
+left: 20px;
+}
+
+.logo {
+  position: relative;
+  cursor: pointer;
+
+  width: 200px;
+}
+/* 
+.tres {
   display: flex;
-  width: 500px;
+  width: 600px;
   align-items: center;
   justify-content: center;
 }
+.logo {
+  position: relative;
+  cursor: pointer;
+
+  width: 200px;
+} */
 
 .cuatro {
   align-items: center;
