@@ -30,13 +30,17 @@ function validateCoupon(couponCode) {
 
   return 0;
 }
+
 function ShoppingCart() {
+  initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [preferenceId, setPreferenceId] = useState(null);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
-  const [totalWithDiscount, setTotalWithDiscount] = useState(0); // Nuevo estado para el total con descuento
+
+  const [totalWithDiscount, setTotalWithDiscount] = useState(0);
+
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
@@ -54,7 +58,6 @@ function ShoppingCart() {
   }, 0);
 
   const deleteProduct = (productId) => {
-    // show alert confirmation
     Swal.fire({
       title: "ojo!",
       text: "Estas sacando un producto de tu orden, estas seguro?",
@@ -67,7 +70,6 @@ function ShoppingCart() {
       cancelButtonText: "cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        // delete pokemon if is confirmed
         const updatedCart = cart.filter((product) => product.id !== productId);
         setCart(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -112,44 +114,39 @@ function ShoppingCart() {
   };
 
   const calculateTotalPrice = (product) => {
-    const discountedPrice = product.price * (1 - discount);
-    return product.amount * discountedPrice;
+    const totalPrice = product.price * product.amount;
+    return totalPrice;
   };
 
   function formatthousand(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
-  const [localCouponCode, setLocalCouponCode] = useState("");
-
-  const handleApplyCoupon = () => {
+  const handleApplyCoupon = async () => {
     const newDiscount = validateCoupon(couponCode);
-
-    setLocalCouponCode(couponCode);
-
     setDiscount(newDiscount);
     dispatch(applyCoupon(couponCode));
     setCouponCode("");
+
+    if (newDiscount > 0) {
+      const totalWithDiscount = numero * (1 - newDiscount);
+      setTotalWithDiscount(totalWithDiscount);
+    } else {
+      setDiscount(0);
+      setTotalWithDiscount(numero);
+    }
   };
 
   const handleBuy = async () => {
-    console.log("La función handleBuy se está ejecutando.");
-
+    const updatedCart = cart.map(producto => {
+      const discountedPrice = producto.price * (1 - discount);
+      return {
+        ...producto,
+        price: discountedPrice,
+      };
+    });
     try {
-      const id = await dispatch(createPreference(cart));
-
-      const newDiscount = validateCoupon(localCouponCode);
-
-      if (newDiscount > 0) {
-        const totalWithDiscount = numero * (1 - newDiscount);
-
-        setDiscount(newDiscount);
-        setTotalWithDiscount(totalWithDiscount);
-      } else {
-        setDiscount(0);
-        setTotalWithDiscount(numero);
-      }
-
+      const id = await dispatch(createPreference(updatedCart));
       setPreferenceId(id);
     } catch (error) {
       console.log("Error al crear la preferencia:", error);
@@ -234,8 +231,23 @@ function ShoppingCart() {
                 {formatthousand(totalWithDiscount)}
               </p>
             )}{" "}
-            {/* Total con descuento, mostrar solo si hay descuento */}
           </div>
+
+          <div className={Styles.cupon_container}>
+            <input
+              type="text"
+              placeholder=" Ingresa el código del cupón"
+              value={couponCode}
+              onChange={(e) => setCouponCode(e.target.value)}
+            />
+            <button
+              className={Styles.btncupon}
+              onClick={handleApplyCoupon}
+            >
+              Aplicar Cupón
+            </button>
+          </div>
+
         </div>
         <button className={Styles.btn} onClick={handleBuy}>
           CONTINUAR CON LA COMPRA
