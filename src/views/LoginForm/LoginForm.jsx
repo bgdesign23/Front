@@ -99,12 +99,23 @@ function LoginForm() {
                 <button className={Style.btn} type="submit">
                   INICIAR SESIÓN
                 </button>
-
-                <button className={Style.btn} onClick={() => handleOnGoogle()}>
-                  <FcGoogle /> CONTINUAR CON GOOGLE
-                </button>
               </div>
             </form>
+            <div className={Style.recup}>
+              <h4
+                onClick={() => navigate("/form/login/request-password-reset")}
+              >
+                👉 ¿Olvidaste tu contraseña? 👈
+              </h4>
+            </div>
+            <div className={Style.botonera2}>
+              <button className={Style.btn} onClick={() => navigate("/form/register")}>
+                CREAR CUENTA
+              </button>
+              <button className={Style.btn} onClick={() => handleOnGoogle()}>
+                <FcGoogle /> CONTINUAR CON GOOGLE
+              </button>
+            </div>
           </div>
         </div>
       </div>

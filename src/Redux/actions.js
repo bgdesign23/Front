@@ -38,7 +38,7 @@ import {
   CLEAR_ERRORS,
   GET_ADMIN,
   CREATE_ADMIN,
-  GET_BY_ID_ADMIN,
+  // GET_BY_ID_ADMIN,
   DELETE_ADMIN
 } from "../Redux/actionsTypes";
 
@@ -126,7 +126,7 @@ export const getAdmin = () => {
       });
     } catch (error) {
       console.log(error.message);
-    };
+    }
   };
 };
 
@@ -147,7 +147,7 @@ export const deleteAdmin =  (id) => {
     });
   } catch (error) {
     console.log(error.message);
-  };
+  }
   };
 };
 
@@ -506,7 +506,7 @@ export const googleUser = (payload) => {
         type: REGISTER_SUCCESS,
         payload: payload,
       });
-      if (payload.user.cart.products) {
+      if (payload.user.cart?.products) {
         localStorage.setItem("cart", payload.user.cart.products[0]);
       }
       localStorage.setItem("token", payload.token);
@@ -643,3 +643,56 @@ export function clearErrors() {
     });
   };
 }
+
+export const requestPasswordResetAction = (result, navigate) => {
+	return async function () {
+		try {
+			const response = await axios.post(`${URL}/users/request-password-reset`, result);
+			await Swal.fire({
+        title: "¡Pedido de recuperación enviado!",
+        text: "Por favor ingresa a tu correo y sigue los pasos para restablecer tu contraseña",
+        icon: "success",
+        background: "#3b3838",
+        color: "#ffffff",
+      });
+			if (response.data.redirectUrl) {
+        window.open('https://accounts.google.com/', '_blank');}
+        navigate("/form/login");
+		} catch (error) {
+			await Swal.fire({
+				title: "Hubo un error al enviar petición para restablecer la contraseña",
+        text: error.response.data.error,
+				icon: 'error',
+        background: "#3b3838",
+        color: "#ffffff",
+			});
+      navigate("/form/login");
+		}
+	};
+};
+
+export const confirmPasswordReset = (token, password) => {
+	return async function () {
+		try {
+			const result = await axios.post(`${URL}/users/password-reset`, {
+				password,
+        token,
+			});
+			await Swal.fire({
+				title: result.data.message,
+				icon: 'success',
+				timer: 5000,
+        background: "#3b3838",
+        color: "#ffffff",
+			});
+		} catch (error) {
+			await Swal.fire({
+				title: "Hubo un error al confirmar el restablecimiento de la contraseña",
+        text: error.response.data.error,
+				icon: 'error',
+        background: "#3b3838",
+        color: "#ffffff",
+			});
+		}
+	};
+};

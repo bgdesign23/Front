@@ -21,6 +21,8 @@ import PerfilUser from "./views/PerfilUser/PerfilUser";
 import CouponUser from "../src/views/PerfilUser/CouponUser";
 import Success from "./views/MercadoPago/Success";
 import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
+import RequestPasswordReset from "./views/Password/RequestPasswordReset";
+import PasswordReset from "./views/Password/PasswordReset";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,6 +64,8 @@ function App() {
               <Route path="/cartShop" element={<CartShop />} />
             )}
             <Route path="/home/success" element={<Success />} />
+            <Route path={'/form/login/request-password-reset'} element={<RequestPasswordReset />} />
+            <Route path={'/form/login/password-reset'} element={<PasswordReset />} />
           </Routes>
         </div>
       </>
