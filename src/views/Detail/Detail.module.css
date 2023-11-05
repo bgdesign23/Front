@@ -26,7 +26,8 @@
   overflow: clip;
 }
 .image {
-  width: 400px;
+  margin-left: -35px;
+  width: 450px;
   height: 500px;
 }
 

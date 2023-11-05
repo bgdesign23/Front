@@ -12,16 +12,16 @@ const Detail = () => {
   const [thing, setThing] = useLocalStorage("cart", []); //localStorage hook
   const { id } = useParams();
   const user = useSelector((state) => state.user);
-  const copy = useSelector((state) => state.products_Copy)
+  const copy = useSelector((state) => state.products_Copy);
   const detailProduct = useSelector((state) => state.products_Details);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const colores = [...new Set(copy.map((prod) => prod.color))]
-  const materiales = [...new Set(copy.map((mat) => mat.material))]
+  const colores = [...new Set(copy.map((prod) => prod.color))];
+  const materiales = [...new Set(copy.map((mat) => mat.material))];
 
-  const [selectedColor, setSelectedColor] = useState("")
-  const [selectedMaterial, setSelectedMaterial] = useState("")
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedMaterial, setSelectedMaterial] = useState("");
 
   //monta el producto
   useEffect(() => {
@@ -39,50 +39,48 @@ const Detail = () => {
   //sino agregalo al carrito
   const handle_addToCart = () => {
     if (user || localStorage.getItem("token")) return addToCart();
-    else Swal.fire({
-      title: "Usuario no registrado",
-      text: "Inicia sesión para agregar productos al carrito",
-      icon: "warning",
-      showDenyButton: true,
-      confirmButtonText: "Iniciar sesión",
-      denyButtonText: "Cancelar",
-      confirmButtonColor: "#394754",
-      denyButtonColor: "#394754",
-      background: "#3b3838",
-      color: "#ffffff",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        navigate("/form/login");
-      }
-    });
+    else
+      Swal.fire({
+        title: "Usuario no registrado",
+        text: "Inicia sesión para agregar productos al carrito",
+        icon: "warning",
+        showDenyButton: true,
+        confirmButtonText: "Iniciar sesión",
+        denyButtonText: "Cancelar",
+        confirmButtonColor: "#394754",
+        denyButtonColor: "#394754",
+        background: "#3b3838",
+        color: "#ffffff",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          navigate("/form/login");
+        }
+      });
   };
 
-  const addToCart = () => {  
+  const addToCart = () => {
+    const existingProduct = thing.findIndex(
+      (product) => product.id === detailProduct.id
+    );
 
-      const existingProduct = thing.findIndex(
-        (product) => 
-        product.id === detailProduct.id
-      )
-      
-      if (existingProduct !== -1) {
-        thing[existingProduct].color = selectedColor
-        thing[existingProduct].material = selectedMaterial
-        thing[existingProduct].amount += 1;
-        setThing([...thing]);
-      } else {
-        const updatedProduct = {
-          ...detailProduct,
-          color: selectedColor,
-          material: selectedMaterial,
-          amount: 1
-        }
-        thing.push(updatedProduct)
-      }
-        setThing([...thing]);
+    if (existingProduct !== -1) {
+      thing[existingProduct].color = selectedColor;
+      thing[existingProduct].material = selectedMaterial;
+      thing[existingProduct].amount += 1;
+      setThing([...thing]);
+    } else {
+      const updatedProduct = {
+        ...detailProduct,
+        color: selectedColor,
+        material: selectedMaterial,
+        amount: 1,
+      };
+      thing.push(updatedProduct);
+    }
+    setThing([...thing]);
 
-      toast.success("se agrego al carrito de compras");
-      console.log("Productos: ", thing);
-
+    toast.success("se agrego al carrito de compras");
+    console.log("Productos: ", thing);
   };
 
   return (
@@ -102,8 +100,8 @@ const Detail = () => {
           </span>
           <div className={styles.filas}>
             <h3 className={styles.type}>Ambiente: {detailProduct?.type}</h3>
-          
-            <select
+
+            {/* <select
               value={selectedColor}
               onChange={(e) => setSelectedColor(e.target.value)}
             >
@@ -124,11 +122,11 @@ const Detail = () => {
                   {material}
                 </option>
               ))}
-            </select>
+            </select> */}
             <h3 className={styles.category}>
               {" "}
               {detailProduct?.category?.name}
-            </h3> 
+            </h3>
             <h3 className={styles.stock}>{detailProduct?.stock}</h3>
           </div>
           <h2 className={styles.price}>${detailProduct?.price},00</h2>
