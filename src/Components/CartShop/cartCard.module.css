@@ -8,8 +8,7 @@
     border-radius: 0;
     background-color: #ffffffac;
     align-items: center;
-    /* justify-content: center; */
-   margin-block: .5rem;
+    margin-block: .5rem;
 }
 
 @media (max-width: 600px) {
@@ -59,7 +58,7 @@ h3 {
 .botonera{
       margin-left: 5rem;
             display: flex;
-                width: 400px;
+                width: 300px;
                 justify-content: right;
                 align-items: center;
                 gap: 1rem;

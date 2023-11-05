@@ -1,7 +1,6 @@
 .all_container {
 
     display: flex;
-    flex-direction: row;
     justify-content: center;
     width: 100%;
 }
@@ -26,7 +25,7 @@
     justify-content: center;
     align-items: center;
     width: 90%;
-        max-width: 900px;
+    max-width: 900px;
     height: cover;
     border-radius: 15px;
 }
