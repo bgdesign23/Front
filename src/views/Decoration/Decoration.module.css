@@ -28,30 +28,6 @@
   background: linear-gradient(to bottom right, #3b3b3b, #000000);
   border-radius: 5px;
 }
-.toggleSidebarBtn {
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  position: fixed;
-  top: 10px;
-  left: 70px;
-  z-index: 101;
-  border: none;
-  background: none;
-  border-radius: 5px;
-  width: 30px;
-  height: 30px;
-  color: #ffffff;
-}
-
-.toggleSidebarBtn:hover {
-  opacity: 0.7;
-}
-
-.toggleSidebarBtn.open {
-  background-color: white;
-  color: #ffffff;
-}
 
 @media (min-width: 768px) {
   .containerDeco:nth-child(odd) {
@@ -74,6 +50,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: -100px;
   font-family: "Barlow", sans-serif;
   color: white;
   align-items: flex-start;
@@ -83,8 +60,7 @@
 .containerDeco img {
   width: 300px;
   height: 300px;
-  display: block;
-  margin: 0 auto;
+  /* display: block; */
 }
 
 .textSection h1 {
@@ -97,13 +73,23 @@
 }
 
 .boton {
-  height: 40px;
-  background: #d9d9d9;
-  color: #000;
-  text-align: center;
-  font-family: Cinzel;
+  /* margin-bottom: 4rem; */
+  margin-left: -330px;
+  margin-top: 250px;
+  width: 200px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: white;
+  color: #191919;
+  height: 45px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+}
+
+.boton:hover {
+  color: white;
+  background-color: #191919;
+  font-weight: lighter;
+  transition: 0.8s;
 }

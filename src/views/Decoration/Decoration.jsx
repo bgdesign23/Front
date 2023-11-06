@@ -27,10 +27,10 @@ const Decoracion = () => {
               <h1>{serv.name}</h1>
               <span>{serv.description}</span>
               <p>Estilo: {serv.type}</p>
-              <Link to="/form/decoracion">
-                <button className={styles.boton}> Solicitar servicio </button>
-              </Link>
             </section>
+            <Link to="/form/decoracion">
+              <button className={styles.boton}> Solicitar servicio </button>
+            </Link>
           </div>
         ))}
       </section>
