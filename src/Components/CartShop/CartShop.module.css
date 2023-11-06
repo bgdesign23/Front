@@ -21,7 +21,7 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
     cursor: pointer;
-    margin-top: 12rem;
+    margin-top: 8rem;
     justify-content: center;
     align-items: center;
     width: 90%;
@@ -54,7 +54,7 @@
     background-color: rgba(255, 255, 255, 0.843);
     color: 0000;
     margin-right: 60px;
-    margin-top: 12rem;
+    margin-top: 8rem;
     border-radius: 15px; 
     width: 90%;
     height: 50%;
