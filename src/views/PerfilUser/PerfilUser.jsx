@@ -1,137 +1,145 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../../Redux/actions";
-import styles from "../../views/PerfilUser/PerfilUser.module.css";
-
-
+import  { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser, updateUser } from "../../Redux/actions";
+import styles from "../PerfilUser/PerfilUser.module.css";
 
 function PerfilUser() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const userData = useSelector((state) => state.user);
 
-
-  const [input, setInput] = useState({
-    username: (user && user.username) || "",
-    location: (user && user.location) || "",
-    phone: (user && user.phone) || "",
-    email: (user && user.email) || "",
-    password: "",
-    confirmPassword: "",
-    formSubmitted: false,
+  const [formData, setFormData] = useState({
+    id: "",
+    username: '',
+    location: '',
+    phone: '',
+    email: '',
+    image: '',
+    currentPassword: '',
+    newPassword: '',
   });
 
-
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
   useEffect(() => {
-  }, [user]);
+    if (userData && userData.user) {
+      const user = userData.user;
 
-  function handleChange(event) {
-    setInput({
-      ...input,
-      [event.target.name]: event.target.value,
-    });
-    
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (userData.id) {
-      dispatch(updateUser(userData));
-    } else {
-      // Manejar el caso en que userData.id es undefined
-      console.error("userData.id es undefined");
+      setFormData({
+        id: user.id || '',
+        username: user.username || '',
+        location: user.location || '',
+        phone: user.phone || '',
+        email: user.email || '',
+        image: user.profileImage || '',
+        currentPassword: '',
+        newPassword: '',
+      });
     }
-    setInput((prevInput) => ({ ...prevInput, formSubmitted: true }));
-     {
-      dispatch(updateUser(input));
-    }
-  }
+  }, [userData]);
 
+  const handleUpdateUser = () => {
+    dispatch(updateUser(formData));
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+  e.preventDefault();
+  dispatch(updateUser(formData));
+  alert('Los cambios se guardaron correctamente');
+};
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setFormData({ ...formData, image: file });
+  };
+  
   return (
     <div>
+      {console.log('formData en el render:', formData)}
+
       <form className={styles.loginContainer} onSubmit={handleSubmit}>
         <div className={styles.login}>
           <section className={styles.formimput}>
             <div className={styles.columna}>
+             <div className={styles.labelimput}>
+                 <label>Imagen de usuario :</label>
+  {formData.image && (
+    <img
+      src={formData.image}
+      alt="Imagen de usuario"
+      className={styles.profileImage}
+    />
+  )}
+            <input
+          type="file"
+          name="image"
+          accept="image/*"
+          onChange={handleImageChange}
+        />
+        </div>
               <div className={styles.labelimput}>
-                <label>Nombre Completo:</label>
+                <label>Nombre de usuario:</label>
                 <input
                   type="text"
                   name="username"
-                  value={input.username}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  value={formData.username}
+                  onChange={handleInputChange}
                 />
-                
               </div>
-
               <div className={styles.labelimput}>
-                <label>Localidad:</label>
+                <label>Ubicación:</label>
                 <input
                   type="text"
                   name="location"
-                  value={input.location}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  value={formData.location}
+                  onChange={handleInputChange}
                 />
-                
               </div>
-
               <div className={styles.labelimput}>
                 <label>Teléfono:</label>
                 <input
                   type="text"
                   name="phone"
-                  value={input.phone}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  value={formData.phone}
+                  onChange={handleInputChange}
                 />
-                
               </div>
-            </div>
-
-            <div className={styles.columna}>
               <div className={styles.labelimput}>
-                <label>Correo Electrónico:</label>
+                <label>Correo electrónico:</label>
                 <input
                   type="email"
                   name="email"
-                  value={input.email}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
                 />
-                
               </div>
-
               <div className={styles.labelimput}>
-                <label>Contraseña:</label>
+                <label>Contraseña actual:</label>
                 <input
                   type="password"
-                  name="password"
-                  value={input.password}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  name="currentPassword"
+                  value={formData.currentPassword}
+                  onChange={handleInputChange}
                 />
-              
-                
               </div>
-
-              <div className={styles.labelimput}>
-                <label>Confirmar Contraseña:</label>
+              <div >
+                <label>Nueva contraseña:</label>
                 <input
                   type="password"
-                  name="confirmPassword"
-                  value={input.confirmPassword}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  name="newPassword"
+                  value={formData.newPassword}
+                  onChange={handleInputChange}
                 />
-               
               </div>
             </div>
           </section>
-
           <div className={styles.buttonContainer}>
-            <button type="submit"> Modificar Datos </button>
+            <button onClick={handleUpdateUser}>Guardar cambios</button>
           </div>
         </div>
       </form>
@@ -140,3 +148,10 @@ function PerfilUser() {
 }
 
 export default PerfilUser;
+
+
+
+
+
+
+

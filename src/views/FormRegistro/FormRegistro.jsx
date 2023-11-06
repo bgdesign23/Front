@@ -10,6 +10,8 @@ import imagennForm from "../LoginForm/fondodellogin.jpg";
 import { URL } from "../../utils/toggleUrl.js";
 
 export default function FormRegistro() {
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -23,7 +25,9 @@ export default function FormRegistro() {
   const password = watch("password");
 
   const onSubmit = (data) => {
-    dispatch(registerUser(data, navigate));
+    dispatch(registerUser(data, navigate)); 
+   
+ 
     dispatch(filterRestart());
   };
 
@@ -56,6 +60,8 @@ export default function FormRegistro() {
       }
     });
   };
+  
+
 
   return (
     <div className={styles.pageContainer}>
