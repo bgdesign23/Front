@@ -12,22 +12,21 @@
 }
 
 .ShoppingCart_container {
-    border: 2px solid rgba(255, 255, 255, 0.462);
-    background-color: rgba(255, 255, 255, 0.843);
-    padding-bottom: 2rem;
-    display: block;
-    margin-inline: 60px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    cursor: pointer;
-    margin-top: 8rem;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    max-width: 900px;
-    height: cover;
-    border-radius: 15px;
-
+  border: 2px solid rgba(255, 255, 255, 0.462);
+  background-color: rgba(255, 255, 255, 0.843);
+  padding-bottom: 2rem;
+  display: block;
+  margin-inline: 60px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  cursor: pointer;
+  margin-top: 8rem;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 900px;
+  height: cover;
+  border-radius: 15px;
 }
 
 @media (max-width: 700px) {
@@ -43,21 +42,19 @@
   padding-block: 1rem;
 }
 
-
-
-.resumeCart{
-    display: block;
-    /* width: 100vh; */
-    max-width: 500px;
-    margin-right: 200px;
-    border: 2px solid rgba(255, 255, 255, 0.462);
-    background-color: rgba(255, 255, 255, 0.843);
-    color: 0000;
-    margin-right: 60px;
-    margin-top: 8rem;
-    border-radius: 15px; 
-    width: 90%;
-    height: 50%;
+.resumeCart {
+  display: block;
+  /* width: 100vh; */
+  max-width: 500px;
+  margin-right: 200px;
+  border: 2px solid rgba(255, 255, 255, 0.462);
+  background-color: rgba(255, 255, 255, 0.843);
+  color: 0000;
+  margin-right: 60px;
+  margin-top: 8rem;
+  border-radius: 15px;
+  width: 90%;
+  height: 50%;
 }
 
 @media (max-width: 600px) {
@@ -187,16 +184,24 @@ input {
 }
 
 .backBtn {
-  top: 110px;
-  left: -71px;
-  height: 100px;
-  position: relative;
-  border: none;
-  background: none;
-  text-decoration: none;
-  color: white;
+  position: absolute;
+  bottom: 30px;
+  left: 55px;
+  width: 100px;
+  border-radius: 8px;
   cursor: pointer;
-  position: relative;
+  background-color: #191919;
+  color: white;
+  height: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.backBtn:hover {
+  color: black;
+  background-color: white;
+  transition: 0.8s;
 }
 
 @media (max-width: 600px) {

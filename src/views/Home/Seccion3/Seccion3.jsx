@@ -7,26 +7,30 @@ export default function Seccion3() {
   const navigate = useNavigate();
   return (
     <section className={style.contenedor}>
-      <h1>Servicios</h1>
+      <h1>Nuestros Servicios</h1>
 
       <div className={style.servicios}>
         <div className={style.servicio}>
-          <img
-            src={muebles}
-            alt="Muebles"
-            onClick={() => navigate("/home/product")}
-            className={style.muebles}
-          />
+          <div className={style.deco}>
+            <img
+              src={muebles}
+              alt="Muebles"
+              onClick={() => navigate("/home/product")}
+              className={style.muebles}
+            />
+          </div>
           <h1>MUEBLES</h1>
         </div>
 
         <div className={style.servicio}>
-          <img
-            src={decoracion}
-            alt="Decoración"
-            onClick={() => navigate("/home/decoracion")}
-            className={style.muebles}
-          />
+          <div className={style.deco}>
+            <img
+              src={decoracion}
+              alt="Decoración"
+              onClick={() => navigate("/home/decoracion")}
+              className={style.muebles}
+            />
+          </div>
           <h1>DECORACION</h1>
         </div>
       </div>

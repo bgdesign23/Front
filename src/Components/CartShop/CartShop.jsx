@@ -158,7 +158,7 @@ function ShoppingCart() {
   };
 
   const handleBuy = async () => {
-    const updatedCart = cart.map(producto => {
+    const updatedCart = cart.map((producto) => {
       const discountedPrice = producto.price * (1 - discount);
       return {
         ...producto,

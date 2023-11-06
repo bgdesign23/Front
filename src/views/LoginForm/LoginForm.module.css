@@ -5,7 +5,7 @@
   position: relative;
 }
 
-h4{
+h4 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -25,10 +25,8 @@ h4{
   z-index: 1;
 }
 
-
-
 .loginContainer {
-display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -60,8 +58,6 @@ display: flex;
   margin-bottom: 5px;
   /* Add spacing between label and input */
 }
-
-
 
 .login {
   display: flex;
@@ -106,8 +102,8 @@ display: flex;
   color: #ffffff;
   border: 2px solid rgb(177, 171, 171);
   height: 50px;
-    margin-inline: .5rem;
-    margin-block: .5rem;
+  margin-inline: 0.5rem;
+  margin-block: 0.5rem;
 }
 
 .login button:hover {
@@ -125,7 +121,7 @@ display: flex;
 .recup {
   width: fit-content;
   margin: 0 auto;
-  padding-block: .5rem;
+  padding-block: 0.5rem;
 }
 
 .recup:hover {
@@ -144,27 +140,27 @@ display: flex;
 @media (max-width: 768px) {
   .loginContainer {
     display: flex;
-        padding-top: 25%;
+    padding-top: 25%;
   }
-  .login{
+  .login {
     height: 100%;
-        justify-content: center;
+    justify-content: center;
   }
 
-    .inputPadre{
-      height: cover;
-    }
-    h4{font-size: 15px;}
+  .inputPadre {
+    height: cover;
+  }
+  h4 {
+    font-size: 15px;
+  }
 
   .imagennForm {
     display: none;
-  }       
-        .botonera,
-        .btn,
+  }
+  .botonera,
+  .btn,
   .login input,
   .login button {
     max-width: 100%;
-
   }
 }
-
