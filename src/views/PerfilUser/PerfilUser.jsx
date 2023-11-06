@@ -17,25 +17,24 @@ function PerfilUser() {
     newPassword: "",
   });
 
-  /* useEffect(() => {
+  useEffect(() => {
     dispatch(getUser());
-  }, [dispatch]); */
+  }, [dispatch]);
 
   useEffect(() => {
     if (userData && userData.user) {
       const user = userData.user;
-
       setFormUser({
         username: user.username || "",
         location: user.location || "",
         phone: user.phone || "",
         email: user.email || "",
-        image: user.profileImage || "",
+        image: user.image || "",
         currentPassword: "",
         newPassword: "",
       });
     }
-  }, []);
+  }, [userData]);
 
   const handleInputChange = (event) => {
     setFormUser({ ...formUser, [event.target.name]: event.target.value });
@@ -49,12 +48,24 @@ function PerfilUser() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("username", formUser.username);
-    formData.append("location", formUser.location);
-    formData.append("phone", formUser.phone);
-    formData.append("email", formUser.email);
-    formData.append("image", formUser.image);
-    formData.append("newPassword", formUser.newPassword);
+    if (formUser.username) {
+      formData.append("username", formUser.username);
+    }
+    if (formUser.location) {
+      formData.append("location", formUser.location);
+    }
+    if (formUser.phone) {
+      formData.append("phone", formUser.phone);
+    }
+    if (formUser.email) {
+      formData.append("email", formUser.email);
+    }
+    if (formUser.image) {
+      formData.append("image", formUser.image);
+    }
+    if (formUser.newPassword) {
+      formData.append("newPassword", formUser.newPassword);
+    }
     dispatch(updateUser(formData, userData.token));
   };
 
@@ -72,7 +83,7 @@ function PerfilUser() {
                   accept="image/*"
                   onChange={handleImageChange}
                 />
-                {userData.user.image && (
+                {userData && userData?.user && (
                   <img
                     src={userData.user.image}
                     alt="Imagen de usuario"
