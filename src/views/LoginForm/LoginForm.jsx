@@ -67,9 +67,6 @@ function LoginForm() {
   return (
     <div className={Style.pageContainer}>
       <div className={Style.loginBackground}>
-        <div className={Style.imagennForm}>
-          <img src={imagennForm} alt="" />
-        </div>
         <div className={Style.loginContainer}>
           <h2>Iniciar Sesión</h2>
           <div className={Style.login}>
@@ -95,28 +92,33 @@ function LoginForm() {
                   required
                 />
               </div>
-              <div className={Style.botonera}>
+
+              <div className={Style.recup}>
+                <h4
+                  onClick={() => navigate("/form/login/request-password-reset")}
+                >
+                  👉 ¿Olvidaste tu contraseña? 👈
+                </h4>
+              </div>
+              <div className={Style.botonera2}>
                 <button className={Style.btn} type="submit">
                   INICIAR SESIÓN
                 </button>
+                <button
+                  className={Style.btn}
+                  onClick={() => navigate("/form/register")}
+                >
+                  CREAR CUENTA
+                </button>
+                <button className={Style.btn} onClick={() => handleOnGoogle()}>
+                  <FcGoogle /> CONTINUAR CON GOOGLE
+                </button>
               </div>
             </form>
-            <div className={Style.recup}>
-              <h4
-                onClick={() => navigate("/form/login/request-password-reset")}
-              >
-                👉 ¿Olvidaste tu contraseña? 👈
-              </h4>
-            </div>
-            <div className={Style.botonera2}>
-              <button className={Style.btn} onClick={() => navigate("/form/register")}>
-                CREAR CUENTA
-              </button>
-              <button className={Style.btn} onClick={() => handleOnGoogle()}>
-                <FcGoogle /> CONTINUAR CON GOOGLE
-              </button>
-            </div>
           </div>
+        </div>
+        <div className={Style.imagennForm}>
+          <img src={imagennForm} alt="" />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 .pageContainer {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   position: relative;
 }
@@ -9,10 +9,11 @@
   display: flex;
 }
 .imagennForm {
-  position: relative;
-  width: 100%;
+  opacity: 50%;
+  position: left;
+  width: 100vh;
   display: flex;
-  height: 99vh;
+  height: 100vh;
   z-index: 1;
 }
 .loginContainer {
@@ -22,7 +23,7 @@
   justify-content: center;
   padding: 20px;
   position: absolute;
-  top: 20%;
+  top:11%;
   left: 0;
   right: 0;
   z-index: 2;
@@ -36,8 +37,7 @@
 
 .titulo {
   color: #ffffff;
-  font-size: 25px;
-  padding-bottom: 1rem;
+  font-size: 18px;
   font-family: barlow;
 }
 
@@ -49,6 +49,7 @@
   padding: 20px;
   border-radius: 34px;
   background-color: rgba(217, 217, 217, 0.482);
+  /* border: .1rem solid white; */
 }
 
 .login label {
@@ -89,14 +90,18 @@
 
 @media (max-width: 768px) {
   .loginContainer {
-    top: 20%;
+    display: flex;
+    padding-top: 55%;
   }
-
+.imagennForm{
+display: none;
+}
   .login input,
   .login button {
     max-width: 100%;
   }
 }
+
 
 /* .pageContainer{
   display: flex;
@@ -241,3 +246,4 @@ width: 390px;
 .login button:hover {
   background-color: #555556;
 }  */
+

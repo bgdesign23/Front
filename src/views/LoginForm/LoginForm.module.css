@@ -1,24 +1,31 @@
-
-
 .pageContainer {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   position: relative;
 }
 
-.loginBackground {
-  width: 100%;
-  display: flex;
-  z-index: 1;
+h4{
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .imagennForm {
-  position: relative;
-  width: 100%;
+  opacity: 50%;
+  position: left;
+  width: 100vh;
   display: flex;
-  height: 99vh;
+  height: 100vh;
+  z-index: 1;
 }
+.loginBackground {
+  position: left;
+  width: 100vh;
+  display: flex;
+  height: 100vh;
+  z-index: 1;
+}
+
+
 
 .loginContainer {
 display: flex;
@@ -27,7 +34,7 @@ display: flex;
   justify-content: center;
   padding: 20px;
   position: absolute;
-  top: 20%;
+  top: 13%;
   left: 0;
   right: 0;
 }
@@ -118,6 +125,7 @@ display: flex;
 .recup {
   width: fit-content;
   margin: 0 auto;
+  padding-block: .5rem;
 }
 
 .recup:hover {
@@ -130,119 +138,33 @@ display: flex;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
-/* antes de hacerlo responsive estaba asi como abajo */
-
-/* .pageContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-}
-
-.loginBackground{
-  width: 100%;
-  display: flex;
-  z-index: 1;
-}
-
-.imagennForm {
-  position: relative;
-  width: 100%;
-  display: flex;
-  height: 99vh;
-}
-.loginContainer {
-  width: 1000px;
-  height: cover;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    padding-left: 300px;
-        top: 25%;
-        left: 100%;
-        right: 25%;
-        position: absolute;
-}
-
-
-
-
-.inputPadre {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.input1{
-  width: 400px;
-}
-
-  .login {
+@media (max-width: 768px) {
+  .loginContainer {
     display: flex;
-    justify-content: center;
-    width: 700px;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: rgba(217, 217, 217, 0.482);
-    border-radius: 34px;
+        padding-top: 25%;
+  }
+  .login{
+    height: 100%;
+        justify-content: center;
   }
 
-  .login h1 {
-    text-align: center;
-  }
-  .login h2 {
-    font-size: 30px;
-    
-  }
+    .inputPadre{
+      height: cover;
+    }
+    h4{font-size: 15px;}
 
-  .login label {
-    font-family: Barlow;
-  }
-
-  .inputPadre{
-    display: block;
-    padding-inline: 2rem;
-  }
-
-  .login label {
-    text-align: left;
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-
-  .login input {
-    width: 400px;
-    height: 45px;
-    background-color: rgba(255, 245, 245, 1);
-    padding: 5px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 25px;
-  }
+  .imagennForm {
+    display: none;
+  }       
+        .botonera,
+        .btn,
+  .login input,
   .login button {
-    margin-block: .5rem;
-    width: 400px;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid rgb(177, 171, 171);
-    height: 50px;
-  
-  }
+    max-width: 100%;
 
-  .login button:hover {
-    background-color: #555556;
   }
+}
 
-  .loginContainer h2{
-  color: white;
-    font-size: 25px;
-    padding-bottom: 1rem;
-    font-family: barlow, ;
-  } */
