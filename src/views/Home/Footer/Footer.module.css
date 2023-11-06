@@ -2,11 +2,11 @@
   background-color: #d9d9d9;
   color: #191919;
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  font-family: "Barlow", sans-serif;
+  font-family: "Open Sans", sans-serif;
   height: 250px;
-  width: 100vw;
-  margin-left: -40px;
+  max-width: 100vw;
 }
 
 .sectionFooterOne {
@@ -18,6 +18,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  margin-bottom: -50px;
 }
 
 .imagenFooter img {
@@ -70,4 +72,69 @@ ul {
 
 .FooterCopyright {
   text-align: center;
+}
+
+.mercadopago {
+  display: none;
+}
+
+.metodoPago {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .Footer {
+    height: 200px;
+  }
+  .TeamSection {
+    display: none;
+    margin: 0 auto;
+  }
+
+  .textoTeam {
+    display: none;
+  }
+
+  .contactos {
+    margin-left: -45px;
+    margin-top: -10px;
+  }
+
+  .contactoOne {
+    right: -3px;
+    top: -30px;
+    text-decoration: underline;
+  }
+
+  .FooterCopyright {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: -40px;
+  }
+
+  .imagenFooter {
+    display: none;
+  }
+
+  .listaContactos {
+    margin-bottom: 15px;
+  }
+
+  .mercadopago {
+    display: flex;
+    position: relative;
+    height: auto;
+    width: 130px;
+    margin-top: -70px;
+    right: -10px;
+  }
+
+  .metodoPago {
+    display: flex;
+    position: relative;
+    right: -22px;
+    text-decoration: underline;
+    top: -100px;
+    font-weight: 200px;
+  }
 }

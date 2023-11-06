@@ -1,55 +1,93 @@
 .cardContainer {
-  width: 200px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(220, 31, 31, 0.1);
-  border-radius: 0;
+  width: 272px;
+
   background-color: rgba(25, 25, 25, 1);
-  position: relative; 
+  position: relative;
   margin: 0 auto;
+  height: 336px;
+  border-radius: 8px;
   .imagen {
-    width: 100%;
-    height: 190px;
+    width: 272px;
+    height: 223px;
     object-fit: cover;
-    border-radius: 0;
+    border-radius: 8px;
   }
 }
 
 .offerMessage {
   position: absolute;
-  top: 5px; /* Ajusta la posición vertical según tus preferencias */
-  right: 5px; /* Ajusta la posición horizontal según tus preferencias */
+  top: 5px;
+  right: 5px;
   background-color: red;
   color: #fff;
   padding: 5px 10px;
   font-size: 14px;
-  font-weight: 500;
 }
 
 .cardContainer h2 {
-  margin-top: 5px;
+  margin-top: 6px;
   color: #fff;
-  text-align: center;
-  font-family: 'Barlow';
-  font-size: 16px;
-  font-weight: 500;
+  font-family: Barlow;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-.cardContainer h3 {
+.details {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.details h2 {
   color: #fff;
+  width: 106px;
+  height: 23px;
   text-align: center;
-  font-family: 'Barlow';
-  font-size: 20px;
+  font-family: Barlow;
+  font-size: 23px;
+  font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 
-.cardContainer button {
-  background: #fff;
-  color: #191919;
+.details h4 {
+  color: #fff;
   text-align: center;
-  font-family: 'Barlow', sans-serif;
-  font-weight: bold;
-  font-size: 15px;
-  font-weight: 400;
-  margin-bottom: 10px;
+  font-family: Barlow;
+  font-size: 29px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.cardContainer h3 {
+  color: #fff;
+  font-family: "Barlow";
+  font-size: 16px;
+  margin-left: 50px;
+}
+
+@media (max-width: 480px) {
+  .cardContainer {
+    height: 200px;
+    border-radius: 0px;
+    width: 160px;
+    .imagen {
+      height: 100px;
+    }
+  }
+
+  .details h3 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 63px;
+  }
+
+  .details {
+    margin-top: 10px;
+  }
 }

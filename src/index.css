@@ -1,6 +1,11 @@
-body {
-  background-color: #191919;
-  margin: 0; /* Para eliminar el espacio de margen predeterminado en el body */
-  padding: 0
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+body {
+  background-color: #191919;
+  max-width: cover;
+  overflow-y: scroll;
+}

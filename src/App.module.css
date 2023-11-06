@@ -1,56 +1,35 @@
-/* #root {
+#root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 
   margin: 0 auto;
   text-align: center;
-  padding-top: 70px;
-} */
+}
 
 .mainContent {
-    flex: 1;
-}
-
-.toggleSidebarBtn {
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  position: fixed;
-  top: 10px;
-  left: 70px;
-  z-index: 11;
-  border: none;
-  background: none;
-  border-radius: 5px;
-  width: 30px; /* Tamaño del SVG */
-  height: 30px; /* Tamaño del SVG */
-  color:#ffffff; /* Color inicial (blanco) */
-}
-
-.toggleSidebarBtn:hover {
-  opacity: 0.7;
-}
-
-.toggleSidebarBtn.open {
-  color: #000000; /* Color cuando está abierto (negro) */
-}
-
-
-
-.sideBar {
-  z-index: 10; 
-}
-
-.sideBar.open {
-  background-color: black;
+  flex: 1;
 }
 
 .contentContainer {
-margin: 0 auto; 
-padding: 0px 0px;
-text-align: center; 
+  margin: 0 auto;
+  padding: 0px 0px;
+  text-align: center;
 }
 
+.toggleButton {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+  color: black;
+  background: white;
+}
 
-
+@media (min-width: 480px) {
+  .sideBar {
+    display: none;
+  }
+}

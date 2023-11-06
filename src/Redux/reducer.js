@@ -23,6 +23,16 @@ import {
   FILTER_BY_MATERIAL,
   GET_DESING,
   SET_USER,
+  CREATE_COUPON, 
+  GET_USER_COUPONS, 
+  APPLY_COUPON,
+  COUPONS_ERROR,
+  GET_ALL_USERS,
+  GET_ADMIN,
+  CLEAR_ERRORS,
+  DELETE_PRODUCT,
+  DELETE_USER
+
 } from "./actionsTypes";
 
 let initialState = {
@@ -36,6 +46,13 @@ let initialState = {
   categories_Copy: [],
   desings: [],
   desings_Copy: [],
+  userCoupons: [], 
+  appliedCoupons: [],
+  users: [],
+  users_copy: [],
+  admin: [],
+  admin_copy: [],
+  errors: {},
 };
 
 const Reducer = (state = initialState, action) => {
@@ -46,6 +63,31 @@ const Reducer = (state = initialState, action) => {
         products: action.payload,
         products_Copy: action.payload,
       };
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        products: action.payload,
+        products_Copy: action.payload
+      }
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        users_copy: action.payload,
+      };
+    case DELETE_USER:
+      return {
+        ...state,
+        users: action.payload,
+        users_copy: action.payload
+      }
+    case GET_ADMIN:
+      return {
+        ...state,
+        admin: action.payload,
+        admin_copy: action.payload,
+      };  
+
     case ORDERBYPRICE:
       return {
         ...state,
@@ -70,7 +112,7 @@ const Reducer = (state = initialState, action) => {
     case FILTER_BY_CATEGORIES:
       return {
         ...state,
-        products: action.payload,
+        products: action.payload,        
       };
     case FILTER_BY_COLOR:
       return {
@@ -86,16 +128,17 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+        products_Copy: action.payload
       };
     case GET_BY_HASHTAG:
       return {
         ...state,
         products: action.payload,
       };
-    case CLEAR_PRODUCTS:
+    case CLEAR_PRODUCTS:      
       return {
         ...state,
-        products: state.products_Copy,
+        products: [...state.products_Copy],
       };
     case REGISTER_REQUEST:
       return {
@@ -121,6 +164,7 @@ const Reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: null,
+        
       };
     case SET_USER:
       return {
@@ -172,6 +216,7 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+        products_Copy: action.payload
       };
     case GET_DESING:
       return {
@@ -180,6 +225,34 @@ const Reducer = (state = initialState, action) => {
         desings_Copy: action.payload,
       };
 
+ case CREATE_COUPON:
+      return {
+        ...state,
+        userCoupons: [...state.userCoupons, action.payload],
+      };
+
+    case GET_USER_COUPONS:
+      return {
+        ...state,
+        userCoupons: action.payload,
+      };
+
+    case APPLY_COUPON:
+      return {
+        ...state,
+        appliedCoupons: [...state.appliedCoupons, action.payload],
+      };
+       case COUPONS_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      }
+      case CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: {},
+      };
+            
     default:
       return { ...state };
   }

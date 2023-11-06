@@ -1,31 +1,93 @@
-
 .containerFor {
-    margin: 20px;
-    padding: 15px;
-    border: 1px solid #e21a1a;
-    border-radius: 5px;
-  }
-  
-  .containerFor input[type="text"],
-  input[type="tel"],
-  textarea {
-    width: 85%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .containerFor button {
-    background-color: #ff7300;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .containerFor br {
-    margin: 10px 0;
-  }
-  
+  margin: 0px auto;
+  padding-top: 170px;
+}
+
+.formContainer {
+  padding: 100px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  border: 5px solid rgba(63, 63, 63, 0.482);
+  border-radius: 5px;
+  background-color: rgba(217, 217, 217, 0.482);
+}
+
+.contain {
+  display: flex;
+  justify-content: center;
+  margin-left: -45px;
+  padding: 10px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.column {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.inputs {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 30px;
+}
+
+.numberTel {
+  position: relative;
+  margin-left: 11px;
+  width: 270px;
+}
+
+.localidad {
+  position: relative;
+  margin-left: -40px;
+}
+
+.column button {
+  width: 50%;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: white;
+  color: #191919;
+  height: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  margin-left: 60px;
+}
+
+.column button:hover {
+  color: white;
+  background-color: #191919;
+  transition: 0.8s;
+}
+
+.backButton {
+  position: absolute;
+  bottom: 30px;
+  left: 55px;
+  width: 100px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #191919;
+  color: white;
+  height: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.backButton:hover {
+  color: black;
+  background-color: white;
+  transition: 0.8s;
+}

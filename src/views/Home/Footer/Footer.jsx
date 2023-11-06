@@ -1,5 +1,6 @@
 import style from "../Footer/Footer.module.css";
 import logo from "../../../images/logosinfondo.png";
+import mercadopago from "../../../images/mercadopago.png";
 
 function Footer() {
   return (
@@ -88,7 +89,7 @@ function Footer() {
 
         <div className={style.contactos}>
           <h4 className={style.contactoOne}>Contáctate con nosotros</h4>
-          <ul>
+          <ul className={style.listaContactos}>
             <li>+54 2477 456785</li>
             <li>bgd.grupo12@gmail.com</li>
             <li>instagram</li>
@@ -99,6 +100,9 @@ function Footer() {
       <section className={style.FooterCopyright}>
         <p> A© 2023 Black Group Design. Todos los derechos reservados </p>
       </section>
+
+      <img src={mercadopago} alt="mercadopago" className={style.mercadopago} />
+      <h4 className={style.metodoPago}>Metodos de Pagos</h4>
     </footer>
   );
 }

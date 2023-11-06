@@ -63,10 +63,6 @@ const SearchBar = () => {
       >
         <ButtonSearch />
       </button>
-      {location.pathname === "/home/product" &&
-      <button className={styles.btnReset} onClick={handle_reset}>
-        Mostrar todo
-      </button>}
     </div>
   );
 };

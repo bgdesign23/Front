@@ -17,9 +17,9 @@ export default function Card({ id, name, price, image }) {
         <h2>{name}</h2>
 
         <div className={Styles.details}>
-          <h3>${price}</h3>
+          <h2>Precio</h2>
+          <h4>${price}.-</h4>
         </div>
-        <button>Agregar al Carrito</button>
       </div>
     </>
   );

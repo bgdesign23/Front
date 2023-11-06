@@ -1,34 +1,35 @@
 .products_container {
-    display: grid;
-    margin-left: 55px;
-    margin-bottom: 30px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive columns with max 5 per row */
-    gap: 1.5rem;
-    cursor: pointer;
-    margin-top: 1rem;
-    order: 2;
+  padding-top: 60px;
+  display: grid;
+  place-items: center;
+  margin-inline: 10px;
+  margin-bottom: 30px;
+  gap: 1.5rem;
+  /* margin-top: 1rem; */
 }
 
 @media (min-width: 1200px) {
-    .products_container {
-        grid-template-columns: repeat(5, 1fr); /* Set 5 columns on large screens */
-    }
+  .products_container {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
-.contenCard button{
-width: 200px;
-height: 40px;
-flex-shrink: 0;
-background: #D9D9D9;
-color: #000;
-text-align: center;
-font-family: Cinzel;
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+.buttonPrimary {
+  margin-bottom: 1rem;
+  max-width: 270px;
+  width: 50%;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: white;
+  color: #191919;
+  height: 50px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
 }
 
-.h1 {
-    color: white;
+.buttonPrimary:hover {
+  color: white;
+  background-color: #191919;
+  transition: 0.8s;
 }

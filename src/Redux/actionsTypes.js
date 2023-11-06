@@ -24,5 +24,21 @@ export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 export const FILTER_BY_MATERIAL = "FILTER_BY_MATERIAL";
 export const GET_DESING = "GET_DESING";
 export const SET_USER = "SET_USER";
+export const CREATE_COUPON = 'CREATE_COUPON';
+export const GET_USER_COUPONS = 'GET_USER_COUPONS';
+export const APPLY_COUPON = 'APPLY_COUPON';
+export const COUPONS_ERROR = 'COUPONS_ERROR';
+export const GET_ALL_USERS =  'GET_ALL_USERS'
+export const DELETE_USER = 'DELETE_USER'
+export const RESTORE_USER = 'RESTORE_USER'
+export const DELETE_COUPON = 'DELETE_COUPON'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+export const CLEAR_ERRORS = 'CLEAR_ERRORS'
+export const GET_ADMIN = 'GET_ADMIN'
+export const CREATE_ADMIN = 'CREATE_ADMIN'
+export const GET_BY_ID_ADMIN = 'GET_BY_ID_ADMIN'
+export const DELETE_ADMIN = 'DELETE_ADMIN'
+
+
 
 

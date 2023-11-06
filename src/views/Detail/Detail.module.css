@@ -1,139 +1,182 @@
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: black;
-    background: linear-gradient(to bottom right, #3b3b3b, #000000);
-    border-radius: 5px;
-    margin: 30px auto;
-    max-width: 50%;
-    padding: 20px;
-    color: white;
-    text-align: left;
+.backButton {
+  position: absolute;
+  bottom: 10px; /* Ajusta la distancia desde la parte inferior de la página */
+  left: 7px; /* Ajusta la distancia desde el borde izquierdo de la página */
+  width: 100px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #191919;
+  color: white;
+  height: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
 }
 
-.content {
-    display: flex;
-    flex-direction: row; /* La imagen a la izquierda y los detalles a la derecha */
-    align-items: center;
+.backButton:hover {
+  color: black;
+  background-color: white;
+  transition: 0.8s;
+}
+
+.button {
+  margin-bottom: -60px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: white;
+  color: #191919;
+  height: 50px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.button:hover {
+  color: white;
+  background-color: #191919;
+  transition: 0.8s;
+}
+
+.container {
+  border-radius: 20px;
+  display: flex;
+  background-color: #d9d9d9;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
 }
 
 .imageContainer {
-    flex: 1;
-    overflow-clip-margin: content-box;
-    overflow: clip;
+  flex: 1;
+  overflow: clip;
+  border-radius: 20px;
 }
 .image {
-    width: 300px;
-    height: 300px;
-    display: block;
-    margin: 0 auto;
+  width: 100%;
+  height: 70vh;
 }
 
 .detailsContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-family: 'Barlow', sans-serif;
+  flex: 1;
+  flex-direction: column;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 30px;
 }
 
 .name {
-    font-family: Cinzel;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    color: white;
-   
+  margin-top: 10px;
+  color: #131313;
+  text-align: left;
+  font-family: Cinzel;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
 }
 
-.description, .type {
-    color: white;
-  
+.detailsContainer h2 {
+  margin-top: 30px;
+  color: rgb(26, 27, 26);
+  font-family: Barlow;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: end;
+  margin-bottom: 39px;
 }
-
-.buttonContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .button {
-    background: #191919;
-    color: #FFF;
-    text-align: center;
-    font-family: 'Barlow';
-    font-size: 14px;
-    font-weight: 400;
-    line-height: normal;
-    
-    margin-bottom: 10px;
-  }
-  
-  .backButton {
-    background: #D9D9D9;
-    color: #000;
-    text-align: center;
-    font-family: Cinzel;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    height: 40px;
-    width: 100px;
-    margin-top: 20px;
-  }
-
-@media (max-width: 998px) {
-    .container {
-        flex-direction: column; /* Cambia a dirección de columna en pantallas pequeñas */
-        text-align: center;
-    }
-}
-
-
-
-/* Estilos para organizar los elementos en dos filas con dos columnas */
-.filas {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    
-    
-}
-
-.detailsContainer h2{
-    
-    text-align: left; 
-    margin-top: -5px;
-    color: #ede0e0;
-    margin: 0;
-    text-align: center;
-    font-family: 'Barlow';
-    font-size: 20px;
-    font-weight: 700;
-    line-height: normal;
+.detailsContainer h4 {
+  color: rgb(13, 13, 13);
+  font-family: Barlow;
+  font-size: 39px;
+  margin-top: -30px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: right;
+  margin-bottom: 50px;
 }
 /* Alinear los elementos en cada fila */
 .filas h3 {
-    font-family: 'Barlow';
-    display: block;
-    font-size: 15px;
-background-color: rgba(0, 255, 255, 0);
-    
-    color: white;
-    text-size-adjust:  0px;
-    width: 45%; /* El 48% permite espacio para el espaciado entre las columnas */
-    text-align: left;
-    margin: 0;
-    padding: 5px 0;
+  margin-top: 28px;
+  text-align: left;
+  color: rgb(66, 66, 66);
+  font-family: Barlow;
+  font-size: 30px;
+  width: 100%; /* Hace que los elementos ocupen todo el ancho disponible */
+}
+.detailsContainer h6 {
+  margin-top: 40px;
+  text-align: left;
+  color: #111111;
+  font-family: Barlow;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
 }
 
-/* Alinear los elementos en la segunda columna */
-.filas h3:nth-child(odd) {
-    text-align: left;
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.button {
+  margin-left: 0px;
+  margin-top: -90px;
+  width: 518px;
+  height: 56px;
+  font-size: 18px;
+  padding: 5px 10px;
+}
 
+.whatsappLink {
+  margin-top: -20px;
+  margin-right: 3px;
+  height: 85px;
+}
+
+@media (max-width: 998px) {
+  .container {
+    margin-top: 210px;
+    width: 70%;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .image {
+    width: 60%;
+    height: auto;
+  }
+
+  .detailsContainer h2 {
+    text-align: left;
+    margin-top: 20px;
+    font-size: 26px;
+  }
+
+  .detailsContainer h2 {
+    text-align: left;
+    margin-top: 20px;
+    font-size: 26px;
+  }
+
+  .detailsContainer h4 {
+    text-align: left;
+    margin-top: 10px;
+    font-size: 24px;
+  }
+
+  .filas h3 {
+    text-align: left;
+    margin-top: 20px;
+    font-size: 24px;
+  }
+
+  .detailsContainer h6 {
+    text-align: left;
+    margin-top: 20px;
+    font-size: 24px;
+  }
+}

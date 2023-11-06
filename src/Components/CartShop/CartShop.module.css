@@ -1,47 +1,212 @@
 .all_container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    /* align-items: center; */
-    margin-block    : 2rem;
-    /* border: 2px solid white; */
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
+@media (max-width: 700px) {
+  .all_container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .ShoppingCart_container {
-    border: 2px solid rgba(255, 255, 255, 0.462);
-    background-color: rgba(0, 0, 0, 0.296);
-    padding-block: 2rem;
-    display: block;
-    margin-inline: 60px;
-    margin-bottom: 30px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.462);
+  background-color: rgba(255, 255, 255, 0.843);
+  padding-bottom: 2rem;
+  display: block;
+  margin-inline: 60px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  cursor: pointer;
+  margin-top: 8rem;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 900px;
+  height: cover;
+  border-radius: 15px;
+}
+
+@media (max-width: 700px) {
+  .ShoppingCart_container {
     margin-top: 1rem;
-    justify-content: center;
+  }
+}
+
+.ShoppingCart_container p {
+  font-family: barlow;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  padding-block: 1rem;
+}
+
+.resumeCart {
+  display: block;
+  /* width: 100vh; */
+  max-width: 500px;
+  margin-right: 200px;
+  border: 2px solid rgba(255, 255, 255, 0.462);
+  background-color: rgba(255, 255, 255, 0.843);
+  color: 0000;
+  margin-right: 60px;
+  margin-top: 8rem;
+  border-radius: 15px;
+  width: 90%;
+  height: 50%;
+}
+
+@media (max-width: 600px) {
+  .resumeCart {
+    flex-direction: column;
     align-items: center;
-    width: 1200px;
+    margin-top: 2rem;
+    margin-inline: 2px;
+  }
 }
 
-
-.resumeCart{
-    width: 600px;
-    height: 600px;
-    border: 2px solid rgba(255, 255, 255, 0.462);
-    color: antiquewhite;
-    margin-right: 60px;
-    margin-block: 1rem;
-    
-}
-.tittle{
-    width: 300px;
-    font-size: 10px;
-    text-transform: uppercase;
-    color: antiquewhite;
+.carVacio {
+  margin-top: 10%;
 }
 
-.cupon{
-    color: rgb(20, 103, 237);
+.details {
+  max-width: 450px;
+  display: inline-block;
+  padding-block: 1rem;
 }
 
+.detailsHijo {
+  display: inline-block;
+  width: 420px;
+  font-family: Arial, Helvetica, sans-serif;
+  justify-content: left;
+}
+.detailsHijo p {
+  text-align: left;
+}
+
+.details p {
+  padding-block: 0.5rem;
+}
+
+.titulo {
+  font-family: barlow;
+  padding-block: 1rem;
+  box-shadow: 0px 10px 10px -10px rgba(1, 1, 1, 0.3);
+}
+
+.tittle {
+  font-family: barlow;
+  box-shadow: 0px 10px 10px -10px rgba(1, 1, 1, 0.3);
+}
+
+.cupon {
+  color: rgb(20, 103, 237);
+}
+
+.iconCartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carritoNum {
+  border-radius: 0.7rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.carritoNum p {
+  justify-content: center;
+  margin: 0px;
+  padding: 0;
+}
+
+.btn {
+  margin-bottom: 1rem;
+  max-width: 420px;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: white;
+  color: #191919;
+  border: none;
+  height: 50px;
+}
+
+.btn:hover {
+  font-weight: bold;
+  color: white;
+  background-color: #191919;
+  transition: 0.8s;
+}
+
+.cupon_container {
+  display: flex;
+  justify-content: center;
+  margin-block: 0.5rem;
+  padding-right: 1rem;
+}
+
+.btn:hover {
+  font-weight: bold;
+  color: white;
+  background-color: #191919;
+}
+
+.cupon_container {
+  display: flex;
+  justify-content: center;
+}
+
+.btncupon {
+  border: none;
+  width: 240px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #191919;
+  height: 30px;
+  margin-inline: 0.5rem;
+  align-items: left;
+  justify-content: center;
+}
+
+input {
+  width: 230px;
+  border-radius: 8px;
+}
+
+.btncupon:hover {
+  font-weight: bold;
+  color: white;
+  background-color: #009ee3;
+}
+
+.backBtn {
+  position: absolute;
+  bottom: 30px;
+  left: 55px;
+  width: 100px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #191919;
+  color: white;
+  height: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.backBtn:hover {
+  color: black;
+  background-color: white;
+  transition: 0.8s;
+}
+
+@media (max-width: 600px) {
+  .backBtn {
+    margin-bottom: 3rem;
+    margin-right: 22rem;
+  }
+}

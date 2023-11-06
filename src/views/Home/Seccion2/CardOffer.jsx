@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import Styles from "./CardOffer.module.css";
 
-export default function CardOffer({ id, name, price, image }) {
+export default function CardOffer({ id, name, price, image, stock }) {
   const navigate = useNavigate();
   return (
-    <>
+    <div className={Styles.fondoOffer}>
       <div className={Styles.cardContainer}>
         <div className={Styles.offerMessage}>Oferta</div>
 
@@ -18,10 +18,10 @@ export default function CardOffer({ id, name, price, image }) {
         <h2>{name}</h2>
 
         <div className={Styles.details}>
-          <h3>${price}</h3>
+          <h2>Precio</h2>
+          <h4>${price}.-</h4>
         </div>
-        <button>Agregar al Carrito</button>
       </div>
-    </>
+    </div>
   );
 }

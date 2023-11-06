@@ -1,46 +1,126 @@
 .navBar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-    height: 70px;
-    background-color: #191919;
-    z-index: 100;
+  padding-inline: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  background-color: #191919;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  z-index: 999;
+  margin-bottom: 0.1rem;
+  position: fixed;
+  box-shadow: 0px 10px 10px -10px rgba(26, 25, 25, 0.5);
+}
+
+.uno {
+  align-items: center;
+  justify-content: left;
+  display: flex;
+  left: 200px;
+  gap: 1.5;
+  width: 100px;
+}
+
+.dos {
+  display: flex;
+  gap: 1rem;
+}
+
+.tres {
+  position: relative;
+  left: 20px;
 }
 
 .logo {
-    position: absolute; 
-    top: 5%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    max-width: 270px;
+  position: relative;
+  cursor: pointer;
+
+  width: 200px;
 }
 
+.cuatro {
+  align-items: center;
+  justify-content: right;
+  display: flex;
+  width: 300px;
+  gap: 1rem;
+}
+
+.btn {
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
+  background-color: #191919;
+  background: none;
+  border: none;
+  font-family: Cinzel;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.user {
+  /* padding-right: 3rem; */
+  cursor: pointer;
+}
 
 .buttonCarrito {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    outline: none;
-    color: white;
-    top: 10%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  color: white;
+  top: 10%;
+  left: 380px;
+  z-index: 1000;
+}
+@media (max-width: 768px) {
+  .navBar {
+    /* flex-direction: column; */
+    display: block;
+    height: auto;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+
   }
-    
-.buttonCarrito:hover {
-      opacity: 0.7;
-}
+   
 
-.noStyleButton, .buttonCarrito {
-    margin: 0; 
-}
+  .uno{
+    display: block;
+    padding-inline: 5px;
+    margin-bottom: 4px
+    ;
+  }
+  .dos{
+    width: 150px;
+    padding-inline: 10px;
+  margin-bottom: 4px
+  }
 
-.buttonUser {
-    background: none;
-    cursor: pointer;
-    outline: none;
-    color: white;
-    margin-left: 90px;
-    border-bottom: none;
-    border: none;
+  .cuatro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    margin-bottom: 4px;
+    padding-inline: 10px;}
+
+
+  .tres {
+    width: 390px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-left: 1rem;
+      margin-bottom: 4px
+  }
+
+  .buttonCarrito {
+   position:relative
+  }
 }

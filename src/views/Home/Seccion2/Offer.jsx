@@ -11,21 +11,32 @@ import "slick-carousel/slick/slick-theme.css";
 function Offer() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
-  // console.log(allProducts.oferr);
 
   useEffect(() => {
     dispatch(getProductsAction());
   }, [dispatch]);
 
   const productsInOffer = allProducts.filter((product) => product.offer);
-  // console.log(productsInOffer);
 
   const sliderSettings = {
-    dots: true, // Muestra los puntos indicadores
-    infinite: true, // Bucle infinito
-    speed: 500, // Velocidad de transición en milisegundos
-    slidesToShow: 5, // Número de productos a mostrar en cada slide
-    slidesToScroll: 1, // Número de productos para avanzar al navegar
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 9999,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+    ],
   };
 
   return (

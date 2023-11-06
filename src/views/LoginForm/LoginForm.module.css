@@ -1,72 +1,166 @@
-.loginContainer{
-  background-image: url("fondo.png");
-  background-repeat: no-repeat;
-  /* background-color: aquamarine; */
-  background-size: cover;
-  margin-top: -65px;
-  padding-top: 80px;
-  width: 100%;
-  height: 88.4vh;
-  /* background: url(C:\Users\USUARIO\OneDrive\Escritorio\Pf\Front\src\views\LoginForm\fondodellogin.jpg), lightgray 10% / cover no-repeat;
-  width: 650px;
-height: 880.4px;
-flex-shrink: 0; */
-.login {
-  
-    max-width: 500px;
-    margin: 100px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: rgba(217, 217, 217, 1);
-    border-radius: 34px;
-  }
-  
-  .login  h1 {
-    text-align: center;
-  }
-  
-  .login  label {
-    font-family: Barlow;
-  }
-  
-  .login  label {
-    text-align: left;
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  .login  input {
-    width: 100%;
-    height: 30px;
-    background-color: rgba(255, 245, 245, 1);
-    width: 95%;
-    padding: 5px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 25px;
-  }
-  
-  .login hr {
-    margin: 10px 0;
-    border: none;
-    border-top: 1px solid #ccc;
-  }
-  
+.pageContainer {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: relative;
+}
 
-  .login  button {
-    margin-top: 20px;
-    border-radius: 8px;
-background: #191919;
-width: 170px;
-height: 50px;
-flex-shrink: 0;
+h4 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.imagennForm {
+  opacity: 50%;
+  position: left;
+  width: 100vh;
+  display: flex;
+  height: 100vh;
+  z-index: 1;
+}
+.loginBackground {
+  position: left;
+  width: 100vh;
+  display: flex;
+  height: 100vh;
+  z-index: 1;
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: absolute;
+  top: 13%;
+  left: 0;
+  right: 0;
+}
+
+.inputPadre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 500px;
+}
+
+.input1 {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input1 label {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 5px;
+  /* Add spacing between label and input */
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+  width: 100%;
+  height: 500px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(217, 217, 217, 0.482);
+  border-radius: 34px;
+}
+
+.login h2 {
+  font-size: 30px;
+  text-align: center;
+}
+
+.login label {
+  font-family: Barlow;
+  text-align: left;
+  font-weight: bold;
+}
+
+.login input {
+  width: 100%;
+  max-width: 400px;
+  height: 45px;
+  padding: 5px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.btn {
+  width: 100%;
+  width: 400px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgb(177, 171, 171);
+  height: 50px;
+  margin-inline: 0.5rem;
+  margin-block: 0.5rem;
+}
+
+.login button:hover {
+  background-color: #191919;
+}
+
+.loginContainer h2 {
+  color: white;
+  font-size: 25px;
+  padding-bottom: 1rem;
+  text-align: center;
+  font-family: Barlow;
+}
+
+.recup {
+  width: fit-content;
+  margin: 0 auto;
+  padding-block: 0.5rem;
+}
+
+.recup:hover {
+  cursor: pointer;
+  color: #ffffff;
+  width: fit-content;
+}
+
+.botonera2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .loginContainer {
+    display: flex;
+    padding-top: 25%;
   }
-  
-  .login  button:hover {
-    background-color: #555556;
+  .login {
+    height: 100%;
+    justify-content: center;
   }
-  
+
+  .inputPadre {
+    height: cover;
   }
+  h4 {
+    font-size: 15px;
+  }
+
+  .imagennForm {
+    display: none;
+  }
+  .botonera,
+  .btn,
+  .login input,
+  .login button {
+    max-width: 100%;
+  }
+}

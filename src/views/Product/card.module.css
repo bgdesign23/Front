@@ -1,53 +1,57 @@
 .cardContainer {
-    width: 230px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(220, 31, 31, 0.1);
-    border-radius: 0;
-    background-color: rgb(235, 224, 224);
-    position: relative; /* Establecemos la posición relativa en el contenedor padre */
-  
-    .imagen {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      border-radius: 0;
-    }
-  
-    /* Agregar otros estilos necesarios para la información adicional */
-  }
-  
+  width: 272px;
+  height: 325px;
+  box-shadow: 0 4px 6px rgba(220, 31, 31, 0.1);
+  border-radius: 8px;
+  background-color: rgb(235, 224, 224);
+  position: relative;
 
-  
-  .cardContainer h2 {
-    color: #000;
-text-align: center;
-font-family: Barlow;
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  .imagen {
+    width: 272px;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 8px;
   }
-  
-  .cardContainer h3 {
-    color: #211f1f;
-    margin-top: 3px;
-    text-align: center;
-    font-family: 'Barlow';
-    font-size: 20px;
-    font-weight: 700;
-    line-height: normal;
-  }
- 
-  .cardContainer button {
-    width: 139.423px;
-    height: 26.8px;
-    flex-shrink: 0;
-    background: #191919;
-    color: #FFF;
-    text-align: center;
-    font-family: 'Barlow';
-    font-size: 14px;
-    font-weight: 400;
-    line-height: normal;
-    margin-bottom: 10px;
+}
+
+.cardContainer h2 {
+  margin-top: 6px;
+  color: #000;
+  font-family: Barlow;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.details {
+  margin-top: 15px;
+  display: flex; /* Utiliza Flexbox para alinear los elementos en una fila */
+  justify-content: center; /* Alinea los elementos verticalmente en el centro si es necesario */
+  gap: 2px; /* Espacio entre los elementos, ajusta según sea necesario */
+}
+
+.details h2 {
+  display: flex; /* Utiliza Flexbox para alinear el contenido */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  height: 50px;
+  color: #000;
+  width: 106px;
+  height: 23px;
+  text-align: center;
+  font-family: Barlow;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.details h4 {
+  color: #000;
+  text-align: center;
+  font-family: Barlow;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }

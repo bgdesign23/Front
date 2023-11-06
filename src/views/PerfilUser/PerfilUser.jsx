@@ -1,84 +1,62 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../../Redux/actions";
-import styles from "../../views/PerfilUser/PerfilUser.module.css";
+import { getUser, updateUser } from "../../Redux/actions";
+import styles from "../PerfilUser/PerfilUser.module.css";
 
-function validation(input) {
-  const errors = {};
-  if (
-    !input.username ||
-    !/^(?:[A-Z][a-zA-Z]*)(?: [A-Z][a-zA-Z]*){0,2}$/.test(input.username)
-  ) {
-    errors.username =
-      "Debe tener un nombre válido con la primera letra mayúscula y permitir nombres compuestos de hasta 255 caracteres.";
-  }
-  if (
-    !input.location ||
-    !/^(?:[A-Z][a-zA-Z]*)(?:-[A-Z][a-zA-Z]*){0,1}$/.test(input.location)
-  ) {
-    errors.location =
-      "Debe tener un nombre válido, con la primera letra mayúscula. Permite compuestos separados por un guión (-)";
-  }
-  if (!/^\(\d{3}\)\d{4}-\d{4}$/.test(input.phone)) {
-    errors.phone =
-      "Debe contener un número de teléfono válido. Ej (000)0000-0000 ";
-  }
-  if (!/^\S+@\S+\.\S+$/.test(input.email)) {
-    errors.email = "Debe ser un email válido";
-  }
-  if (input.password.length < 8) {
-    errors.password = "Debe contener mínimo 8 caracteres";
-  }
-  if (input.password !== input.confirmPassword) {
-    errors.confirmPassword = "Las contraseñas no coinciden";
-  }
-  return errors;
-}
-
-function PerfilUsuario() {
+function PerfilUser() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const [errors, setErrors] = useState({});
-  const [input, setInput] = useState({
-    ...user,
-    confirmPassword: "",
-    formSubmitted: false,
+  const userData = useSelector((state) => state.user);
+
+  const [formUser, setFormUser] = useState({
+    username: "",
+    location: "",
+    phone: "",
+    email: "",
+    image: "",
+    currentPassword: "",
+    newPassword: "",
   });
 
   useEffect(() => {
-    setInput({ ...user, confirmPassword: "", formSubmitted: false });
-  }, [user]);
+    dispatch(getUser());
+  }, [dispatch]);
 
-  function handleChange(event) {
-    setInput({
-      ...input,
-      [event.target.name]: event.target.value,
-    });
-    setErrors(
-      validation({
-        ...input,
-        [event.target.name]: event.target.value,
-      })
-    );
-  }
+  useEffect(() => {
+    if (userData && userData.user) {
+      const user = userData.user;
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setErrors(validation(input));
-    setInput((prevInput) => ({ ...prevInput, formSubmitted: true }));
-    if (
-      Object.keys(errors).length === 0 &&
-      input.username !== "" &&
-      input.location !== "" &&
-      input.email !== "" &&
-      input.password !== "" &&
-      input.confirmPassword !== ""
-    ) {
-      dispatch(updateUser(input));
-    } else {
-      alert("Debe ingresar todos los datos.");
+      setFormUser({
+        username: user.username || "",
+        location: user.location || "",
+        phone: user.phone || "",
+        email: user.email || "",
+        image: user.profileImage || "",
+        currentPassword: "",
+        newPassword: "",
+      });
     }
-  }
+  }, [userData]);
+
+  const handleInputChange = (event) => {
+    setFormUser({ ...formUser, [event.target.name]: event.target.value });
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setFormUser({ ...formUser, image: file });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("username", formUser.username);
+    formData.append("location", formUser.location);
+    formData.append("phone", formUser.phone);
+    formData.append("email", formUser.email);
+    formData.append("image", formUser.image);
+    formData.append("newPassword", formUser.newPassword);
+    dispatch(updateUser(formData, userData.token));
+  };
 
   return (
     <div>
@@ -87,91 +65,79 @@ function PerfilUsuario() {
           <section className={styles.formimput}>
             <div className={styles.columna}>
               <div className={styles.labelimput}>
-                <label>Nombre Completo:</label>
+                <label>Imagen de usuario :</label>
+                <input
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+                {userData.user.image && (
+                  <img
+                    src={userData.user.image}
+                    alt="Imagen de usuario"
+                    className={styles.profileImage}
+                  />
+                )}
+              </div>
+              <div className={styles.labelimput}>
+                <label>Nombre de usuario:</label>
                 <input
                   type="text"
                   name="username"
-                  value={input.username}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  value={formUser.username}
+                  onChange={handleInputChange}
                 />
-                {errors.username && (
-                  <p className={styles.error}> {errors.username} </p>
-                )}
               </div>
-
               <div className={styles.labelimput}>
-                <label>Localidad:</label>
+                <label>Ubicación:</label>
                 <input
                   type="text"
                   name="location"
-                  value={input.location}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  value={formUser.location}
+                  onChange={handleInputChange}
                 />
-                {errors.location && (
-                  <p className={styles.error}>{errors.location}</p>
-                )}
               </div>
-
               <div className={styles.labelimput}>
                 <label>Teléfono:</label>
                 <input
                   type="text"
                   name="phone"
-                  value={input.phone}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  value={formUser.phone}
+                  onChange={handleInputChange}
                 />
-                {errors.phone && <p className={styles.error}>{errors.phone}</p>}
               </div>
-            </div>
-
-            <div className={styles.columna}>
               <div className={styles.labelimput}>
-                <label>Correo Electrónico:</label>
+                <label>Correo electrónico:</label>
                 <input
                   type="email"
                   name="email"
-                  value={input.email}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  value={formUser.email}
+                  onChange={handleInputChange}
                 />
-                {errors.email && <p className={styles.error}>{errors.email}</p>}
               </div>
-
               <div className={styles.labelimput}>
-                <label>Contraseña:</label>
+                <label>Contraseña actual:</label>
                 <input
                   type="password"
-                  name="password"
-                  value={input.password}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  name="currentPassword"
+                  value={formUser.currentPassword}
+                  onChange={handleInputChange}
                 />
-                {errors.password && (
-                  <p className={styles.error}>{errors.password}</p>
-                )}
               </div>
-
-              <div className={styles.labelimput}>
-                <label>Confirmar Contraseña:</label>
+              <div>
+                <label>Nueva contraseña:</label>
                 <input
                   type="password"
-                  name="confirmPassword"
-                  value={input.confirmPassword}
-                  onChange={(event) => handleChange(event)}
-                  required
+                  name="newPassword"
+                  value={formUser.newPassword}
+                  onChange={handleInputChange}
                 />
-                {errors.confirmPassword && (
-                  <p className={styles.error}>{errors.confirmPassword}</p>
-                )}
               </div>
             </div>
           </section>
-
           <div className={styles.buttonContainer}>
-            <button type="submit"> Modificar Datos </button>
+            <button type="submit">Guardar cambios</button>
           </div>
         </div>
       </form>
@@ -179,4 +145,4 @@ function PerfilUsuario() {
   );
 }
 
-export default PerfilUsuario;
+export default PerfilUser;

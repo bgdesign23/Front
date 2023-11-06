@@ -1,0 +1,17 @@
+.Filters select {
+  width: 100%;
+  color: #fff;
+  text-align: center;
+        font-family: Cinzel;
+          font-size: 15px;
+  background-color: #191919;
+  border-color: #191919;
+}
+
+.Filters option {
+  background: #d9d9d9;
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+}

@@ -1,14 +1,13 @@
-/* eslint-disable react/prop-types */
 import Styles from "./Product.module.css";
 import Card from "../Product/Card";
 import Filters from "../../Components/Filters/Filters";
 import { useState } from "react";
 
 export default function Cards({ productos }) {
-  const [paged, setPaged] = useState(10);
+  const [paged, setPaged] = useState(12);
 
   const handlePaged = () => {
-    setPaged(paged + 10);
+    setPaged(paged + 12);
   };
 
   const pagedSection = productos.slice(0, paged);
@@ -18,7 +17,9 @@ export default function Cards({ productos }) {
         <Filters />
         {!productos.length ? (
           <div>
-            <h1 className={Styles.h1}>No se encontraron productos relacionados</h1>
+            <h1 className={Styles.h1}>
+              No se encontraron productos relacionados
+            </h1>
           </div>
         ) : (
           <>
@@ -38,7 +39,11 @@ export default function Cards({ productos }) {
                 />
               ))}
             </div>
-            <button onClick={handlePaged}>Más Productos</button>
+            {productos.length > paged && (
+              <button onClick={handlePaged} className={Styles.buttonPrimary}>
+                Más Productos
+              </button>
+            )}
           </>
         )}
       </>

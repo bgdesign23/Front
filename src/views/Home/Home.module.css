@@ -1,21 +1,37 @@
 .home {
-  padding-inline: 40px;
   justify-content: center;
+  align-items: center;
 }
 
 /* Seccion 1 */
 
 .primerseccion {
-  padding-inline: 20px;
-  position: relative;
-  height: 500px;
+  display: flex;
+  width: cover;
+  bottom: 30px;
+  height: 100vh;
+  z-index: 999;
 }
+
+.imagen {
+  width: 100%;
+}
+
+.quienes {
+  width: 800px;
+  position: relative;
+  display: block;
+  top: 150px;
+  padding-inline: 50px;
+  justify-content: center;
+}
+
 .quienes h1 {
   color: white;
   font-family: Cinzel;
-  font-size: 60px;
+  font-size: 100px;
   font-weight: 400;
-  text-align: left;
+  text-align: justify;
   margin-bottom: -50px;
 }
 
@@ -30,23 +46,59 @@
   text-align: left;
   color: white;
   margin-top: 70px;
-  font-family: "Barlow", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
-.repisas {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 300px; /* Ajusta a tu necesidad */
-  height: 500px; /* Mantiene la relación de aspecto */
+.fondocontainer {
+  left: 300px;
+  width: 100%;
+  height: cover;
 }
 
-.repisa {
-  position: absolute;
-  bottom: 0;
-  right: 320px;
-  width: 300px; /* Ajusta a tu necesidad */
-  height: 500px; /* Mantiene la relación de aspecto */
+.mobileText {
+  display: none;
+}
+
+.textPrinc {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .primerseccion {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .quienes {
+    display: none;
+  }
+
+  .imagen {
+    display: none;
+  }
+
+  .mobileText {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    max-width: 310px;
+    margin: 0 auto;
+    position: relative;
+    bottom: -120px;
+  }
+
+  .textPrinc {
+    color: white;
+    position: relative;
+    bottom: -70px;
+  }
+
+  .textPrinc h1 {
+    font-size: 40px;
+    font-family: Cinzel;
+    font-weight: lighter;
+  }
 }
 
 /*  Section 3 */
@@ -57,36 +109,69 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 600px;
+  height: 700px;
 }
 
 .contenedor h1 {
   text-align: center;
   color: white;
   font-family: Cinzel;
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 400;
   margin: 20px auto;
+  margin-top: -30px;
 }
 
 .servicios {
   display: flex;
   justify-content: center;
-  gap: 100px;
+  gap: 200px;
 }
 
 .servicio {
   display: flex; /* Alinea la imagen y el título horizontalmente */
   flex-direction: column; /* Organiza los elementos verticalmente */
   align-items: center;
+  background-color: white;
+  border-radius: 8px;
 }
 
 .muebles {
   height: 400px;
-  width: 400px;
+  width: 500px;
+  border-radius: 5px;
 }
 
 .servicio h1 {
   margin: 20px auto;
-  font-size: 30px;
+  font-size: 40px;
+  color: black;
+}
+
+@media (max-width: 480px) {
+  .primerseccion {
+    height: cover;
+  }
+  .home {
+    padding-top: 400px;
+  }
+  .servicios {
+    display: inline;
+    justify-content: left;
+    gap: 100px;
+  }
+  .contenedor {
+    display: inline;
+    max-width: 400px;
+  }
+
+  .contenedor h1 {
+    font-size: 25px;
+    margin: 10px auto;
+  }
+
+  .muebles {
+    height: 200px;
+    width: 200px;
+  }
 }
