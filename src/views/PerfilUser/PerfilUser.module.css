@@ -86,3 +86,8 @@
 .loginContainer button:hover {
   background-color: #555556;
 }
+
+.profileImage{
+  width: 200px;
+  height: 200px;
+}

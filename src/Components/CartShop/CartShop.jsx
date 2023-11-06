@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { applyCoupon, createPreference } from "../../Redux/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function validateCoupon(couponCode) {
   const currentDate = new Date();
@@ -35,6 +35,7 @@ function ShoppingCart() {
   initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
   const [preferenceId, setPreferenceId] = useState(null);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
@@ -64,6 +65,7 @@ function ShoppingCart() {
       cancelButtonColor: "#394754",
       confirmButtonText: "Eliminar",
       cancelButtonText: "cancelar",
+      color: "#ffffff",
     }).then((result) => {
       if (result.isConfirmed) {
         const updatedCart = cart.filter((product) => product.id !== productId);
@@ -74,6 +76,7 @@ function ShoppingCart() {
           text: "El producto ya no está en tu carrito",
           background: "#1A1A1A",
           confirmButtonColor: "#394754",
+          color: "#ffffff",
         });
       }
     });
@@ -131,6 +134,27 @@ function ShoppingCart() {
       setDiscount(0);
       setTotalWithDiscount(numero);
     }
+  };
+
+  const handleButtonBuy = async () => {
+    if (user || localStorage.getItem("token")) return handleBuy();
+    else
+      Swal.fire({
+        title: "Usuario no autorizado",
+        text: "Inicia sesión para realizar la compra",
+        icon: "warning",
+        showDenyButton: true,
+        confirmButtonText: "Iniciar sesión",
+        denyButtonText: "Cancelar",
+        confirmButtonColor: "#394754",
+        denyButtonColor: "#394754",
+        background: "#3b3838",
+        color: "#ffffff",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          navigate("/form/login");
+        }
+      });
   };
 
   const handleBuy = async () => {
@@ -229,7 +253,7 @@ function ShoppingCart() {
             )}{" "}
           </div>
         </div>
-        <button className={Styles.btn} onClick={handleBuy}>
+        <button className={Styles.btn} onClick={handleButtonBuy}>
           CONTINUAR CON LA COMPRA
         </button>
         {preferenceId && <Wallet initialization={{ preferenceId }} />}

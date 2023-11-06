@@ -35,9 +35,7 @@ const Detail = () => {
 
   // console.log(thing);
 
-  // si existe el producto entonces aumenta la cantidad
-  //sino agregalo al carrito
-  const handle_addToCart = () => {
+  /* const handle_addToCart = () => {
     if (user || localStorage.getItem("token")) return addToCart();
     else
       Swal.fire({
@@ -56,7 +54,7 @@ const Detail = () => {
           navigate("/form/login");
         }
       });
-  };
+  }; */
 
   const addToCart = () => {
     const existingProduct = thing.findIndex(
@@ -130,13 +128,13 @@ const Detail = () => {
           </div>
           <h4 className={styles.price}>${detailProduct?.price},00</h4>
           <div className={styles.actions}>
-            <button onClick={handle_addToCart} className={styles.button}>
+            <button onClick={addToCart} className={styles.button}>
               Agregar al Carrito
             </button>
             <a
               href={`https://wa.me/2477516585/?text=Hola,%20quisiera%20tener%20más%20información%20sobre%20el%20producto`}
               target="_blank"
-              className={styles.whatsappLink}
+              className={styles.whatsappLink} rel="noreferrer"
             >
               <img src={logoWhatsapp} alt="" style={{ width: "66px" }} />
             </a>
