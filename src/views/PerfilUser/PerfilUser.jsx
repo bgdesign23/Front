@@ -17,9 +17,9 @@ function PerfilUser() {
     newPassword: "",
   });
 
-  useEffect(() => {
+  /* useEffect(() => {
     dispatch(getUser());
-  }, [dispatch]);
+  }, [dispatch]); */
 
   useEffect(() => {
     if (userData && userData.user) {
@@ -35,7 +35,7 @@ function PerfilUser() {
         newPassword: "",
       });
     }
-  }, [userData]);
+  }, []);
 
   const handleInputChange = (event) => {
     setFormUser({ ...formUser, [event.target.name]: event.target.value });
