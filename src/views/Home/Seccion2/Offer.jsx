@@ -33,7 +33,7 @@ function Offer() {
       {
         breakpoint: 9999,
         settings: {
-          slidesToShow: 5,
+          slidesToShow: 4,
         },
       },
     ],

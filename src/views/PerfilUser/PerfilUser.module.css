@@ -1,93 +1,67 @@
-.loginContainer {
-  background-image: url("../LoginForm/fondo.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-top: -65px;
-  padding-top: 80px;
+.formimput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
   width: 100%;
-  height: 88.4vh;
-}
-
-.login {
-  max-width: 800px;
-  margin: 80px auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 50px;
-  background-color: rgba(217, 217, 217, 1);
+  border-radius: 5px;
+  background-color: rgba(217, 217, 217, 0.482);
+  border-radius: 34px;
+}
+h4 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.profileImage {
+  width: 100px; /* Ajusta el ancho como desees */
+  height: auto;
 }
 
-.login h1 {
-  text-align: center;
-}
-
-.login label {
-  font-family: Barlow;
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: absolute;
+  top: 13%;
+  left: 0;
+  right: 0;
 }
 
 .login label {
   text-align: left;
-  display: block;
-  margin-top: 20px;
+  font-family: Barlow;
+
   font-weight: bold;
+  color: rgb(8, 8, 8);
+  font-size: 16px; /* Ajusta el tamaño de fuente como desees */
+  padding-left: 0px; /* Ajusta el espaciado izquierdo como desees */
 }
 
 .login input {
-  height: 30px;
-  background-color: rgba(255, 245, 245, 1);
-  width: 95%;
-  padding: 6px;
+  width: 100%;
+  max-width: 400px;
+  height: 45px;
+  padding: 5px;
   margin: 10px 0;
   border: 1px solid #ccc;
-  border-radius: 3px;
-  margin-bottom: 2px;
-}
-
-.login hr {
-  margin: 1px 0;
-  border: none;
-  border-top: 1px solid #ccc;
-}
-
-.login p {
-  color: red;
-  font-size: 11px;
-  margin-top: 2px;
-}
-
-.loginContainer section {
-  border-color: blueviolet;
-  display: flex;
-  height: 20px;
-}
-
-.loginContainer .columna {
-  flex: 1;
-  flex-direction: row;
-  padding-left: 20px;
-}
-
-.loginContainer .labelimput {
-  display: flex;
-  flex-direction: column;
-  height: 100px;
-}
-
-.loginContainer button {
-  margin-top: 300px;
   border-radius: 8px;
-  background: #191919;
-  width: 160px;
-  height: 40px;
-  margin-left: 20px;
-  flex-shrink: 0;
 }
 
-.loginContainer button:hover {
-  background-color: #555556;
+.buttonContainer button {
+  width: 100%;
+  width: 400px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgb(177, 171, 171);
+  height: 50px;
+  margin-inline: 0.5rem;
+  margin-block: 0.5rem;
 }
 
-.profileImage{
-  width: 200px;
-  height: 200px;
+.buttonContainer button:hover {
+  background-color: #191919;
 }
