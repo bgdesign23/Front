@@ -330,6 +330,7 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
 
 export const getUser = () => async (dispatch) => {
   try {
+
     const token = localStorage.getItem("token");
     const config = {
       headers: {
@@ -337,6 +338,7 @@ export const getUser = () => async (dispatch) => {
       },
     };
     let response = await axios.post(`${URL}/users`, {}, config);
+
     dispatch({
       type: SET_USER,
       payload: response.data,
@@ -346,11 +348,12 @@ export const getUser = () => async (dispatch) => {
   }
 };
 
-export const updateUser = (userData) => async (dispatch) => {
+export const updateUser = (formData) => async (dispatch) => {
+    console.log("Datos a actualizar:", formData);
   dispatch({ type: UPDATE_USER_REQUEST });
 
   try {
-    const response = await axios.put(`${URL}/users/${userData.id}`, userData);
+    const response = await axios.put(`${URL}/users/${formData.id}`, formData);
 
     dispatch({
       type: UPDATE_USER_SUCCESS,
