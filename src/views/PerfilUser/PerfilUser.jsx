@@ -1,5 +1,5 @@
-import  { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser } from "../../Redux/actions";
 import styles from "../PerfilUser/PerfilUser.module.css";
 
@@ -7,15 +7,14 @@ function PerfilUser() {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.user);
 
-  const [formData, setFormData] = useState({
-    id: "",
-    username: '',
-    location: '',
-    phone: '',
-    email: '',
-    image: '',
-    currentPassword: '',
-    newPassword: '',
+  const [formUser, setFormUser] = useState({
+    username: "",
+    location: "",
+    phone: "",
+    email: "",
+    image: "",
+    currentPassword: "",
+    newPassword: "",
   });
 
   useEffect(() => {
@@ -26,68 +25,67 @@ function PerfilUser() {
     if (userData && userData.user) {
       const user = userData.user;
 
-      setFormData({
-        id: user.id || '',
-        username: user.username || '',
-        location: user.location || '',
-        phone: user.phone || '',
-        email: user.email || '',
-        image: user.profileImage || '',
-        currentPassword: '',
-        newPassword: '',
+      setFormUser({
+        username: user.username || "",
+        location: user.location || "",
+        phone: user.phone || "",
+        email: user.email || "",
+        image: user.profileImage || "",
+        currentPassword: "",
+        newPassword: "",
       });
     }
   }, [userData]);
 
-  const handleUpdateUser = () => {
-    dispatch(updateUser(formData));
+  const handleInputChange = (event) => {
+    setFormUser({ ...formUser, [event.target.name]: event.target.value });
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-  e.preventDefault();
-  dispatch(updateUser(formData));
-  alert('Los cambios se guardaron correctamente');
-};
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    setFormData({ ...formData, image: file });
+    setFormUser({ ...formUser, image: file });
   };
-  
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("username", formUser.username);
+    formData.append("location", formUser.location);
+    formData.append("phone", formUser.phone);
+    formData.append("email", formUser.email);
+    formData.append("image", formUser.image);
+    formData.append("newPassword", formUser.newPassword);
+    dispatch(updateUser(formData, userData.token));
+  };
+
   return (
     <div>
-      {console.log('formData en el render:', formData)}
-
       <form className={styles.loginContainer} onSubmit={handleSubmit}>
         <div className={styles.login}>
           <section className={styles.formimput}>
             <div className={styles.columna}>
-             <div className={styles.labelimput}>
-                 <label>Imagen de usuario :</label>
-  {formData.image && (
-    <img
-      src={formData.image}
-      alt="Imagen de usuario"
-      className={styles.profileImage}
-    />
-  )}
-            <input
-          type="file"
-          name="image"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
-        </div>
+              <div className={styles.labelimput}>
+                <label>Imagen de usuario :</label>
+                <input
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+                {userData.user.image && (
+                  <img
+                    src={userData.user.image}
+                    alt="Imagen de usuario"
+                    className={styles.profileImage}
+                  />
+                )}
+              </div>
               <div className={styles.labelimput}>
                 <label>Nombre de usuario:</label>
                 <input
                   type="text"
                   name="username"
-                  value={formData.username}
+                  value={formUser.username}
                   onChange={handleInputChange}
                 />
               </div>
@@ -96,7 +94,7 @@ function PerfilUser() {
                 <input
                   type="text"
                   name="location"
-                  value={formData.location}
+                  value={formUser.location}
                   onChange={handleInputChange}
                 />
               </div>
@@ -105,7 +103,7 @@ function PerfilUser() {
                 <input
                   type="text"
                   name="phone"
-                  value={formData.phone}
+                  value={formUser.phone}
                   onChange={handleInputChange}
                 />
               </div>
@@ -114,7 +112,7 @@ function PerfilUser() {
                 <input
                   type="email"
                   name="email"
-                  value={formData.email}
+                  value={formUser.email}
                   onChange={handleInputChange}
                 />
               </div>
@@ -123,23 +121,23 @@ function PerfilUser() {
                 <input
                   type="password"
                   name="currentPassword"
-                  value={formData.currentPassword}
+                  value={formUser.currentPassword}
                   onChange={handleInputChange}
                 />
               </div>
-              <div >
+              <div>
                 <label>Nueva contraseña:</label>
                 <input
                   type="password"
                   name="newPassword"
-                  value={formData.newPassword}
+                  value={formUser.newPassword}
                   onChange={handleInputChange}
                 />
               </div>
             </div>
           </section>
           <div className={styles.buttonContainer}>
-            <button onClick={handleUpdateUser}>Guardar cambios</button>
+            <button type="submit">Guardar cambios</button>
           </div>
         </div>
       </form>
@@ -148,10 +146,3 @@ function PerfilUser() {
 }
 
 export default PerfilUser;
-
-
-
-
-
-
-

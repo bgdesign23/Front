@@ -391,21 +391,39 @@ export const getUser = () => async (dispatch) => {
   }
 };
 
-export const updateUser = (formData) => async (dispatch) => {
-    console.log("Datos a actualizar:", formData);
+export const updateUser = (formData, token) => async (dispatch) => {
   dispatch({ type: UPDATE_USER_REQUEST });
-
   try {
-    const response = await axios.put(`${URL}/users/${formData.id}`, formData);
-
+    const config = {
+      headers: {
+        authorization: token,
+      },
+    };
+    const response = await axios.put(`${URL}/users`, formData, config);
     dispatch({
       type: UPDATE_USER_SUCCESS,
       payload: response.data,
     });
+    await Swal.fire({
+      title: "Cambios realizados exitosamente",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 3000,
+      background: "#3b3838",
+      color: "#ffffff",
+    });
+    window.location.reload();
   } catch (error) {
     dispatch({
       type: UPDATE_USER_FAILURE,
       payload: error.message,
+    });
+    await Swal.fire({
+      title: "Error",
+      text: error.response.data.message,
+      icon: "error",
+      background: "#3b3838",
+      color: "#ffffff",
     });
   }
 };
