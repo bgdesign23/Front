@@ -95,11 +95,13 @@ const Detail = () => {
         </div>
         <div className={styles.detailsContainer}>
           <h1 className={styles.name}>{detailProduct?.name}</h1>
-          <span className={styles.description}>
+          <h2 className={styles.description} style={{ textAlign: "left" }}>
             {detailProduct?.description}
-          </span>
+          </h2>
           <div className={styles.filas}>
             <h3 className={styles.type}>Ambiente: {detailProduct?.type}</h3>
+            <h3>Color: {detailProduct?.color}</h3>
+            <h3>Material: {detailProduct?.material}</h3>
 
             {/* <select
               value={selectedColor}
@@ -123,22 +125,22 @@ const Detail = () => {
                 </option>
               ))}
             </select> */}
-            <h3 className={styles.category}>
-              {" "}
-              {detailProduct?.category?.name}
-            </h3>
-            <h3 className={styles.stock}>{detailProduct?.stock}</h3>
+
+            <h6 className={styles.stock}>{detailProduct?.stock}</h6>
           </div>
-          <h2 className={styles.price}>${detailProduct?.price},00</h2>
-          <a
-            href={`https://wa.me/2477516585/?text=Hola,%20quisiera%20tener%20más%20información%20sobre%20el%20producto`}
-            target="_blank"
-          >
-            <img src={logoWhatsapp} alt="" style={{ width: "55px" }} />
-          </a>
-          <button onClick={handle_addToCart} className={styles.button}>
-            Agregar al Carrito
-          </button>
+          <h4 className={styles.price}>${detailProduct?.price},00</h4>
+          <div className={styles.actions}>
+            <button onClick={handle_addToCart} className={styles.button}>
+              Agregar al Carrito
+            </button>
+            <a
+              href={`https://wa.me/2477516585/?text=Hola,%20quisiera%20tener%20más%20información%20sobre%20el%20producto`}
+              target="_blank"
+              className={styles.whatsappLink}
+            >
+              <img src={logoWhatsapp} alt="" style={{ width: "66px" }} />
+            </a>
+          </div>
         </div>
         <Toaster
           position="buttom-right"
