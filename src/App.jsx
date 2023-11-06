@@ -23,9 +23,9 @@ import Success from "./views/MercadoPago/Success";
 import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
 import RequestPasswordReset from "./views/Password/RequestPasswordReset";
 import PasswordReset from "./views/Password/PasswordReset";
-import { useState } from "react";
-import SideBar from "./Components/SideBar/SideBar";
-import ButtonSide from "./Components/SideBar/ButtonSide/ButtonSide";
+// import { useState } from "react";
+// import SideBar from "./Components/SideBar/SideBar";
+// import ButtonSide from "./Components/SideBar/ButtonSide/ButtonSide";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,11 +33,11 @@ function App() {
   const location = useLocation();
   const user = useSelector((state) => state.user);
 
-  const [isOpenSideBar, setIsOpenSideBar] = useState(false);
+  // const [isOpenSideBar, setIsOpenSideBar] = useState(false);
 
-  const toggleSideBar = () => {
-    setIsOpenSideBar(!isOpenSideBar);
-  };
+  // const toggleSideBar = () => {
+  //   setIsOpenSideBar(!isOpenSideBar);
+  // };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,9 +80,7 @@ function App() {
             <Route path="/cupones" element={<CouponUser />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/admin" element={<AdminDashboard />} />
-            {(user || localStorage.getItem("token")) && (
-              <Route path="/cartShop" element={<CartShop />} />
-            )}
+            <Route path="/cartShop" element={<CartShop />} />
             <Route path="/home/success" element={<Success />} />
             <Route
               path={"/form/login/request-password-reset"}

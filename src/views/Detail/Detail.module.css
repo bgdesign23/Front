@@ -1,13 +1,40 @@
-/* Estilos para el botón "Back" */
 .backButton {
   position: absolute;
   bottom: 10px; /* Ajusta la distancia desde la parte inferior de la página */
-  left: 10px; /* Ajusta la distancia desde el borde izquierdo de la página */
-  background-color: #5e320d;
-  color: #fff;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
+  left: 60px; /* Ajusta la distancia desde el borde izquierdo de la página */
+  width: 100px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #191919;
+  color: white;
+  height: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.backButton:hover {
+  color: black;
+  background-color: white;
+  transition: 0.8s;
+}
+
+.button {
+  margin-bottom: -60px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: white;
+  color: #191919;
+  height: 50px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.button:hover {
+  color: white;
+  background-color: #191919;
+  transition: 0.8s;
 }
 
 .container {
