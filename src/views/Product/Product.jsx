@@ -4,10 +4,10 @@ import Filters from "../../Components/Filters/Filters";
 import { useState } from "react";
 
 export default function Cards({ productos }) {
-  const [paged, setPaged] = useState(10);
+  const [paged, setPaged] = useState(12);
 
   const handlePaged = () => {
-    setPaged(paged + 10);
+    setPaged(paged + 12);
   };
 
   const pagedSection = productos.slice(0, paged);

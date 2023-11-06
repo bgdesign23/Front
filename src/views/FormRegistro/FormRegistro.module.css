@@ -5,7 +5,7 @@
   position: relative;
 }
 
-.login section{
+.login section {
   display: flex;
 }
 .imagennForm {
@@ -33,7 +33,6 @@
   flex-direction: row;
   padding-left: 10px;
 }
-
 
 .titulo {
   color: #ffffff;
@@ -88,8 +87,6 @@
   background-color: #191919;
 }
 
-
-
 @media (max-width: 768px) {
   .loginContainer {
     top: 20%;
@@ -101,7 +98,7 @@
   }
 }
 
- /* .pageContainer{
+/* .pageContainer{
   display: flex;
   justify-content: center;
   align-items: center;

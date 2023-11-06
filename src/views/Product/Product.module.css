@@ -10,27 +10,26 @@
 
 @media (min-width: 1200px) {
   .products_container {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 .buttonPrimary {
+  margin-bottom: 1rem;
+  max-width: 270px;
+  width: 50%;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: white;
   color: #191919;
-  position: relative;
-  margin-right: -50px;
-  padding: 0.5em 1.7em;
-  font-size: 18px;
-  background: #ffffff;
-  border: 1px solid #777777;
-  transition: all 0.3s;
-  box-shadow: 6px 6px 12px #000000, -6px -6px 12px #000000;
+  height: 50px;
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 .buttonPrimary:hover {
-  border: 1px solid rgb(0, 0, 0);
-}
-
-.buttonPrimary:active {
-  box-shadow: 4px 4px 12px #000000, -4px -4px 12px #000000;
+  color: white;
+  background-color: #191919;
+  transition: 0.8s;
 }
