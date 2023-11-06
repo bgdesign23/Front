@@ -1,7 +1,7 @@
 .Filters {
   display: flex;
   justify-content: center;
-  padding-top: 150px;
+  padding-top: 100px;
 }
 
 .Filters select {
@@ -26,14 +26,21 @@
 }
 
 .buttonSecundary {
+  margin-bottom: 1rem;
+  max-width: 110px;
+  width: 50%;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #191919;
   color: white;
-  position: relative;
-  margin-right: -50px;
-  padding: 0.3em 1.5em;
-  font-size: 15px;
-  background: transparent;
-  border: 1px solid #777777;
-  transition: all 0.3s;
-  box-shadow: 6px 6px 12px #191919, -6px -6px 12px #191919;
+  height: 35px;
   font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+}
+
+.buttonSecundary:hover {
+  color: black;
+  background-color: white;
+  font-weight: bold;
+  transition: 0.8s;
 }

@@ -1,8 +1,7 @@
 .all_container {
-
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 @media (max-width: 700px) {
@@ -28,6 +27,7 @@
     max-width: 900px;
     height: cover;
     border-radius: 15px;
+
 }
 
 @media (max-width: 700px) {
@@ -44,8 +44,8 @@
 }
 
 
+
 .resumeCart{
-    
     display: block;
     /* width: 100vh; */
     max-width: 500px;
@@ -58,8 +58,6 @@
     border-radius: 15px; 
     width: 90%;
     height: 50%;
-
-
 }
 
 @media (max-width: 600px) {
@@ -71,23 +69,21 @@
   }
 }
 
-
-
-.carVacio{
-    margin-top: 10%;
+.carVacio {
+  margin-top: 10%;
 }
 
-.details{
-    max-width: 450px;
-display: inline-block;
-padding-block: 1rem ;
+.details {
+  max-width: 450px;
+  display: inline-block;
+  padding-block: 1rem;
 }
 
 .detailsHijo {
-    display: inline-block ;
-    width: 420px;
-    font-family:Arial, Helvetica, sans-serif;
-    justify-content: left;
+  display: inline-block;
+  width: 420px;
+  font-family: Arial, Helvetica, sans-serif;
+  justify-content: left;
 }
 .detailsHijo p {
   text-align: left;
@@ -130,32 +126,30 @@ padding-block: 1rem ;
   padding: 0;
 }
 
+.btn {
+  margin-bottom: 1rem;
+  max-width: 420px;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: white;
+  color: #191919;
+  border: none;
+  height: 50px;
+}
 
+.btn:hover {
+  font-weight: bold;
+  color: white;
+  background-color: #191919;
+  transition: 0.8s;
+}
 
-
-.btn{
-    margin-bottom: 1rem;
-    max-width: 420px;
-    width: 100%;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: white;
-    color: #191919;
-    border: none;
-    height: 50px;}
-
-        .btn:hover {
-            font-weight: bold;
-            color: white;
-            background-color:#191919;
-            transition: 0.8s;
-        }
-        
-.cupon_container{
-    display: flex;
-    justify-content: center;
-    margin-block: .5rem;
-    padding-right: 1rem;
+.cupon_container {
+  display: flex;
+  justify-content: center;
+  margin-block: 0.5rem;
+  padding-right: 1rem;
 }
 
 .btn:hover {
@@ -169,43 +163,40 @@ padding-block: 1rem ;
   justify-content: center;
 }
 
+.btncupon {
+  border: none;
+  width: 240px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #191919;
+  height: 30px;
+  margin-inline: 0.5rem;
+  align-items: left;
+  justify-content: center;
+}
 
-.btncupon{
-    border: none;
-    width: 240px;
-    border-radius: 8px;
-    cursor: pointer;
-    color: #191919;
-    height: 30px;
-    margin-inline: .5rem;
-    align-items: left;
-    justify-content: center;
- }
-
-input{
-    width: 230px;
-    border-radius: 8px;
-    
+input {
+  width: 230px;
+  border-radius: 8px;
 }
 
 .btncupon:hover {
-    font-weight: bold;
+  font-weight: bold;
   color: white;
-  background-color: #009EE3;
+  background-color: #009ee3;
 }
 
-.backBtn{
-    top: 110px;
-    left: -71px;
-    height: 100px;
-    position: relative;
-    border: none;
-    background: none;
-    text-decoration: none;
-    color: white ;
-    cursor: pointer;
-    position: relative;
-
+.backBtn {
+  top: 110px;
+  left: -71px;
+  height: 100px;
+  position: relative;
+  border: none;
+  background: none;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  position: relative;
 }
 
 @media (max-width: 600px) {
