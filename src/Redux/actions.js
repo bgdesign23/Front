@@ -412,7 +412,6 @@ export const updateUser = (formData, token) => async (dispatch) => {
       background: "#3b3838",
       color: "#ffffff",
     });
-    window.location.reload();
   } catch (error) {
     dispatch({
       type: UPDATE_USER_FAILURE,
