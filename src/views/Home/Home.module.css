@@ -109,43 +109,50 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 600px;
+  height: 700px;
 }
 
 .contenedor h1 {
   text-align: center;
   color: white;
   font-family: Cinzel;
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 400;
   margin: 20px auto;
+  margin-top: -30px;
 }
 
 .servicios {
   display: flex;
   justify-content: center;
-  gap: 100px;
+  gap: 200px;
 }
 
 .servicio {
   display: flex; /* Alinea la imagen y el título horizontalmente */
   flex-direction: column; /* Organiza los elementos verticalmente */
   align-items: center;
+  background-color: white;
+  border-radius: 8px;
 }
 
 .muebles {
   height: 400px;
-  width: 400px;
+  width: 500px;
+  border-radius: 5px;
 }
 
 .servicio h1 {
   margin: 20px auto;
-  font-size: 30px;
+  font-size: 40px;
+  color: black;
 }
 
 @media (max-width: 480px) {
-  .primerseccion{height: cover;}
-  .home{
+  .primerseccion {
+    height: cover;
+  }
+  .home {
     padding-top: 400px;
   }
   .servicios {
