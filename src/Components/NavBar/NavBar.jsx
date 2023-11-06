@@ -39,9 +39,9 @@ const NavBar = () => {
         />
       </div>
 
-      {user && user.user.role === 1 ? (
+      {/* {user && user.user.role === 1 ? (
         <Link to="/home/nuevo">Nuevo Mueble</Link>
-      ) : null}
+      ) : null} */}
       <div className={styles.cuatro}>
         <SearchBar />
       </div>
