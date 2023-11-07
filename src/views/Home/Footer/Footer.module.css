@@ -3,16 +3,30 @@
   color: #191919;
   display: flex;
   position: relative;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: column;
   font-family: "Open Sans", sans-serif;
   height: 300px;
-  /* width: 100vw; */
+  width: 100%;
   padding-top: 30px;
+  /* padding-inline: 30px; */
+}
+.pagos{
+  height: 100%;
+    padding-left: 2rem;
+}
+.metodoPago{
+  padding-left: 1.6rem;
+  padding-top: 6rem;
+}
+.mercadopago{
+  width: 250px;
+  height: cover;
 }
 
 .sectionFooterOne {
   display: flex;
+    height: 270px;
 }
 
 .imagenFooter {
@@ -20,15 +34,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  /* position: relative; */
 }
 
 .imagenFooter img {
   height: 250px;
   width: auto;
   position: absolute;
-  right: 950px;
-  top: 7px;
+  left: 800px;
+  bottom: 20px;
 }
 
 .containerTeam {
@@ -83,79 +97,19 @@ ul {
   top: -25px;
 }
 
-/* .FooterCopyright {
-  display: flex;
-  position: relative;
-  right: 340px;
-} */
+.FooterCopyright {
 
-.mercadopago {
-  display: flex;
-  position: relative;
-  height: auto;
-  width: 130px;
-  margin-top: -260px;
-  right: -505px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #d9d9d9;
+  width: 100%;
+
+
 }
 
-.metodoPago {
-  display: flex;
-  position: relative;
-  right: -500px;
-  top: -215px;
-  font-weight: 200px;
-}
 
 h4 {
   text-align: left;
 }
 
-@media (max-width: 480px) {
-  .Footer {
-    height: 200px;
-  }
-  .TeamSection {
-    display: none;
-    margin: 0 auto;
-  }
-
-  .textoTeam {
-    display: none;
-  }
-
-  .contactos {
-    margin-left: -45px;
-    margin-top: -10px;
-  }
-
-  .contactoOne {
-    right: -3px;
-    top: -30px;
-    text-decoration: underline;
-  }
-
-  .FooterCopyright {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: -40px;
-  }
-
-  .imagenFooter {
-    display: none;
-  }
-
-  .listaContactos {
-    margin-bottom: 15px;
-  }
-
-  .mercadopago {
-    margin-top: -70px;
-    right: -10px;
-  }
-
-  .metodoPago {
-    right: -22px;
-    text-decoration: underline;
-    top: -100px;
-  }
-}
