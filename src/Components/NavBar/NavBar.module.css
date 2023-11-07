@@ -85,20 +85,21 @@
     padding: 10px;
     text-align: left;
     width: 100%;
-
   }
    
 
   .uno{
     display: block;
     padding-inline: 5px;
-    margin-bottom: 4px
-    ;
+    margin-bottom: 4px;
+    width: 50%;
+      
   }
   .dos{
-    width: 150px;
-    padding-inline: 10px;
-  margin-bottom: 4px
+    /* width: 150px; */
+    width: 50%;
+    padding-left: 80px;
+    margin-bottom: 4px
   }
 
   .cuatro{

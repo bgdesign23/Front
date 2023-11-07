@@ -1,54 +1,59 @@
 .cardContainer {
   width: 272px;
-  height: 325px;
+  height: 400px;
   box-shadow: 0 4px 6px rgba(220, 31, 31, 0.1);
   border-radius: 8px;
   background-color: rgb(235, 224, 224);
   position: relative;
+  margin-bottom: 2rem;
+  
 
   .imagen {
     width: 272px;
-    height: 210px;
+    height: 230px;
     object-fit: cover;
-    border-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 }
 
 .cardContainer h2 {
-  margin-top: 6px;
+  text-align: left;
+  margin-block: 8px;
+  margin-inline: 18px;
   color: #000;
   font-family: Barlow;
-  font-size: 22px;
+  font-size: 15px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: bold;
   line-height: normal;
 }
+
+
 .details {
+  width: 100%;
   margin-top: 15px;
-  display: flex; /* Utiliza Flexbox para alinear los elementos en una fila */
-  justify-content: center; /* Alinea los elementos verticalmente en el centro si es necesario */
-  gap: 2px; /* Espacio entre los elementos, ajusta según sea necesario */
+  display: flex; 
+  justify-content: left;
+  gap: 2px; 
 }
 
 .details h2 {
-  display: flex; /* Utiliza Flexbox para alinear el contenido */
-  justify-content: center; /* Centra el contenido horizontalmente */
-  align-items: center; /* Centra el contenido verticalmente */
   height: 50px;
   color: #000;
-  width: 106px;
+  width: 120px;
   height: 23px;
-  text-align: center;
+  text-align: left;
   font-family: Barlow;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
 }
 
 .details h4 {
   color: #000;
-  text-align: center;
+  text-align: left;
+  width: 100px;
   font-family: Barlow;
   font-size: 28px;
   font-style: normal;
