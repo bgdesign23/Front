@@ -1,5 +1,4 @@
 .CartCard_Container {
-
     width: 100%;
     max-width: 900px;
     display: flex;
@@ -52,11 +51,12 @@ h3 {
         .imagen_container{
             display: flex;
             justify-content: center;
-            height: 70%
+            height: 70%;
+            padding-left: 1.7rem;
         }
     
 .botonera{
-      margin-left: 5rem;
+      /* margin-left: 8rem; */
             display: flex;
                 width: 300px;
                 justify-content: right;
@@ -72,7 +72,7 @@ h3 {
 }
 
 .botonera {
-  margin-left: 1rem;
+  margin-left: 5rem;
   display: flex;
   width: 400px;
   justify-content: right;
@@ -120,6 +120,7 @@ h3 {
 
 .numero p {
   padding-top: 20px;
+
 }
 
 .cantidad_Container {

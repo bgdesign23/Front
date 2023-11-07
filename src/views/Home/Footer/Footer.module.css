@@ -7,7 +7,7 @@
   flex-direction: column;
   font-family: "Open Sans", sans-serif;
   height: 300px;
-  width: 100vw;
+  /* width: 100vw; */
   padding-top: 30px;
 }
 
