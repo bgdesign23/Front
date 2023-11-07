@@ -1,6 +1,5 @@
 .cardContainer {
   width: 272px;
-
   background-color: rgba(25, 25, 25, 1);
   position: relative;
   margin: 0 auto;
@@ -10,7 +9,8 @@
     width: 272px;
     height: 223px;
     object-fit: cover;
-    border-radius: 8px;
+        border-top-left-radius: 8px;
+          border-top-right-radius: 8px;
   }
 }
 
@@ -24,43 +24,49 @@
   font-size: 14px;
 }
 
-.cardContainer h2 {
-  margin-top: 6px;
+.nombre{
+  margin-top: 15px;
   color: #fff;
   font-family: Barlow;
   font-size: 21px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-align: left;
+  padding-left: .8rem;
 }
 
 .details {
   margin-top: 10px;
   display: flex;
   justify-content: center;
-  gap: 2px;
+  padding-top: .5rem;
 }
 
 .details h2 {
   color: #fff;
-  width: 106px;
+  width: 50px;
   height: 23px;
-  text-align: center;
+  text-align: left;
+  padding-right: 8rem;
   font-family: Barlow;
   font-size: 23px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  padding-left: .8rem;
+  
 }
 
 .details h4 {
   color: #fff;
-  text-align: center;
+  text-align: right;
   font-family: Barlow;
   font-size: 29px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  padding-right: 1rem;
 }
 
 .cardContainer h3 {
@@ -91,3 +97,4 @@
     margin-top: 10px;
   }
 }
+

@@ -6,9 +6,7 @@ function Footer() {
   return (
     <footer className={style.Footer}>
       <section className={style.sectionFooterOne}>
-        <div className={style.imagenFooter}>
-          <img src={logo} />
-        </div>
+        {/* <div className={style.imagenFooter}><img src={logo} /> </div> */}
 
         <div className={style.containerTeam}>
           <h4 className={style.textoTeam}>Equipo de Desarrollo</h4>
@@ -94,6 +92,10 @@ function Footer() {
             <li>bgd.grupo12@gmail.com</li>
             <li>instagram</li>
           </ul>
+        </div>
+
+        <div className={style.imagenFooter}>
+          <img src={logo} />{" "}
         </div>
       </section>
 

@@ -2,11 +2,13 @@
   background-color: #d9d9d9;
   color: #191919;
   display: flex;
-  justify-content: center;
+  position: relative;
+  justify-content: space-between;
   flex-direction: column;
   font-family: "Open Sans", sans-serif;
-  height: 250px;
-  max-width: 100vw;
+  height: 300px;
+  width: 100vw;
+  padding-top: 30px;
 }
 
 .sectionFooterOne {
@@ -19,22 +21,30 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-bottom: -50px;
+  width: 700px;
 }
 
 .imagenFooter img {
   height: 200px;
   width: auto;
+  position: absolute;
+  right: 105%;
+  
+  
 }
 
 .containerTeam {
-  flex: 1;
+display: block;
+padding-left: 5%;
+width: 300px;
+
 }
 
 .TeamSection {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 10px;
+  text-align: left;
 }
 
 ul {
@@ -52,26 +62,34 @@ ul {
 
 .contactos {
   flex: 1;
-  text-align: right;
+  text-align: left;
   display: flex;
+  position: relative;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  width: cover;
+  height: 100px;
+  padding-inline: 1rem;
+  margin-left: 1.5rem;
 }
 
 .contactoOne {
+  text-align: left;
   display: flex;
-  justify-content: right;
-  text-align: right;
-  align-items: right;
-  margin-right: 0;
-  position: relative;
+  justify-content: center;
+  flex-direction: column;
+  align-items: left;
   right: -20px;
   top: -25px;
 }
 
 .FooterCopyright {
-  text-align: center;
+  display: block;
+  height: 100px;
+  background-color: #d9d9d9;
+  position: relative;
+
 }
 
 .mercadopago {
@@ -81,6 +99,13 @@ ul {
 .metodoPago {
   display: none;
 }
+
+
+h4{
+  text-align: left;
+}
+
+
 
 @media (max-width: 480px) {
   .Footer {
