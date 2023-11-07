@@ -1,3 +1,4 @@
+import Rating from "../../Components/Rating/Rating";
 import Styles from "../Product/card.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +14,8 @@ export default function Card({ id, name, price, image }) {
           alt=""
           onClick={() => navigate(`/detail/${id}`)}
         />
+
+        <Rating />
 
         <h2>{name}</h2>
 

@@ -5,7 +5,8 @@ export default function banner() {
   return (
     <div className={Style.banner}>
       <h2>
-        Recorda que tenes disponible un descuento del 20% en tu primera compra !
+        * 20% Off - - Recorda que tenes disponible un descuento en tu primera
+        compra ! - - 20% Off *
       </h2>
     </div>
   );
