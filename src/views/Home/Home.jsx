@@ -3,7 +3,7 @@ import style from "./Home.module.css";
 import Seccion1 from "./Seccion1/Seccion1";
 import Offer from "./Seccion2/Offer";
 import Seccion3 from "./Seccion3/Seccion3";
-import Banner from "./bannerDiscount/banner.jsx";
+import Banner from "../Home/bannerDiscount/Banner.jsx";
 
 const Home = () => {
   return (
