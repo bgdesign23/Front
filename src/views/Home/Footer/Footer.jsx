@@ -99,9 +99,9 @@ function Footer() {
         </div>
       </section>
 
-      <section className={style.FooterCopyright}>
+      {/* <section className={style.FooterCopyright}>
         <p> A© 2023 Black Group Design. Todos los derechos reservados </p>
-      </section>
+      </section> */}
 
       <img src={mercadopago} alt="mercadopago" className={style.mercadopago} />
       <h4 className={style.metodoPago}>Metodos de Pagos</h4>

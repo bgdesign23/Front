@@ -46,7 +46,7 @@ function FormDecoracion() {
 
     if (validationForm()) {
       Swal.fire({
-        title: "Envío exitoso 📤",
+        title: "Envío exitoso",
         text: "Solicitud enviada exitosamente",
         icon: "success",
         showConfirmButton: false,
