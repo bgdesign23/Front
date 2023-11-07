@@ -15,7 +15,7 @@ export default function CardOffer({ id, name, price, image, stock }) {
           onClick={() => navigate(`/detail/${id}`)}
         />
 
-        <h2>{name}</h2>
+        <h2 className={Styles.nombre}>{name}</h2>
 
         <div className={Styles.details}>
           <h2>Precio</h2>

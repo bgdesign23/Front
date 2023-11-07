@@ -31,7 +31,7 @@ export default function Seccion3() {
               className={style.muebles}
             />
           </div>
-          <h1>DECORACION</h1>
+          <h1>DECORACIÓN</h1>
         </div>
       </div>
     </section>
