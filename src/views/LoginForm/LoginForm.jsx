@@ -97,18 +97,18 @@ function LoginForm() {
                 <h4
                   onClick={() => navigate("/form/login/request-password-reset")}
                 >
-                  👉 ¿Olvidaste tu contraseña? 👈
+                  ¿Olvidaste tu contraseña?
                 </h4>
               </div>
               <div className={Style.botonera2}>
                 <button className={Style.btn} type="submit">
-                  INICIAR SESIÓN
+                  Iniciar Sesion
                 </button>
                 <button
                   className={Style.btn}
                   onClick={() => navigate("/form/register")}
                 >
-                  CREAR CUENTA
+                  Crear Cuenta
                 </button>
                 <button className={Style.btn} onClick={() => handleOnGoogle()}>
                   <FcGoogle /> CONTINUAR CON GOOGLE
