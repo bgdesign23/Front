@@ -23,21 +23,12 @@ import Success from "./views/MercadoPago/Success";
 import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
 import RequestPasswordReset from "./views/Password/RequestPasswordReset";
 import PasswordReset from "./views/Password/PasswordReset";
-// import { useState } from "react";
-// import SideBar from "./Components/SideBar/SideBar";
-// import ButtonSide from "./Components/SideBar/ButtonSide/ButtonSide";
 
 function App() {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products);
   const location = useLocation();
   const user = useSelector((state) => state.user);
-
-  // const [isOpenSideBar, setIsOpenSideBar] = useState(false);
-
-  // const toggleSideBar = () => {
-  //   setIsOpenSideBar(!isOpenSideBar);
-  // };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,13 +43,6 @@ function App() {
   return (
     <div className={styles.App}>
       <>
-        {/* <div className={styles.sideBar}>
-          <button className={styles.toggleButton} onClick={toggleSideBar}>
-            <ButtonSide />
-          </button>
-          <SideBar isOpen={isOpenSideBar} toggleSideBar={toggleSideBar} />
-        </div> */}
-
         <div className={styles.navBar}>
           {location.pathname !== "/home/success" && <NavBar />}
         </div>
@@ -82,6 +66,7 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/cartShop" element={<CartShop />} />
             <Route path="/home/success" element={<Success />} />
+            <Route path="/userAdmin" element={<UserAdmin />} />
             <Route
               path={"/form/login/request-password-reset"}
               element={<RequestPasswordReset />}
