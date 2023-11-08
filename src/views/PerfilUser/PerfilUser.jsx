@@ -17,6 +17,9 @@ function PerfilUser() {
     newPassword: "",
   });
 
+  const [editMode, setEditMode] = useState(false);
+
+
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
@@ -38,12 +41,11 @@ function PerfilUser() {
 
   const handleInputChange = (event) => {
     setFormUser({ ...formUser, [event.target.name]: event.target.value });
-  };
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setFormUser({ ...formUser, image: file });
   };
+  const handleModificar = () => {
+    setEditMode(true);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -67,6 +69,9 @@ function PerfilUser() {
       formData.append("newPassword", formUser.newPassword);
     }
     dispatch(updateUser(formData, userData.token));
+
+    setEditMode(false);
+
   };
 
   return (
@@ -75,22 +80,7 @@ function PerfilUser() {
         <div className={styles.login}>
           <section className={styles.formimput}>
             <div className={styles.columna}>
-              <div className={styles.labelimput}>
-                <label>Imagen de usuario :</label>
-                <input
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                />
-                {userData && userData?.user && (
-                  <img
-                    src={userData.user.image}
-                    alt="Imagen de usuario"
-                    className={styles.profileImage}
-                  />
-                )}
-              </div>
+              
               <div className={styles.labelimput}>
                 <label>Nombre de usuario:</label>
                 <input
@@ -98,6 +88,8 @@ function PerfilUser() {
                   name="username"
                   value={formUser.username}
                   onChange={handleInputChange}
+                  disabled={!editMode}
+
                 />
               </div>
               <div className={styles.labelimput}>
@@ -107,6 +99,8 @@ function PerfilUser() {
                   name="location"
                   value={formUser.location}
                   onChange={handleInputChange}
+                  disabled={!editMode}
+ 
                 />
               </div>
               <div className={styles.labelimput}>
@@ -116,6 +110,8 @@ function PerfilUser() {
                   name="phone"
                   value={formUser.phone}
                   onChange={handleInputChange}
+                 disabled={!editMode}
+   
                 />
               </div>
               <div className={styles.labelimput}>
@@ -125,6 +121,8 @@ function PerfilUser() {
                   name="email"
                   value={formUser.email}
                   onChange={handleInputChange}
+                  disabled={!editMode}
+  
                 />
               </div>
               <div className={styles.labelimput}>
@@ -134,6 +132,8 @@ function PerfilUser() {
                   name="currentPassword"
                   value={formUser.currentPassword}
                   onChange={handleInputChange}
+                  disabled={!editMode}
+  
                 />
               </div>
               <div>
@@ -143,12 +143,22 @@ function PerfilUser() {
                   name="newPassword"
                   value={formUser.newPassword}
                   onChange={handleInputChange}
+                  disabled={!editMode}
+  
                 />
               </div>
             </div>
           </section>
           <div className={styles.buttonContainer}>
-            <button type="submit">Guardar cambios</button>
+            {editMode ? (
+              <button type="button" onClick={handleSubmit}>
+                Guardar Datos
+              </button>
+            ) : (
+              <button type="button" onClick={handleModificar}>
+                Modificar Datos
+              </button>
+            )}
           </div>
         </div>
       </form>
