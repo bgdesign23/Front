@@ -130,7 +130,7 @@ padding-left: 1rem;
     border-radius: 8px;
     cursor: pointer;
     color: white;
-    background-color: rgba(42, 42, 211, 0.617);
+    background-color: rgba(18, 18, 255, 0.717);
     border: none;
     height: 50px;
     margin-block: 0.5rem;
@@ -138,7 +138,7 @@ padding-left: 1rem;
 
 .button:hover {
   color: white;
-  background-color: rgba(54, 54, 255, 0.532);
+  background-color: rgba(9, 9, 247, 0.532);
   transition: 0.8s;
 }
 
@@ -159,7 +159,7 @@ padding-left: 1rem;
   border-radius: 10px;
   z-index: 10;    
   top: 50%;
-  left: 73%;
+  left: 77.5%;
 
 
 }
