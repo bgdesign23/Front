@@ -32,7 +32,7 @@ function validateCoupon(couponCode) {
 }
 
 function ShoppingCart() {
-  initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e");
+  initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e"); //esta es la key-publi para la pasarela de pago
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -42,7 +42,7 @@ function ShoppingCart() {
   const [totalWithDiscount, setTotalWithDiscount] = useState(0);
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
-  );
+  ); //se accede al localStorage
 
   //total a pagar
   const numero = cart.reduce((accumulator, producto) => {
