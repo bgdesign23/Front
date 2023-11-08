@@ -1,34 +1,84 @@
 .containerFor {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
   margin: 0 auto;
+  position: absolute;
+  width: 99vw;
+  height: 97vh;
 }
 
 .form {
-  border: 1px solid blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
   padding: 90px;
-  width: 700px;
-  height: 600px;
-  margin-top: 100px;
+  width: 50%;
+  height: 70%;
+  margin-top: 150px;
+  background-color: rgba(255, 255, 255, 0.308);
+  border: 1px solid rgba(255, 255, 255, 0.089);
+  backdrop-filter: blur(300px);
 }
 
 .sectionRight {
   border: 1px solid orangered;
   flex: 1;
-  padding: 10px;
-  align-items: flex-start;
+  height: 400px;
+  margin-left: 50px;
+  margin: 0 auto;
 }
 
 .sectionLeft {
   border: 1px solid yellow;
-  flex: 2;
-  align-items: flex-end;
+  flex: 1;
+  height: 400px;
+  width: 400px;
+  margin-left: 45px;
 }
 
 input[type="text"],
-input[type="radio"],
+input[type="radio"] {
+  width: 400px;
+  padding: 15px;
+  height: 30px;
+}
+
 textarea {
-  width: 100%;
-  padding: 10px;
+  width: 400px;
+  padding: 15px;
+  resize: none;
+  border-radius: 8px;
+}
+
+.error {
+  color: red;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.buttonSend {
+  position: relative;
+  display: flex;
+  margin-top: 400px;
+  right: 447px;
+  bottom: -50px;
+}
+
+.containerStock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.images {
+  margin-top: 100px;
+}
+
+.img {
+  margin-top: -160px;
+}
+
+.textImage {
+  margin: 10px;
 }
