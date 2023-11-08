@@ -400,6 +400,7 @@ export const updateUser = (formData, token) => async (dispatch) => {
       },
     };
     const response = await axios.put(`${URL}/users`, formData, config);
+    localStorage.setItem("token", response.data.token);
     dispatch({
       type: UPDATE_USER_SUCCESS,
       payload: response.data,
@@ -620,7 +621,6 @@ export const createCart = (cart, token) => {
         },
       };
       await axios.post(`${URL}/payment/success`, [cart], config);
-      localStorage.removeItem("cart");
     } catch (error) {
       await Swal.fire({
         title: "Hubo un error al crear el carrito",

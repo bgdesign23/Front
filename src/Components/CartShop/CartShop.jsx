@@ -83,6 +83,17 @@ function ShoppingCart() {
   };
 
   const handleAmount_Up = (id) => {
+    const checkStock = cart.findIndex(
+      (product) => product.id === product.id
+    );
+    if (cart[checkStock]?.amount === cart[checkStock]?.stock) {
+      return Swal.fire({
+        title: "No hay suficiente stock",
+        icon: "warning",
+        background: "#3b3838",
+        color: "#ffffff",
+      });
+    }
     const updatedCart = cart.map((product) => {
       if (product.id === id) {
         // Clona el producto y actualiza la propiedad amount
@@ -137,7 +148,7 @@ function ShoppingCart() {
   };
 
   const handleButtonBuy = async () => {
-    if (user || localStorage.getItem("token")) return handleBuy();
+    if (user && localStorage.getItem("token")) return handleBuy();
     else
       Swal.fire({
         title: "Usuario no autorizado",

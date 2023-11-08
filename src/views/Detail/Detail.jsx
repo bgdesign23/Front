@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,7 +13,6 @@ import Rating from "../../Components/Rating/Rating";
 const Detail = () => {
   const [thing, setThing] = useLocalStorage("cart", []); //localStorage hook
   const { id } = useParams();
-  const user = useSelector((state) => state.user);
   const copy = useSelector((state) => state.products_Copy);
   const detailProduct = useSelector((state) => state.products_Details);
   const dispatch = useDispatch();
@@ -24,6 +24,8 @@ const Detail = () => {
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedMaterial, setSelectedMaterial] = useState("");
 
+  const [addedQuantity, setAddedQuantity] = useState(0);
+
   //monta el producto
   useEffect(() => {
     dispatch(getDetail(id));
@@ -34,52 +36,52 @@ const Detail = () => {
     window.history.back();
   };
 
-  // console.log(thing);
-
-  /* const handle_addToCart = () => {
-    if (user || localStorage.getItem("token")) return addToCart();
-    else
-      Swal.fire({
-        title: "Usuario no registrado",
-        text: "Inicia sesión para agregar productos al carrito",
-        icon: "warning",
-        showDenyButton: true,
-        confirmButtonText: "Iniciar sesión",
-        denyButtonText: "Cancelar",
-        confirmButtonColor: "#394754",
-        denyButtonColor: "#394754",
-        background: "#3b3838",
-        color: "#ffffff",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          navigate("/form/login");
-        }
-      });
-  }; */
-
   const addToCart = () => {
-    const existingProduct = thing.findIndex(
+    const checkStock = thing.findIndex(
       (product) => product.id === detailProduct.id
     );
-
-    if (existingProduct !== -1) {
-      thing[existingProduct].color = selectedColor;
-      thing[existingProduct].material = selectedMaterial;
-      thing[existingProduct].amount += 1;
-      setThing([...thing]);
-    } else {
-      const updatedProduct = {
-        ...detailProduct,
-        color: selectedColor,
-        material: selectedMaterial,
-        amount: 1,
-      };
-      thing.push(updatedProduct);
+    if (thing[checkStock]?.amount === detailProduct.stock) {
+      return Swal.fire({
+        title: "No hay suficiente stock",
+        icon: "warning",
+        background: "#3b3838",
+        color: "#ffffff",
+      });
     }
-    setThing([...thing]);
+    const availableQuantity = detailProduct.stock - addedQuantity;
+    if (availableQuantity > 0) {
+      setAddedQuantity((prev) => prev + 1);
 
-    toast.success("se agrego al carrito de compras");
-    console.log("Productos: ", thing);
+      const existingProduct = thing.findIndex(
+        (product) => product.id === detailProduct.id
+      );
+
+      if (existingProduct !== -1) {
+        thing[existingProduct].color = selectedColor;
+        thing[existingProduct].material = selectedMaterial;
+        thing[existingProduct].amount += 1;
+        setThing([...thing]);
+      } else {
+        const updatedProduct = {
+          ...detailProduct,
+          color: selectedColor,
+          material: selectedMaterial,
+          amount: 1,
+        };
+        thing.push(updatedProduct);
+      }
+      setThing([...thing]);
+
+      toast.success("se agrego al carrito de compras");
+      // console.log("Productos: ", thing);
+    } else {
+      Swal.fire({
+        title: "No hay suficiente stock",
+        icon: "warning",
+        background: "#3b3838",
+        color: "#ffffff",
+      });
+    }
   };
 
   function formatthousand(number) {
@@ -140,9 +142,9 @@ const Detail = () => {
             </select> */}
 
             <h4 className={styles.price}>
-              ${formatthousand(Number(detailProduct.price))}
+              ${formatthousand(Number(detailProduct?.price))}
             </h4>
-            <h6 className={styles.stock}>{detailProduct?.stock}</h6>
+            <h6 className={styles.stock}>{detailProduct?.stock ? "En Stock" : "Sin Stock"}</h6>
             <div className={styles.rating}>
               <Rating />
               <h1>4.5</h1>

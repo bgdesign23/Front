@@ -1,0 +1,36 @@
+.h1,
+.h2 {
+  color: antiquewhite;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.img {
+  width: 70px;
+  height: 70px;
+  border-radius: 0;
+}
+
+.btn {
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #191919;
+  color: white;
+  height: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.btn:hover {
+  color: black;
+  background-color: white;
+  transition: 0.8s;
+}
+
+@media (max-width: 600px) {
+  .btn {
+    margin-bottom: 3rem;
+    margin-right: 22rem;
+  }
+}
