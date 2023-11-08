@@ -24,6 +24,14 @@ function FormProduct() {
     amount: "",
   });
 
+  const handleChangeStock = (event) => {
+    const isChecked = event.target.checked;
+    setFormProduct((form) => ({
+      ...form,
+      stock: isChecked ? "En Stock" : "Sin Stock",
+    }));
+  };
+
   const handleChange = (event) => {
     setFormProduct({
       ...formProduct,
@@ -66,58 +74,68 @@ function FormProduct() {
     <div className={styles.containerFor}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.sectionLeft}>
-          <input //Nombre
-            type="text"
-            name="name"
-            value={formProduct.name}
-            onChange={handleChange}
-            placeholder="Nombre"
-            required
-          />
-          {errors.name && <div className={styles.error}>{errors.name}</div>}
+          <div className={styles.inputContainer}>
+            <input //Nombre
+              type="text"
+              name="name"
+              value={formProduct.name}
+              onChange={handleChange}
+              placeholder="Nombre"
+              required
+            />
+            {errors.name && <div className={styles.error}>{errors.name}</div>}
+          </div>
           <br />
-          <input //Tipo de Ambiente
-            type="text"
-            name="type"
-            value={formProduct.type}
-            onChange={handleChange}
-            placeholder="Tipo de ambiente (ej.: Oficina, Comercial, Hogar)"
-            required
-          />
-          {errors.type && <div className={styles.error}>{errors.type}</div>}
+          <div className={styles.inputContainer}>
+            <input //Tipo de Ambiente
+              type="text"
+              name="type"
+              value={formProduct.type}
+              onChange={handleChange}
+              placeholder="Tipo de ambiente (ej.: Oficina, Comercial, Hogar)"
+              required
+            />
+            {errors.type && <div className={styles.error}>{errors.type}</div>}
+          </div>
           <br />
-          <input //Material
-            type="text"
-            name="material"
-            value={formProduct.material}
-            onChange={handleChange}
-            placeholder="Material del mueble (ej.: Pino, Roble, Vidrio, Tela)"
-            required
-          />
-          {errors.material && (
-            <div className={styles.error}>{errors.material}</div>
-          )}
+          <div className={styles.inputContainer}>
+            <input //Material
+              type="text"
+              name="material"
+              value={formProduct.material}
+              onChange={handleChange}
+              placeholder="Material del mueble (ej.: Pino, Roble, Vidrio, Tela)"
+              required
+            />
+            {errors.material && (
+              <div className={styles.error}>{errors.material}</div>
+            )}
+          </div>
           <br />
-          <input //Color
-            type="text"
-            name="color"
-            value={formProduct.color}
-            onChange={handleChange}
-            placeholder="Color"
-            required
-          />
-          {errors.color && <div className={styles.error}>{errors.color}</div>}
+          <div className={styles.inputContainer}>
+            <input //Color
+              type="text"
+              name="color"
+              value={formProduct.color}
+              onChange={handleChange}
+              placeholder="Color"
+              required
+            />
+            {errors.color && <div className={styles.error}>{errors.color}</div>}
+          </div>
           <br />
-          <input
-            type="text"
-            pattern="[0-9]*"
-            name="price"
-            value={formProduct.price}
-            onChange={handleChange}
-            placeholder="Precio"
-            required
-          />
-          {errors.price && <div className={styles.error}>{errors.price}</div>}
+          <div className={styles.inputContainer}>
+            <input
+              type="text"
+              pattern="[0-9]*"
+              name="price"
+              value={formProduct.price}
+              onChange={handleChange}
+              placeholder="Precio"
+              required
+            />
+            {errors.price && <div className={styles.error}>{errors.price}</div>}
+          </div>
           <br />
           <textarea //Description
             type="text"
@@ -134,6 +152,20 @@ function FormProduct() {
           <br />
         </div>
         <div className={styles.sectionRight}>
+          <div className={styles.images}>
+            <br />
+            <h5 className={styles.textImage}>Selecciona una Imagen</h5>
+            <br />
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              className={styles.img}
+            />
+            <br />
+            <br />
+          </div>
           <select //Categorias selector
             name="category"
             value={formProduct.category}
@@ -162,57 +194,54 @@ function FormProduct() {
             <div className={styles.error}>{errors.category}</div>
           )}
           <br />
-          <label>
-            <input
-              id="En Stock"
-              type="radio"
-              name="stock"
-              value="En Stock"
-              onChange={handleChange}
-            />{" "}
-            En Stock
-          </label>
-          <br />
-          {formProduct.stock === "En Stock" && (
-            <input
-              type="text"
-              pattern="[0-9]*"
-              name="amount"
-              value={formProduct.amount}
-              onChange={handleChange}
-              placeholder="Cantidad en stock"
-              required
-            />
-          )}
-          {formProduct.stock === "En Stock" && errors.amount && (
-            <div className={styles.error}>{errors.amount}</div>
-          )}
-          <br />
-          <label>
-            <input
-              id="Sin Stock"
-              type="radio"
-              name="stock"
-              value="Sin Stock"
-              onChange={handleChange}
-            />{" "}
-            Sin Stock
-          </label>
-          {errors.stock && <div className={styles.error}>{errors.stock}</div>}
-          <br />
-          <br />
-          Seleccionar imagen del producto
-          <br />
-          <input
-            type="file"
-            name="image"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-          <br />
-          <br />
+          <div className={styles.containerStock}>
+            <div className={styles.enStock}>
+              <label>
+                <input
+                  id="En Stock"
+                  type="checkbox"
+                  name="stock"
+                  value="En Stock"
+                  onChange={handleChangeStock}
+                />{" "}
+                En Stock
+              </label>
+              {formProduct.stock === "En Stock" && (
+                <input
+                  type="text"
+                  pattern="[0-9]*"
+                  name="amount"
+                  value={formProduct.amount}
+                  onChange={handleChange}
+                  placeholder="Cantidad en stock"
+                  required
+                />
+              )}
+              {formProduct.stock === "En Stock" && errors.amount && (
+                <div className={styles.error}>{errors.amount}</div>
+              )}
+            </div>
+            <br />
+            <div className={styles.sinStock}>
+              <label>
+                <input
+                  id="Sin Stock"
+                  type="checkbox"
+                  name="stock"
+                  value="Sin Stock"
+                  onChange={handleChangeStock}
+                />{" "}
+                Sin Stock
+              </label>
+              {errors.stock && (
+                <div className={styles.error}>{errors.stock}</div>
+              )}
+            </div>
+          </div>
         </div>
-        <button type="submit">Enviar</button>
+        <div className={styles.buttonSend}>
+          <button type="submit">Enviar</button>
+        </div>
       </form>
     </div>
   );
