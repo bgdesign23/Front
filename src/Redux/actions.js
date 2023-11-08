@@ -3,6 +3,8 @@ import Swal from "sweetalert2";
 import {
   CLEAR_DETAIL,
   GET_ALL_PRODUCTS,
+  EDIT_PRODUCTS,
+  RESTORE_PRODUCTS,
   GET_BY_NAME,
   GET_DETAIL,
   ORDERBYPRICE,
@@ -38,8 +40,9 @@ import {
   CLEAR_ERRORS,
   GET_ADMIN,
   CREATE_ADMIN,
-  // GET_BY_ID_ADMIN,
-  DELETE_ADMIN
+  DELETE_ADMIN,
+  RESTORE_ADMIN,
+  EDIT_ADMIN,
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -50,6 +53,34 @@ export const getProductsAction = () => {
       const { data } = await axios.get(`${URL}/products`);
       return dispatch({
         type: GET_ALL_PRODUCTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const editProduct = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`${URL}/products/${id}`);
+      return dispatch({
+        type: EDIT_PRODUCTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    };
+  };
+};
+
+export const restoreProduct = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(`${URL}/products/restore/${id}`);
+      return dispatch({
+        type: RESTORE_PRODUCTS,
         payload: data,
       });
     } catch (error) {
@@ -134,6 +165,34 @@ export const createAdmin = (admin) => {
   return {
     type: CREATE_ADMIN,
     payload: admin,
+  };
+};
+
+export const restoreAdmin = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(`${URL}/admin/restore/${id}`);
+      return dispatch({
+        type: RESTORE_ADMIN,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    };
+  };
+};
+
+export const editAdmin = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`${URL}/admin/${id}`);
+      return dispatch({
+        type: EDIT_ADMIN,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    };
   };
 };
 
