@@ -106,7 +106,7 @@ padding-left: 1rem;
 .backButton {
   position: absolute;
   bottom: 10px;
-  left: 7px;
+  left: 50px;
   width: 100px;
   border-radius: 8px;
   cursor: pointer;

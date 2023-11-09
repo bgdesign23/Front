@@ -166,7 +166,6 @@ function FormProduct() {
           <div className={styles.images}>
             <br />
             <h5 className={styles.textImage}>Selecciona una Imagen</h5>
-            <br />
             <input
               type="file"
               name="image"
@@ -222,6 +221,7 @@ function FormProduct() {
             {errors.stock && (
               <div className={styles.error}>{errors.stock}</div>
             )}
+
           </div>
         </div>
         <div className={styles.buttonSend}>
