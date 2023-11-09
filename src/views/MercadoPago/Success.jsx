@@ -40,13 +40,13 @@ function Success() {
 
   return (
     <div className={styles.divSuccess}>
-      <h1 className={styles.h1}>Resumen de la compra</h1>
+      <h1 className={styles.h1Success}>Resumen de la compra</h1>
       <div>{products.map((product, index) => {
         const totalPrice = product.price * product.amount;
         totalPriceSum += totalPrice;
         return (
-        <div className={styles.h2} key={index}>
-          <img className={styles.img} key={index} src={product.image} alt={product.name} title={product.name}/>
+        <div className={styles.h2Success} key={index}>
+          <img className={styles.imgSuccess} key={index} src={product.image} alt={product.name} title={product.name}/>
           Nombre: {product.name}
           Descripción: {product.description}
           Categoría: {product.category.name}
@@ -54,14 +54,14 @@ function Success() {
           Precio: {product.price} x {product.amount} = {totalPrice}
         </div>
         )})}
-        <h2 className={styles.h2}>
+        <h2 className={styles.h2Success}>
           Valor total de la compra = ${totalPriceSum}
         </h2>
       </div>
-      <button className={styles.btn} onClick={() => navigate("/home/product")}>
+      <button className={styles.btnSuccess} onClick={() => navigate("/home/product")}>
         Volver
       </button>
-      <button className={styles.btn} onClick={() => navigate("/form/perfil")}>
+      <button className={styles.btnSuccess} onClick={() => navigate("/form/perfil")}>
         Ver historial de compras
       </button>
     </div>
