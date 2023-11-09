@@ -33,7 +33,9 @@ import {
   EDIT_ADMIN,
   CLEAR_ERRORS,
   DELETE_PRODUCT,
-  DELETE_USER
+  DELETE_USER,
+  RESTORE_USER,
+  RESTORE_PRODUCTS
 
 } from "./actionsTypes";
 
@@ -256,6 +258,18 @@ const Reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       }
+    case RESTORE_USER:
+      return{
+        ...state,
+        users: action.payload,
+        users_copy: action.payload
+      };
+    case RESTORE_PRODUCTS:
+      return{
+        ...state,
+        products: action.payload,
+        products_Copy: action.payload
+      };
       case CLEAR_ERRORS:
       return {
         ...state,
