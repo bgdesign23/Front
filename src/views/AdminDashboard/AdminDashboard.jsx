@@ -98,6 +98,15 @@ const AdminDashboard = () => {
     role: "",
   });
 
+  const [prod, setProd] = useState({
+    name: "",
+    stock: "",
+    price: "",
+    type: "",
+    material: "",
+    description: "",
+  })
+
   const [couponNew, setCouponNew] = useState({
     status: "",
     expiration: "",
@@ -165,6 +174,38 @@ const AdminDashboard = () => {
     dispatch(getAdmin(value));
   };
 
+  const handleEditAdmin = (event, adminId) => {
+    event.preventDefault();
+    dispatch(
+      editAdmin(adminId, {
+        username: inputAdmin.username,
+        phone: inputAdmin.phone,
+        location: inputAdmin.location,
+        email: inputAdmin.email,
+        password: inputAdmin.password,
+        role: inputAdmin.role,
+      })
+    ).then((postError) => {
+      if (!postError) {
+        dispatch(clearErrors());
+        Swal.fire("Listo!", "has modificado un admin");
+        setInputAdmin({
+          ...inputAdmin,
+          username: "",
+          phone: "",
+          location: "",
+          email: "",
+          password: "",
+          role: "",
+        });
+      } else {
+        dispatch(
+          setErrors({ type: "EDIT_ADMIN", error: postError?.response?.data })
+        );
+      }
+    });
+  };
+
   const handleCreateAdmin = (event) => {
     event.preventDefault();
     dispatch(
@@ -197,6 +238,15 @@ const AdminDashboard = () => {
     });
   };
 
+  const handleRestoreAdmin = (event, id) => {
+    event.preventDefault();
+    dispatch(restoreAdmin(id)).then(() => {
+      dispatch(getAdmin());
+      dispatch(getAdmin(deleted));
+    });
+    setUpdated(!updated);
+  };
+
   const handleDeletedAdmin = (event, id) => {
     event.preventDefault();
     dispatch(deleteAdmin(id)).then(() => {
@@ -221,6 +271,39 @@ const AdminDashboard = () => {
   const handleRestoreUser = (userId) => {
     dispatch(restoreUser(userId))
   }
+
+  const handleEditProduct = (event, productId) => {
+    event.preventDefault();
+    dispatch(
+      editProduct(productId, {
+        name: prod.name,
+        stock: prod.stock,
+        price: prod.price,
+        type: prod.type,
+        material: prod.material,
+        description: prod.description,
+      })
+    ).then((postError) => {
+      if (!postError) {
+        dispatch(clearErrors());
+        Swal.fire("Listo", "Has modificado un producto exitosamente");
+  
+        // Limpiar los campos después de la edición
+        setProd({
+          name: "",
+          stock: "",
+          price: "",
+          type: "",
+          material: "",
+          description: "",
+        });
+      } else {
+        dispatch(
+          setErrors({ type: "EDIT_PRODUCTS", error: postError?.response?.data })
+        );
+      }
+    });
+  };
 
   const handleRestoreProduct = (id) => {
     dispatch(restoreProduct(id))
