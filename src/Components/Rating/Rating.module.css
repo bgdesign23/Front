@@ -10,6 +10,7 @@
 .star {
     color: rgba(128, 128, 128, 0.368);
     transition: color 0.3s;
+    cursor: pointer;
 }
 
 .starHovered {
