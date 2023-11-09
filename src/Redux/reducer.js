@@ -2,6 +2,7 @@ import {
   CLEAR_DETAIL,
   FILTER_BY_COLOR,
   GET_ALL_PRODUCTS,
+  EDIT_PRODUCTS,
   GET_BY_NAME,
   GET_DETAIL,
   ORDERBYPRICE,
@@ -29,6 +30,7 @@ import {
   COUPONS_ERROR,
   GET_ALL_USERS,
   GET_ADMIN,
+  EDIT_ADMIN,
   CLEAR_ERRORS,
   DELETE_PRODUCT,
   DELETE_USER
@@ -63,6 +65,10 @@ const Reducer = (state = initialState, action) => {
         products: action.payload,
         products_Copy: action.payload,
       };
+      case EDIT_PRODUCTS:
+      return {
+        ...state,
+      };
     case DELETE_PRODUCT:
       return {
         ...state,
@@ -86,8 +92,11 @@ const Reducer = (state = initialState, action) => {
         ...state,
         admin: action.payload,
         admin_copy: action.payload,
-      };  
-
+      }; 
+    case EDIT_ADMIN:
+      return {
+        ...state,
+    };   
     case ORDERBYPRICE:
       return {
         ...state,
