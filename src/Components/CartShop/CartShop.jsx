@@ -223,7 +223,7 @@ function ShoppingCart() {
           )}
         </div>
         <Toaster
-          position="top-right"
+          position="bottom-right"
           toastOptions={{
             className: "",
             style: {

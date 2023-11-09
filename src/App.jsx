@@ -23,6 +23,7 @@ import Success from "./views/MercadoPago/Success";
 import AdminDashboard from "../src/views/AdminDashboard/AdminDashboard.jsx";
 import RequestPasswordReset from "./views/Password/RequestPasswordReset";
 import PasswordReset from "./views/Password/PasswordReset";
+import UserAdmin from "../src/views/UserAdminDashboard/UserAdmin.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,6 +66,7 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/cartShop" element={<CartShop />} />
             <Route path="/home/success" element={<Success />} />
+            <Route path="/userAdmin" element={<UserAdmin />} />
             <Route
               path={"/form/login/request-password-reset"}
               element={<RequestPasswordReset />}

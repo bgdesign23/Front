@@ -117,9 +117,9 @@ function LoginForm() {
             </form>
           </div>
         </div>
-        <div className={Style.imagennForm}>
+        {/* <div className={Style.imagennForm}>
           <img src={imagennForm} alt="" />
-        </div>
+        </div> */}
       </div>
     </div>
   );
