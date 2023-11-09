@@ -96,7 +96,7 @@ const Detail = () => {
 
   return (
     <div className={styles.todo}>
-      <div className={styles.container}>
+      <div className={styles.containerDetail}>
         <div className={styles.imageContainer}>
           <img
             className={styles.image}
@@ -104,11 +104,11 @@ const Detail = () => {
             alt={detailProduct?.name}
           />
         </div>
-        <div className={styles.detailsContainer}>
+        <div className={styles.detailsContainerRight}>
           <h1 className={styles.name}>{detailProduct?.name}</h1>
-          <h2 className={styles.description} style={{ textAlign: "left" }}>
+          <p className={styles.description} style={{ textAlign: "left" }}>
             {detailProduct?.description}
-          </h2>
+          </p>
 
           <div className={styles.filas}>
             <h1 className={styles.caracteristicas}>
@@ -144,7 +144,9 @@ const Detail = () => {
             <h4 className={styles.price}>
               ${formatthousand(Number(detailProduct?.price))}
             </h4>
-            <h6 className={styles.stock}>{detailProduct?.stock ? "En Stock" : "Sin Stock"}</h6>
+            <h6 className={styles.stock}>
+              {detailProduct?.stock ? "En Stock" : "Sin Stock"}
+            </h6>
             <div className={styles.rating}>
               <Rating />
               <h1>4.5</h1>
@@ -198,10 +200,6 @@ const Detail = () => {
             </p>
           </div>
         </div>
-        {/* 
-        <div className={styles.btnReviews}>
-        <h2 onClick={toggleReviews}>Ver cometarios de compradores</h2>
-      </div> */}
       </div>
       <button className={styles.backButton} onClick={back}>
         Back

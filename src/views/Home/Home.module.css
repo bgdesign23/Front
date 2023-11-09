@@ -68,6 +68,7 @@
     flex-direction: column;
     justify-content: center;
   }
+
   .quienes {
     display: none;
   }
@@ -129,8 +130,10 @@
 }
 
 .servicio {
-  display: flex; /* Alinea la imagen y el título horizontalmente */
-  flex-direction: column; /* Organiza los elementos verticalmente */
+  display: flex;
+  /* Alinea la imagen y el título horizontalmente */
+  flex-direction: column;
+  /* Organiza los elementos verticalmente */
   align-items: center;
   background-color: white;
   border-radius: 8px;
@@ -152,14 +155,17 @@
   .primerseccion {
     height: cover;
   }
+
   .home {
     padding-top: 400px;
   }
+
   .servicios {
     display: inline;
     justify-content: left;
     gap: 100px;
   }
+
   .contenedor {
     display: inline;
     max-width: 400px;
@@ -175,3 +181,20 @@
     width: 200px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

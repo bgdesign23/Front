@@ -65,5 +65,4 @@ function Offer() {
     </section>
   );
 }
-
 export default Offer;
