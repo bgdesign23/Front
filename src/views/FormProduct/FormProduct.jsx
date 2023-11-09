@@ -155,7 +155,6 @@ function FormProduct() {
           <div className={styles.images}>
             <br />
             <h5 className={styles.textImage}>Selecciona una Imagen</h5>
-            <br />
             <input
               type="file"
               name="image"
@@ -166,21 +165,24 @@ function FormProduct() {
             <br />
             <br />
           </div>
-          <select //Categorias selector
-            name="category"
-            value={formProduct.category}
-            onChange={handleChange}
-          >
-            <option value="">Seleccione una categoría</option>
-            {categories
-              .sort((a, b) => a.name > b.name)
-              .map((cat) => (
-                <option key={cat.id} value={cat.name}>
-                  {cat.name}
-                </option>
-              ))}
-            <option value="nueva_categoria">Crear nueva categoría</option>
-          </select>
+          <div className={styles.category}>
+            <select //Categorias selector
+              name="category"
+              value={formProduct.category}
+              onChange={handleChange}
+              className={styles.categorySelect}
+            >
+              <option value="">Seleccione una categoría</option>
+              {categories
+                .sort((a, b) => a.name > b.name)
+                .map((cat) => (
+                  <option key={cat.id} value={cat.name}>
+                    {cat.name}
+                  </option>
+                ))}
+              <option value="nueva_categoria">Crear nueva categoría</option>
+            </select>
+          </div>
           {formProduct.category === "nueva_categoria" && (
             <input
               type="text"
@@ -203,7 +205,7 @@ function FormProduct() {
                   name="stock"
                   value="En Stock"
                   onChange={handleChangeStock}
-                />{" "}
+                />
                 En Stock
               </label>
               {formProduct.stock === "En Stock" && (
