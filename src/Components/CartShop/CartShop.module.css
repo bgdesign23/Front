@@ -211,6 +211,10 @@ input {
   transition: 0.8s;
 }
 
+.bag{
+  width: 200px;
+}
+
 @media (max-width: 600px) {
   .backBtn {
     margin-bottom: 3rem;

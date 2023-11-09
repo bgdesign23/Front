@@ -8,7 +8,6 @@ export default function Rating() {
   const handleStarHover = (starIndex) => {
     setHoveredStars(starIndex);
   };
-
   return (
     <div className={Styles.containerStars}>
       {[1, 2, 3, 4, 5].map((starIndex) => (
