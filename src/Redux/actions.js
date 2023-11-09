@@ -43,6 +43,9 @@ import {
   DELETE_ADMIN,
   RESTORE_ADMIN,
   EDIT_ADMIN,
+  CARTS_REQUEST,
+  CARTS_SUCCESS,
+  CARTS_FAILURE
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -778,5 +781,25 @@ export const confirmPasswordReset = (token, password) => {
         color: "#ffffff",
       });
     }
+  };
+};
+
+export const carts = (userId) => {
+  return (dispatch) => {
+    dispatch({ type: CARTS_REQUEST });
+
+    axios.get(`${URL}/carts/user)
+      .then(response => {
+        dispatch({
+          type: CARTS_SUCCESS,
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: CARTS_FAILURE,
+          payload: error.message
+        });
+      });
   };
 };

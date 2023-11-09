@@ -43,6 +43,9 @@ export const GET_BY_ID_ADMIN = 'GET_BY_ID_ADMIN';
 export const DELETE_ADMIN = 'DELETE_ADMIN';
 export const RESTORE_ADMIN = 'RESTORE_ADMIN';
 export const EDIT_ADMIN = 'EDIT_ADMIN';
+export const CARTS_REQUEST = 'CARTS_REQUEST';
+export const CARTS_SUCCESS = 'CARTS_SUCCESS';
+export const CARTS_FAILURE = 'CARTS_FAILURE';
 
 
 

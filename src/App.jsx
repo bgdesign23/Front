@@ -18,6 +18,7 @@ import Detail from "./views/Detail/Detail";
 import FormProduct from "./views/FormProduct/FormProduct";
 import CartShop from "./Components/CartShop/CartShop";
 import UserPerfil from "./views/userPerfil/userPerfil.jsx";
+import ComprasUser from "./views/userPerfil/ComprasUser/ComprasUser"
 import CouponUser from "./views/userPerfil/Cupon/CouponUser.jsx";
 import Success from "./views/MercadoPago/Success";
 import AdminDashboard from "../src/views/AdminDashboard/AdminDashboard.jsx";
@@ -61,8 +62,9 @@ function App() {
             <Route path="/form/login" element={<LoginForm />} />
             <Route path="/form/register" element={<FormRegistro />} />
             <Route path="/form/perfil" element={<UserPerfil />} />
-            <Route path="/cupones" element={<CouponUser />} />
             <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/cupones" element={<CouponUser />} />
+            <Route path="/perfil/compras" element={<ComprasUser />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/cartShop" element={<CartShop />} />
             <Route path="/home/success" element={<Success />} />
