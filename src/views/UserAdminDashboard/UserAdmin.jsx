@@ -3,16 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Styles from "../UserAdminDashboard/userAdmin.module.css";
-import { getAllUsers, getAdmin } from "../../Redux/actions";
+import { getAllUsers, getAdmin, getProductsAction } from "../../Redux/actions";
 import FormProduct from "../FormProduct/FormProduct";
 import Users from "../UserAdminDashboard/Dashboard/Users/Users";
 import Administrators from "./Dashboard/administradores/Administrators";
+import AdminProducts from "./Dashboard/Products/AdminProducts";
 
 const UserAdmin = () => {
   const dispatch = useDispatch();
   const [showForm, setShowForm] = useState(false);
   const [visibleUsers, setVisibleUsers] = useState(false);
   const [visibleAdmins, setVisibleAdmins] = useState(false);
+  const [visibleProducts, setVisibleProducts] = useState(false);
 
   const handleCreateProduct = () => {
     setShowForm(!showForm);
@@ -29,6 +31,13 @@ const UserAdmin = () => {
     setVisibleAdmins((prevVisible) => !prevVisible);
     if (!visibleAdmins) {
       dispatch(getAdmin());
+    }
+  };
+
+  const handleVisibleProducts = () => {
+    setVisibleProducts((prevVisible) => !prevVisible);
+    if (!visibleProducts) {
+      dispatch(getProductsAction());
     }
   };
 
@@ -51,13 +60,15 @@ const UserAdmin = () => {
           <button onClick={handleVisibleUsers} className={Styles.Btn}>
             Usuarios
           </button>
-          <button className={Styles.Btn}>Productos</button>
+          <button onClick={handleVisibleProducts} className={Styles.Btn}>
+            Productos
+          </button>
+
           <button onClick={handleCreateProduct} className={Styles.Btn}>
             Crear productos
           </button>
           <button className={Styles.Btn}>Crear usuario</button>
           <button className={Styles.Btn}>Crear cupón</button>
-
           <h2>Cerrar sesíon</h2>
         </div>
       </div>
@@ -65,6 +76,7 @@ const UserAdmin = () => {
         {showForm && <FormProduct />}
         {visibleUsers && <Users />}
         {visibleAdmins && <Administrators />}
+        {visibleProducts && <AdminProducts />}
       </div>
     </div>
   );

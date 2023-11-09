@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { applyCoupon, createPreference } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import EmptyCart from "../CartShop/EmptyCart.jsx";
 
 function validateCoupon(couponCode) {
   const currentDate = new Date();
@@ -83,9 +84,7 @@ function ShoppingCart() {
   };
 
   const handleAmount_Up = (id) => {
-    const checkStock = cart.findIndex(
-      (product) => product.id === product.id
-    );
+    const checkStock = cart.findIndex((product) => product.id === product.id);
     if (cart[checkStock]?.amount === cart[checkStock]?.stock) {
       return Swal.fire({
         title: "No hay suficiente stock",
@@ -198,7 +197,7 @@ function ShoppingCart() {
         </div>
         <div>
           {cart.length === 0 ? (
-            <h1 className={Styles.carVacio}>Tu carrito esta vacío!</h1>
+            <EmptyCart />
           ) : (
             cart.map((producto, index) => (
               <CartCard

@@ -139,7 +139,7 @@ export const deleteUser = (id) => {
 export const restoreUser = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL}/users/restore/${id}`);
+      const { data } = await axios.post(`${URL}/users/restore/${id}`);      
       return dispatch({
         type: RESTORE_USER,
         payload: data,

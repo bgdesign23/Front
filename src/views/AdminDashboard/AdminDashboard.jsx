@@ -13,7 +13,6 @@ import {
   getUserCoupons,
   createCoupon,
   deleteCoupon,
-  postProduct,
   editProduct,
   restoreProduct,
   deleteProduct,
@@ -219,6 +218,14 @@ const AdminDashboard = () => {
     dispatch(deleteUser(userId));
   };
 
+  const handleRestoreUser = (userId) => {
+    dispatch(restoreUser(userId))
+  }
+
+  const handleRestoreProduct = (id) => {
+    dispatch(restoreProduct(id))
+  }
+
   return (
     <div>
       <br />
@@ -249,6 +256,7 @@ const AdminDashboard = () => {
           productos={productos}
           visibleCountProducts={visibleCountProducts}
           handleDeleteProduct={handleDeleteProduct}
+          handleRestoreUser={handleRestoreUser}
         />
       )}
 
