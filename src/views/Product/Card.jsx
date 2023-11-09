@@ -19,10 +19,10 @@ export default function Card({ id, name, price, image }) {
 
         <Rating />
 
-        <h2>{name}</h2>
+        <h6 className={Styles.titulo}>{name}</h6>
 
         <div className={Styles.details}>
-          <h2>Precio</h2>
+          <h6>Precio</h6>
           <h4>${price}.-</h4>
         </div>
         <div className={Styles.cuota}>
