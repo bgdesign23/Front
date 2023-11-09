@@ -14,10 +14,14 @@ import {
   createCoupon,
   deleteCoupon,
   postProduct,
+  editProduct,
+  restoreProduct,
   deleteProduct,
   getAdmin,
   createAdmin,
+  editAdmin,
   deleteAdmin,
+  restoreAdmin,
   clearErrors,
 } from "../../Redux/actions";
 

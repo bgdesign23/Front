@@ -1,4 +1,6 @@
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const EDIT_PRODUCTS = 'EDIT_PRODUCTS';
+export const RESTORE_PRODUCTS = 'RESTORE_PRODUCTS';
 export const ORDERBYPRICE = "ORDERBYPRICE";
 export const FILTERBYMUEBLES = "FILTERBYMUEBLES";
 export const GET_DETAIL = "GET_DETAIL";
@@ -28,16 +30,19 @@ export const CREATE_COUPON = 'CREATE_COUPON';
 export const GET_USER_COUPONS = 'GET_USER_COUPONS';
 export const APPLY_COUPON = 'APPLY_COUPON';
 export const COUPONS_ERROR = 'COUPONS_ERROR';
-export const GET_ALL_USERS =  'GET_ALL_USERS'
-export const DELETE_USER = 'DELETE_USER'
-export const RESTORE_USER = 'RESTORE_USER'
-export const DELETE_COUPON = 'DELETE_COUPON'
-export const DELETE_PRODUCT = 'DELETE_PRODUCT'
-export const CLEAR_ERRORS = 'CLEAR_ERRORS'
-export const GET_ADMIN = 'GET_ADMIN'
-export const CREATE_ADMIN = 'CREATE_ADMIN'
-export const GET_BY_ID_ADMIN = 'GET_BY_ID_ADMIN'
-export const DELETE_ADMIN = 'DELETE_ADMIN'
+export const GET_ALL_USERS =  'GET_ALL_USERS';
+export const EDIT_USERS = 'EDIT_USERS';
+export const DELETE_USER = 'DELETE_USER';
+export const RESTORE_USER = 'RESTORE_USER';
+export const DELETE_COUPON = 'DELETE_COUPON';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const GET_ADMIN = 'GET_ADMIN';
+export const CREATE_ADMIN = 'CREATE_ADMIN';
+export const GET_BY_ID_ADMIN = 'GET_BY_ID_ADMIN';
+export const DELETE_ADMIN = 'DELETE_ADMIN';
+export const RESTORE_ADMIN = 'RESTORE_ADMIN';
+export const EDIT_ADMIN = 'EDIT_ADMIN';
 
 
 
