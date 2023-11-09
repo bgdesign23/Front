@@ -38,10 +38,6 @@ const NavBar = () => {
           alt="Black Group Design"
         />
       </div>
-
-      {/* {user && user.user.role === 1 ? (
-        <Link to="/home/nuevo">Nuevo Mueble</Link>
-      ) : null} */}
       <div className={styles.cuatro}>
         <SearchBar />
       </div>

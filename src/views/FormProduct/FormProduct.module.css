@@ -67,16 +67,40 @@ textarea {
 
 .containerStock {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  border: 1px solid red;
+  padding: 10px;
+  height: 150px;
 }
 
-.images {
-  margin-top: 100px;
+.enStock {
+  border: 1px solid blueviolet;
+  width: 100%;
 }
+
+.enStock input {
+  position: relative;
+  display: flex;
+}
+
+.category select {
+  border: 1px solid orange;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.categorySelect {
+  margin-top: 130px;
+}
+
+/* .images {
+  margin-bottom: 100px;
+  position: relative;
+} */
 
 .img {
   margin-top: -160px;
+  /* margin-bottom: 100px; */
 }
 
 .textImage {
