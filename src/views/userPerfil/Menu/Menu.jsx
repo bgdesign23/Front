@@ -12,7 +12,7 @@ const Menu = () => {
   };
 
   return (
-    <div>
+    <div className={Styles.containerMenu}>
       <div className={Styles.titulo}>
         <h1>User</h1>
       </div>

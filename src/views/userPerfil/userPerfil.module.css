@@ -1,22 +1,19 @@
 .containerAll {
   display: flex;
   position: relative;
-  /* justify-content: column; */
   align-items: center;
   width: 99vw;
   height: 98vh;
-  border: 2px solid red;
-  background-color: rgb(28, 53, 53);
+  background-color: rgb(39, 39, 39);
 }
 
 .boxLeft {
   position: absolute;
-  /* transform: translate(-50%, -50%); */
   bottom: 0;
-  /* left: 70%; */
   width: 15%;
   height: 89vh;
-  border: 2px solid blue;
+  background-color: #191919;
+  box-shadow: 0px 10px 10px -10px rgba(26, 25, 25, 0.5);
 }
 
 .boxRight {
@@ -25,5 +22,4 @@
   right: 0;
   width: 85%;
   height: 89vh;
-  border: 2px solid pink;
 }
