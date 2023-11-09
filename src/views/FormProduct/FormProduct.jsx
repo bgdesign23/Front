@@ -10,6 +10,7 @@ function FormProduct() {
   const navigate = useNavigate();
   const categories = useSelector((state) => state.categories);
   const [errors, setErrors] = useState({});
+  const [editMode, setEditMode] = useState(false);
   const [formProduct, setFormProduct] = useState({
     name: "",
     description: "",
@@ -21,29 +22,38 @@ function FormProduct() {
     price: "",
     stock: "",
     image: "",
-    amount: "",
   });
 
-  const handleChangeStock = (event) => {
-    const isChecked = event.target.checked;
-    setFormProduct((form) => ({
-      ...form,
-      stock: isChecked ? "En Stock" : "Sin Stock",
-    }));
-  };
+  const handleModificar = () => {
+    setEditMode(true);
+  }
 
   const handleChange = (event) => {
+    if (event.target.name === "category") {
+      setFormProduct({
+        ...formProduct,
+        category: event.target.value,
+        newCategory: "",
+      });
+      setEditMode(false);
+      setErrors(
+        validationForm({
+          ...formProduct,
+          [event.target.name]: event.target.value,
+        })
+      );
+    } else {
     setFormProduct({
       ...formProduct,
       [event.target.name]: event.target.value,
     });
-
     setErrors(
       validationForm({
         ...formProduct,
         [event.target.name]: event.target.value,
       })
     );
+    }
   };
 
   const handleImageChange = (event) => {
@@ -66,8 +76,8 @@ function FormProduct() {
     formData.append("price", formProduct.price);
     formData.append("stock", formProduct.stock);
     formData.append("image", formProduct.image);
-    formData.append("amount", formProduct.amount);
     dispatch(postProduct(formData, navigate));
+    setEditMode(false);
   };
 
   return (
@@ -126,8 +136,9 @@ function FormProduct() {
           <br />
           <div className={styles.inputContainer}>
             <input
-              type="text"
-              pattern="[0-9]*"
+              type="number"
+              min="0.01"
+              step="0.01"
               name="price"
               value={formProduct.price}
               onChange={handleChange}
@@ -179,64 +190,38 @@ function FormProduct() {
                   {cat.name}
                 </option>
               ))}
-            <option value="nueva_categoria">Crear nueva categoría</option>
+            <option onClick={handleModificar}>Crear nueva categoría</option>
           </select>
-          {formProduct.category === "nueva_categoria" && (
+            <br />
+            <br />
             <input
               type="text"
               name="newCategory"
               placeholder="Nueva categoría..."
               value={formProduct.newCategory}
               onChange={handleChange}
+              disabled={!editMode}
             />
-          )}
-          {errors.category && (
+          {errors.category ? (
             <div className={styles.error}>{errors.category}</div>
-          )}
+          ): errors.newCategory ? (
+            <div className={styles.error}>{errors.newCategory}</div>
+          ) : null}
           <br />
-          <div className={styles.containerStock}>
-            <div className={styles.enStock}>
-              <label>
-                <input
-                  id="En Stock"
-                  type="checkbox"
-                  name="stock"
-                  value="En Stock"
-                  onChange={handleChangeStock}
-                />{" "}
-                En Stock
-              </label>
-              {formProduct.stock === "En Stock" && (
-                <input
-                  type="text"
-                  pattern="[0-9]*"
-                  name="amount"
-                  value={formProduct.amount}
-                  onChange={handleChange}
-                  placeholder="Cantidad en stock"
-                  required
-                />
-              )}
-              {formProduct.stock === "En Stock" && errors.amount && (
-                <div className={styles.error}>{errors.amount}</div>
-              )}
-            </div>
-            <br />
-            <div className={styles.sinStock}>
-              <label>
-                <input
-                  id="Sin Stock"
-                  type="checkbox"
-                  name="stock"
-                  value="Sin Stock"
-                  onChange={handleChangeStock}
-                />{" "}
-                Sin Stock
-              </label>
-              {errors.stock && (
-                <div className={styles.error}>{errors.stock}</div>
-              )}
-            </div>
+          <br />
+          <div className={styles.inputContainer}>
+            <input
+              type="text"
+              pattern="[0-9]*"
+              name="stock"
+              value={formProduct.stock}
+              onChange={handleChange}
+              placeholder="Unidades disponibles"
+              required
+            />
+            {errors.stock && (
+              <div className={styles.error}>{errors.stock}</div>
+            )}
           </div>
         </div>
         <div className={styles.buttonSend}>
