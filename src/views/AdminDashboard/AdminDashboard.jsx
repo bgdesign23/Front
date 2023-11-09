@@ -24,6 +24,8 @@ import {
   restoreAdmin,
   clearErrors,
 } from "../../Redux/actions";
+import UserTableComponent from "./UserTableComponent";
+import TableComponent from "./tableComponent";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -37,29 +39,28 @@ const AdminDashboard = () => {
   const [cupones, setCupones] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [visibleCountProducts, setVisibleCountProducts] = useState(10);
-  const [visibleCountUsers, setVisibleCountUsers] = useState(10);
+  // const [visibleCountUsers, setVisibleCountUsers] = useState(10);
   const [visibleProducts, setVisibleProducts] = useState(false);
   const [visibleUsers, setVisibleUsers] = useState(false);
   const [visibleAdmins, setVisibleAdmins] = useState(false);
   const [visibleCoupons, setVisibleCoupons] = useState(false);
-  const [hot, setHot] = useState(null);
 
-  const handleShowMoreProducts = () => {
-    setVisibleCountProducts(visibleCountProducts + 10);
-  };
+  // const handleShowMoreProducts = () => {
+  //   setVisibleCountProducts(visibleCountProducts + 10);
+  // };
 
-  const handleShowLessProducts = () => {
-    if (visibleCountProducts > 10)
-      setVisibleCountProducts(visibleCountProducts - 10);
-  };
+  // const handleShowLessProducts = () => {
+  //   if (visibleCountProducts > 10)
+  //     setVisibleCountProducts(visibleCountProducts - 10);
+  // };
 
-  const handleShowMoreUsers = () => {
-    setVisibleCountUsers(visibleCountUsers + 10);
-  };
+  // const handleShowMoreUsers = () => {
+  //   setVisibleCountUsers(visibleCountUsers + 10);
+  // };
 
-  const handleShowLessUsers = () => {
-    if (visibleCountUsers > 10) setVisibleCountUsers(visibleCountUsers - 10);
-  };
+  // const handleShowLessUsers = () => {
+  //   if (visibleCountUsers > 10) setVisibleCountUsers(visibleCountUsers - 10);
+  // };
 
   const handleVisibleProducts = () => {
     setVisibleProducts((prevVisible) => !prevVisible);
@@ -218,66 +219,6 @@ const AdminDashboard = () => {
     dispatch(deleteUser(userId));
   };
 
-  useEffect(() => {
-    if (visibleProducts) {
-      // Primero, restablece la instancia existente si existe
-      if (hot) {
-        hot.destroy();
-        setHot(null);
-      }
-
-      const container = document.getElementById("handsontable-container");
-      const newHot = new Handsontable(container, {
-        data: productos, // Utiliza tus datos de productos aquí
-        columns: [
-          { data: "name", title: "Name" },
-          { data: "stock", title: "Stock" },
-          { data: "amount", title: "Amount" },
-          { data: "price", title: "Price" },
-          { data: "type", title: "Type" },
-          { data: "material", title: "Material" },
-          {
-            data: "action",
-            title: "Action",
-            renderer: (instance, td, row, col, prop, value, cellProperties) => {
-              // Crea un botón "Delete" en la celda
-              const button = document.createElement("button");
-              button.innerText = "Delete";
-              button.addEventListener("click", () => {
-                // Llama a la función handleDeleteProduct al hacer clic en el botón
-                handleDeleteProduct(productos[row].id);
-              });
-
-              // Limpia el contenido de la TD antes de agregar el botón
-              while (td.firstChild) {
-                td.removeChild(td.firstChild);
-              }
-
-              // Agrega el botón a la celda
-              td.appendChild(button);
-            },
-          },
-        ],
-        rowHeaders: true,
-        colHeaders: true,
-        height: "auto",
-        licenseKey: "non-commercial-and-evaluation",
-      });
-
-      // Agrega un manejador de eventos personalizado para el botón "Delete"
-      newHot.addHook("afterOnCellMouseDown", (event, coords, TD) => {
-        if (TD.classList.contains("htButton")) {
-          // Si se hizo clic en un botón, evita que se seleccione la fila
-          event.stopImmediatePropagation();
-        }
-      });
-
-      setHot(newHot);
-    }
-
-    // Añade un return para destruir la instancia de Handsontable cuando sea necesario
-  }, [visibleProducts, productos]);
-
   return (
     <div>
       <br />
@@ -302,63 +243,23 @@ const AdminDashboard = () => {
         <button>Crear Usuario</button>
         <button>Crear cupón</button>
       </div>
+
       {visibleProducts && (
-        <div id="handsontable-container">
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Stock</th>
-                  <th>Amount</th>
-                  <th>Price</th>
-                  <th>Type</th>
-                  <th>Material</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {productos.slice(0, visibleCountProducts).map((prod) => (
-                  <tr key={prod.id}>
-                    <td>{prod.name}</td>
-                    <td>{prod.stock}</td>
-                    <td>{prod.amount}</td>
-                    <td>${prod.price}</td>
-                    <td>{prod.type}</td>
-                    <td>{prod.material}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <TableComponent
+          productos={productos}
+          visibleCountProducts={visibleCountProducts}
+          handleDeleteProduct={handleDeleteProduct}
+        />
       )}
+
+      {/* Incluye UserTableComponent pasando datos y propiedades necesarias */}
+      <UserTableComponent
+        usuarios={usuarios}
+        visibleUsers={visibleUsers}
+        onDeleteUser={handleDeleteUser}
+      />
       <br />
       <div>
-        {visibleUsers && (
-          <div>
-            {usuarios.slice(0, visibleCountUsers).map((user) => (
-              <div key={user.id}>
-                <span>{user.username}</span>
-                <span>{user.location}</span>
-                <span>{user.phone}</span>
-                <span>{user.email}</span>
-                <button onClick={() => handleDeleteUser(user.id)}>
-                  Eliminar Usuario
-                </button>
-              </div>
-            ))}
-            <br />
-            <button onClick={handleShowMoreUsers}>Mostrar más</button>
-            <button
-              onClick={handleShowLessUsers}
-              disabled={visibleCountUsers <= 10}
-            >
-              Mostrar menos
-            </button>
-            <br />
-          </div>
-        )}
         <br />
         <div>
           {visibleCoupons &&
