@@ -23,6 +23,7 @@ import Success from "./views/MercadoPago/Success";
 import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
 import RequestPasswordReset from "./views/Password/RequestPasswordReset";
 import PasswordReset from "./views/Password/PasswordReset";
+import UserAdmin from "../../Front/src/views/UserAdminDashboard/UserAdmin";
 
 function App() {
   const dispatch = useDispatch();

@@ -1,0 +1,15 @@
+
+.container{
+display: relative;
+
+color: aliceblue;
+}
+
+.container h2{
+color: aliceblue;
+}
+
+.personas{
+    display: block;
+    padding-block: 1rem;
+}
