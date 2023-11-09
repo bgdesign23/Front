@@ -165,18 +165,6 @@ const Detail = () => {
             </a>
           </div>
         </div>
-        <Toaster
-          position="buttom-right"
-          toastOptions={{
-            className: "",
-            style: {
-              border: "1px solid #713200",
-              padding: "16px",
-              color: "#191919",
-              background: "#ffff",
-            },
-          }}
-        />
       </div>
 
       <div className={styles.reviews}>
@@ -212,12 +200,24 @@ const Detail = () => {
         </div>
         {/* 
         <div className={styles.btnReviews}>
-          <h2 onClick={toggleReviews}>Ver cometarios de compradores</h2>
-        </div> */}
+        <h2 onClick={toggleReviews}>Ver cometarios de compradores</h2>
+      </div> */}
       </div>
       <button className={styles.backButton} onClick={back}>
         Back
       </button>
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          className: "",
+          style: {
+            border: "1px solid #713200",
+            padding: "16px",
+            color: "#191919",
+            background: "#ffff",
+          },
+        }}
+      />
     </div>
   );
 };
