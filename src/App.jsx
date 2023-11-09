@@ -17,13 +17,13 @@ import {
 import Detail from "./views/Detail/Detail";
 import FormProduct from "./views/FormProduct/FormProduct";
 import CartShop from "./Components/CartShop/CartShop";
-import PerfilUser from "./views/PerfilUser/PerfilUser";
-import CouponUser from "../src/views/PerfilUser/CouponUser";
+import UserPerfil from "./views/userPerfil/userPerfil.jsx";
+import CouponUser from "./views/userPerfil/Cupon/CouponUser.jsx";
 import Success from "./views/MercadoPago/Success";
-import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
+import AdminDashboard from "../src/views/AdminDashboard/AdminDashboard.jsx";
 import RequestPasswordReset from "./views/Password/RequestPasswordReset";
 import PasswordReset from "./views/Password/PasswordReset";
-import UserAdmin from "../../Front/src/views/UserAdminDashboard/UserAdmin";
+import UserAdmin from "../src/views/UserAdminDashboard/UserAdmin.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,13 +55,12 @@ function App() {
             <Route path="/form/decoracion" element={<FormDecoracion />} />
             <Route
               path="/home/product"
-              ñ
               element={<Product productos={productos} />}
             />
             <Route path="/home/nuevo" element={<FormProduct />} />
             <Route path="/form/login" element={<LoginForm />} />
             <Route path="/form/register" element={<FormRegistro />} />
-            <Route path="/form/perfil" element={<PerfilUser />} />
+            <Route path="/form/perfil" element={<UserPerfil />} />
             <Route path="/cupones" element={<CouponUser />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/admin" element={<AdminDashboard />} />

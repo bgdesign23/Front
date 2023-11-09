@@ -71,7 +71,7 @@ export const editProduct = (id) => {
       });
     } catch (error) {
       console.log(error.message);
-    };
+    }
   };
 };
 
@@ -178,7 +178,7 @@ export const restoreAdmin = (id) => {
       });
     } catch (error) {
       console.log(error.message);
-    };
+    }
   };
 };
 
@@ -192,21 +192,21 @@ export const editAdmin = (id) => {
       });
     } catch (error) {
       console.log(error.message);
-    };
+    }
   };
 };
 
-export const deleteAdmin =  (id) => {
+export const deleteAdmin = (id) => {
   return async (dispatch) => {
-  try {
-    const { data } = await axios.delete(`${URL}/admin/delete/${id}`)
-    return dispatch({
-      type: DELETE_ADMIN,
-      payload: data,
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
+    try {
+      const { data } = await axios.delete(`${URL}/admin/delete/${id}`);
+      return dispatch({
+        type: DELETE_ADMIN,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 };
 
@@ -375,7 +375,7 @@ export const registerUser = (userData, navigate) => async (dispatch) => {
     navigate("/form/login");
   } catch (error) {
     await Swal.fire({
-      title: "Error al registrarse 🤔",
+      title: "Error al registrarse",
       text: error.response.data.error,
       icon: "error",
       background: "#3b3838",
@@ -406,7 +406,7 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
       payload: response.data,
     });
     await Swal.fire({
-      title: `¡Hola ${response.data.user.username}! 👋`,
+      title: `¡Hola ${response.data.user.username}! `,
       text: "Has iniciado sesión exitosamente",
       icon: "success",
       showConfirmButton: false,
@@ -421,7 +421,7 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
       payload: error.message,
     });
     await Swal.fire({
-      title: "Error al iniciar sesión 😧",
+      title: "Error al iniciar sesión",
       text: error.response.data.error,
       icon: "error",
       background: "#3b3838",
@@ -432,7 +432,6 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
 
 export const getUser = () => async (dispatch) => {
   try {
-
     const token = localStorage.getItem("token");
     const config = {
       headers: {
@@ -490,7 +489,7 @@ export const updateUser = (formData, token) => async (dispatch) => {
 export const logoutUser = (navigate) => (dispatch) => {
   Swal.fire({
     icon: "warning",
-    title: "Te vas? 😢",
+    title: "Te vas?",
     showDenyButton: true,
     confirmButtonText: "Así es",
     denyButtonText: "Volver",
@@ -543,7 +542,7 @@ export const postProduct = (formData, navigate) => {
       dispatch(getProductsAction());
       dispatch(getCategories());
       await Swal.fire({
-        title: "¡Creación exitosa! 😎",
+        title: "¡Creación exitosa!",
         text: "Producto agregado exitosamente.",
         icon: "success",
         showConfirmButton: false,
@@ -591,7 +590,7 @@ export const googleUser = (payload) => {
       }
       localStorage.setItem("token", payload.token);
       await Swal.fire({
-        title: `¡Hola ${payload.user.username}! 👋`,
+        title: `¡Hola ${payload.user.username}! `,
         text: "Has iniciado sesión exitosamente",
         icon: "success",
         showConfirmButton: false,
@@ -724,54 +723,60 @@ export function clearErrors() {
 }
 
 export const requestPasswordResetAction = (result, navigate) => {
-	return async function () {
-		try {
-			const response = await axios.post(`${URL}/users/request-password-reset`, result);
-			await Swal.fire({
+  return async function () {
+    try {
+      const response = await axios.post(
+        `${URL}/users/request-password-reset`,
+        result
+      );
+      await Swal.fire({
         title: "¡Pedido de recuperación enviado!",
         text: "Por favor ingresa a tu correo y sigue los pasos para restablecer tu contraseña",
         icon: "success",
         background: "#3b3838",
         color: "#ffffff",
       });
-			if (response.data.redirectUrl) {
-        window.open('https://accounts.google.com/', '_blank');}
-        navigate("/form/login");
-		} catch (error) {
-			await Swal.fire({
-				title: "Hubo un error al enviar petición para restablecer la contraseña",
+      if (response.data.redirectUrl) {
+        window.open("https://accounts.google.com/", "_blank");
+      }
+      navigate("/form/login");
+    } catch (error) {
+      await Swal.fire({
+        title:
+          "Hubo un error al enviar petición para restablecer la contraseña",
         text: error.response.data.error,
-				icon: 'error',
+        icon: "error",
         background: "#3b3838",
         color: "#ffffff",
-			});
+      });
       navigate("/form/login");
-		}
-	};
+    }
+  };
 };
 
 export const confirmPasswordReset = (token, password) => {
-	return async function () {
-		try {
-			const result = await axios.post(`${URL}/users/password-reset`, {
-				password,
+  return async function () {
+    try {
+      const result = await axios.post(`${URL}/users/password-reset`, {
+        password,
         token,
-			});
-			await Swal.fire({
-				title: result.data.message,
-				icon: 'success',
-				timer: 5000,
+      });
+      await Swal.fire({
+        title: result.data.message,
+        icon: "success",
+        timer: 5000,
         background: "#3b3838",
         color: "#ffffff",
-			});
-		} catch (error) {
-			await Swal.fire({
-				title: "Hubo un error al confirmar el restablecimiento de la contraseña",
+      });
+    } catch (error) {
+      await Swal.fire({
+        title:
+          "Hubo un error al confirmar el restablecimiento de la contraseña",
         text: error.response.data.error,
-				icon: 'error',
+        icon: "error",
         background: "#3b3838",
         color: "#ffffff",
-			});
-		}
-	};
+      });
+    }
+  };
 };

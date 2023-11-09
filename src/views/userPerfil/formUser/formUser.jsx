@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, updateUser } from "../../Redux/actions";
-import styles from "../PerfilUser/PerfilUser.module.css";
+import { getUser, updateUser } from "../../../Redux/actions";
+import styles from "./FormUser.module.css";
 
 function PerfilUser() {
   const dispatch = useDispatch();
@@ -18,7 +18,6 @@ function PerfilUser() {
   });
 
   const [editMode, setEditMode] = useState(false);
-
 
   useEffect(() => {
     dispatch(getUser());
@@ -41,11 +40,10 @@ function PerfilUser() {
 
   const handleInputChange = (event) => {
     setFormUser({ ...formUser, [event.target.name]: event.target.value });
-
   };
   const handleModificar = () => {
     setEditMode(true);
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -71,7 +69,6 @@ function PerfilUser() {
     dispatch(updateUser(formData, userData.token));
 
     setEditMode(false);
-
   };
 
   return (
@@ -80,7 +77,6 @@ function PerfilUser() {
         <div className={styles.login}>
           <section className={styles.formimput}>
             <div className={styles.columna}>
-              
               <div className={styles.labelimput}>
                 <label>Nombre de usuario:</label>
                 <input
@@ -89,7 +85,6 @@ function PerfilUser() {
                   value={formUser.username}
                   onChange={handleInputChange}
                   disabled={!editMode}
-
                 />
               </div>
               <div className={styles.labelimput}>
@@ -100,7 +95,6 @@ function PerfilUser() {
                   value={formUser.location}
                   onChange={handleInputChange}
                   disabled={!editMode}
- 
                 />
               </div>
               <div className={styles.labelimput}>
@@ -110,8 +104,7 @@ function PerfilUser() {
                   name="phone"
                   value={formUser.phone}
                   onChange={handleInputChange}
-                 disabled={!editMode}
-   
+                  disabled={!editMode}
                 />
               </div>
               <div className={styles.labelimput}>
@@ -122,7 +115,6 @@ function PerfilUser() {
                   value={formUser.email}
                   onChange={handleInputChange}
                   disabled={!editMode}
-  
                 />
               </div>
               <div className={styles.labelimput}>
@@ -133,7 +125,6 @@ function PerfilUser() {
                   value={formUser.currentPassword}
                   onChange={handleInputChange}
                   disabled={!editMode}
-  
                 />
               </div>
               <div>
@@ -144,7 +135,6 @@ function PerfilUser() {
                   value={formUser.newPassword}
                   onChange={handleInputChange}
                   disabled={!editMode}
-  
                 />
               </div>
             </div>

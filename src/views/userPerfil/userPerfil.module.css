@@ -1,0 +1,25 @@
+.containerAll {
+  display: flex;
+  position: relative;
+  align-items: center;
+  width: 99vw;
+  height: 98vh;
+  background-color: rgb(39, 39, 39);
+}
+
+.boxLeft {
+  position: absolute;
+  bottom: 0;
+  width: 15%;
+  height: 89vh;
+  background-color: #191919;
+  box-shadow: 0px 10px 10px -10px rgba(26, 25, 25, 0.5);
+}
+
+.boxRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 85%;
+  height: 89vh;
+}
