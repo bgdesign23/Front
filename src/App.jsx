@@ -20,7 +20,7 @@ import CartShop from "./Components/CartShop/CartShop";
 import UserPerfil from "./views/userPerfil/userPerfil.jsx";
 import CouponUser from "./views/userPerfil/Cupon/CouponUser.jsx";
 import Success from "./views/MercadoPago/Success";
-import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
+import AdminDashboard from "../src/views/AdminDashboard/AdminDashboard.jsx";
 import RequestPasswordReset from "./views/Password/RequestPasswordReset";
 import PasswordReset from "./views/Password/PasswordReset";
 
