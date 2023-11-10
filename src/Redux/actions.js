@@ -780,3 +780,30 @@ export const confirmPasswordReset = (token, password) => {
     }
   };
 };
+
+export const putReview = (newRating, productId, user, result) => {
+  return async function () {
+    try {
+      const body = { newRating: newRating, comment: result.value, userId: user.user.id}
+      const response = await axios.put(`${URL}/products/rating/${productId}`, body);
+      await Swal.fire({
+        title: "Valoración enviada exitosamente",
+        text: response.data.message,
+        icon: "success",
+        timer: 5000,
+        background: "#3b3838",
+        color: "#ffffff",
+      });
+      window.location.reload();
+    } catch (error) {
+      await Swal.fire({
+        title:
+          "Hubo un error al enviar el comentario sobre el producto",
+        text: error.response.data.error,
+        icon: "error",
+        background: "#3b3838",
+        color: "#ffffff",
+      });
+    }
+  };
+};
