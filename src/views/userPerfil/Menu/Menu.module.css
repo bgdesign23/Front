@@ -1,13 +1,14 @@
 .titulo {
-  font-size: 10px;
+  font-size: 9px;
   color: aliceblue;
   font-family: Arial;
   position: absolute;
   width: 100%;
+  margin-left: 56px;
   height: 82px;
-  top: 0;
+  top: 15px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 }
 
@@ -19,12 +20,13 @@
   top: 10%;
   width: 100%;
   bottom: 0;
+  margin-left: 48px;
 }
 
 .botonera button {
   padding: 0.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   margin: 0 auto;
 }

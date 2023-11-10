@@ -22,6 +22,8 @@ const NavBar = () => {
         <button onClick={() => navigate("/")} className={styles.btn}>
           Inicio
         </button>
+      </div>
+      <div className={styles.dos}>
         <button
           onClick={() => navigate("/home/product")}
           className={styles.btn}
