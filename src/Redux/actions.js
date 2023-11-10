@@ -43,6 +43,9 @@ import {
   DELETE_ADMIN,
   RESTORE_ADMIN,
   EDIT_ADMIN,
+  CARTS_REQUEST,
+  CARTS_SUCCESS,
+  CARTS_FAILURE
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -136,7 +139,7 @@ export const deleteUser = (id) => {
 export const restoreUser = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL}/users/restore/${id}`);      
+      const { data } = await axios.post(`${URL}/users/restore/${id}`);
       return dispatch({
         type: RESTORE_USER,
         payload: data,
@@ -780,7 +783,26 @@ export const confirmPasswordReset = (token, password) => {
     }
   };
 };
-
+export const carts = (UserId) => {
+  return (dispatch) => {
+    dispatch({ type: CARTS_REQUEST });
+    console.log (UserId);
+axios.get(`${URL}/carts/user` ,UserId  )
+      .then(response => {
+        dispatch({
+          type: CARTS_SUCCESS,
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: CARTS_FAILURE,
+          payload: error.message
+        });
+      });
+    }
+  }
+  
 export const putReview = (newRating, productId, user, result) => {
   return async function () {
     try {
