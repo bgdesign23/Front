@@ -65,15 +65,14 @@
  .Btn {
     margin-bottom: 1rem;
     width: 100%;
-    border-radius: 8px;
     cursor: pointer;
-    background-color: #191919;
+    background-color: transparent;
     color: white;
     height: 40px;
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
     font-size: 15px;
-    /* border: none; */
+    border: none;
 }
 
 

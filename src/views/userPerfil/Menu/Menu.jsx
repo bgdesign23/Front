@@ -18,7 +18,7 @@ const Menu = () => {
       </div>
       <div className={Styles.botonera}>
         <button onClick={() => navigate("/form/perfil")}>Mi Perfil</button>
-        <button onClick={() => navigate("/")}>Mis Compras</button>
+        <button onClick={() => navigate("/perfil/compras")}>Mis Compras</button>
         <button onClick={() => navigate("/cupones")}>Cupones</button>
       </div>
       <button onClick={handleLogout} className={Styles.logout}>
