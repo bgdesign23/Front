@@ -126,14 +126,3 @@
   }
 }
 
-
-.fav {
-  position: absolute;
-    right: 110px;
-    top: 55%;
-    transform: translateY(-50%);
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    text-align: left;
-}

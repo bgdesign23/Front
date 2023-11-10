@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AiFillHeart } from "react-icons/ai";
+import { BsSuitHeartFill } from "react-icons/bs";
 import Styles from "../favorites/favorites.module.css";
 
 export default function Iconfavorites() {
@@ -11,7 +11,7 @@ export default function Iconfavorites() {
 
   return (
     <div className={fav ? Styles.IconFavLiked : Styles.IconFav}>
-      <AiFillHeart onClick={handleFav} />
+      <BsSuitHeartFill onClick={handleFav} />
     </div>
   );
 }
