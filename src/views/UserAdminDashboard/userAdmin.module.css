@@ -5,7 +5,7 @@
     width: 99vw;
     height: 98vh;
     /* border: 2px solid red; */
-    background-color: rgb(0, 0, 0);
+    background-color: white;
 }
 
 .boxLeft{
@@ -14,7 +14,7 @@
     width: 15%;
     height: 89vh;
     padding-right: 1rem;
-    background-color: #4c494962;
+    background-color: #191919;
     /* border: 2px solid blue; */
     /* border-right: 2px solid rgb(119, 119, 122); */
 }
