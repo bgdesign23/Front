@@ -5,6 +5,7 @@ import ButtonCarrito from "../SearchBar/ButtonCarrito/ButtonCarrito";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonUserAuth from "./ButtonUser/ButtonUserAuth";
 import ButtonUser from "./ButtonUser/ButtonUser";
+import { BsSuitHeartFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 
 const NavBar = () => {
@@ -40,6 +41,10 @@ const NavBar = () => {
       </div>
       <div className={styles.cuatro}>
         <SearchBar />
+      </div>
+
+      <div className={styles.fav}>
+        <BsSuitHeartFill />
       </div>
       <button className={styles.buttonCarrito}>
         <ButtonCarrito />
