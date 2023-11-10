@@ -35,7 +35,10 @@ import {
   DELETE_PRODUCT,
   DELETE_USER,
   RESTORE_USER,
-  RESTORE_PRODUCTS
+  RESTORE_PRODUCTS,
+  CARTS_REQUEST,
+  CARTS_SUCCESS,
+  CARTS_FAILURE
 
 } from "./actionsTypes";
 
@@ -57,6 +60,7 @@ let initialState = {
   admin: [],
   admin_copy: [],
   errors: {},
+  carts:[]
 };
 
 const Reducer = (state = initialState, action) => {
@@ -275,6 +279,24 @@ const Reducer = (state = initialState, action) => {
         ...state,
         errors: {},
       };
+
+      case CARTS_REQUEST:
+        return {
+          ...state,
+          loading: true
+        };
+      case CARTS_SUCCESS:
+        return {
+          loading: false,
+          carts: action.payload,
+          error: ''
+        };
+      case CARTS_FAILURE:
+        return {
+          loading: false,
+          carts: [],
+          error: action.payload
+        };
             
     default:
       return { ...state };
