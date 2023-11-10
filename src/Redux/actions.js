@@ -35,6 +35,7 @@ import {
   GET_ALL_USERS,
   DELETE_USER,
   RESTORE_USER,
+  EDIT_USERS,
   DELETE_COUPON,
   DELETE_PRODUCT,
   CLEAR_ERRORS,
@@ -45,7 +46,8 @@ import {
   EDIT_ADMIN,
   CARTS_REQUEST,
   CARTS_SUCCESS,
-  CARTS_FAILURE
+  CARTS_FAILURE,
+  GET_CARTS
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -56,6 +58,20 @@ export const getProductsAction = () => {
       const { data } = await axios.get(`${URL}/products`);
       return dispatch({
         type: GET_ALL_PRODUCTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+export const getCarts = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/carts`);
+      console.log("Carts Action: ", data);
+      return dispatch({
+        type: GET_CARTS,
         payload: data,
       });
     } catch (error) {
@@ -142,6 +158,20 @@ export const restoreUser = (id) => {
       const { data } = await axios.post(`${URL}/users/restore/${id}`);
       return dispatch({
         type: RESTORE_USER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const editUser = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`${URL}/users/${id}`);
+      return dispatch({
+        type: EDIT_USERS,
         payload: data,
       });
     } catch (error) {
@@ -716,7 +746,6 @@ export const saveCart = () => {
     }
   };
 };
-
 export function clearErrors() {
   return async function (dispatch) {
     dispatch({
