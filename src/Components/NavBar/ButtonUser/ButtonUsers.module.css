@@ -1,17 +1,12 @@
-.Filters select {
-  width: 100%;
-  color: #fff;
-  text-align: center;
-        font-family: Cinzel;
-          font-size: 15px;
-  background-color: #191919;
-  border-color: #191919;
-}
-
-.Filters option {
-  background: #d9d9d9;
-  color: #000;
+.Filters button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: white;
+  font-family: Arial;
   font-size: 15px;
-  font-weight: 400;
-  font-family: "Open Sans", sans-serif;
+  margin-left: 10px;
+  width: 100px;
 }
