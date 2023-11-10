@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { carts , getUser } from "../../../Redux/actions"
 import Menu from "../Menu/Menu.jsx";
-import Styles from "../Cupon/Cupon.module.css";
+
 
 
 function CartList() {
@@ -21,11 +21,11 @@ function CartList() {
   }, [dispatch, user]);
 
     return (
-    <div className={Styles.containerAll}>
-      <div className={Styles.boxLeft}>
+    <div >
+      <div >
         <Menu />
       </div>
-      <div className={Styles.boxRight}>
+      <div >
         {cartsState && cartsState.length > 0 ? (
           <div>
             <h1>Tu Carrito</h1>
