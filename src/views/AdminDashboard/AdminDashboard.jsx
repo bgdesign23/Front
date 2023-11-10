@@ -24,11 +24,13 @@ import {
   restoreAdmin,
   clearErrors,
   getCarts,
-  getUser
+  getUser,
 } from "../../Redux/actions";
 import UserTableComponent from "./UserTableComponent";
 import TableComponent from "./tableComponent";
 import CartComponent from "./CartsStats";
+import AdminTableComponent from "./AdminTable";
+import CouponTableComponent from "./CouponsTable";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -36,7 +38,7 @@ const AdminDashboard = () => {
   const usuarios = useSelector((state) => state.users_copy);
   const admin = useSelector((state) => state.admin_copy);
   const coupon = useSelector((state) => state.userCoupons);
-  const cart = useSelector((state) => state.carts)
+  const cart = useSelector((state) => state.carts);
   const navigate = useNavigate();
 
   const [adminView, setAdminView] = useState(false);
@@ -65,8 +67,6 @@ const AdminDashboard = () => {
   // const handleShowLessUsers = () => {
   //   if (visibleCountUsers > 10) setVisibleCountUsers(visibleCountUsers - 10);
   // };
-
-  
 
   const handleVisibleProducts = () => {
     setVisibleProducts((prevVisible) => !prevVisible);
@@ -121,7 +121,7 @@ const AdminDashboard = () => {
     type: "",
     material: "",
     description: "",
-  })
+  });
 
   const [couponNew, setCouponNew] = useState({
     status: "",
@@ -131,10 +131,9 @@ const AdminDashboard = () => {
     code: "",
   });
 
-
   const handleGetCarts = () => {
-    dispatch(getCarts())
-  }
+    dispatch(getCarts());
+  };
 
   const [errors, setErrors] = useState({});
 
@@ -263,10 +262,10 @@ const AdminDashboard = () => {
     event.preventDefault();
     dispatch(restoreUser(id)).then(() => {
       dispatch(getUser());
-      dispatch(getUser(deleted))
-    })
-    setUpdated(!updateUser)
-  }
+      dispatch(getUser(deleted));
+    });
+    setUpdated(!updateUser);
+  };
 
   const handleEditUser = (event, userId) => {
     event.preventDefault();
@@ -330,7 +329,6 @@ const AdminDashboard = () => {
     dispatch(deleteUser(userId));
   };
 
-
   const handleEditProduct = (event, productId) => {
     event.preventDefault();
     dispatch(
@@ -346,7 +344,7 @@ const AdminDashboard = () => {
       if (!postError) {
         dispatch(clearErrors());
         Swal.fire("Listo", "Has modificado un producto exitosamente");
-  
+
         // Limpiar los campos después de la edición
         setProd({
           name: "",
@@ -371,7 +369,7 @@ const AdminDashboard = () => {
       dispatch(getProductsAction(deleted));
     });
     setUpdated(!updated);
-  }
+  };
 
   return (
     <div>
@@ -416,35 +414,24 @@ const AdminDashboard = () => {
       <br />
       <div>
         <br />
-        <div>
-          {visibleCoupons &&
-            coupon.map((coup) => (
-              <div key={coup.id}>
-                <span>{coup.code}</span>
-                <span>{coup.status}</span>
-                <span>%{coup.discount}</span>
-                <span>{coup.expiration}</span>
-                <span>{coup.usagesAvailable}</span>
-                <button onClick={() => handleDeleteCoupon(coup.id)}>
-                  Eliminar Cupón
-                </button>
-              </div>
-            ))}
-        </div>
-        <div>
-          {visibleAdmins &&
-            admin.map((ad) => (
-              <div key={ad.id}>
-                <span>{ad.username}</span>
-                <span>{ad.location}</span>
-                <span>{ad.phone}</span>
-                <span>{ad.email}</span>
-              </div>
-            ))}
-        </div>
-        <div>
-        <CartComponent chartData={handleGetCarts}/>
-        </div>              
+        {visibleCoupons && (
+          <div>
+            <CouponTableComponent
+              coupons={coupon}
+              onDeleteCoupon={handleDeleteCoupon}
+            />
+          </div>
+        )}
+
+        <AdminTableComponent
+          admins={admin}
+          onDeleteAdmin={handleDeletedAdmin}
+          onRestoreAdmin={handleRestoreAdmin}
+          onEditAdmin={handleEditAdmin}
+        />
+      </div>
+      <div>
+        <CartComponent chartData={handleGetCarts} />
       </div>
     </div>
   );
