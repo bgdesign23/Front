@@ -148,8 +148,8 @@ const Detail = () => {
               {detailProduct?.stock ? "En Stock" : "Sin Stock"}
             </h6>
             <div className={styles.rating}>
-              <Rating />
-              <h1>4.5</h1>
+              <Rating detailProduct={detailProduct}/>
+              <h4>Rating: {detailProduct.rating} ⭐</h4>
             </div>
           </div>
 
@@ -172,33 +172,16 @@ const Detail = () => {
       <div className={styles.reviews}>
         <div className={styles.comentsContainer}>
           <h1>Comentarios de compradores</h1>
-          <div className={styles.coments}>
-            <h1>10/02/2022</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Blanditiis illo impedit quod nesciunt aut suscipit, quis
-              perferendis obcaecati dicta maiores assumenda perspiciatis unde
-              iure, ipsam quaerat ducimus quasi? Quae, repellendus.
-            </p>
-          </div>
-          <div className={styles.coments}>
-            <h1>10/02/2022</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Blanditiis illo impedit quod nesciunt aut suscipit, quis
-              perferendis obcaecati dicta maiores assumenda perspiciatis unde
-              iure, ipsam quaerat ducimus quasi? Quae, repellendus.
-            </p>
-          </div>
-          <div className={styles.coments}>
-            <h1>10/02/2022</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Blanditiis illo impedit quod nesciunt aut suscipit, quis
-              perferendis obcaecati dicta maiores assumenda perspiciatis unde
-              iure, ipsam quaerat ducimus quasi? Quae, repellendus.
-            </p>
-          </div>
+          {detailProduct &&
+            detailProduct.comments?.map((comment, index) => {
+              const [firstPart] = comment.split(":");
+              return (
+                <div key={index} className={styles.coments}>
+                  <h1>{firstPart}</h1>
+                  <p>{"'"}{comment.slice(firstPart.length + 1).trim()}{"'"}</p>
+                </div>
+              );
+            })}
         </div>
       </div>
       <button className={styles.backButton} onClick={back}>

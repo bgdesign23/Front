@@ -1,5 +1,5 @@
 .navBar {
-  padding-inline: 40px;
+  padding-inline:40px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -125,3 +125,4 @@
    position:relative
   }
 }
+
