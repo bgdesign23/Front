@@ -18,8 +18,8 @@ const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const colores = [...new Set(copy.map((prod) => prod.color))];
-  const materiales = [...new Set(copy.map((mat) => mat.material))];
+  // const colores = [...new Set(copy.map((prod) => prod.color))];
+  // const materiales = [...new Set(copy.map((mat) => mat.material))];
 
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedMaterial, setSelectedMaterial] = useState("");
@@ -109,7 +109,6 @@ const Detail = () => {
           <p className={styles.description} style={{ textAlign: "left" }}>
             {detailProduct?.description}
           </p>
-
           <div className={styles.filas}>
             <h1 className={styles.caracteristicas}>
               Caracteristicas del producto:
@@ -148,11 +147,12 @@ const Detail = () => {
               {detailProduct?.stock ? "En Stock" : "Sin Stock"}
             </h6>
             <div className={styles.rating}>
-              <Rating detailProduct={detailProduct}/>
-              <h4>Rating: {detailProduct.rating} ⭐</h4>
+              <Rating detailProduct={detailProduct} />
+
+              <h4>{detailProduct.rating?.toFixed(1)} </h4>
             </div>
           </div>
-
+          {/* ⭐ */}
           <div className={styles.actions}>
             <button onClick={addToCart} className={styles.button}>
               Agregar al Carrito
@@ -178,7 +178,11 @@ const Detail = () => {
               return (
                 <div key={index} className={styles.coments}>
                   <h1>{firstPart}</h1>
-                  <p>{"'"}{comment.slice(firstPart.length + 1).trim()}{"'"}</p>
+                  <p>
+                    {"'"}
+                    {comment.slice(firstPart.length + 1).trim()}
+                    {"'"}
+                  </p>
                 </div>
               );
             })}

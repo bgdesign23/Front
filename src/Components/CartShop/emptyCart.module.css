@@ -1,14 +1,16 @@
 .containerBag {
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-family: barlow;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-left: 1rem;
     padding-top: 4rem;
+    color: rgb(157, 157, 155);
 }
  
 .Bag {
 font-size: 50px;
+color: rgb(157, 157, 155);
 }

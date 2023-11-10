@@ -2,9 +2,12 @@
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  position: absolute;
-  width: 99vw;
-  height: 97vh;
+  position: fixed;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  width: cover;
+  height: cover;
 }
 
 .form {
@@ -13,7 +16,7 @@
   align-items: center;
   border-radius: 8px;
   padding: 90px;
-  width: 50%;
+  width: 1000px;
   height: 70%;
   margin-top: 150px;
   background-color: rgba(255, 255, 255, 0.308);
