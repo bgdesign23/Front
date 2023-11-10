@@ -1,5 +1,5 @@
 .navBar {
-  padding-inline: 40px;
+  padding-inline:40px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -124,4 +124,16 @@
   .buttonCarrito {
    position:relative
   }
+}
+
+
+.fav {
+  position: absolute;
+    right: 110px;
+    top: 55%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: left;
 }
