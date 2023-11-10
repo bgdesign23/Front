@@ -139,7 +139,7 @@ export const deleteUser = (id) => {
 export const restoreUser = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL}/users/restore/${id}`);      
+      const { data } = await axios.post(`${URL}/users/restore/${id}`);
       return dispatch({
         type: RESTORE_USER,
         payload: data,
@@ -783,12 +783,11 @@ export const confirmPasswordReset = (token, password) => {
     }
   };
 };
-
-export const carts = (userId) => {
+export const carts = (UserId) => {
   return (dispatch) => {
     dispatch({ type: CARTS_REQUEST });
-
-    axios.get(`${URL}/carts/user)
+    console.log (UserId);
+axios.get(`${URL}/carts/user` ,UserId  )
       .then(response => {
         dispatch({
           type: CARTS_SUCCESS,
