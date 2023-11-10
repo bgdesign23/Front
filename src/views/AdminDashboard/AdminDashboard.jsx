@@ -14,6 +14,7 @@ import {
   createCoupon,
   deleteCoupon,
   editProduct,
+  editUser,
   restoreProduct,
   deleteProduct,
   getAdmin,
@@ -22,9 +23,12 @@ import {
   deleteAdmin,
   restoreAdmin,
   clearErrors,
+  getCarts,
+  getUser
 } from "../../Redux/actions";
 import UserTableComponent from "./UserTableComponent";
 import TableComponent from "./tableComponent";
+import CartComponent from "./CartsStats";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -32,6 +36,7 @@ const AdminDashboard = () => {
   const usuarios = useSelector((state) => state.users_copy);
   const admin = useSelector((state) => state.admin_copy);
   const coupon = useSelector((state) => state.userCoupons);
+  const cart = useSelector((state) => state.carts)
   const navigate = useNavigate();
 
   const [adminView, setAdminView] = useState(false);
@@ -60,6 +65,8 @@ const AdminDashboard = () => {
   // const handleShowLessUsers = () => {
   //   if (visibleCountUsers > 10) setVisibleCountUsers(visibleCountUsers - 10);
   // };
+
+  
 
   const handleVisibleProducts = () => {
     setVisibleProducts((prevVisible) => !prevVisible);
@@ -98,6 +105,15 @@ const AdminDashboard = () => {
     role: "",
   });
 
+  const [inputUser, setInputuser] = useState({
+    username: "",
+    phone: "",
+    location: "",
+    email: "",
+    password: "",
+    role: "",
+  });
+
   const [prod, setProd] = useState({
     name: "",
     stock: "",
@@ -114,6 +130,11 @@ const AdminDashboard = () => {
     usagesAvailable: "",
     code: "",
   });
+
+
+  const handleGetCarts = () => {
+    dispatch(getCarts())
+  }
 
   const [errors, setErrors] = useState({});
 
@@ -238,6 +259,47 @@ const AdminDashboard = () => {
     });
   };
 
+  const handleRestoreUser = (event, userId) => {
+    event.preventDefault();
+    dispatch(restoreUser(id)).then(() => {
+      dispatch(getUser());
+      dispatch(getUser(deleted))
+    })
+    setUpdated(!updateUser)
+  }
+
+  const handleEditUser = (event, userId) => {
+    event.preventDefault();
+    dispatch(
+      editUser(userId, {
+        username: inputUser.username,
+        phone: inputUser.phone,
+        location: inputUser.location,
+        email: inputUser.email,
+        password: inputUser.password,
+        role: inputUser.role,
+      })
+    ).then((postError) => {
+      if (!postError) {
+        dispatch(clearErrors());
+        Swal.fire("Listo!", "has modificado al Usuario");
+        setInputAdmin({
+          ...inputUser,
+          username: "",
+          phone: "",
+          location: "",
+          email: "",
+          password: "",
+          role: "",
+        });
+      } else {
+        dispatch(
+          setErrors({ type: "EDIT_ADMIN", error: postError?.response?.data })
+        );
+      }
+    });
+  };
+
   const handleRestoreAdmin = (event, id) => {
     event.preventDefault();
     dispatch(restoreAdmin(id)).then(() => {
@@ -268,9 +330,6 @@ const AdminDashboard = () => {
     dispatch(deleteUser(userId));
   };
 
-  const handleRestoreUser = (userId) => {
-    dispatch(restoreUser(userId))
-  }
 
   const handleEditProduct = (event, productId) => {
     event.preventDefault();
@@ -306,7 +365,12 @@ const AdminDashboard = () => {
   };
 
   const handleRestoreProduct = (id) => {
-    dispatch(restoreProduct(id))
+    event.preventDefault();
+    dispatch(restoreProduct(id)).then(() => {
+      dispatch(getProductsAction());
+      dispatch(getProductsAction(deleted));
+    });
+    setUpdated(!updated);
   }
 
   return (
@@ -378,6 +442,9 @@ const AdminDashboard = () => {
               </div>
             ))}
         </div>
+        <div>
+        <CartComponent chartData={handleGetCarts}/>
+        </div>              
       </div>
     </div>
   );

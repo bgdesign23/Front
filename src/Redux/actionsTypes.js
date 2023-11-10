@@ -46,6 +46,7 @@ export const EDIT_ADMIN = 'EDIT_ADMIN';
 export const CARTS_REQUEST = 'CARTS_REQUEST';
 export const CARTS_SUCCESS = 'CARTS_SUCCESS';
 export const CARTS_FAILURE = 'CARTS_FAILURE';
+export const GET_CARTS = 'GET_CARTS'
 
 
 
