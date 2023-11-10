@@ -16,7 +16,7 @@ function CuponesPage() {
     setVisibleCoupon((prevVisible) => !prevVisible);
     if (!visibleCoupon) {
       dispatch(getUserCoupons());
-    };
+    }
   };
 
   // aca se despacha el cupon del useSelector;
@@ -24,27 +24,27 @@ function CuponesPage() {
     if (coupon === value) {
       setCoupon(false);
     } else {
-      setCoupon (value);
+      setCoupon(value);
     }
     dispatch(getUserCoupons(value));
     //       ACTION que trae los cupones existentes;
   };
 
-// esto muestra el cupon con todas sus propiedades;
-// lo deje aca para que lo acomodes a tu gusto;
-// chequea todo por las dudas capaz, me puedo equivocar jeeeeeeeeee;
+  // esto muestra el cupon con todas sus propiedades;
+  // lo deje aca para que lo acomodes a tu gusto;
+  // chequea todo por las dudas capaz, me puedo equivocar jeeeeeeeeee;
   <div>
-  {visibleCoupon &&
-    userCoupons.map((coup) => (
-      <div key={coup.id}>
-        <span>{coup.code}</span>
-        <span>{coup.status}</span>
-        <span>%{coup.discount}</span>
-        <span>{coup.expiration}</span>
-        <span>{coup.usagesAvailable}</span> 
-      </div>
-    ))}
-  </div>
+    {visibleCoupon &&
+      userCoupons.map((coup) => (
+        <div key={coup.id}>
+          <span>{coup.code}</span>
+          <span>{coup.status}</span>
+          <span>%{coup.discount}</span>
+          <span>{coup.expiration}</span>
+          <span>{coup.usagesAvailable}</span>
+        </div>
+      ))}
+  </div>;
 
   return (
     <div className={Styles.containerAll}>

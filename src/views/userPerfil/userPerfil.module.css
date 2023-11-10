@@ -23,3 +23,53 @@
   width: 85%;
   height: 89vh;
 }
+
+.titulo {
+  font-size: 9px;
+  color: aliceblue;
+  font-family: Arial;
+  position: absolute;
+  width: 100%;
+  margin-left: 56px;
+  height: 82px;
+  top: 15px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.botonera {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding-top: 15%;
+  top: 10%;
+  width: 100%;
+  bottom: 0;
+  margin-left: 48px;
+}
+
+.botonera button {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.botonera button {
+  margin: 15px 0;
+  border: none;
+  background: none;
+  color: rgb(255, 255, 255);
+}
+
+.logout {
+  position: absolute;
+  bottom: 40px;
+  margin-left: -40px;
+  border: none;
+  background: none;
+  color: rgb(255, 255, 255);
+  font-family: Arial;
+}
