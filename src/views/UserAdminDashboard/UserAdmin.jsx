@@ -51,7 +51,7 @@ const UserAdmin = () => {
     <div className={Styles.containerAll}>
       <div className={Styles.boxLeft}>
         <div className={Styles.titulo}>
-          <h1>Administrador</h1>
+          <h1>Admin 01</h1>
         </div>
         <div className={Styles.botonera}>
           <button onClick={handleVisibleAdmins} className={Styles.Btn}>
@@ -69,7 +69,7 @@ const UserAdmin = () => {
           </button>
           <button className={Styles.Btn}>Crear usuario</button>
           <button className={Styles.Btn}>Crear cupón</button>
-          <h2>Cerrar sesíon</h2>
+          <button className={Styles.Btn}>Cerrar sesíon</button>
         </div>
       </div>
       <div className={Styles.boxRight}>

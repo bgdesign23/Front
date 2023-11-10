@@ -3,14 +3,16 @@ import Styles from "../../Components/Rating/Rating.module.css";
 import { AiFillStar } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { putReview } from "../../Redux/actions";
 import Filter from "bad-words-es";
-const filter = new Filter({languages: ['es']});
+const filter = new Filter({ languages: ["es"] });
 
 export default function Rating(detailProduct) {
   const [hoveredStars, setHoveredStars] = useState(0);
   const dispatch = useDispatch();
+  const location = useLocation();
+
   const { id } = useParams();
   const user = useSelector((state) => state.user);
   const handleStarHover = (starIndex) => {
@@ -25,12 +27,12 @@ export default function Rating(detailProduct) {
         icon: "warning",
         background: "#3b3838",
         color: "#ffffff",
-        timer: 2000,
+        timer: 3000,
       });
     } else {
       const userHasCommented = detailProduct?.detailProduct.comments.some(
         (comment) => {
-          const [username] = comment.split(" ");
+          const [username] = comment.split(" ⭐");
           return username.trim() == user.user.username;
         }
       );
@@ -46,7 +48,8 @@ export default function Rating(detailProduct) {
       } else {
         Swal.fire({
           title: "Escribe tu comentario sobre el producto",
-          input: "text",
+          input: "textarea",
+          inputPlaceholder: "Escribe tu comentario aquí...",
           showDenyButton: true,
           confirmButtonText: "Enviar comentario",
           denyButtonText: "Cancelar",
@@ -81,7 +84,12 @@ export default function Rating(detailProduct) {
         <AiFillStar
           key={starIndex}
           className={`${Styles.star} ${
-            starIndex <= hoveredStars ? Styles.starHovered : ""
+            starIndex <=
+            (hoveredStars ||
+              (location.pathname.includes("/detail") &&
+                detailProduct?.detailProduct.rating))
+              ? Styles.starHovered
+              : ""
           }`}
           onMouseEnter={() => handleStarHover(starIndex)}
           onMouseLeave={() => handleStarHover(0)}
