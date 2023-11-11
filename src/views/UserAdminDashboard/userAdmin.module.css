@@ -117,4 +117,17 @@
         width: 85%;
         height: 89vh;
         /* border: 2px solid pink; */
-    }
+}
+
+.panelHome{
+    display: fixed;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+        .panelHome h6 {
+            font-size: 25px;
+            font-family: barlow;
+        }

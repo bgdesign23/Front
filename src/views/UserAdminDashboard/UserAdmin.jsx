@@ -1,51 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
 import Styles from "../UserAdminDashboard/userAdmin.module.css";
 import { getAllUsers, getAdmin, getProductsAction } from "../../Redux/actions";
 import FormProduct from "../FormProduct/FormProduct";
 import Users from "../UserAdminDashboard/Dashboard/Users/Users";
 import Administrators from "./Dashboard/administradores/Administrators";
 import AdminProducts from "./Dashboard/Products/AdminProducts";
+import admin from "../../images/admin.png";
 
 const UserAdmin = () => {
   const dispatch = useDispatch();
-  const [showForm, setShowForm] = useState(false);
-  const [visibleUsers, setVisibleUsers] = useState(false);
-  const [visibleAdmins, setVisibleAdmins] = useState(false);
-  const [visibleProducts, setVisibleProducts] = useState(false);
+  const [visibleSection, setVisibleSection] = useState(null);
 
   const handleCreateProduct = () => {
-    setShowForm(!showForm);
+    setVisibleSection("createProduct");
+    dispatch(getProductsAction());
   };
 
-  const handleVisibleUsers = (value) => {
-    setVisibleUsers((prevVisible) => !prevVisible);
-    if (!visibleUsers) {
-      dispatch(getAllUsers());
-    }
-  };
+  const handleVisibleSection = (section) => {
+    setVisibleSection(section);
 
-  const handleVisibleAdmins = (value) => {
-    setVisibleAdmins((prevVisible) => !prevVisible);
-    if (!visibleAdmins) {
-      dispatch(getAdmin());
-    }
-  };
-
-  const handleVisibleProducts = () => {
-    setVisibleProducts((prevVisible) => !prevVisible);
-    if (!visibleProducts) {
-      dispatch(getProductsAction());
+    switch (section) {
+      case "admins":
+        dispatch(getAdmin());
+        break;
+      case "users":
+        dispatch(getAllUsers());
+        break;
+      default:
+        break;
     }
   };
 
   useEffect(() => {
-    if (showForm) {
-      // Puedes realizar otras acciones aquí si es necesario cuando el formulario se muestra.
+    if (visibleSection === "createProduct") {
     }
-  }, [showForm]);
+  }, [visibleSection]);
 
   return (
     <div className={Styles.containerAll}>
@@ -54,32 +44,172 @@ const UserAdmin = () => {
           <h1>Admin 01</h1>
         </div>
         <div className={Styles.botonera}>
-          <button onClick={handleVisibleAdmins} className={Styles.Btn}>
+          <button
+            onClick={() => handleVisibleSection("admins")}
+            className={Styles.Btn}
+          >
             Administradores
           </button>
-          <button onClick={handleVisibleUsers} className={Styles.Btn}>
+          <button
+            onClick={() => handleVisibleSection("users")}
+            className={Styles.Btn}
+          >
             Usuarios
           </button>
-          <button onClick={handleVisibleProducts} className={Styles.Btn}>
+          <button
+            onClick={() => handleVisibleSection("products")}
+            className={Styles.Btn}
+          >
             Productos
           </button>
-
           <button onClick={handleCreateProduct} className={Styles.Btn}>
             Crear productos
           </button>
-          <button className={Styles.Btn}>Crear usuario</button>
-          <button className={Styles.Btn}>Crear cupón</button>
-          <button className={Styles.Btn}>Cerrar sesíon</button>
+          <button
+            onClick={() => handleVisibleSection("newAdmin")}
+            className={Styles.Btn}
+          >
+            Crear nuevo Admin
+          </button>
+          <button
+            onClick={() => handleVisibleSection("createCoupon")}
+            className={Styles.Btn}
+          >
+            Crear cupón
+          </button>
+          <button
+            onClick={() => handleVisibleSection("logout")}
+            className={Styles.Btn}
+          >
+            Cerrar sesión
+          </button>
         </div>
       </div>
       <div className={Styles.boxRight}>
-        {showForm && <FormProduct />}
-        {visibleUsers && <Users />}
-        {visibleAdmins && <Administrators />}
-        {visibleProducts && <AdminProducts />}
+        {visibleSection !== null ? (
+          <>
+            {visibleSection === "createProduct" && <FormProduct />}
+            {visibleSection === "users" && <Users />}
+            {visibleSection === "admins" && <Administrators />}
+            {visibleSection === "products" && <AdminProducts />}
+          </>
+        ) : (
+          <div className={Styles.panelHome}>
+            <h6>Bienvenido al panel de Administración</h6>
+            <img src={admin} alt="" />
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
 export default UserAdmin;
+
+// import React, { useState, useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+// import Swal from "sweetalert2";
+// import Styles from "../UserAdminDashboard/userAdmin.module.css";
+// import { getAllUsers, getAdmin, getProductsAction } from "../../Redux/actions";
+// import FormProduct from "../FormProduct/FormProduct";
+// import Users from "../UserAdminDashboard/Dashboard/Users/Users";
+// import Administrators from "./Dashboard/administradores/Administrators";
+// import AdminProducts from "./Dashboard/Products/AdminProducts";
+
+// const UserAdmin = () => {
+//   const dispatch = useDispatch();
+//   const [showForm, setShowForm] = useState(false);
+//   const [visibleUsers, setVisibleUsers] = useState(false);
+//   const [visibleAdmins, setVisibleAdmins] = useState(false);
+//   const [visibleProducts, setVisibleProducts] = useState(false);
+
+//   const handleCreateProduct = () => {
+//     setShowForm(true);
+//     setVisibleUsers(false);
+//     setVisibleProducts(false);
+//     setVisibleAdmins(false);
+//   };
+
+//   const handleVisibleUsers = (value) => {
+//     setVisibleUsers(true);
+//     setVisibleProducts(false);
+//     setVisibleAdmins(false);
+//     setShowForm(false);
+//     if (!visibleUsers) {
+//       dispatch(getAllUsers());
+//     }
+//   };
+
+//   const handleVisibleAdmins = (value) => {
+//     setVisibleAdmins(true);
+//     setVisibleUsers(false);
+//     setVisibleProducts(false);
+//     setShowForm(false);
+//     if (!visibleAdmins) {
+//       dispatch(getAdmin());
+//     }
+//   };
+
+//   const handleVisibleProducts = () => {
+//     setVisibleProducts(true);
+//     setVisibleUsers(false);
+//     setVisibleAdmins(false);
+//     setShowForm(false);
+//     if (!visibleProducts) {
+//       dispatch(getProductsAction());
+//     }
+//   };
+
+//   return (
+//     <div className={Styles.containerAll}>
+//       <div className={Styles.boxLeft}>
+//         <div className={Styles.titulo}>
+//           <h1>Admin 01</h1>
+//         </div>
+//         <div className={Styles.botonera}>
+//           <button onClick={handleVisibleAdmins} className={Styles.Btn}>
+//             Administradores
+//           </button>
+//           <button onClick={handleVisibleUsers} className={Styles.Btn}>
+//             Usuarios
+//           </button>
+//           <button onClick={handleVisibleProducts} className={Styles.Btn}>
+//             Productos
+//           </button>
+
+//           <button onClick={handleCreateProduct} className={Styles.Btn}>
+//             Crear productos
+//           </button>
+//           <button className={Styles.Btn}>Crear nuevo Admin</button>
+//           <button className={Styles.Btn}>Crear cupón</button>
+//           <button className={Styles.Btn}>Cerrar sesíon</button>
+//         </div>
+//       </div>
+//       <div className={Styles.boxRight}>
+//         {showForm && <FormProduct />}
+//         {visibleUsers && <Users />}
+//         {visibleAdmins && <Administrators />}
+//         {visibleProducts && <AdminProducts />}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default UserAdmin;
+
+{
+  /* <div className={Styles.boxRight}>
+        <div className={Styles.panelHome}>
+          <h6>Bienvenido al panel de Administración</h6>
+          <img src={admin} alt="" />
+        </div>
+        {visibleSection === "createProduct" && <FormProduct />}
+        {visibleSection === "users" && <Users />}
+        {visibleSection === "admins" && <Administrators />}
+        {visibleSection === "products" && <AdminProducts />}
+      </div>
+    </div>
+  );
+}; */
+}
