@@ -1,68 +1,55 @@
-// import Menu from "../../userPerfil/Menu/Menu.jsx";
-import Styles from "../userPerfil.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserCoupons } from "../../../Redux/actions.js";
-import { useState } from "react";
+import Menu from "../../userPerfil/Menu/Menu.jsx";
+import Styles from "../../userPerfil/Cupon/CuponUser.module.css";
 
-function CuponesPage() {
-  const userCoupons = useSelector((state) => state.userCoupons);
-  const [coupon, setCoupon] = useState(false);
-  const [visibleCoupon, setVisibleCoupon] = useState(false);
+const CuponesPage = () => {
+  const cupones = [
+    {
+      id: 1,
+      titulo: "Descuento Bienvenida",
+      descripcion: "20% de descuento en tu primera compra",
+      codigo: "bgdesign",
+    },
+    {
+      id: 2,
+      titulo: "Descuento Black",
+      descripcion: "15% de descuento en compras superiores a $10.000",
+      codigo: "black",
 
-  const dispatch = useDispatch();
-
-  // aplica si se quiere hacer visible el cupon con un boton u otra funcionalidad;
-  const handleVisibleCoupon = (value) => {
-    setVisibleCoupon((prevVisible) => !prevVisible);
-    if (!visibleCoupon) {
-      dispatch(getUserCoupons());
-    }
-  };
-
-  // aca se despacha el cupon del useSelector;
-  const handleCouponView = (value) => {
-    if (coupon === value) {
-      setCoupon(false);
-    } else {
-      setCoupon(value);
-    }
-    dispatch(getUserCoupons(value));
-    //       ACTION que trae los cupones existentes;
-  };
-
-  // esto muestra el cupon con todas sus propiedades;
-  // lo deje aca para que lo acomodes a tu gusto;
-  // chequea todo por las dudas capaz, me puedo equivocar jeeeeeeeeee;
-  <div>
-    {visibleCoupon &&
-      userCoupons.map((coup) => (
-        <div key={coup.id}>
-          <span>{coup.code}</span>
-          <span>{coup.status}</span>
-          <span>%{coup.discount}</span>
-          <span>{coup.expiration}</span>
-          <span>{coup.usagesAvailable}</span>
-        </div>
-      ))}
-  </div>;
+    },
+    {
+      id: 3,
+      titulo: "Descuento Permanencia",
+      descripcion: "En tu 5ta compra tenes un descuento del 10%",
+      codigo: "permanencia",
+    },
+  ];
 
   return (
-    <div className={Styles.containerAll}>
-      <div className={Styles.boxLeft}>
-        <Menu />
-      </div>
-      <div className={Styles.boxRight}>
-        <h1>Tus Cupones Disponibles</h1>
+    <div >
+    <Menu />
+ 
+    <div className={Styles.center}>
+      <h1>Tus Cupones Disponibles</h1>
+      {cupones.length === 0 ? (
+        <p>No tienes cupones disponibles en este momento.</p>
+      ) : (
         <ul>
-          {userCoupons.map((coupon) => (
-            <li key={coupon.id}>
-              {coupon.name} - Descuento: {coupon.discount}
+          {cupones.map((cupon) => (
+            <li key={cupon.id}>
+              <h3>{cupon.titulo}</h3>
+              <p>{cupon.descripcion}</p>
+              <p>Codigo: {cupon.codigo}</p>
+
+
             </li>
           ))}
         </ul>
-      </div>
+      )}
+                    <h4> Bases y Condiones: Los descuentos se aplican por unica vez, no son acumulables entre si. </h4>
+
+    </div>
     </div>
   );
-}
+};
 
 export default CuponesPage;
