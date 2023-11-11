@@ -40,8 +40,8 @@ import {
   CARTS_FAILURE,
   EDIT_USERS,
   RESTORE_PRODUCTS,
-  GET_CARTS
-
+  GET_CARTS,
+  CLEAN_CARTS,
 } from "./actionsTypes";
 
 let initialState = {
@@ -302,7 +302,7 @@ const Reducer = (state = initialState, action) => {
       case CARTS_SUCCESS:
         return {
           loading: false,
-          carts: action.payload,
+          carts: action.payload.carts,
           error: ''
         };
       case CARTS_FAILURE:
@@ -311,6 +311,11 @@ const Reducer = (state = initialState, action) => {
           carts: [],
           error: action.payload
         };
+        case CLEAN_CARTS:
+      return {
+        ...state,
+        carts: [],
+      };
             
     default:
       return { ...state };

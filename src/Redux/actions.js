@@ -47,7 +47,8 @@ import {
   CARTS_REQUEST,
   CARTS_SUCCESS,
   CARTS_FAILURE,
-  GET_CARTS
+  GET_CARTS,
+  CLEAN_CARTS,
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -812,31 +813,43 @@ export const confirmPasswordReset = (token, password) => {
     }
   };
 };
+
 export const carts = (UserId) => {
-  return (dispatch) => {
-    dispatch({ type: CARTS_REQUEST });
-    console.log (UserId);
-axios.get(`${URL}/carts/user` ,UserId  )
-      .then(response => {
-        dispatch({
-          type: CARTS_SUCCESS,
-          payload: response.data
-        });
-      })
-      .catch(error => {
-        dispatch({
-          type: CARTS_FAILURE,
-          payload: error.message
-        });
+  return async (dispatch) => {
+    try{
+      dispatch({ type: CARTS_REQUEST });
+      const response = await axios.get(`${URL}/carts/user/${UserId}`)
+      dispatch({
+        type: CARTS_SUCCESS,
+        payload: response.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: CARTS_FAILURE,
+        payload: error.message,
       });
     }
-  }
-  
+  };
+};
+
+export const cleanCarts = () => {
+  return {
+    type: CLEAN_CARTS,
+  };
+};
+
 export const putReview = (newRating, productId, user, result) => {
   return async function () {
     try {
-      const body = { newRating: newRating, comment: result.value, userId: user.user.id}
-      const response = await axios.put(`${URL}/products/rating/${productId}`, body);
+      const body = {
+        newRating: newRating,
+        comment: result.value,
+        userId: user.user.id,
+      };
+      const response = await axios.put(
+        `${URL}/products/rating/${productId}`,
+        body
+      );
       await Swal.fire({
         title: "Valoración enviada exitosamente",
         text: response.data.message,
@@ -848,8 +861,7 @@ export const putReview = (newRating, productId, user, result) => {
       window.location.reload();
     } catch (error) {
       await Swal.fire({
-        title:
-          "Hubo un error al enviar el comentario sobre el producto",
+        title: "Hubo un error al enviar el comentario sobre el producto",
         text: error.response.data.error,
         icon: "error",
         background: "#3b3838",

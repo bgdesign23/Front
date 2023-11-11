@@ -1,0 +1,22 @@
+.divListaCompras {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  z-index: 999999999;
+    max-width: 700px;
+}
+
+.h1Compras {
+  color: antiquewhite;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-color: white;
+  z-index: 999999999;
+}
+
+.imgCompras {
+    width: 100px;
+    height: 100px;
+}
