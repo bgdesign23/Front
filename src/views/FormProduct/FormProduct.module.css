@@ -29,13 +29,6 @@ font-family: barlow;
   height: 100px;
 }
 
-
-/* .inputContainerCat{
-    flex-direction: column;
-    align-items: center;
-    height: 100px;
-  } */
-
 .inputContainer input{
   width: 100%;
   max-width: 400px ;
@@ -63,9 +56,9 @@ textarea {
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
-      padding-left: 20px;
-      padding-top: 20px;
-        animation: placeholder-flicker 3s infinite;
+  padding-left: 20px;
+  padding-top: 20px;
+  animation: placeholder-flicker 3s infinite;
 }
 
 
