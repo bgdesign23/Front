@@ -1,19 +1,18 @@
 .formimput {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  max-width: 500px;
-  width: 100%;
+  width: 900px;
   padding: 20px;
   border-radius: 5px;
-  background-color: rgba(217, 217, 217, 0.482);
+  background-color: rgba(128, 59, 59, 0.482);
   border-radius: 34px;
 }
+
 h4 {
   font-family: Arial, Helvetica, sans-serif;
 }
 .profileImage {
-  width: 100px; /* Ajusta el ancho como desees */
+  width: 100px;
   height: auto;
 }
 
