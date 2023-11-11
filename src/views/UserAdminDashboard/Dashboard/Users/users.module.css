@@ -1,8 +1,47 @@
-.container {
-    display: relative;
-
-    color: aliceblue;
+.containerPadre{ display: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
 }
+
+.containerHijo{
+    display: fixed;
+        top: 50%;
+        left: 48%;
+        transform: translate(-50%, -50%);
+        position: relative;
+        width: 1000px;
+        min-height: 700px;
+        background-color: rgb(110, 121, 83);
+         border-radius: 34px;
+         padding: 30px;
+         background-color: rgba(217, 217, 217, 0.482);
+         border: 1px solid rgba(255, 255, 255, 0.089);
+         backdrop-filter: blur(300px);
+}
+
+.containerHijo h6{
+font-size: 25px;
+    font-family: barlow;}
+
+
+
+.containerTable {
+    display: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    width: 800px;
+    height: cover;
+    background-color: black;
+}
+
+
 
 .container h2 {
     color: aliceblue;

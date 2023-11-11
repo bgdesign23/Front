@@ -83,15 +83,3 @@ const UserAdmin = () => {
 };
 
 export default UserAdmin;
-
-{
-  /* <button className={Styles.backBtn}>Cerrar sesíon</button>
-
-
-<h2 className={Styles.Btn}>Administradores</h2>
-<h2 className={Styles.Btn}>Usuarios</h2>
-<h2 className={Styles.Btn}>Productos</h2>
-<h2 className={Styles.Btn}>Crear productos</h2>
-<h2 className={Styles.Btn}>Crear usuario</h2>
-<h2 className={Styles.Btn}>Crear cupón</h2> */
-}

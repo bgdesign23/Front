@@ -13,12 +13,17 @@ export default function Users() {
     dispatch(deleteUser(userId));
   };
   return (
-    <div className={Styles.container}>
-      <UserTableComponent
-        usuarios={usuarios}
-        visibleUsers={visibleUsers}
-        onDeleteUser={handleDeleteUser}
-      />
+    <div className={Styles.containerPadre}>
+      <div className={Styles.containerHijo}>
+        <h6>Administrar usuarios</h6>
+        <div className={Styles.containerTable}>
+          <UserTableComponent
+            usuarios={usuarios}
+            visibleUsers={visibleUsers}
+            onDeleteUser={handleDeleteUser}
+          />
+        </div>
+      </div>
     </div>
   );
 }
