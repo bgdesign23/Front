@@ -14,7 +14,6 @@ const CuponesPage = () => {
       titulo: "Descuento Black",
       descripcion: "15% de descuento en compras superiores a $10.000",
       codigo: "black",
-
     },
     {
       id: 3,
@@ -25,29 +24,35 @@ const CuponesPage = () => {
   ];
 
   return (
-    <div >
-    <Menu />
- 
-    <div className={Styles.center}>
-      <h1>Tus Cupones Disponibles</h1>
-      {cupones.length === 0 ? (
-        <p>No tienes cupones disponibles en este momento.</p>
-      ) : (
-        <ul>
-          {cupones.map((cupon) => (
-            <li key={cupon.id}>
-              <h3>{cupon.titulo}</h3>
-              <p>{cupon.descripcion}</p>
-              <p>Codigo: {cupon.codigo}</p>
-
-
-            </li>
-          ))}
-        </ul>
-      )}
-                    <h4> Bases y Condiones: Los descuentos se aplican por unica vez, no son acumulables entre si. </h4>
-
-    </div>
+    <div className={Styles.containerAll}>
+      <div className={Styles.boxLeft}>
+        <Menu />
+      </div>
+      <div className={Styles.boxRight}>
+        <div className={Styles.containerCupon}>
+          <h1>Cupones Disponibles</h1>
+          {cupones.length === 0 ? (
+            <p>No tienes cupones disponibles en este momento.</p>
+          ) : (
+            <ul>
+              {cupones.map((cupon) => (
+                <li key={cupon.id}>
+                  <div className={Styles.conteinDesc}>
+                    <h4>{cupon.titulo}</h4>
+                    <p>{cupon.descripcion}</p>
+                    <p>Codigo: {cupon.codigo}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          <h4>
+            {" "}
+            Bases y Condiones: Los descuentos se aplican por unica vez, no son
+            acumulables entre si.{" "}
+          </h4>
+        </div>
+      </div>
     </div>
   );
 };

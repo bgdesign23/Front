@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Styles from "../userPerfil.module.css";
+import Styles from "../Menu/Menu.module.css";
 import { logoutUser } from "../../../Redux/actions";
 import { useDispatch } from "react-redux";
 

@@ -22,11 +22,11 @@ function CartList() {
   }, []);
 
   return (
-    <div className={styles.divCompras}>
-      <div className={styles.divMenu}>
+    <div className={styles.containerAll}>
+      <div className={styles.boxLeft}>
         <Menu />
       </div>
-      <div className={styles.divListaCompras}>
+      <div className={styles.boxRight}>
         {cartsState && cartsState.length > 0 ? (
           <div>
             <h1 className={styles.h1Compras}>Historial de compras</h1>
@@ -36,7 +36,9 @@ function CartList() {
                   index + 1
                 }`}</h1>
                 <p>{`Fecha de la compra: ${cart.createdAt.split("T")[0]}`}</p>
-                <p>{`Valor total de la compra: $ ${calculateTotal(cart.products)}`}</p>
+                <p>{`Valor total de la compra: $ ${calculateTotal(
+                  cart.products
+                )}`}</p>
                 {cart.products.map((productString) => {
                   const productArray = JSON.parse(productString);
                   return productArray.map((product) => (
