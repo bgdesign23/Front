@@ -365,7 +365,7 @@ const AdminDashboard = () => {
     });
   };
 
-  const handleRestoreProduct = (id) => {
+  const handleRestoreProduct = (event, id) => {
     event.preventDefault();
     dispatch(restoreProduct(id)).then(() => {
       dispatch(getProductsAction());
@@ -403,6 +403,7 @@ const AdminDashboard = () => {
         <TableComponent
           productos={productos}
           visibleCountProducts={visibleCountProducts}
+          handleEditProduct={handleEditProduct}
           handleDeleteProduct={handleDeleteProduct}
           handleRestoreUser={handleRestoreUser}
         />
