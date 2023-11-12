@@ -123,13 +123,13 @@ const AdminDashboard = () => {
     description: "",
   });
 
-  const [couponNew, setCouponNew] = useState({
-    status: "",
-    expiration: "",
-    discount: "",
-    usagesAvailable: "",
-    code: "",
-  });
+  // const [couponNew, setCouponNew] = useState({
+  //   status: "",
+  //   expiration: "",
+  //   discount: "",
+  //   usagesAvailable: "",
+  //   code: "",
+  // });
 
   const handleGetCarts = () => {
     dispatch(getCarts());
@@ -146,35 +146,35 @@ const AdminDashboard = () => {
     dispatch(getUserCoupons(value));
   };
 
-  const handleCreateCoupon = (event) => {
-    event.preventDefault();
-    dispatch(
-      createCoupon({
-        status: couponNew.status,
-        expiration: couponNew.expiration,
-        discount: couponNew.discount,
-        usagesAvailable: couponNew.usagesAvailable,
-        code: couponNew.code,
-      })
-    ).then((postError) => {
-      if (!postError) {
-        dispatch(clearErrors());
-        Swal.fire("Listo", "Has creado un nuevo cupón");
-        setCouponNew({
-          ...couponNew,
-          status: "",
-          expiration: "",
-          discount: "",
-          usagesAvailable: "",
-          code: "",
-        });
-      } else {
-        dispatch(
-          setErrors({ type: "CREATE_COUPON", error: postError?.response?.data })
-        );
-      }
-    });
-  };
+  // const handleCreateCoupon = (event) => {
+  //   event.preventDefault();
+  //   dispatch(
+  //     createCoupon({
+  //       status: couponNew.status,
+  //       expiration: couponNew.expiration,
+  //       discount: couponNew.discount,
+  //       usagesAvailable: couponNew.usagesAvailable,
+  //       code: couponNew.code,
+  //     })
+  //   ).then((postError) => {
+  //     if (!postError) {
+  //       dispatch(clearErrors());
+  //       Swal.fire("Listo", "Has creado un nuevo cupón");
+  //       setCouponNew({
+  //         ...couponNew,
+  //         status: "",
+  //         expiration: "",
+  //         discount: "",
+  //         usagesAvailable: "",
+  //         code: "",
+  //       });
+  //     } else {
+  //       dispatch(
+  //         setErrors({ type: "CREATE_COUPON", error: postError?.response?.data })
+  //       );
+  //     }
+  //   });
+  // };
 
   const handleDeleteCoupon = (event, id) => {
     event.preventDefault();
@@ -325,6 +325,9 @@ const AdminDashboard = () => {
     navigate(`/home/nuevo/`);
   };
 
+  const handleCouponForm = () => {
+    navigate("/crear-cupon");
+  };
   const handleDeleteUser = (userId) => {
     dispatch(deleteUser(userId));
   };
@@ -393,7 +396,7 @@ const AdminDashboard = () => {
         <button onClick={() => handleVisibleCoupons()}>Cupones</button>
         <button onClick={() => handlePostProduct()}>Crear Mueble</button>
         <button>Crear Usuario</button>
-        <button>Crear cupón</button>
+        <button onClick={() => handleCouponForm()}>Crear cupón</button>
       </div>
 
       {visibleProducts && (
