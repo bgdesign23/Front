@@ -20,6 +20,7 @@
 .tituloPadre h6 {
   font-size: 25px;
   font-family: barlow;
+  color: #ffffff;
 }
 
 .inputContainer {
@@ -67,7 +68,7 @@ textarea {
   width: 1000px;
   height: 700px;
   margin-top: 100px;
-  background-color: rgba(217, 217, 217, 0.482);
+  background-color: white;
   border: 1px solid rgba(255, 255, 255, 0.089);
   backdrop-filter: blur(300px);
 }
