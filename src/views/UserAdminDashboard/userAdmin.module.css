@@ -5,7 +5,7 @@
     width: 99vw;
     height: 98vh;
     /* border: 2px solid red; */
-    background-color: white;
+    background-color: rgba(87, 87, 87, 0.69);
 }
 
 .boxLeft{
@@ -130,4 +130,5 @@
         .panelHome h6 {
             font-size: 25px;
             font-family: barlow;
+            color:#ffffff ;
         }

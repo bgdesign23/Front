@@ -6,7 +6,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(87, 87, 87, 0.69);
 }
 
 .containerHijo {
@@ -17,10 +17,9 @@
     position: relative;
     width: 1400px;
     min-height: 700px;
-    background-color: rgb(110, 121, 83);
     border-radius: 34px;
     padding: 30px;
-    background-color: rgba(217, 217, 217, 0.482);
+    background-color: white;
     border: 1px solid rgba(255, 255, 255, 0.089);
     backdrop-filter: blur(300px);
 }
@@ -33,11 +32,11 @@
 
 
 .containerTable {
-position: absolute;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1290px;
+    width: 1320px;
     max-height: 60vh;
     overflow-y: auto;
 }
