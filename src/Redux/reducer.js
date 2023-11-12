@@ -70,12 +70,17 @@ const Reducer = (state = initialState, action) => {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        products: action.payload,
+        products: state.products.map(prod =>
+          prod.id === action.payload.prod.id
+          ? {...prod, ...action.payload.updateData }
+          : prod),
         products_Copy: action.payload,
       };
       case EDIT_PRODUCTS:
       return {
         ...state,
+        products: action.payload,
+        products_Copy: action.payload
       };
     case DELETE_PRODUCT:
       return {
