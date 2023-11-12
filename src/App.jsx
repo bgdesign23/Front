@@ -18,13 +18,14 @@ import Detail from "./views/Detail/Detail";
 import FormProduct from "./views/FormProduct/FormProduct";
 import CartShop from "./Components/CartShop/CartShop";
 import UserPerfil from "./views/userPerfil/userPerfil.jsx";
-import ComprasUser from "./views/userPerfil/ComprasUser/ComprasUser"
+import ComprasUser from "./views/userPerfil/ComprasUser/ComprasUser";
 import CouponUser from "./views/userPerfil/Cupon/CouponUser.jsx";
 import Success from "./views/MercadoPago/Success";
 import AdminDashboard from "../src/views/AdminDashboard/AdminDashboard.jsx";
 import RequestPasswordReset from "./views/Password/RequestPasswordReset";
 import PasswordReset from "./views/Password/PasswordReset";
 import UserAdmin from "../src/views/UserAdminDashboard/UserAdmin.jsx";
+import CreateCouponForm from "./views/AdminDashboard/FormsAdmDash.jsx/reateCouponForm.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -77,6 +78,7 @@ function App() {
               path={"/form/login/password-reset"}
               element={<PasswordReset />}
             />
+            <Route path="/crear-cupon" element={<CreateCouponForm />} />
           </Routes>
         </div>
       </>
