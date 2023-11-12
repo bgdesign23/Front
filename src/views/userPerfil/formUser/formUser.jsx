@@ -76,9 +76,9 @@ function PerfilUser() {
       <form className={styles.loginContainer} onSubmit={handleSubmit}>
         <div className={styles.login}>
           <section className={styles.formimput}>
-            <div className={styles.columna}>
+            <div className={styles.columnaLeft}>
               <div className={styles.labelimput}>
-                <label>Nombre de usuario:</label>
+                <label className={styles.contLabel}>Nombre de usuario:</label>
                 <input
                   type="text"
                   name="username"
@@ -88,7 +88,7 @@ function PerfilUser() {
                 />
               </div>
               <div className={styles.labelimput}>
-                <label>Ubicación:</label>
+                <label className={styles.contLabel}>Ubicación:</label>
                 <input
                   type="text"
                   name="location"
@@ -98,7 +98,7 @@ function PerfilUser() {
                 />
               </div>
               <div className={styles.labelimput}>
-                <label>Teléfono:</label>
+                <label className={styles.contLabel}>Teléfono:</label>
                 <input
                   type="text"
                   name="phone"
@@ -107,8 +107,10 @@ function PerfilUser() {
                   disabled={!editMode}
                 />
               </div>
+            </div>
+            <div className={styles.columnaRight}>
               <div className={styles.labelimput}>
-                <label>Correo electrónico:</label>
+                <label className={styles.contLabel}>Correo electrónico:</label>
                 <input
                   type="email"
                   name="email"
@@ -118,7 +120,7 @@ function PerfilUser() {
                 />
               </div>
               <div className={styles.labelimput}>
-                <label>Contraseña actual:</label>
+                <label className={styles.contLabel}>Contraseña actual:</label>
                 <input
                   type="password"
                   name="currentPassword"
@@ -128,7 +130,7 @@ function PerfilUser() {
                 />
               </div>
               <div>
-                <label>Nueva contraseña:</label>
+                <label className={styles.contLabel}>Nueva contraseña:</label>
                 <input
                   type="password"
                   name="newPassword"
@@ -138,18 +140,19 @@ function PerfilUser() {
                 />
               </div>
             </div>
+
+            <div className={styles.buttonContainer}>
+              {editMode ? (
+                <button type="button" onClick={handleSubmit}>
+                  Guardar Datos
+                </button>
+              ) : (
+                <button type="button" onClick={handleModificar}>
+                  Modificar Datos
+                </button>
+              )}
+            </div>
           </section>
-          <div className={styles.buttonContainer}>
-            {editMode ? (
-              <button type="button" onClick={handleSubmit}>
-                Guardar Datos
-              </button>
-            ) : (
-              <button type="button" onClick={handleModificar}>
-                Modificar Datos
-              </button>
-            )}
-          </div>
         </div>
       </form>
     </div>
