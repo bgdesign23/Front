@@ -18,7 +18,7 @@ export default function Cards({ productos }) {
     if (productos.length === 0) {
       setTimeout(() => {
         dispatch(getProductsAction());
-      }, 1000);
+      }, 2000);
     }
   }, [productos]);
 
@@ -47,10 +47,10 @@ export default function Cards({ productos }) {
                   stock={product.stock}
                   price={product.price}
                   image={product.image}
-                  rating={product.rating}
                   comments={product.comments}
                   category={product.CategoryId}
                   amount={product.amount}
+                  rating={product.rating}
                 />
               ))}
             </div>

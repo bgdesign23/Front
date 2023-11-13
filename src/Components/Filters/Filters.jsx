@@ -30,6 +30,23 @@ const Filters = () => {
     const filteredProducts = applyCombinedFilters(product, selectedFilters);
   }, [product, selectedFilters, dispatch]);
 
+  useEffect(() => {
+    if (product.length === 0) {
+      setTimeout(() => {
+        const selectElements = document.querySelectorAll("select");
+        selectElements.forEach((select) => {
+          select.value = "default";
+          setSelectedFilters({
+            byColor: "default",
+            byMaterial: "default",
+            category: "default",
+            type: "default",
+          });
+        });
+      }, 2000);
+    }
+  }, [product]);
+
   const handleOrderChange = (e) => {
     const orderDirection = e.target.value;
     dispatch(orderbyprice(product, orderDirection));
@@ -37,6 +54,16 @@ const Filters = () => {
 
   const handleFilterRestart = () => {
     dispatch(getProductsAction());
+    const selectElements = document.querySelectorAll("select");
+    selectElements.forEach((select) => {
+      select.value = "default";
+      setSelectedFilters({
+        byColor: "default",
+        byMaterial: "default",
+        category: "default",
+        type: "default",
+      });
+    });
   };
 
   const colors = [...new Set(copy.map((prod) => prod.color))];
@@ -76,47 +103,95 @@ const Filters = () => {
 
   return (
     <div className={Style.Filters}>
-      <select onChange={handleFilterCategory} value={selectedFilters.category}>
-        <option value="">Categorias</option>
-        {categories?.map((category) => {
-          return (
+      <div className={Style.FiltersContainer}>
+        <label className={Style.FiltersLabels} htmlFor="category">Categoria</label>
+        <select
+          id="category"
+          onChange={handleFilterCategory}
+          value={selectedFilters.category}
+          className={Style.FiltersSelects}
+        >
+          <option value="default">
+            Seleccionar
+          </option>
+          {categories?.map((category) => (
             <option key={category.id} value={category.name}>
               {category.name}
             </option>
-          );
-        })}
-      </select>
+          ))}
+        </select>
+      </div>
 
-      <select onChange={handleOrderChange}>
-        <option value="">Precio</option>
-        <option value="Menor">Menor a Mayor</option>
-        <option value="Mayor">Mayor a Menor</option>
-      </select>
-
-      <select onChange={handleByColor} value={selectedFilters.byColor}>
-        <option value="">Color</option>
-        {colors.map((color) => (
-          <option key={color} value={color}>
-            {color}
+      <div className={Style.FiltersContainer}>
+        <label className={Style.FiltersLabels} htmlFor="price">Precio</label>
+        <select
+          id="price"
+          onChange={handleOrderChange}
+          value={selectedFilters.byPrice}
+          className={Style.FiltersSelects}
+        >
+          <option value="default">
+            Seleccionar
           </option>
-        ))}
-      </select>
+          <option value="Menor">Menor a Mayor</option>
+          <option value="Mayor">Mayor a Menor</option>
+        </select>
+      </div>
 
-      <select onChange={handleFilterType} value={selectedFilters.type}>
-        <option value="">Ambientes</option>
-        <option value="Hogar">Hogar</option>
-        <option value="Oficina">Oficina</option>
-        <option value="Comercial">Comercial</option>
-      </select>
-
-      <select onChange={handleByMaterial} value={selectedFilters.byMaterial}>
-        <option value="">Material</option>
-        {materiales.map((material) => (
-          <option key={material} value={material}>
-            {material}
+      <div className={Style.FiltersContainer}>
+        <label className={Style.FiltersLabels} htmlFor="color">Color</label>
+        <select
+          id="color"
+          onChange={handleByColor}
+          value={selectedFilters.byColor}
+          className={Style.FiltersSelects}
+        >
+          <option value="default">
+            Seleccionar
           </option>
-        ))}
-      </select>
+          {colors.map((color) => (
+            <option key={color} value={color}>
+              {color}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className={Style.FiltersContainer}>
+        <label className={Style.FiltersLabels} htmlFor="type">Ambiente</label>
+        <select
+          id="type"
+          onChange={handleFilterType}
+          value={selectedFilters.type}
+          className={Style.FiltersSelects}
+        >
+          <option value="default">
+            Seleccionar
+          </option>
+          <option value="Hogar">Hogar</option>
+          <option value="Oficina">Oficina</option>
+          <option value="Comercial">Comercial</option>
+        </select>
+      </div>
+
+      <div className={Style.FiltersContainer}>
+        <label className={Style.FiltersLabels} htmlFor="material">Material</label>
+        <select
+          id="material"
+          onChange={handleByMaterial}
+          value={selectedFilters.byMaterial}
+          className={Style.FiltersSelects}
+        >
+          <option value="default">
+            Seleccionar
+          </option>
+          {materiales.map((material) => (
+            <option key={material} value={material}>
+              {material}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <button className={Style.buttonSecundary} onClick={handleFilterRestart}>
         Limpiar

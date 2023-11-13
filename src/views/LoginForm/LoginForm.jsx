@@ -5,7 +5,7 @@ import Style from "../LoginForm/LoginForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
-import imagennForm from "../LoginForm/fondodellogin.jpg";
+// import imagennForm from "../LoginForm/fondodellogin.jpg";
 import { URL } from "../../utils/toggleUrl.js";
 
 function LoginForm() {
@@ -110,11 +110,14 @@ function LoginForm() {
                 >
                   Crear Cuenta
                 </button>
-                <button className={Style.btn} onClick={() => handleOnGoogle()}>
-                  <FcGoogle /> CONTINUAR CON GOOGLE
-                </button>
               </div>
             </form>
+            <div className={Style.botonGoogle}>
+              <button className={Style.btn} onClick={() => handleOnGoogle()}>
+                <FcGoogle size={25} style={{ marginRight: "8px" }} /> Continuar
+                con Google
+              </button>
+            </div>
           </div>
         </div>
         {/* <div className={Style.imagennForm}>

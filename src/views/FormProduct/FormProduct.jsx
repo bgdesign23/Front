@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import validationForm from "./ValidationFormProduct";
 import { postProduct } from "../../Redux/actions.js";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function FormProduct() {
   const dispatch = useDispatch();
@@ -58,6 +59,18 @@ function FormProduct() {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
+    const maxSize = 2 * 1024 * 1024;
+    if (file && file.size > maxSize) {
+      Swal.fire({
+        text: "La imagen es demasiado grande. (Máximo: 2 Mb)",
+        icon: "warning",
+        background: "#3b3838",
+        color: "#ffffff",
+        timer: 3000,
+      });
+      event.target.value = null;
+      return;
+    }
     setFormProduct({ ...formProduct, image: file });
   };
 
@@ -192,7 +205,7 @@ function FormProduct() {
               value={formProduct.category}
               onChange={handleChange}
             >
-              <option value="">Seleccione una categoría</option>
+              <option value="" disabled>Seleccione una categoría</option>
               {categories
                 .sort((a, b) => a.name > b.name)
                 .map((cat) => (
@@ -200,11 +213,8 @@ function FormProduct() {
                     {cat.name}
                   </option>
                 ))}
-              {/* {errors.category ? (
-                <div className={styles.error}>{errors.category}</div>
-              ) : errors.newCategory ? (
-                <div className={styles.error}>{errors.newCategory}</div>
-              ) : null} */}
+              {errors.category && (
+                <div className={styles.error}>{errors.category}</div>)}
               <div />
               <option onClick={handleModificar}>Crear nueva categoría</option>
             </select>
@@ -217,10 +227,11 @@ function FormProduct() {
               placeholder="  Nueva categoría..."
               value={formProduct.newCategory}
               onChange={handleChange}
-              // disabled={!editMode}
+              disabled={!editMode}
             />
           </div>
-
+          {errors.newCategory && (
+                <div className={styles.error}>{errors.newCategory}</div>)}
           <div className={styles.inputContainer}>
             <h6 className={styles.titulosForm}>Cantidad</h6>
             <input

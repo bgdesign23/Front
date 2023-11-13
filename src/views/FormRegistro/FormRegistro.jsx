@@ -1,12 +1,12 @@
 import styles from "../FormRegistro/FormRegistro.module.css";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { /* Link, */ useNavigate } from "react-router-dom";
 import { registerUser, filterRestart, googleUser } from "../../Redux/actions";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
-import imagennForm from "../LoginForm/fondodellogin.jpg";
+// import imagennForm from "../LoginForm/fondodellogin.jpg";
 import { URL } from "../../utils/toggleUrl.js";
 
 export default function FormRegistro() {
@@ -60,7 +60,7 @@ export default function FormRegistro() {
 
   return (
     <div className={styles.pageContainer}>
-      <div loginBackground>
+      <div /* loginBackground */>
         <div className={styles.loginContainer}>
           <p className={styles.titulo}>
             Completa los datos para crear tu cuenta
@@ -76,7 +76,7 @@ export default function FormRegistro() {
                       {...register("username", {
                         required: "Este campo es requerido",
                         pattern: {
-                          value: /^(?:[a-záéíóúü]\s?){1,20}$/,
+                          // value: /^(?:[a-záéíóúü]\s?){1,20}$/,
                           message: "No debe superar los 20 caracteres",
                         },
                       })}
@@ -95,7 +95,7 @@ export default function FormRegistro() {
                       {...register("location", {
                         required: "Este campo es requerido",
                         pattern: {
-                          value: /^(?:[a-záéíóúü]\s?){1,20}$/,
+                          // value: /^(?:[a-záéíóúü]\s?){1,20}$/,
                           message: "Campo requerido",
                         },
                       })}
@@ -196,15 +196,16 @@ export default function FormRegistro() {
             </div> */}
               <div className={styles.buttonContainer}>
                 <button className={styles.btn} type="submit">
-                  REGISTRARSE
-                </button>
-
-                <button className={styles.btn} onClick={() => handleOnGoogle()}>
-                  <FcGoogle /> CONTINUAR CON GOOGLE
+                  Registrarse
                 </button>
               </div>
             </div>
           </form>
+          <div className={styles.divButtonGoogle}>
+          <button className={styles.buttonGoogle} onClick={() => handleOnGoogle()}>
+            <FcGoogle size={25} style={{ marginRight: '8px' }}/> Continuar con Google
+          </button>
+          </div>
         </div>
         {/* <div className={styles.imagennForm}>
           <img src={imagennForm} alt="" />

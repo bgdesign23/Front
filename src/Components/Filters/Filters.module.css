@@ -4,6 +4,35 @@
   padding-top: 100px;
 }
 
+.FiltersContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.FiltersLabels,
+.FiltersSelects {
+  color: #918b8b;
+  text-align: center;
+  font-family: Cinzel;
+  font-size: 15px;
+  font-weight: 400;
+  background-color: #191919;
+  border-color: #191919;
+}
+
+.FiltersLabels {
+  margin-right: 45px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.FiltersSelects {
+  cursor: pointer;
+}
+
 .Filters select {
   margin-top: 5;
   margin-bottom: 6px;
