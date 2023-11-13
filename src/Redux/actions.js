@@ -5,6 +5,7 @@ import {
   GET_ALL_PRODUCTS,
   EDIT_PRODUCTS,
   RESTORE_PRODUCTS,
+  PRODUCT_ERRORS,
   GET_BY_NAME,
   GET_DETAIL,
   ORDERBYPRICE,
@@ -80,11 +81,11 @@ export const getCarts = () => {
   };
 };
 
-export const editProduct = (id, updatedData) => {
+export const editProduct = (id) => {
   return async (dispatch) => {
     try {
       // console.log(updatedData);
-      const { data } = await axios.put(`${URL}/products/${id}`, updatedData);
+      const { data } = await axios.put(`${URL}/products/${id}`);
       console.log(data)
       return dispatch({
         type: EDIT_PRODUCTS,
@@ -92,6 +93,10 @@ export const editProduct = (id, updatedData) => {
       });
     } catch (error) {
       console.log(error.message);
+      dispatch({
+        type: PRODUCT_ERRORS,
+        payload: error.message,
+      });
     }
   };
 };
