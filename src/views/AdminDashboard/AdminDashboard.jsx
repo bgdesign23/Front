@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -115,7 +115,7 @@ const AdminDashboard = () => {
     role: "",
   });
 
-  const [prod, setProd] = useState({
+  const prodRef = useRef({
     name: "",
     stock: "",
     price: "",
@@ -334,38 +334,43 @@ const AdminDashboard = () => {
     dispatch(deleteUser(userId));
   };
 
-  const handleEditProduct = (event, productId) => {
+  const handleEditProduct = (event, productId, prodRef, rowData) => {
     event.preventDefault();
-    dispatch(
-      editProduct(productId, {
-        name: prod.name,
-        stock: prod.stock,
-        price: prod.price,
-        type: prod.type,
-        material: prod.material,
-        description: prod.description,
-      })
-    ).then((postError) => {
-      if (!postError) {
-        dispatch(clearErrors());
-        Swal.fire("Listo", "Has modificado un producto exitosamente");
-
-        // Limpiar los campos después de la edición
-        setProd({
-          name: "",
-          stock: "",
-          price: "",
-          type: "",
-          material: "",
-          description: "",
-        });
-      } else {
-        dispatch(
-          setErrors({ type: "EDIT_PRODUCTS", error: postError?.response?.data })
-        );
+    console.log("Producto Id: ", productId);
+    console.log("prod Ref: ", prodRef);
+    console.log("rowData: ", rowData);
+      try {
+        const updatedData = {
+          name: rowData.name,
+          description: rowData.description,  
+          type: rowData.type,
+          material: rowData.material,
+          price: rowData.price,
+          stock: rowData.stock,
+        } 
+          console.log("Data: ", updatedData);
+          dispatch(editProduct(productId, updatedData))          
+          
+          .then((postError) => {
+          if (!postError) {
+            dispatch(clearErrors());
+            console.log("A ver si llega hasta aquí");
+            Swal.fire("Listo", "Has modificado un producto exitosamente")
+          }
+          });  
+            // Limpiar los campos después de la edición
+            setProd({
+              name: "",
+              stock: "",
+              price: "",
+              type: "",
+              material: "",
+              description: "",
+            });                           
+        } catch (error) {
+        setErrors({ type: "EDIT_PRODUCTS", error: postError?.response?.data })        
       }
-    });
-  };
+    }
 
   const handleRestoreProduct = (event, id) => {
     event.preventDefault();
