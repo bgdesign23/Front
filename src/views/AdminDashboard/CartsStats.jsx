@@ -74,7 +74,7 @@ const CartComponent = () => {
     })
 
     const dateRange = getDateRange(startDate, endDate)
-    console.log("date Range: ", dateRange);
+    //console.log("date Range: ", dateRange);
 
     dateRange.forEach((date) => {
       const fechaFormateada = date.toISOString().split("T")[0];

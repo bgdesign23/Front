@@ -80,12 +80,13 @@ export const getCarts = () => {
   };
 };
 
-export const editProduct = (id, updatedData) => {
+export const editProduct = (id, updateData) => {
+
   return async (dispatch) => {
     try {
-      // console.log(updatedData);
-      const { data } = await axios.put(`${URL}/products/${id}`, updatedData);
-      console.log(data)
+      console.log("id: ", id);
+      console.log("Data: ", updateData);
+      const { data } = await axios.put(`${URL}/products/${id}`, updateData);
       return dispatch({
         type: EDIT_PRODUCTS,
         payload: data,
