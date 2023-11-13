@@ -6,7 +6,6 @@ import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
-// import imagennForm from "../LoginForm/fondodellogin.jpg";
 import { URL } from "../../utils/toggleUrl.js";
 
 export default function FormRegistro() {
@@ -60,7 +59,8 @@ export default function FormRegistro() {
 
   return (
     <div className={styles.pageContainer}>
-      <div /* loginBackground */>
+      {/* <div className={styles.loginBackground}> */}
+      <div>
         <div className={styles.loginContainer}>
           <p className={styles.titulo}>
             Completa los datos para crear tu cuenta
@@ -185,15 +185,7 @@ export default function FormRegistro() {
                   </div>
                 </div>
               </section>
-              {/* <div className={styles.iniciarsesion}>
-              <h4>¿Ya tenés una cuenta?</h4>
-              <button
-                className={styles.btn}
-                onClick={() => navigate("/form/login")}
-              >
-                Iniciá sesión
-              </button>
-            </div> */}
+
               <div className={styles.buttonContainer}>
                 <button className={styles.btn} type="submit">
                   Registrarse
@@ -202,14 +194,15 @@ export default function FormRegistro() {
             </div>
           </form>
           <div className={styles.divButtonGoogle}>
-          <button className={styles.buttonGoogle} onClick={() => handleOnGoogle()}>
-            <FcGoogle size={25} style={{ marginRight: '8px' }}/> Continuar con Google
-          </button>
+            <button
+              className={styles.buttonGoogle}
+              onClick={() => handleOnGoogle()}
+            >
+              <FcGoogle size={25} style={{ marginRight: "8px" }} /> Continuar
+              con Google
+            </button>
           </div>
         </div>
-        {/* <div className={styles.imagennForm}>
-          <img src={imagennForm} alt="" />
-        </div> */}
       </div>
     </div>
   );

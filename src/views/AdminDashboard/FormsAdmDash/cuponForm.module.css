@@ -1,0 +1,62 @@
+.containerPadre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.containerAlinea{
+    display: block;
+}
+
+.containerAlinea h6{
+    font-size: 25px;
+    font-family: barlow;
+    color: #ffffff;}
+
+.containerHijo{
+    display: block;
+    border-radius: 34px;
+    padding: 30px;
+    width: 300px;
+    height: 550px;
+    margin-top: 30px;
+    background-color: white;
+    font-family: barlow;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 30px;
+}
+
+.inputsBox{
+        padding-block: 0.5rem;
+        height: 80px;
+}
+
+
+.containerHijo input{
+background-color: rgba(217, 217, 217, 0.482);
+padding-left: 20px;
+animation: placeholder-flicker 3s infinite;
+}
+
+
+.btn{
+    width: 100%;
+    margin-top: 1rem;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: Arial;
+    color: #191919;
+    background-color: #ffffff;
+}
+
+.btn:hover {
+    height: 50px;
+    border-radius: 8px;
+    font-family: Arial;
+    color: #ffffff;
+    background-color: #191919;
+    transition: 0.8s;
+}

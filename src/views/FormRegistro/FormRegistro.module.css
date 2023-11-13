@@ -20,22 +20,7 @@
   /* border: 5px solid red; */
 }
 
-.loginBackground {
-  display: flex;
-  width: 900px;
-  height: 99vh;
-  /* border: 5px solid yellow; */
-}
 
-.imagennForm {
-  opacity: 50%;
-  position: left;
-  width: 100vw;
-  display: flex;
-  z-index: 10;
-  height: 99vh;
-      /* border: 5px solid pink; */
-}
 .titulo {
   color: #ffffff;
   font-size: 18px;
@@ -56,6 +41,7 @@
 .login {
   display: block;
   width: 890px;
+  height: 500px;
   align-items: center;
   justify-content: center;
   padding: 20px;
@@ -109,6 +95,7 @@
 }
 
 .buttonGoogle {
+  position: absolute;
   width: 100%;
   max-width: 400px;
   border-radius: 8px;
@@ -125,4 +112,21 @@
 }
 .buttonGoogle:hover {
   background-color: #191919;
+}
+
+.buttonContainer{
+  display: flex;
+  justify-content: left;
+  padding-left: .2rem;
+}
+
+.divButtonGoogle{
+    display: flex;
+      flex-direction: column;
+      position: fixed;
+      transform: translate(-50%, -50%);
+      gap: 1rem;
+      top: 83%;
+      left: 102%;
+      width: 100%;
 }
