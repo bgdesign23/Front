@@ -3,8 +3,9 @@ import Styles from "../Product/card.module.css";
 import { useNavigate } from "react-router-dom";
 import Iconfavorites from "./favorites/Iconfavorites";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-export default function Card({ id, name, price, image }) {
+export default function Card({ id, name, price, image, rating, comments }) {
   const PrecioEnCuota = (price / 12).toFixed(2);
   const navigate = useNavigate();
 
@@ -22,7 +23,8 @@ export default function Card({ id, name, price, image }) {
           alt=""
           onClick={() => navigate(`/detail/${id}`)}
         />
-        <Rating />
+        <Rating product={{ rating, comments }} />
+
         <h6 className={Styles.titulo}>{name}</h6>
         <div className={Styles.details}>
           <h6>Precio</h6>

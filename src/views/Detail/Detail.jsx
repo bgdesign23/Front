@@ -148,7 +148,6 @@ const Detail = () => {
             </h6>
             <div className={styles.rating}>
               <Rating detailProduct={detailProduct} />
-
               <h4>{detailProduct.rating?.toFixed(1)} </h4>
             </div>
           </div>

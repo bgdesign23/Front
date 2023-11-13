@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Styles from "../../Components/Rating/Rating.module.css";
 import { AiFillStar } from "react-icons/ai";
 import Swal from "sweetalert2";
@@ -9,6 +9,7 @@ import Filter from "bad-words-es";
 const filter = new Filter({ languages: ["es"] });
 
 export default function Rating(detailProduct) {
+  console.log(detailProduct);
   const [hoveredStars, setHoveredStars] = useState(0);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -77,6 +78,13 @@ export default function Rating(detailProduct) {
       }
     }
   };
+
+  useEffect(() => {
+    if (!location.pathname.includes("/detail")) {
+      const { rating } = detailProduct.product;
+      rating > 0 && handleStarHover(rating);
+    }
+  }, [detailProduct]);
 
   return (
     <div className={Styles.containerStars}>
