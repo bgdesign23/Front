@@ -38,19 +38,25 @@ const CuponesPage = () => {
               {cupones.map((cupon) => (
                 <li key={cupon.id}>
                   <div className={Styles.conteinDesc}>
-                    <h4>{cupon.titulo}</h4>
-                    <p>{cupon.descripcion}</p>
-                    <p>Codigo: {cupon.codigo}</p>
+                    <div className={Styles.descCont}>
+                      <h4>{cupon.titulo}</h4>
+                      <p>{cupon.descripcion}</p>
+                    </div>
+                    <h5 className={Styles.codigoDesc}>
+                      Codigo: {cupon.codigo}
+                    </h5>
                   </div>
                 </li>
               ))}
             </ul>
           )}
-          <h4>
-            {" "}
-            Bases y Condiones: Los descuentos se aplican por unica vez, no son
-            acumulables entre si.{" "}
-          </h4>
+          <div className={Styles.basesCondiciones}>
+            <h4>
+              {" "}
+              Bases y Condiones: Los descuentos se aplican por unica vez, no son
+              acumulables entre si.{" "}
+            </h4>
+          </div>
         </div>
       </div>
     </div>
