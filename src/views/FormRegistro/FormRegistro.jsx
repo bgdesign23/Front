@@ -1,12 +1,12 @@
 import styles from "../FormRegistro/FormRegistro.module.css";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { /* Link, */ useNavigate } from "react-router-dom";
 import { registerUser, filterRestart, googleUser } from "../../Redux/actions";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
-import imagennForm from "../LoginForm/fondodellogin.jpg";
+// import imagennForm from "../LoginForm/fondodellogin.jpg";
 import { URL } from "../../utils/toggleUrl.js";
 
 export default function FormRegistro() {
@@ -60,7 +60,7 @@ export default function FormRegistro() {
 
   return (
     <div className={styles.pageContainer}>
-      <div loginBackground>
+      <div /* loginBackground */>
         <div className={styles.loginContainer}>
           <p className={styles.titulo}>
             Completa los datos para crear tu cuenta

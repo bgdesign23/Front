@@ -45,7 +45,6 @@
 
 .resumeCart {
   display: block;
-  /* width: 100vh; */
   max-width: 500px;
   margin-right: 200px;
   border: 2px solid rgba(255, 255, 255, 0.462);
