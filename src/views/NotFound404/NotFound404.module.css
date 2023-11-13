@@ -1,0 +1,37 @@
+.divNotFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10vw;
+  margin-left: 25vw;
+  position: absolute;
+}
+
+.btnNotFound {
+  width: 100px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #191919;
+  color: white;
+  height: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+.btnNotFound:hover {
+  color: black;
+  background-color: white;
+  transition: 0.8s;
+}
+
+.h1NotFound,
+.h2NotFound {
+  width: 800px;
+  color: white;
+  font-family: Cinzel;
+  font-size: 100px;
+  font-weight: 400;
+}

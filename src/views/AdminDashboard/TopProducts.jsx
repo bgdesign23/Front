@@ -1,36 +1,35 @@
 import { getCarts } from "../../Redux/actions";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Line } from 'react-chartjs-2'
-import { Chart, LineController, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Bar } from 'react-chartjs-2'
+import { Chart, CategoryScale, LinearScale, PointElement, BarController, BarElement, Title, Tooltip, Legend } from 'chart.js/auto';
 
 Chart.register(
-    LineController,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-  );
-  
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  BarController, 
+  BarElement, 
+  Title,
+  Tooltip,
+  Legend
+);
+
   const getDateRange = (startDate, endDate) => {
     const dateRange = [];
     let currentDate = new Date(startDate);
-  
+
     while (currentDate <= endDate) {
       dateRange.push(new Date(currentDate));
       currentDate.setDate(currentDate.getDate() + 1);
     }
-  
+
     return dateRange.map(date => {
-      return new Date(date.toLocaleDateString('en-US', { timeZone: 'America/Bogota' }));
+      return new Date(date.toLocaleDateString('en-US', {timeZone: 'America/Bogota'}))
     });
   };
-  
-  
-const CartComponent = () => {
+
+const TopProducts = () => {
 
     const carts = useSelector((state) => state.carts)
     const dispatch = useDispatch();
@@ -48,54 +47,47 @@ const CartComponent = () => {
         setStartDate(new Date(endDate))
       }
     }, [startDate, endDate])
-
+    
     const successCartsInRange = carts.filter(
       (cart) => 
       cart.status === "success" &&
-      new Date(cart.createdAt ) >= startDate &&
-      new Date(cart.createdAt ) <= endDate
+      new Date(cart.createdAt) >= startDate &&
+      new Date(cart.createdAt) <= endDate
     )
- 
-    const productosCompradosDiarios = {}
+    
+    //console.log("Success Carts in Range: ", successCartsInRange);
+
+    //Crear un objeto para almacenar las compras por días:
+    const ventasPorProducto = {}
 
     successCartsInRange.forEach((cart) => {
-        const fechaCompra = new Date(cart.createdAt);        
-        const fechaFormateada = fechaCompra.toISOString().split("T")[0]
-
         cart.products.forEach((item) => {
           const productos = JSON.parse(item)
           productos.forEach((producto) => {
             const productName = producto.name;
-            productosCompradosDiarios[fechaFormateada] = productosCompradosDiarios[fechaFormateada] || {}
-            productosCompradosDiarios[fechaFormateada][productName] = 
-              (productosCompradosDiarios[fechaFormateada][productName] || 0) + producto.amount
+            ventasPorProducto[productName] = (ventasPorProducto[productName] || 0) + producto.amount;
           })
         })
     })
 
-    const dateRange = getDateRange(startDate, endDate)
-    console.log("date Range: ", dateRange);
+    //console.log("Ventas por producto: ", ventasPorProducto);
 
-    dateRange.forEach((date) => {
-      const fechaFormateada = date.toISOString().split("T")[0];
-      productosCompradosDiarios[fechaFormateada] = productosCompradosDiarios[fechaFormateada] || {};
-    })
+    // const productosMasVendidos = Object.entries(ventasPorProducto)
+    // .map(([productId, quantity]) => [productId, Number(quantity)])
+    // .sort((a,b) => b[1] - a[1]).sort(0, 10)
 
-    const labels = Object.keys(productosCompradosDiarios).sort((a,b)=> new Date(a) - new Date(b))
-    const datos = labels.map((fecha) => {
-      const productosPorDia = productosCompradosDiarios[fecha]
-      const totalProductos = Object.values(productosPorDia).reduce((acc, cantidad) => acc + cantidad, 0)
-      return totalProductos
-    })
+    const labels = Object.keys(ventasPorProducto)
+    const datos = Object.values(ventasPorProducto)
     
     const data = {
         labels: labels,
         datasets: [
             {
-            label: "Compras por día",
+            label: "Compras por producto",
             data: datos,
-            fill: false,
-            tension: 0.1
+            backgroundColor:'rgba(75,192,192,0.2)',
+            borderColor: 'rgba(75,192,192,1)',
+            borderWidth: 1,
             }
         ]
     }
@@ -113,13 +105,11 @@ const CartComponent = () => {
     
 
     const handleStartDate = (e) => {
-      const selectedDate = new Date(e.target.value);
-      setStartDate(selectedDate);
+      setStartDate(new Date(e.target.value))
     }
 
     const handleEndDate = (e) =>{
-      const selectedDate = new Date(e.target.value);
-      setEndDate(selectedDate);
+      setEndDate(new Date(e.target.value))
     }
     return (
       <>
@@ -139,7 +129,7 @@ const CartComponent = () => {
           />
         </div>
         <div style= {{width: '50%', margin:'auto',  display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh'}}>
-            <Line data={data} options={options} />
+            <Bar data={data} options={options} />
         </div>
       </>
           
@@ -147,4 +137,4 @@ const CartComponent = () => {
     
 }
 
-export default CartComponent
+export default TopProducts
