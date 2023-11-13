@@ -5,7 +5,6 @@
   width: 99.5vw;
   height: 97vh;
   background-color: rgb(255, 255, 255);
-  border: 1px solid red;
 }
 
 .boxLeft {
@@ -46,8 +45,55 @@
   border-radius: 5px;
   background-color: rgba(217, 217, 217, 0.482);
   border: 2px solid rgba(0, 0, 0, 0.089);
+  margin-bottom: 100px;
+}
+
+.containerCupon h1 {
+  font-family: Cinzel;
+  font-size: 25px;
 }
 
 .conteinDesc {
-  border: 1px solid blue;
+  position: relative;
+  top: 30px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: rgba(217, 217, 217, 0.482);
+  padding: 8px;
+}
+
+.conteinDesc {
+  margin-bottom: 10px;
+}
+
+.conteinDesc p {
+  display: flex;
+  font-size: 15px;
+  font-family: Arial;
+}
+
+.codigoDesc {
+  left: 600px;
+  text-align: right;
+  position: relative;
+  font-size: 14px;
+  font-family: Arial;
+  width: 300px;
+  top: -8px;
+}
+
+.descCont {
+  bottom: -10px;
+  width: 370px;
+  position: relative;
+}
+
+.descCont p h4 {
+  margin-top: 20px;
+}
+
+.basesCondiciones {
+  margin: 0 auto;
+  width: 700px;
+  margin-top: 60px;
 }
