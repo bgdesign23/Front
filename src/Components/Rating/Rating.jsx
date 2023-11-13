@@ -1,4 +1,4 @@
-import { /* useEffect, */ useState } from "react";
+import { useState } from "react";
 import Styles from "../../Components/Rating/Rating.module.css";
 import { AiFillStar } from "react-icons/ai";
 import Swal from "sweetalert2";
@@ -12,7 +12,7 @@ export default function Rating() {
   const [hoveredStars, setHoveredStars] = useState(0);
   const dispatch = useDispatch();
   const location = useLocation();
-  const detailProduct = useSelector((state) => state.products_Details)
+  const detailProduct = useSelector((state) => state.products_Details);
   const { id } = useParams();
   const user = useSelector((state) => state.user);
   const handleStarHover = (starIndex) => {
@@ -30,12 +30,10 @@ export default function Rating() {
         timer: 3000,
       });
     } else {
-      const userHasCommented = detailProduct?.comments.some(
-        (comment) => {
-          const [username] = comment.split("⭐");
-          return username.trim() == user.user.username;
-        }
-      );
+      const userHasCommented = detailProduct?.comments.some((comment) => {
+        const [username] = comment.split("⭐");
+        return username.trim() == user.user.username;
+      });
       if (userHasCommented) {
         Swal.fire({
           title: "Comentario existente",
@@ -78,13 +76,6 @@ export default function Rating() {
     }
   };
 
-  /* useEffect(() => {
-    if (!location.pathname.includes("/detail")) {
-      const { rating } = detailProduct.product;
-      rating > 0 && handleStarHover(rating);
-    }
-  }, [detailProduct]); */
-
   return (
     <div className={Styles.containerStars}>
       {[1, 2, 3, 4, 5].map((starIndex) => (
@@ -93,8 +84,7 @@ export default function Rating() {
           className={`${Styles.star} ${
             starIndex <=
             (hoveredStars ||
-              (location.pathname.includes("/detail") &&
-                detailProduct?.rating))
+              (location.pathname.includes("/detail") && detailProduct?.rating))
               ? Styles.starHovered
               : ""
           }`}
