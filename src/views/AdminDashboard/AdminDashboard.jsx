@@ -115,16 +115,7 @@ const AdminDashboard = () => {
     role: "",
   });
 
-  // const [prod, setProd] = useState({
-  //   name: "",
-  //   stock: "",
-  //   price: "",
-  //   type: "",
-  //   material: "",
-  //   description: "",
-  // });
-
-    const prodRef = useRef({
+  const prodRef = useRef({
     name: "",
     stock: "",
     price: "",
@@ -343,74 +334,43 @@ const AdminDashboard = () => {
     dispatch(deleteUser(userId));
   };
 
-  // const [updated, setUpdated] = useState(false);
-  // const [hot, setHot] = useState(null);
-
-  // useEffect(() => {
-  //   dispatch(getProductsAction());
-  // }, [dispatch]);
-
-  // const prodRef = useRef({
-  //   name: "",
-  //   stock: "",
-  //   price: "",
-  //   type: "",
-  //   material: "",
-  //   description: "",
-  // });
-
-  // const [prod, setProd] = useState({
-  //   name: "",
-  //   stock: "",
-  //   price: "",
-  //   type: "",
-  //   material: "",
-  //   description: "",
-  // });
-
-  const handleEditProduct = async (event, productId) => {
+  const handleEditProduct = (event, productId, prodRef, rowData) => {
     event.preventDefault();
-  
-    try {
-      console.log("prod", prodRef.current);
-      const updatedProductData = {
-        name: prodRef.current.name,
-        stock: prodRef.current.stock,
-        price: prodRef.current.price,
-        type: prodRef.current.type,
-        material: prodRef.current.material,
-        description: prodRef.current.description,
-      };
-  
-      // Maneja la promesa de dispatch
-      await dispatch(editProduct(productId, updatedProductData));
-  
-      dispatch(clearErrors());
-      Swal.fire("Listo", "Has modificado un producto exitosamente");
-  
-      const editedProducts = productos.map((product) =>
-        product.id === productId
-          ? { ...product, ...updatedProductData }
-          : product
-      );
-  
-      dispatch(setProd(editedProducts));
-      dispatch(getProductsAction());
-  
-      setProd({
-        name: "",
-        stock: "",
-        price: "",
-        type: "",
-        material: "",
-        description: "",
-      });
-    } catch (error) {
-      dispatch(
-        setErrors({ type: "EDIT_PRODUCTS", error: error?.data })
-      );
+    console.log("Producto Id: ", productId);
+    console.log("prod Ref: ", prodRef);
+    console.log("rowData: ", rowData);
+      try {
+        const updatedData = {
+          name: rowData.name,
+          description: rowData.description,  
+          type: rowData.type,
+          material: rowData.material,
+          price: rowData.price,
+          stock: rowData.stock,
+        } 
+          console.log("Data: ", updatedData);
+          dispatch(editProduct(productId, updatedData))          
+          
+          .then((postError) => {
+          if (!postError) {
+            dispatch(clearErrors());
+            console.log("A ver si llega hasta aquí");
+            Swal.fire("Listo", "Has modificado un producto exitosamente")
+          }
+          });  
+            // Limpiar los campos después de la edición
+            setProd({
+              name: "",
+              stock: "",
+              price: "",
+              type: "",
+              material: "",
+              description: "",
+            });                           
+        } catch (error) {
+        setErrors({ type: "EDIT_PRODUCTS", error: postError?.response?.data })        
+      }
     }
-  };
 
   const handleRestoreProduct = (event, id) => {
     event.preventDefault();

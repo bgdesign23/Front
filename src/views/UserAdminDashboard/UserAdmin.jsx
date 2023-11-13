@@ -6,6 +6,7 @@ import FormProduct from "../FormProduct/FormProduct";
 import Users from "../UserAdminDashboard/Dashboard/Users/Users";
 import Administrators from "./Dashboard/administradores/Administrators";
 import AdminProducts from "./Dashboard/Products/AdminProducts";
+import CreateCouponForm from "../AdminDashboard/FormsAdmDash/CreateCouponForm";
 import admin from "../../images/admin.png";
 
 const UserAdmin = () => {
@@ -15,6 +16,10 @@ const UserAdmin = () => {
   const handleCreateProduct = () => {
     setVisibleSection("createProduct");
     dispatch(getProductsAction());
+  };
+
+  const handleCreateCupon = () => {
+    setVisibleSection("createCoupon");
   };
 
   const handleVisibleSection = (section) => {
@@ -71,10 +76,7 @@ const UserAdmin = () => {
           >
             Crear nuevo Admin
           </button>
-          <button
-            onClick={() => handleVisibleSection("createCoupon")}
-            className={Styles.Btn}
-          >
+          <button onClick={handleCreateCupon} className={Styles.Btn}>
             Crear cupón
           </button>
           <button
@@ -92,6 +94,7 @@ const UserAdmin = () => {
             {visibleSection === "users" && <Users />}
             {visibleSection === "admins" && <Administrators />}
             {visibleSection === "products" && <AdminProducts />}
+            {visibleSection === "createCoupon" && <CreateCouponForm />}
           </>
         ) : (
           <div className={Styles.panelHome}>
