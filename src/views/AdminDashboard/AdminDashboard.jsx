@@ -135,7 +135,6 @@ const AdminDashboard = () => {
   const handleGetCarts = () => {
     dispatch(getCarts());
   };
-  
 
   const [errors, setErrors] = useState({});
 
