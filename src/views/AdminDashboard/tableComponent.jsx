@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Handsontable from "handsontable";
 import "handsontable/dist/handsontable.full.min.css";
 import { editProduct } from "../../Redux/actions";
@@ -11,7 +10,6 @@ const TableComponent = ({
   // handleRestoreProduct,
 }) => {
   const [hot, setHot] = useState(null);
-  const dispatch = useDispatch();
   const prodRef = useRef({
     name: "",
     stock: "",
@@ -47,7 +45,6 @@ const TableComponent = ({
               editButton.addEventListener("click", (event) => {
                 if (productos[row] && typeof handleEditProduct === 'function') {
                   prodRef.current = ({ ...productos[row] });
-                  console.log("Updated prodRef.current:", prodRef.current);
                   handleEditProduct(event, productos[row].id);
                 }
               });
@@ -72,14 +69,11 @@ const TableComponent = ({
         licenseKey: "non-commercial-and-evaluation",
         afterChange: (changes, source) => {
           if (source === "edit" || source === "autofill" || source === "paste") {
-            changes.forEach(([changeRow, changeProp, _, newValue]) => {
-            console.log("Changes:", changes);
-            console.log("Updated prodRef.current:", prodRef.current);
+            const [changeRow, changeProp, oldValue, newValue] = changes[0];
             prodRef.current = {
               ...prodRef.current,
               [changeProp]: newValue,
             };
-          }); 
           }
         },
       });

@@ -29,8 +29,9 @@ import {
 import UserTableComponent from "./UserTableComponent";
 import TableComponent from "./tableComponent";
 import CartComponent from "./CartsStats";
-import AdminTableComponent from "./AdminTable";
+import AdminTableComponent from "./tableComponent";
 import CouponTableComponent from "./CouponsTable";
+import TopProducts from "./TopProducts";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -134,6 +135,7 @@ const AdminDashboard = () => {
   const handleGetCarts = () => {
     dispatch(getCarts());
   };
+  
 
   const [errors, setErrors] = useState({});
 
@@ -436,6 +438,9 @@ const AdminDashboard = () => {
       </div>
       <div>
         <CartComponent chartData={handleGetCarts} />
+      </div>
+      <div>
+        <TopProducts chartData={handleGetCarts} />
       </div>
     </div>
   );

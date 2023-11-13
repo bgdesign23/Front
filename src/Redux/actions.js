@@ -70,7 +70,6 @@ export const getCarts = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${URL}/carts`);
-      console.log("Carts Action: ", data);
       return dispatch({
         type: GET_CARTS,
         payload: data,
