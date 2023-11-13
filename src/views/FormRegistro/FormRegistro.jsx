@@ -76,10 +76,8 @@ export default function FormRegistro() {
                       {...register("username", {
                         required: "Este campo es requerido",
                         pattern: {
-                          value:
-                            /^(?:[A-Z][a-zA-Z]*)(?: [A-Z][a-zA-Z]*){1,} *$/,
-                          message:
-                            "El nombre y apellido deben comenzar con mayúscula",
+                          value: /^(?:[a-záéíóúü]\s?){1,20}$/,
+                          message: "No debe superar los 20 caracteres",
                         },
                       })}
                       onBlur={() => {
@@ -97,8 +95,8 @@ export default function FormRegistro() {
                       {...register("location", {
                         required: "Este campo es requerido",
                         pattern: {
-                          value: /^(?:[A-ZÁÉÍÓÚ][a-záéíóúü]+[\s-]?)+$/,
-                          message: "Debe contener una localidad válida",
+                          value: /^(?:[a-záéíóúü]\s?){1,20}$/,
+                          message: "Campo requerido",
                         },
                       })}
                       onBlur={() => {
@@ -114,7 +112,7 @@ export default function FormRegistro() {
                     <input
                       type="password"
                       {...register("password", {
-                        required: "Este campo es requerido",
+                        required: "Campo requerido",
                         minLength: {
                           value: 8,
                           message: "Debe contener mínimo 8 caracteres",

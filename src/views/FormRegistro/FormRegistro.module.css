@@ -65,6 +65,14 @@
     /* border: 5px solid pink; */
 }
 
+.labelimput{
+  height: 120px;
+}
+
+.labelimput label{
+  padding-left: 10px;
+}
+
 .login label {
   font-family: Barlow;
   text-align: left;

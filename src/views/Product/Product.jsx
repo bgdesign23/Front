@@ -47,8 +47,10 @@ export default function Cards({ productos }) {
                   stock={product.stock}
                   price={product.price}
                   image={product.image}
+                  rating={product.rating}
+                  comments={product.comments}
                   category={product.CategoryId}
-                  amount={product.amount} //cantidad
+                  amount={product.amount}
                 />
               ))}
             </div>
