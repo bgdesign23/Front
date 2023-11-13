@@ -9,10 +9,11 @@ import Filter from "bad-words-es";
 const filter = new Filter({ languages: ["es"] });
 
 export default function Rating(detailProduct) {
-  console.log(detailProduct);
   const [hoveredStars, setHoveredStars] = useState(0);
   const dispatch = useDispatch();
   const location = useLocation();
+
+  const [hasRated, setHasRated] = useState(false);
 
   const { id } = useParams();
   const user = useSelector((state) => state.user);
