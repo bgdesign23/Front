@@ -110,11 +110,13 @@ function LoginForm() {
                 >
                   Crear Cuenta
                 </button>
-                <button className={Style.btn} onClick={() => handleOnGoogle()}>
-                  <FcGoogle /> CONTINUAR CON GOOGLE
-                </button>
               </div>
             </form>
+            <div className={Style.botonGoogle}>
+            <button className={Style.btn} onClick={() => handleOnGoogle()}>
+              <FcGoogle size={25} style={{ marginRight: '8px' }}/> Continuar con Google
+            </button>
+            </div>
           </div>
         </div>
         {/* <div className={Style.imagennForm}>

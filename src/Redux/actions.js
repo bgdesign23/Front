@@ -408,7 +408,7 @@ export const registerUser = (userData, navigate) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: response.data,
     });
-    navigate("/form/login");
+    navigate("/form/perfil");
   } catch (error) {
     await Swal.fire({
       title: "Error al registrarse",

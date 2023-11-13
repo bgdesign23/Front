@@ -1,11 +1,11 @@
-import Rating from "../../Components/Rating/Rating";
+// import Rating from "../../Components/Rating/Rating";
 import Styles from "../Product/card.module.css";
 import { useNavigate } from "react-router-dom";
 import Iconfavorites from "./favorites/Iconfavorites";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+// import React, { useState } from "react";
+import { AiFillStar } from "react-icons/ai";
 
-export default function Card({ id, name, price, image, rating, comments }) {
+export default function Card({ id, name, price, image, rating }) {
   const PrecioEnCuota = (price / 12).toFixed(2);
   const navigate = useNavigate();
 
@@ -23,8 +23,17 @@ export default function Card({ id, name, price, image, rating, comments }) {
           alt=""
           onClick={() => navigate(`/detail/${id}`)}
         />
-        <Rating product={{ rating, comments }} />
-
+        <div className={Styles.containerStars}>
+          {[1, 2, 3, 4, 5].map((starIndex) => (
+            <AiFillStar
+              key={starIndex}
+              className={`${Styles.star} ${
+                starIndex <= rating ? Styles.starHovered : ""
+              }`}
+              onClick={() => navigate(`/detail/${id}`)}
+            />
+          ))}
+        </div>
         <h6 className={Styles.titulo}>{name}</h6>
         <div className={Styles.details}>
           <h6>Precio</h6>

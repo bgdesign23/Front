@@ -14,6 +14,7 @@
     object-fit: cover;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    cursor: pointer;
   }
 }
 
@@ -68,4 +69,22 @@
   color: rgb(46, 124, 241);
   font-size: 15px;
   padding-inline:1rem ;
+}
+
+.containerStars{
+  font-size: 30px;
+  display: flex;
+  position: left;
+  padding-left: 1rem;
+  padding-top: .7rem
+}
+
+.star {
+  color: rgba(128, 128, 128, 0.368);
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.starHovered {
+  color: rgb(241, 185, 42);
 }

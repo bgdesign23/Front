@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { /* useEffect, */ useState } from "react";
 import Styles from "../../Components/Rating/Rating.module.css";
 import { AiFillStar } from "react-icons/ai";
 import Swal from "sweetalert2";
@@ -8,12 +8,11 @@ import { putReview } from "../../Redux/actions";
 import Filter from "bad-words-es";
 const filter = new Filter({ languages: ["es"] });
 
-export default function Rating(detailProduct) {
-  console.log(detailProduct);
+export default function Rating() {
   const [hoveredStars, setHoveredStars] = useState(0);
   const dispatch = useDispatch();
   const location = useLocation();
-
+  const detailProduct = useSelector((state) => state.products_Details)
   const { id } = useParams();
   const user = useSelector((state) => state.user);
   const handleStarHover = (starIndex) => {
@@ -31,9 +30,9 @@ export default function Rating(detailProduct) {
         timer: 3000,
       });
     } else {
-      const userHasCommented = detailProduct?.detailProduct.comments.some(
+      const userHasCommented = detailProduct?.comments.some(
         (comment) => {
-          const [username] = comment.split(" ⭐");
+          const [username] = comment.split("⭐");
           return username.trim() == user.user.username;
         }
       );
@@ -79,12 +78,12 @@ export default function Rating(detailProduct) {
     }
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!location.pathname.includes("/detail")) {
       const { rating } = detailProduct.product;
       rating > 0 && handleStarHover(rating);
     }
-  }, [detailProduct]);
+  }, [detailProduct]); */
 
   return (
     <div className={Styles.containerStars}>
@@ -95,7 +94,7 @@ export default function Rating(detailProduct) {
             starIndex <=
             (hoveredStars ||
               (location.pathname.includes("/detail") &&
-                detailProduct?.detailProduct.rating))
+                detailProduct?.rating))
               ? Styles.starHovered
               : ""
           }`}

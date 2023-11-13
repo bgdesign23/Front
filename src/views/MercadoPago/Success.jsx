@@ -61,7 +61,7 @@ function Success() {
       <button className={styles.btnSuccess} onClick={() => navigate("/home/product")}>
         Volver
       </button>
-      <button className={styles.btnSuccess} onClick={() => navigate("/form/perfil")}>
+      <button className={styles.btnSuccess} onClick={() => navigate("/perfil/compras")}>
         Ver historial de compras
       </button>
     </div>
