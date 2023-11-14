@@ -17,11 +17,12 @@ const CreateCouponForm = () => {
   });
 
   const isFormValid = () => {
+    const numberAndSigns = /^[\d.,/]+$/;
     return (
       couponNew.status &&
-      couponNew.expiration &&
-      couponNew.discount &&
-      couponNew.usagesAvailable &&
+      numberAndSigns.test(couponNew.expiration) &&
+      numberAndSigns.test(couponNew.discount) &&
+      numberAndSigns.test(couponNew.usagesAvailable) &&
       couponNew.code
     );
   };
@@ -71,6 +72,7 @@ const CreateCouponForm = () => {
                 Status:
                 <input
                   type="text"
+                  placeholder="Example: activo"
                   value={couponNew.status}
                   onChange={(e) =>
                     setCouponNew({ ...couponNew, status: e.target.value })
@@ -83,6 +85,7 @@ const CreateCouponForm = () => {
                 Expiration:
                 <input
                   type="text"
+                  placeholder="Example: 2023/10/20"
                   value={couponNew.expiration}
                   onChange={(e) =>
                     setCouponNew({ ...couponNew, expiration: e.target.value })
@@ -95,6 +98,7 @@ const CreateCouponForm = () => {
                 Discount:
                 <input
                   type="text"
+                  placeholder="Example: 0.2"
                   value={couponNew.discount}
                   onChange={(e) =>
                     setCouponNew({ ...couponNew, discount: e.target.value })
@@ -107,6 +111,7 @@ const CreateCouponForm = () => {
                 Usages Available:
                 <input
                   type="text"
+                  placeholder="Example: 1"
                   value={couponNew.usagesAvailable}
                   onChange={(e) =>
                     setCouponNew({
@@ -122,6 +127,7 @@ const CreateCouponForm = () => {
                 Code:
                 <input
                   type="text"
+                  placeholder="Example: bgdesign2"
                   value={couponNew.code}
                   onChange={(e) =>
                     setCouponNew({ ...couponNew, code: e.target.value })

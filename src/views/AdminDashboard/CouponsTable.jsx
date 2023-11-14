@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import Handsontable from "handsontable";
 import "handsontable/dist/handsontable.full.min.css";
 
 const CouponTableComponent = ({ coupons, onDeleteCoupon }) => {
-  const [hot, setHot] = useState(null);
+  const hotRef = useRef(null);
 
   useEffect(() => {
-    if (coupons) {
-      if (hot) {
-        hot.destroy();
-        setHot(null);
-      }
+    const container = document.getElementById("coupons-handsontable-container");
 
-      const container = document.getElementById(
-        "coupons-handsontable-container"
-      );
-      const newHot = new Handsontable(container, {
+    if (!hotRef.current) {
+      hotRef.current = new Handsontable(container, {
         data: coupons,
         columns: [
           { data: "code", title: "Code" },
@@ -29,10 +23,10 @@ const CouponTableComponent = ({ coupons, onDeleteCoupon }) => {
             renderer: (instance, td, row) => {
               const deleteButton = document.createElement("button");
               deleteButton.innerText = "Delete";
-              deleteButton.addEventListener("click", () => {
+              deleteButton.addEventListener("click", (event) => {
+                event.preventDefault();
                 onDeleteCoupon(coupons[row].id);
               });
-
               while (td.firstChild) {
                 td.removeChild(td.firstChild);
               }
@@ -47,14 +41,22 @@ const CouponTableComponent = ({ coupons, onDeleteCoupon }) => {
         licenseKey: "non-commercial-and-evaluation",
       });
 
-      newHot.addHook("afterOnCellMouseDown", (event, coords, TD) => {
+      hotRef.current.addHook("afterOnCellMouseDown", (event, coords, TD) => {
         if (TD.classList.contains("htButton")) {
           event.stopImmediatePropagation();
         }
       });
-
-      setHot(newHot);
+    } else {
+      hotRef.current.loadData(coupons);
+      hotRef.current.render();
     }
+
+    return () => {
+      if (hotRef.current) {
+        hotRef.current.destroy();
+        hotRef.current = null;
+      }
+    };
   }, [coupons, onDeleteCoupon]);
 
   return <div id="coupons-handsontable-container"></div>;
