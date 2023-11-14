@@ -14,6 +14,7 @@ import AdminProducts from "./Dashboard/Products/AdminProducts";
 import CreateCouponForm from "../AdminDashboard/FormsAdmDash/CreateCouponForm";
 import admin from "../../images/admin.png";
 import CartComponent from "../AdminDashboard/CartsStats";
+import TopProducts from "../AdminDashboard/TopProducts";
 
 const UserAdmin = () => {
   const dispatch = useDispatch();
@@ -115,6 +116,7 @@ const UserAdmin = () => {
             {visibleSection === "products" && <AdminProducts />}
             {visibleSection === "createCoupon" && <CreateCouponForm />}
             {visibleSection === "metricas" && <CartComponent />}
+            {visibleSection === "top" && <TopProducts />}
           </>
         ) : (
           <div className={Styles.panelHome}>
