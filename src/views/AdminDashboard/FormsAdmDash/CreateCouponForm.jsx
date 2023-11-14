@@ -63,86 +63,105 @@ const CreateCouponForm = () => {
 
   return (
     <div className={Styles.containerPadre}>
-      <div className={Styles.containerAlinea}>
-        <h6>Crear un cupón descuento</h6>
-        <div className={Styles.containerHijo}>
-          <form onSubmit={handleCreateCoupon}>
-            <div className={Styles.inputsBox}>
-              <label>
-                Status:
-                <input
-                  type="text"
-                  placeholder="Example: activo"
-                  value={couponNew.status}
-                  onChange={(e) =>
-                    setCouponNew({ ...couponNew, status: e.target.value })
-                  }
-                />
-              </label>
-            </div>
-            <div className={Styles.inputsBox}>
-              <label>
-                Expiration:
-                <input
-                  type="text"
-                  placeholder="Example: 2023/10/20"
-                  value={couponNew.expiration}
-                  onChange={(e) =>
-                    setCouponNew({ ...couponNew, expiration: e.target.value })
-                  }
-                />
-              </label>
-            </div>
-            <div className={Styles.inputsBox}>
-              <label>
-                Discount:
-                <input
-                  type="text"
-                  placeholder="Example: 0.2"
-                  value={couponNew.discount}
-                  onChange={(e) =>
-                    setCouponNew({ ...couponNew, discount: e.target.value })
-                  }
-                />
-              </label>
-            </div>
-            <div className={Styles.inputsBox}>
-              <label>
-                Usages Available:
-                <input
-                  type="text"
-                  placeholder="Example: 1"
-                  value={couponNew.usagesAvailable}
-                  onChange={(e) =>
-                    setCouponNew({
-                      ...couponNew,
-                      usagesAvailable: e.target.value,
-                    })
-                  }
-                />
-              </label>
-            </div>
-            <div className={Styles.inputsBox}>
-              <label>
-                Code:
-                <input
-                  type="text"
-                  placeholder="Example: bgdesign2"
-                  value={couponNew.code}
-                  onChange={(e) =>
-                    setCouponNew({ ...couponNew, code: e.target.value })
-                  }
-                />
-              </label>
-            </div>
-            <button
-              className={Styles.btn}
-              type="submit"
-              disabled={!isFormValid()}
-            >
-              Create Coupon
-            </button>
-          </form>
+      <div className={Styles.containerPadrastro}>
+        <div className={Styles.containerAlinea}>
+          <h6>Crear un cupón descuento</h6>
+          <div className={Styles.containerHijo}>
+            <form className={Styles.formu} onSubmit={handleCreateCoupon}>
+              <div className={Styles.LadoA}>
+                <div className={Styles.inputsBox}>
+                  <label>
+                    Estado:
+                    <input
+                      type="text"
+                      placeholder="ejemplo: Activo"
+                      value={couponNew.status}
+                      onChange={(e) =>
+                        setCouponNew({ ...couponNew, status: e.target.value })
+                      }
+                    />
+                  </label>
+                </div>
+                <div className={Styles.inputsBox}>
+                  <label>
+                    Vence:
+                    <input
+                      type="text"
+                      placeholder="ejemplo: 2023/10/20"
+                      value={couponNew.expiration}
+                      onChange={(e) =>
+                        setCouponNew({
+                          ...couponNew,
+                          expiration: e.target.value,
+                        })
+                      }
+                    />
+                  </label>
+                </div>
+                <div className={Styles.inputsBox}>
+                  <label>
+                    % descuento:
+                    <input
+                      type="text"
+                      placeholder="ejemplo: 0.2"
+                      value={couponNew.discount}
+                      onChange={(e) =>
+                        setCouponNew({ ...couponNew, discount: e.target.value })
+                      }
+                    />
+                  </label>
+                </div>
+              </div>
+
+              <div className={Styles.LadoB}>
+                <div className={Styles.inputsBox}>
+                  <label>
+                    Cantidad de usos:
+                    <input
+                      type="text"
+                      placeholder="ejemplo: 1"
+                      value={couponNew.usagesAvailable}
+                      onChange={(e) =>
+                        setCouponNew({
+                          ...couponNew,
+                          usagesAvailable: e.target.value,
+                        })
+                      }
+                    />
+                  </label>
+                </div>
+
+                <div className={Styles.inputsBox}>
+                  <label>
+                    Código valido:
+                    <input
+                      type="text"
+                      placeholder="ejemplo: bgdesign2"
+                      value={couponNew.code}
+                      onChange={(e) =>
+                        setCouponNew({ ...couponNew, code: e.target.value })
+                      }
+                    />
+                  </label>
+                </div>
+
+                <div className={Styles.inputsBox}>
+                  <button
+                    className={Styles.btn}
+                    type="submit"
+                    disabled={!isFormValid()}
+                  >
+                    Crear cupón
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div className={Styles.alineadorHijastro}>
+          <h6>Cuponera</h6>
+          <div className={Styles.hijastro}></div>
         </div>
       </div>
     </div>
