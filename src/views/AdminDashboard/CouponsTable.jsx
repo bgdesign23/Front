@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import Handsontable from "handsontable";
 import "handsontable/dist/handsontable.full.min.css";
 
-const CouponTableComponent = ({ coupons, onDeleteCoupon }) => {
+const CouponTableComponent = ({ coupons, onDeleteCoupon, onEditCoupon }) => {
   const hotRef = useRef(null);
 
   useEffect(() => {
@@ -23,15 +23,29 @@ const CouponTableComponent = ({ coupons, onDeleteCoupon }) => {
             renderer: (instance, td, row) => {
               const deleteButton = document.createElement("button");
               deleteButton.innerText = "Delete";
+
+              const editButton = document.createElement("button")
+              editButton.innerText = "Edit"
+
+              editButton.addEventListener("click", (event) => {
+                onEditCoupon(
+                  event,                   
+                  coupons[row].id,
+                  coupons[row]
+                )
+              })
+
               deleteButton.addEventListener("click", (event) => {
                 event.preventDefault();
                 onDeleteCoupon(coupons[row].id);
               });
+
               while (td.firstChild) {
                 td.removeChild(td.firstChild);
               }
 
               td.appendChild(deleteButton);
+              td.appendChild(editButton)
             },
           },
         ],

@@ -45,6 +45,7 @@ import {
   PRODUCTS_ELIMINATED,
   USERS_ELIMINATED,
   CREATE_COUPON_SUCCESS,
+  EDIT_COUPON
 } from "./actionsTypes";
 
 let initialState = {
@@ -69,7 +70,8 @@ let initialState = {
   carts_copy: [],
   productsEliminated: [],
   usersEliminated: [],
-  createdCoupon: null,
+  coupons: [],
+  createdCoupon: null,  
 };
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -276,6 +278,11 @@ const Reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+    case EDIT_COUPON:
+      return {
+        ...state,
+        coupons: action.payload,
+      };    
     case RESTORE_USER:
       return {
         ...state,

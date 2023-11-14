@@ -46,8 +46,8 @@ const CartComponent = () => {
   const carts = useSelector((state) => state.carts);
   const dispatch = useDispatch();
 
-  const [startDate, setStartDate] = useState(new Date("2023-11-06"));
-  const [endDate, setEndDate] = useState(new Date("2023-11-12"));
+  const [startDate, setStartDate] = useState(new Date("2023-11-12"));
+  const [endDate, setEndDate] = useState(new Date("2023-11-10"));
 
   useEffect(() => {
     dispatch(getCarts());
@@ -86,7 +86,6 @@ const CartComponent = () => {
   });
 
   const dateRange = getDateRange(startDate, endDate);
-  console.log("date Range: ", dateRange);
 
   dateRange.forEach((date) => {
     const fechaFormateada = date.toISOString().split("T")[0];

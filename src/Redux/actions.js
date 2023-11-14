@@ -52,6 +52,7 @@ import {
   CLEAN_CARTS,
   PRODUCTS_ELIMINATED,
   USERS_ELIMINATED,
+  EDIT_COUPON
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -86,8 +87,6 @@ export const getCarts = () => {
 export const editProduct = (id, updateData) => {
   return async (dispatch) => {
     try {
-      console.log("id: ", id);
-      console.log("Data: ", updateData);
       const { data } = await axios.put(`${URL}/products/${id}`, updateData);
       return dispatch({
         type: EDIT_PRODUCTS,
@@ -915,9 +914,19 @@ export const createCoupon = (couponData) => {
     }
   };
 };
-// export const createCoupon = (coupon) => {
-//   return {
-//     type: CREATE_COUPON,
-//     payload: coupon,
-//   };
-// };
+
+export const editCoupon = (id, updateData) => {
+  return async (dispatch) => {
+    try {
+      console.log("id: ", id);
+      console.log("Data: ", updateData);
+      const { data } = await axios.put(`${URL}/coupon/${id}`, updateData);
+      return dispatch({
+        type: EDIT_COUPON,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
