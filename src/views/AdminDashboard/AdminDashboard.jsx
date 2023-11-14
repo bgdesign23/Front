@@ -286,7 +286,7 @@ const AdminDashboard = () => {
 
   const handlePostAdmin = () => {
     navigate(`/crear/admin`);
-  }
+  };
 
   const handleCouponForm = () => {
     navigate("/crear-cupon");

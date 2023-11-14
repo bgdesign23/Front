@@ -1,11 +1,31 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createCoupon, clearErrors } from "../../../Redux/actions.js";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createCoupon,
+  clearErrors,
+  getUserCoupons,
+  deleteCoupon,
+} from "../../../Redux/actions.js";
 import Swal from "sweetalert2";
 import Styles from "../FormsAdmDash/cuponForm.module.css";
+import CouponTableComponent from "../CouponsTable.jsx";
 
 const CreateCouponForm = () => {
   const dispatch = useDispatch();
+  const coupon = useSelector((state) => state.userCoupons);
+
+  const handleDeleteCoupon = (id) => {
+    dispatch(deleteCoupon(id))
+      .then(() => {
+        // Operación después de eliminar el cupón
+        dispatch(getUserCoupons());
+        setUpdated(!updated);
+      })
+      .catch((error) => {
+        // Manejar errores si es necesario
+        console.error("Error deleting coupon:", error);
+      });
+  };
 
   const [errors, setErrors] = useState({});
   const [couponNew, setCouponNew] = useState({
@@ -65,8 +85,8 @@ const CreateCouponForm = () => {
     <div className={Styles.containerPadre}>
       <div className={Styles.containerPadrastro}>
         <div className={Styles.containerAlinea}>
-          <h6>Crear un cupón descuento</h6>
           <div className={Styles.containerHijo}>
+            <h6>Crear un cupón descuento</h6>
             <form className={Styles.formu} onSubmit={handleCreateCoupon}>
               <div className={Styles.LadoA}>
                 <div className={Styles.inputsBox}>
@@ -84,7 +104,7 @@ const CreateCouponForm = () => {
                 </div>
                 <div className={Styles.inputsBox}>
                   <label>
-                    Vence:
+                    Caducidad:
                     <input
                       type="text"
                       placeholder="ejemplo: 2023/10/20"
@@ -100,7 +120,7 @@ const CreateCouponForm = () => {
                 </div>
                 <div className={Styles.inputsBox}>
                   <label>
-                    % descuento:
+                    Porcentaje descuento:
                     <input
                       type="text"
                       placeholder="ejemplo: 0.2"
@@ -145,23 +165,32 @@ const CreateCouponForm = () => {
                   </label>
                 </div>
 
-                <div className={Styles.inputsBox}>
-                  <button
-                    className={Styles.btn}
-                    type="submit"
-                    disabled={!isFormValid()}
-                  >
-                    Crear cupón
-                  </button>
-                </div>
+                <div className={Styles.inputsBox}></div>
               </div>
+              <button
+                className={Styles.btn}
+                type="submit"
+                disabled={!isFormValid()}
+              ></button>
             </form>
           </div>
+          {/* <CouponTableComponent
+            coupons={coupon}
+            onDeleteCoupon={handleDeleteCoupon}
+          /> */}
         </div>
 
         <div className={Styles.alineadorHijastro}>
-          <h6>Cuponera</h6>
-          <div className={Styles.hijastro}></div>
+          <div className={Styles.hijastro}>
+            <h6>Cuponera</h6>
+
+            <div className={Styles.tablaCupones}>
+              <CouponTableComponent
+                coupons={coupon}
+                onDeleteCoupon={handleDeleteCoupon}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
