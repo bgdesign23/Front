@@ -42,9 +42,9 @@ const CuponesPage = () => {
                       <h4>{cupon.titulo}</h4>
                       <p>{cupon.descripcion}</p>
                     </div>
-                    <h5 className={Styles.codigoDesc}>
-                      Codigo: {cupon.codigo}
-                    </h5>
+                  </div>
+                  <div className={Styles.codigoDesc}>
+                    <h5>Codigo: {cupon.codigo}</h5>
                   </div>
                 </li>
               ))}
