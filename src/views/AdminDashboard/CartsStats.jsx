@@ -72,10 +72,6 @@ const CartComponent = () => {
     const fechaCompra = new Date(cart.createdAt);
     const fechaFormateada = fechaCompra.toISOString().split("T")[0];
 
-<<<<<<< Updated upstream
-    const dateRange = getDateRange(startDate, endDate)
-    //console.log("date Range: ", dateRange);
-=======
     cart.products.forEach((item) => {
       const productos = JSON.parse(item);
       productos.forEach((producto) => {
@@ -88,7 +84,6 @@ const CartComponent = () => {
       });
     });
   });
->>>>>>> Stashed changes
 
   const dateRange = getDateRange(startDate, endDate);
   console.log("date Range: ", dateRange);
