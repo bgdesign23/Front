@@ -65,7 +65,7 @@ h4 {
 }
 
 .buttonContainer button {
-  width: 210px;
+  width: 10%;
   border-radius: 8px;
   cursor: pointer;
   background-color: white;
@@ -76,7 +76,7 @@ h4 {
   font-size: 15px;
   font-weight: bold;
   position: absolute;
-  left: 580px;
+  left: 45%;
 }
 
 .buttonContainer button:hover {
