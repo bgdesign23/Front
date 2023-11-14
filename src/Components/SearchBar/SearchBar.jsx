@@ -47,7 +47,7 @@ const SearchBar = () => {
       </form>
       <button
         type="submit"
-        disabled
+        disabled={searchState.trim() === ""}
         className={styles.noStyleButton}
         onClick={(event) => handle_Submit(event)}
       >
