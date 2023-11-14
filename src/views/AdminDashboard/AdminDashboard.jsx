@@ -284,6 +284,10 @@ const AdminDashboard = () => {
     navigate(`/home/nuevo/`);
   };
 
+  const handlePostAdmin = () => {
+    navigate(`/crear/admin`);
+  }
+
   const handleCouponForm = () => {
     navigate("/crear-cupon");
   };
@@ -363,6 +367,7 @@ const AdminDashboard = () => {
         <button onClick={() => handleVisibleAdmins()}>Administradores</button>
         <button onClick={() => handleVisibleCoupons()}>Cupones</button>
         <button onClick={() => handlePostProduct()}>Crear Mueble</button>
+        <button onClick={() => handlePostAdmin()}>Crear Administrador</button>
         <button>Crear Usuario</button>
         <button onClick={() => handleCouponForm()}>Crear cupón</button>
       </div>
