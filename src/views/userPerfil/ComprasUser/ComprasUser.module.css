@@ -1,26 +1,17 @@
-/* .divListaCompras {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  z-index: 999999999;
-    max-width: 700px;
-} */
 .containerAll {
   display: flex;
   position: relative;
   align-items: center;
-  width: 99.5vw;
+  width: 100%;
   height: 97vh;
   background-color: rgb(255, 255, 255);
-  border: 1px solid red;
 }
 
 .boxLeft {
   position: absolute;
   bottom: 0;
   width: 15%;
-  height: 100vh;
+  top: 0;
   background-color: rgb(22, 22, 22);
   box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.5);
 }
@@ -33,16 +24,112 @@
   height: 89vh;
 }
 
+.containerCompras {
+  width: 70%;
+  max-width: 1600px;
+  margin: 0 auto;
+  margin-top: 30px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  height: 85vh;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.contCompr {
+  /*Contenedor de la compra*/
+  border-radius: 8px;
+  width: 90%;
+  gap: 1.5rem;
+  height: 95%;
+  margin: 10px auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid #ccc;
+  background-color: rgba(217, 217, 217, 0.482);
+  overflow-y: scroll;
+}
+.contCompr {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.cartCompra {
+  margin-bottom: 20px;
+  margin-right: 10px;
+  padding: 5px;
+  min-height: 120px;
+  border: 1px solid #ccc;
+  background-color: rgba(217, 217, 217, 0.482);
+}
+
+.secondCompra {
+  min-height: 120px;
+}
+
 .h1Compras {
-  color: antiquewhite;
+  color: black;
+  font-family: Cinzel;
   display: flex;
   justify-content: center;
-  text-align: center;
-  background-color: white;
-  z-index: 999999999;
 }
 
 .imgCompras {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.contName {
+  /*Nombre y Description*/
+  text-align: left;
+  width: 48%;
+  padding: 10px;
+  margin-top: -112px;
+  margin-left: 130px;
+  font-family: Arial;
+}
+
+.contDate {
+  /*Fecha de la compra*/
+  width: 33%;
+  position: absolute;
+  right: 1.5%;
+  margin-top: -130px;
+  font-family: Arial;
+  text-align: left;
+  font-size: 13px;
+}
+
+.contInfo {
+  width: 45%;
+  position: relative;
+  font-family: Arial;
+  padding: 10px;
+  left: 130px;
+  text-align: left;
+}
+
+.contPrecUni {
+  width: 35%;
+  text-align: left;
+  font-family: Arial;
+  font-size: 14px;
+  right: -66.5%;
+  position: relative;
+  top: -47px;
+}
+
+.contTotal {
+  width: 35%;
+  text-align: left;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 15px;
+  position: relative;
+  right: -66.5%;
+  margin-top: -37px;
 }

@@ -28,38 +28,48 @@ function CartList() {
       </div>
       <div className={styles.boxRight}>
         {cartsState && cartsState.length > 0 ? (
-          <div>
-            <h1 className={styles.h1Compras}>Historial de compras</h1>
-            {cartsState.map((cart, index) => (
-              <div key={cart.id}>
-                <h1 className={styles.h1Compras}>{`Detalle de compra ${
-                  index + 1
-                }`}</h1>
-                <p>{`Fecha de la compra: ${cart.createdAt.split("T")[0]}`}</p>
-                <p>{`Valor total de la compra: $ ${calculateTotal(
-                  cart.products
-                )}`}</p>
-                {cart.products.map((productString) => {
-                  const productArray = JSON.parse(productString);
-                  return productArray.map((product) => (
-                    <div key={product.id}>
-                      <img
-                        className={styles.imgCompras}
-                        src={product.image}
-                        alt={product.name}
-                      />
-                      <p>{`Producto: ${product.name}`}</p>
-                      <p>{`Descripción: ${product.description}`}</p>
-                      <p>{`Precio unitario: $ ${product.price}`}</p>
-                      <p>{`Cantidad: ${product.amount}`}</p>
-                    </div>
-                  ));
-                })}
-              </div>
-            ))}
+          <div className={styles.containerCompras}>
+            <div className={styles.contCompr}>
+              {cartsState.map((cart, index) => (
+                <div className={styles.cartCompra} key={cart.id}>
+                  <div className={styles.contDate}>
+                    <p>{`Fecha de Operacion: ${
+                      cart.createdAt.split("T")[0]
+                    }`}</p>
+                  </div>
+                  {cart.products.map((productString) => {
+                    const productArray = JSON.parse(productString);
+                    return productArray.map((product) => (
+                      <div className={styles.secondCompra} key={product.id}>
+                        <img
+                          className={styles.imgCompras}
+                          src={product.image}
+                          alt={product.name}
+                        />
+                        <div className={styles.contName}>
+                          <h4>{product.name}</h4>
+                          <p>{product.description}</p>
+                        </div>
+                        <div className={styles.contInfo}>
+                          <p>{`Cantidad: ${product.amount}`}</p>
+                        </div>
+                        <div className={styles.contPrecUni}>
+                          <p>{`Precio unitario: $${product.price}`}</p>
+                        </div>
+                      </div>
+                    ));
+                  })}
+                  <div className={styles.contTotal}>
+                    <p>{`Total: $ ${calculateTotal(cart.products)}`}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
-          <h1 className={styles.h1Compras}>Aún no has realizado compras</h1>
+          <div className={styles.h1Compras}>
+            <h1>Aún no has realizado compras</h1>
+          </div>
         )}
       </div>
     </div>

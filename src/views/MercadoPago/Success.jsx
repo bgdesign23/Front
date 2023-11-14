@@ -33,7 +33,7 @@ function Success() {
         color: "#ffffff",
         showConfirmButton: false,
         timer: 3000,
-      })
+      });
       dispatch(createCart(cart, user.token));
     }
   }, [sweet]);
@@ -41,27 +41,41 @@ function Success() {
   return (
     <div className={styles.divSuccess}>
       <h1 className={styles.h1Success}>Resumen de la compra</h1>
-      <div>{products.map((product, index) => {
-        const totalPrice = product.price * product.amount;
-        totalPriceSum += totalPrice;
-        return (
-        <div className={styles.h2Success} key={index}>
-          <img className={styles.imgSuccess} key={index} src={product.image} alt={product.name} title={product.name}/>
-          Nombre: {product.name}
-          Descripción: {product.description}
-          Categoría: {product.category.name}
-          Ambiente: {product.type}
-          Precio: {product.price} x {product.amount} = {totalPrice}
-        </div>
-        )})}
+      <div>
+        {products.map((product, index) => {
+          const totalPrice = product.price * product.amount;
+          totalPriceSum += totalPrice;
+          return (
+            <div className={styles.h2Success} key={index}>
+              <img
+                className={styles.imgSuccess}
+                key={index}
+                src={product.image}
+                alt={product.name}
+                title={product.name}
+              />
+              Nombre: {product.name}
+              Descripción: {product.description}
+              Categoría: {product.category.name}
+              Ambiente: {product.type}
+              Precio: {product.price} x {product.amount} = {totalPrice}
+            </div>
+          );
+        })}
         <h2 className={styles.h2Success}>
           Valor total de la compra = ${totalPriceSum}
         </h2>
       </div>
-      <button className={styles.btnSuccess} onClick={() => navigate("/home/product")}>
+      <button
+        className={styles.btnSuccess}
+        onClick={() => navigate("/home/product")}
+      >
         Volver
       </button>
-      <button className={styles.btnSuccess} onClick={() => navigate("/perfil/compras")}>
+      <button
+        className={styles.btnSuccess}
+        onClick={() => navigate("/perfil/compras")}
+      >
         Ver historial de compras
       </button>
     </div>
