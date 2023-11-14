@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Handsontable from "handsontable";
 import "handsontable/dist/handsontable.full.min.css";
 import {
   getProductsAction,
@@ -25,6 +24,8 @@ import {
   clearErrors,
   getCarts,
   getUser,
+  usersEliminated,
+  productEliminated,
 } from "../../Redux/actions";
 import UserTableComponent from "./UserTableComponent";
 import TableComponent from "./tableComponent";
@@ -32,6 +33,10 @@ import CartComponent from "./CartsStats";
 import AdminTableComponent from "./tableComponent";
 import CouponTableComponent from "./CouponsTable";
 import TopProducts from "./TopProducts";
+import EliminatedUsersTable from "./Eliminados/EliminatedUsersTable";
+import EliminatedProductsTable from "./Eliminados/tableeliminated";
+import AdminNNNTableComponent from "./AdminTable";
+import ComponentAdminTable from "./AdminTable";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -39,6 +44,9 @@ const AdminDashboard = () => {
   const usuarios = useSelector((state) => state.users_copy);
   const admin = useSelector((state) => state.admin_copy);
   const coupon = useSelector((state) => state.userCoupons);
+  const productsEliminated = useSelector((state) => state.productsEliminated);
+  const userEliminated = useSelector((state) => state.usersEliminated);
+
   const cart = useSelector((state) => state.carts);
   const navigate = useNavigate();
 
@@ -46,29 +54,33 @@ const AdminDashboard = () => {
   const [cupones, setCupones] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [visibleCountProducts, setVisibleCountProducts] = useState(10);
-  // const [visibleCountUsers, setVisibleCountUsers] = useState(10);
   const [visibleProducts, setVisibleProducts] = useState(false);
   const [visibleUsers, setVisibleUsers] = useState(false);
   const [visibleAdmins, setVisibleAdmins] = useState(false);
   const [visibleCoupons, setVisibleCoupons] = useState(false);
 
-  // const handleShowMoreProducts = () => {
-  //   setVisibleCountProducts(visibleCountProducts + 10);
-  // };
+  useEffect(() => {
+    dispatch(usersEliminated());
+    dispatch(productEliminated());
+  }, [dispatch, updated]);
 
-  // const handleShowLessProducts = () => {
-  //   if (visibleCountProducts > 10)
-  //     setVisibleCountProducts(visibleCountProducts - 10);
-  // };
-
-  // const handleShowMoreUsers = () => {
-  //   setVisibleCountUsers(visibleCountUsers + 10);
-  // };
-
-  // const handleShowLessUsers = () => {
-  //   if (visibleCountUsers > 10) setVisibleCountUsers(visibleCountUsers - 10);
-  // };
-
+  const handleDeleteUser = (userId) => {
+    dispatch(deleteUser(userId)).then(() => {
+      dispatch(usersEliminated());
+    });
+  };
+  const handleDeleteCoupon = (id) => {
+    dispatch(deleteCoupon(id))
+      .then(() => {
+        // Operación después de eliminar el cupón
+        dispatch(getUserCoupons());
+        setUpdated(!updated);
+      })
+      .catch((error) => {
+        // Manejar errores si es necesario
+        console.error("Error deleting coupon:", error);
+      });
+  };
   const handleVisibleProducts = () => {
     setVisibleProducts((prevVisible) => !prevVisible);
     if (!visibleProducts) {
@@ -124,14 +136,6 @@ const AdminDashboard = () => {
     description: "",
   });
 
-  // const [couponNew, setCouponNew] = useState({
-  //   status: "",
-  //   expiration: "",
-  //   discount: "",
-  //   usagesAvailable: "",
-  //   code: "",
-  // });
-
   const handleGetCarts = () => {
     dispatch(getCarts());
   };
@@ -145,45 +149,6 @@ const AdminDashboard = () => {
       setCupones(value);
     }
     dispatch(getUserCoupons(value));
-  };
-
-  // const handleCreateCoupon = (event) => {
-  //   event.preventDefault();
-  //   dispatch(
-  //     createCoupon({
-  //       status: couponNew.status,
-  //       expiration: couponNew.expiration,
-  //       discount: couponNew.discount,
-  //       usagesAvailable: couponNew.usagesAvailable,
-  //       code: couponNew.code,
-  //     })
-  //   ).then((postError) => {
-  //     if (!postError) {
-  //       dispatch(clearErrors());
-  //       Swal.fire("Listo", "Has creado un nuevo cupón");
-  //       setCouponNew({
-  //         ...couponNew,
-  //         status: "",
-  //         expiration: "",
-  //         discount: "",
-  //         usagesAvailable: "",
-  //         code: "",
-  //       });
-  //     } else {
-  //       dispatch(
-  //         setErrors({ type: "CREATE_COUPON", error: postError?.response?.data })
-  //       );
-  //     }
-  //   });
-  // };
-
-  const handleDeleteCoupon = (event, id) => {
-    event.preventDefault();
-    dispatch(deleteCoupon(id)).then(() => {
-      dispatch(getUserCoupons());
-      dispatch(getUserCoupons(deleted));
-    });
-    setUpdated(!updated);
   };
 
   const handleAdminView = (value) => {
@@ -259,15 +224,6 @@ const AdminDashboard = () => {
     });
   };
 
-  const handleRestoreUser = (event, userId) => {
-    event.preventDefault();
-    dispatch(restoreUser(id)).then(() => {
-      dispatch(getUser());
-      dispatch(getUser(deleted));
-    });
-    setUpdated(!updateUser);
-  };
-
   const handleEditUser = (event, userId) => {
     event.preventDefault();
     dispatch(
@@ -308,7 +264,6 @@ const AdminDashboard = () => {
     });
     setUpdated(!updated);
   };
-
   const handleDeletedAdmin = (event, id) => {
     event.preventDefault();
     dispatch(deleteAdmin(id)).then(() => {
@@ -319,7 +274,10 @@ const AdminDashboard = () => {
   };
 
   const handleDeleteProduct = (productId) => {
-    dispatch(deleteProduct(productId));
+    dispatch(deleteProduct(productId)).then(async () => {
+      await dispatch(productEliminated());
+      setUpdated((prevUpdated) => !prevUpdated);
+    });
   };
 
   const handlePostProduct = () => {
@@ -329,57 +287,61 @@ const AdminDashboard = () => {
   const handleCouponForm = () => {
     navigate("/crear-cupon");
   };
-  const handleDeleteUser = (userId) => {
-    dispatch(deleteUser(userId));
-  };
 
   const handleEditProduct = (event, productId, prodRef, rowData) => {
     event.preventDefault();
     console.log("Producto Id: ", productId);
     console.log("prod Ref: ", prodRef);
     console.log("rowData: ", rowData);
-      try {
-        const updatedData = {
-          name: rowData.name,
-          description: rowData.description,  
-          type: rowData.type,
-          material: rowData.material,
-          price: rowData.price,
-          stock: rowData.stock,
-        } 
-          console.log("Data: ", updatedData);
-          dispatch(editProduct(productId, updatedData))          
-          
-          .then((postError) => {
-          if (!postError) {
-            dispatch(clearErrors());
-            console.log("A ver si llega hasta aquí");
-            Swal.fire("Listo", "Has modificado un producto exitosamente")
-          }
-          });  
-            // Limpiar los campos después de la edición
-            setProd({
-              name: "",
-              stock: "",
-              price: "",
-              type: "",
-              material: "",
-              description: "",
-            });                           
-        } catch (error) {
-        setErrors({ type: "EDIT_PRODUCTS", error: postError?.response?.data })        
-      }
+    try {
+      const updatedData = {
+        name: rowData.name,
+        description: rowData.description,
+        type: rowData.type,
+        material: rowData.material,
+        price: rowData.price,
+        stock: rowData.stock,
+      };
+      console.log("Data: ", updatedData);
+      dispatch(editProduct(productId, updatedData)).then((postError) => {
+        if (!postError) {
+          dispatch(clearErrors());
+          console.log("A ver si llega hasta aquí");
+          Swal.fire("Listo", "Has modificado un producto exitosamente");
+        }
+      });
+      // Limpiar los campos después de la edición
+      setProd({
+        name: "",
+        stock: "",
+        price: "",
+        type: "",
+        material: "",
+        description: "",
+      });
+    } catch (error) {
+      setErrors({ type: "EDIT_PRODUCTS", error: postError?.response?.data });
     }
-
-  const handleRestoreProduct = (event, id) => {
-    event.preventDefault();
-    dispatch(restoreProduct(id)).then(() => {
-      dispatch(getProductsAction());
-      dispatch(getProductsAction(deleted));
-    });
-    setUpdated(!updated);
   };
 
+  const handleRestoreUser = (userId) => {
+    dispatch(restoreUser(userId)).then(() => {
+      dispatch(usersEliminated());
+      dispatch(getAllUsers());
+      setUpdated((prevUpdated) => !prevUpdated);
+    });
+  };
+
+  const handleRestoreProduct = async (productId) => {
+    try {
+      await dispatch(restoreProduct(productId));
+      await dispatch(productEliminated());
+      await dispatch(getProductsAction());
+      setUpdated((prevUpdated) => !prevUpdated);
+    } catch (error) {
+      console.error("Error al restaurar el producto:", error);
+    }
+  };
   return (
     <div>
       <br />
@@ -414,13 +376,40 @@ const AdminDashboard = () => {
           handleRestoreUser={handleRestoreUser}
         />
       )}
+      {productsEliminated.length > 0 ? (
+        <div>
+          <h2 style={{ color: "pink" }}>Productos Eliminados</h2>
 
-      {/* Incluye UserTableComponent pasando datos y propiedades necesarias */}
+          {visibleProducts && (
+            <EliminatedProductsTable
+              isVisible={visibleProducts}
+              productsEliminated={productsEliminated}
+              handleRestoreProduct={handleRestoreProduct}
+            />
+          )}
+        </div>
+      ) : (
+        <p>No hay productos eliminados.</p>
+      )}
+      <br />
       <UserTableComponent
         usuarios={usuarios}
         visibleUsers={visibleUsers}
         onDeleteUser={handleDeleteUser}
       />
+      {userEliminated.length > 0 ? (
+        <div>
+          <h2>Usuarios Eliminados</h2>
+          {visibleUsers && (
+            <EliminatedUsersTable
+              usersEliminated={userEliminated}
+              handleRestoreUser={handleRestoreUser}
+            />
+          )}
+        </div>
+      ) : (
+        <p>No hay Usuarios eliminados.</p>
+      )}
       <br />
       <div>
         <br />
@@ -433,12 +422,14 @@ const AdminDashboard = () => {
           </div>
         )}
 
-        <AdminTableComponent
-          admins={admin}
-          onDeleteAdmin={handleDeletedAdmin}
-          onRestoreAdmin={handleRestoreAdmin}
-          onEditAdmin={handleEditAdmin}
-        />
+        {visibleAdmins && (
+          <ComponentAdminTable
+            admins={admin}
+            onDeleteAdmin={handleDeletedAdmin}
+            onRestoreAdmin={handleRestoreAdmin}
+            onEditAdmin={handleEditAdmin}
+          />
+        )}
       </div>
       <div>
         <CartComponent chartData={handleGetCarts} />
@@ -451,3 +442,48 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+// const handleShowMoreProducts = () => {
+//   setVisibleCountProducts(visibleCountProducts + 10);
+// };
+
+// const handleShowLessProducts = () => {
+//   if (visibleCountProducts > 10)
+//     setVisibleCountProducts(visibleCountProducts - 10);
+// };
+
+// const handleShowMoreUsers = () => {
+//   setVisibleCountUsers(visibleCountUsers + 10);
+// };
+
+// const handleShowLessUsers = () => {
+//   if (visibleCountUsers > 10) setVisibleCountUsers(visibleCountUsers - 10);
+// };
+// const handleCreateCoupon = (event) => {
+//   event.preventDefault();
+//   dispatch(
+//     createCoupon({
+//       status: couponNew.status,
+//       expiration: couponNew.expiration,
+//       discount: couponNew.discount,
+//       usagesAvailable: couponNew.usagesAvailable,
+//       code: couponNew.code,
+//     })
+//   ).then((postError) => {
+//     if (!postError) {
+//       dispatch(clearErrors());
+//       Swal.fire("Listo", "Has creado un nuevo cupón");
+//       setCouponNew({
+//         ...couponNew,
+//         status: "",
+//         expiration: "",
+//         discount: "",
+//         usagesAvailable: "",
+//         code: "",
+//       });
+//     } else {
+//       dispatch(
+//         setErrors({ type: "CREATE_COUPON", error: postError?.response?.data })
+//       );
+//     }
+//   });
+// };

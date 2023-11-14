@@ -20,6 +20,8 @@ const UserTableComponent = ({ usuarios, onDeleteUser }) => {
           { data: "location", title: "Location" },
           { data: "phone", title: "Phone" },
           { data: "email", title: "Email" },
+          { data: "role", title: "Role" },
+
           {
             data: "action",
             title: "Action",
