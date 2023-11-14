@@ -20,6 +20,7 @@ const Menu = () => {
         <button onClick={() => navigate("/form/perfil")}>Mi Perfil</button>
         <button onClick={() => navigate("/perfil/compras")}>Mis Compras</button>
         <button onClick={() => navigate("/cupones")}>Cupones</button>
+        <button>Mis Favoritos</button>
       </div>
       <button onClick={handleLogout} className={Styles.logout}>
         Cerrar Sesion
