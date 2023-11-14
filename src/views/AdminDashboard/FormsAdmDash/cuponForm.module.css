@@ -3,29 +3,79 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    /* border: 1px solid red; */
 }
 
 .containerAlinea{
     display: block;
+    /* border: 1px solid green; */
 }
 
 .containerAlinea h6{
     font-size: 25px;
     font-family: barlow;
-    color: #ffffff;}
+    color: #ffffff;
+}
+
+.containerPadrastro{
+    width: 1300px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    /* border: 10px solid violet; */
+    background-color:rgba(255, 255, 255, 0.673);
+        border-radius: 30px;
+
+}
+
+
+
+.containerPadrastro h6{font-size: 25px;
+    font-family: barlow;
+    color: #ffffff;
+
+}
 
 .containerHijo{
-    display: block;
-    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
     padding: 30px;
-    width: 300px;
-    height: 650px;
+    width: 600px;
+    height: 350px;
     margin-top: 30px;
     background-color: white;
     font-family: barlow;
     font-weight: bold;
     font-size: 16px;
     padding: 30px;
+    /* border: 1px solid green; */
+}
+
+
+.hijastro{
+        display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            padding: 30px;
+            width: 600px;
+            height: 350px;
+            margin-top: 30px;
+            background-color: white;
+            font-family: barlow;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 30px;
+            border: 12px solid orange
+}
+
+.alineadorHijastro{
+    display: block;
+        border: 10px solid skyblue;
 }
 
 .inputsBox{
@@ -43,16 +93,16 @@ background-color: rgba(217, 217, 217, 0.482);
 height: 40px;
 
 }
-/* 
+
 .inputsBox input{
     height: 40px;
 
-} */
+}
 
 .btn{
     width: 100%;
     margin-top: 1rem;
-    height: 50px;
+    height: 40px;
     border-radius: 8px;
     border: 1px solid #ccc;
     font-family: Arial;
@@ -61,10 +111,26 @@ height: 40px;
 }
 
 .btn:hover {
-    height: 50px;
+    height: 40px;
     border-radius: 8px;
     font-family: Arial;
     color: #ffffff;
     background-color: #191919;
     transition: 0.8s;
+}
+
+.LadoA{
+    display: block;
+        /* border: 1px solid red; */
+        width: 250px;
+}
+.LadoB{
+    display: block;
+        /* border: 1px solid blue; */
+        width: 250px;
+}
+
+.formu{
+    display: flex;
+    flex-direction: row;
 }

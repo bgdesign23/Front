@@ -89,9 +89,9 @@ const UserAdmin = () => {
           <button onClick={handleCreateCupon} className={Styles.Btn}>
             Cupónes
           </button>
-          <button onClick={handleCreateCupon} className={Styles.Btn}>
+          {/* <button onClick={handleCreateCupon} className={Styles.Btn}>
             Crear cupón
-          </button>
+          </button> */}
           <button
             onClick={() => handleVisibleSection("metricas")}
             className={Styles.Btn}
