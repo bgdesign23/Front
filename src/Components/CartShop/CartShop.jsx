@@ -5,7 +5,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { applyCoupon, createPreference } from "../../Redux/actions";
+import { addNumber, applyCoupon, createPreference, lowNumber, quitNumber } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import EmptyCart from "../CartShop/EmptyCart.jsx";
 
@@ -69,6 +69,8 @@ function ShoppingCart() {
       color: "#ffffff",
     }).then((result) => {
       if (result.isConfirmed) {
+        const changeNumber = cart.filter((product) => product.id == productId);
+        dispatch(quitNumber(changeNumber[0].amount))
         const updatedCart = cart.filter((product) => product.id !== productId);
         setCart(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -104,6 +106,7 @@ function ShoppingCart() {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     toast.success("Producto añadido");
+    dispatch(addNumber())
   };
 
   const handleAmount_Down = (id) => {
@@ -119,6 +122,7 @@ function ShoppingCart() {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     if (updatedCart.length) {
       toast.success("Producto eliminado");
+      dispatch(lowNumber())
     }
   };
 
