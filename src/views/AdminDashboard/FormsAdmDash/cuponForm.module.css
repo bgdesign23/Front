@@ -19,7 +19,7 @@
     border-radius: 34px;
     padding: 30px;
     width: 300px;
-    height: 550px;
+    height: 650px;
     margin-top: 30px;
     background-color: white;
     font-family: barlow;
@@ -30,7 +30,7 @@
 
 .inputsBox{
         padding-block: 0.5rem;
-        height: 80px;
+        height:100px;
 }
 
 
@@ -38,8 +38,16 @@
 background-color: rgba(217, 217, 217, 0.482);
 padding-left: 20px;
 animation: placeholder-flicker 3s infinite;
-}
+border: 1px solid #ccc;
+background-color: rgba(217, 217, 217, 0.482);
+height: 40px;
 
+}
+/* 
+.inputsBox input{
+    height: 40px;
+
+} */
 
 .btn{
     width: 100%;
