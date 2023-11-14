@@ -1,22 +1,39 @@
-.containerPadre{ display: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: relative;
+/* .containerAbuelo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerPadre{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline: 6rem;
+    margin-top: 6rem;
     width: 100%;
+    padding-block:4rem;
+    position: relative;
     height: 100%;
-    background-color: rgba(87, 87, 87, 0.69);
 }
 
 .containerHijo{
-    display: fixed;
-        top: 50%;
-        left: 48%;
-        transform: translate(-50%, -50%);
-        position: relative;
-        width: 1000px;
-        min-height: 700px;
-         border-radius: 34px;
+        display: flex;
+        justify-content: center;
+        width: 620px;
+        margin-block: 1rem;
+        min-height: 300px;
+         border-radius: 8px;
+         padding: 30px;
+         background-color: white;
+         border: 1px solid rgba(255, 255, 255, 0.089);
+         backdrop-filter: blur(300px);
+            
+}
+.containerHijo2{
+        margin-block: 1rem;
+        width: 520px;
+         min-height: 300px;
+         border-radius: 8px;
          padding: 30px;
          background-color: white;
          border: 1px solid rgba(255, 255, 255, 0.089);
@@ -24,6 +41,10 @@
 }
 
 .containerHijo h6{
+font-size: 25px;
+    font-family: barlow;}
+    
+.containerHijo2 h6{
 font-size: 25px;
     font-family: barlow;}
 
@@ -35,9 +56,24 @@ font-size: 25px;
     left: 50%;
     transform: translate(-50%,-50%);
     position: absolute;
-    width: 800px;
+    width: 100%;
     height: cover;
     background-color: black;
+    border: 2px solid green;
+    overflow-y: auto;
+}
+
+.containerTable2 {
+    display: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    width: 470px;
+    height: cover;
+    background-color: black;
+    border: 2px solid green;
+    overflow-y: auto;
 }
 
 
@@ -49,4 +85,68 @@ font-size: 25px;
 .personas {
     display: block;
     padding-block: 1rem;
+} */
+
+.containerAbuelo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerPadre {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding-inline: 6rem;
+    margin-top: 6rem;
+    width: 100%;
+    padding-block: 4rem;
+    position: relative;
+}
+
+.containerHijo {
+    width: 100%;
+    min-height: 500px;
+    border-radius: 8px;
+    padding-top: 30px;
+    background-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.089);
+    backdrop-filter: blur(300px);
+}
+
+.containerHijo2 {
+    width: 510px;
+    min-height: 250px;
+    border-radius: 8px;
+    padding-top: 30px;
+    background-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.089);
+    backdrop-filter: blur(300px);
+}
+
+.containerHijo h6,
+.containerHijo2 h6 {
+    font-size: 25px;
+    font-family: barlow;
+}
+
+.containerTable {
+    position: absolute;
+    width: 100%;
+    height: cover;
+    max-height: 200px;
+    background-color: black;
+    /* border: 2px solid green; */
+    overflow-y: auto;
+}
+
+.containerTable2 {
+    position: absolute;
+    width: 100%;
+    height: cover;
+    /* margin-left: 4rem; */
+    max-height: 300px;
+    background-color: black;
+    /* border: 2px solid green; */
+    overflow-y: auto;
 }
