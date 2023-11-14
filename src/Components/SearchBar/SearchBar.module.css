@@ -21,14 +21,13 @@
 
 .lineInput {
   background: none;
+  border-radius: 0;
   border: none;
   border-bottom: 1px solid white;
   outline: none;
   padding: 5px 0;
+  max-width: 250px;
   color: white;
-  transition: border-color 0.3s ease;
-  margin-top: 1px;
-  margin-left: -85px;
 }
 
 .lineInput:focus {

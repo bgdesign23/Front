@@ -1,14 +1,26 @@
 import Styles from "./Product.module.css";
 import Card from "../Product/Card";
 import Filters from "../../Components/Filters/Filters";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import loader from "../../images/loader.gif";
+import { getProductsAction } from "../../Redux/actions";
+import { useDispatch } from "react-redux";
 
 export default function Cards({ productos }) {
+  const dispatch = useDispatch();
   const [paged, setPaged] = useState(12);
 
   const handlePaged = () => {
     setPaged(paged + 12);
   };
+
+  useEffect(() => {
+    if (productos.length === 0) {
+      setTimeout(() => {
+        dispatch(getProductsAction());
+      }, 2000);
+    }
+  }, [productos]);
 
   const pagedSection = productos.slice(0, paged);
   return (
@@ -16,7 +28,8 @@ export default function Cards({ productos }) {
       <>
         <Filters />
         {!productos.length ? (
-          <div>
+          <div className={Styles.containLoader}>
+            <img className={Styles.loader} src={loader} alt="loader" />
             <h1 className={Styles.h1}>
               No se encontraron productos relacionados
             </h1>
@@ -34,8 +47,10 @@ export default function Cards({ productos }) {
                   stock={product.stock}
                   price={product.price}
                   image={product.image}
+                  comments={product.comments}
                   category={product.CategoryId}
-                  amount={product.amount} //cantidad
+                  amount={product.amount}
+                  rating={product.rating}
                 />
               ))}
             </div>

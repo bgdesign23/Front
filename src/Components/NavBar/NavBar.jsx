@@ -22,6 +22,8 @@ const NavBar = () => {
         <button onClick={() => navigate("/")} className={styles.btn}>
           Inicio
         </button>
+      </div>
+      <div className={styles.dos}>
         <button
           onClick={() => navigate("/home/product")}
           className={styles.btn}
@@ -38,10 +40,6 @@ const NavBar = () => {
           alt="Black Group Design"
         />
       </div>
-
-      {user && user.user.role === 1 ? (
-        <Link to="/home/nuevo">Nuevo Mueble</Link>
-      ) : null}
       <div className={styles.cuatro}>
         <SearchBar />
       </div>

@@ -5,9 +5,19 @@ import mercadopago from "../../../images/mercadopago.png";
 function Footer() {
   return (
     <footer className={style.Footer}>
-      <section className={style.sectionFooterOne}>
+      <div className={style.sectionFooterOne}>
+        {/* <div className={style.imagenFooter}><img src={logo} /> </div> */}
+        <div className={style.pagos}>
+          <h4 className={style.metodoPago}>Metodos de Pagos</h4>
+          <img
+            src={mercadopago}
+            alt="mercadopago"
+            className={style.mercadopago}
+          />
+        </div>
+
         <div className={style.imagenFooter}>
-          <img src={logo} />
+          <img src={logo} />{" "}
         </div>
 
         <div className={style.containerTeam}>
@@ -95,14 +105,10 @@ function Footer() {
             <li>instagram</li>
           </ul>
         </div>
-      </section>
-
-      <section className={style.FooterCopyright}>
+      </div>
+      <div className={style.FooterCopyright}>
         <p> A© 2023 Black Group Design. Todos los derechos reservados </p>
-      </section>
-
-      <img src={mercadopago} alt="mercadopago" className={style.mercadopago} />
-      <h4 className={style.metodoPago}>Metodos de Pagos</h4>
+      </div>
     </footer>
   );
 }

@@ -1,0 +1,103 @@
+.containerAll {
+  display: flex;
+  position: relative;
+  align-items: center;
+  width: 100%;
+  height: 97vh;
+  background-color: rgb(255, 255, 255);
+}
+
+.boxLeft {
+  position: absolute;
+  bottom: 0;
+  width: 15%;
+  top: 0;
+  background-color: rgb(22, 22, 22);
+  box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.5);
+}
+
+.boxRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 85%;
+  height: 89vh;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: aliceblue;
+  justify-content: center;
+}
+
+.containerCupon {
+  border: 1px solid violet;
+  width: 70%;
+  height: 400px;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 150px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(217, 217, 217, 0.482);
+  border: 2px solid rgba(0, 0, 0, 0.089);
+  margin-bottom: 100px;
+}
+
+.containerCupon h1 {
+  font-family: Cinzel;
+  font-size: 25px;
+}
+
+.conteinDesc {
+  position: relative;
+  top: 30px;
+  border-radius: 8px;
+  height: 70px;
+  border: 1px solid #ccc;
+  background-color: rgba(217, 217, 217, 0.482);
+  padding: 8px;
+}
+
+.conteinDesc {
+  margin-bottom: 10px;
+}
+
+.conteinDesc p {
+  display: flex;
+  font-size: 15px;
+  font-family: Arial;
+}
+
+.codigoDesc {
+  text-align: right;
+  font-size: 14px;
+  font-family: Arial;
+  width: 99%;
+  margin-top: -10px;
+}
+
+.codigoDesc h5 {
+  position: relative;
+  font-weight: bold;
+}
+
+.descCont {
+  bottom: -10px;
+  width: 370px;
+  position: relative;
+}
+
+.descCont p h4 {
+  margin-top: 20px;
+}
+
+.basesCondiciones {
+  margin: 0 auto;
+  width: 700px;
+  margin-top: 60px;
+}

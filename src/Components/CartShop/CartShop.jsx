@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { applyCoupon, createPreference } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import EmptyCart from "../CartShop/EmptyCart.jsx";
 
 function validateCoupon(couponCode) {
   const currentDate = new Date();
@@ -32,7 +33,7 @@ function validateCoupon(couponCode) {
 }
 
 function ShoppingCart() {
-  initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e");
+  initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e"); //esta es la key-publi para la pasarela de pago
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -42,7 +43,7 @@ function ShoppingCart() {
   const [totalWithDiscount, setTotalWithDiscount] = useState(0);
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
-  );
+  ); //se accede al localStorage
 
   //total a pagar
   const numero = cart.reduce((accumulator, producto) => {
@@ -83,6 +84,15 @@ function ShoppingCart() {
   };
 
   const handleAmount_Up = (id) => {
+    const checkStock = cart.findIndex((product) => product.id === product.id);
+    if (cart[checkStock]?.amount === cart[checkStock]?.stock) {
+      return Swal.fire({
+        title: "No hay suficiente stock",
+        icon: "warning",
+        background: "#3b3838",
+        color: "#ffffff",
+      });
+    }
     const updatedCart = cart.map((product) => {
       if (product.id === id) {
         // Clona el producto y actualiza la propiedad amount
@@ -137,7 +147,7 @@ function ShoppingCart() {
   };
 
   const handleButtonBuy = async () => {
-    if (user || localStorage.getItem("token")) return handleBuy();
+    if (user && localStorage.getItem("token")) return handleBuy();
     else
       Swal.fire({
         title: "Usuario no autorizado",
@@ -187,7 +197,7 @@ function ShoppingCart() {
         </div>
         <div>
           {cart.length === 0 ? (
-            <h1 className={Styles.carVacio}>Tu carrito esta vacío!</h1>
+            <EmptyCart />
           ) : (
             cart.map((producto, index) => (
               <CartCard
@@ -212,7 +222,7 @@ function ShoppingCart() {
           )}
         </div>
         <Toaster
-          position="top-right"
+          position="bottom-right"
           toastOptions={{
             className: "",
             style: {

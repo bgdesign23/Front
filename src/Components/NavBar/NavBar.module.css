@@ -28,6 +28,11 @@
   gap: 1rem;
 }
 
+.dos button {
+  font-family: Arial;
+  font-size: 15px;
+}
+
 .tres {
   position: relative;
   left: 20px;
@@ -36,7 +41,6 @@
 .logo {
   position: relative;
   cursor: pointer;
-
   width: 200px;
 }
 
@@ -85,30 +89,29 @@
     padding: 10px;
     text-align: left;
     width: 100%;
-
   }
-   
 
-  .uno{
+  .uno {
     display: block;
     padding-inline: 5px;
-    margin-bottom: 4px
-    ;
+    margin-bottom: 4px;
+    width: 50%;
   }
-  .dos{
-    width: 150px;
-    padding-inline: 10px;
-  margin-bottom: 4px
+  .dos {
+    /* width: 150px; */
+    width: 50%;
+    padding-left: 80px;
+    margin-bottom: 4px;
   }
 
-  .cuatro{
+  .cuatro {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 550px;
     margin-bottom: 4px;
-    padding-inline: 10px;}
-
+    padding-inline: 10px;
+  }
 
   .tres {
     width: 390px;
@@ -117,10 +120,10 @@
     justify-content: center;
     gap: 10px;
     padding-left: 1rem;
-      margin-bottom: 4px
+    margin-bottom: 4px;
   }
 
   .buttonCarrito {
-   position:relative
+    position: relative;
   }
 }

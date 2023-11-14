@@ -1,0 +1,36 @@
+.h1Success,
+.h2Success {
+  color: antiquewhite;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.imgSuccess {
+  width: 70px;
+  height: 70px;
+  border-radius: 0;
+}
+
+.btnSuccess {
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #191919;
+  color: white;
+  height: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.btnSuccess:hover {
+  color: black;
+  background-color: white;
+  transition: 0.8s;
+}
+
+@media (max-width: 600px) {
+  .btnSuccess {
+    margin-bottom: 3rem;
+    margin-right: 22rem;
+  }
+}

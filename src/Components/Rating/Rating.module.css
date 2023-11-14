@@ -1,0 +1,18 @@
+
+.containerStars{
+    font-size: 30px;
+    display: flex;
+    position: left;
+    padding-left: 1rem;
+    padding-top: .7rem
+}
+
+.star {
+    color: rgba(128, 128, 128, 0.368);
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.starHovered {
+    color: rgb(241, 185, 42);
+}

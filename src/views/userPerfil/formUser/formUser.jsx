@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, updateUser } from "../../Redux/actions";
-import styles from "../PerfilUser/PerfilUser.module.css";
+import { getUser, updateUser } from "../../../Redux/actions";
+import styles from "./FormUser.module.css";
 
 function PerfilUser() {
   const dispatch = useDispatch();
@@ -17,6 +17,8 @@ function PerfilUser() {
     newPassword: "",
   });
 
+  const [editMode, setEditMode] = useState(false);
+
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
@@ -24,13 +26,12 @@ function PerfilUser() {
   useEffect(() => {
     if (userData && userData.user) {
       const user = userData.user;
-
       setFormUser({
         username: user.username || "",
         location: user.location || "",
         phone: user.phone || "",
         email: user.email || "",
-        image: user.profileImage || "",
+        image: user.image || "",
         currentPassword: "",
         newPassword: "",
       });
@@ -40,22 +41,34 @@ function PerfilUser() {
   const handleInputChange = (event) => {
     setFormUser({ ...formUser, [event.target.name]: event.target.value });
   };
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setFormUser({ ...formUser, image: file });
+  const handleModificar = () => {
+    setEditMode(true);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("username", formUser.username);
-    formData.append("location", formUser.location);
-    formData.append("phone", formUser.phone);
-    formData.append("email", formUser.email);
-    formData.append("image", formUser.image);
-    formData.append("newPassword", formUser.newPassword);
+    if (formUser.username) {
+      formData.append("username", formUser.username);
+    }
+    if (formUser.location) {
+      formData.append("location", formUser.location);
+    }
+    if (formUser.phone) {
+      formData.append("phone", formUser.phone);
+    }
+    if (formUser.email) {
+      formData.append("email", formUser.email);
+    }
+    if (formUser.image) {
+      formData.append("image", formUser.image);
+    }
+    if (formUser.newPassword) {
+      formData.append("newPassword", formUser.newPassword);
+    }
     dispatch(updateUser(formData, userData.token));
+
+    setEditMode(false);
   };
 
   return (
@@ -63,82 +76,83 @@ function PerfilUser() {
       <form className={styles.loginContainer} onSubmit={handleSubmit}>
         <div className={styles.login}>
           <section className={styles.formimput}>
-            <div className={styles.columna}>
+            <div className={styles.columnaLeft}>
               <div className={styles.labelimput}>
-                <label>Imagen de usuario :</label>
-                <input
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                />
-                {userData.user.image && (
-                  <img
-                    src={userData.user.image}
-                    alt="Imagen de usuario"
-                    className={styles.profileImage}
-                  />
-                )}
-              </div>
-              <div className={styles.labelimput}>
-                <label>Nombre de usuario:</label>
+                <label className={styles.contLabel}>Nombre de usuario:</label>
                 <input
                   type="text"
                   name="username"
                   value={formUser.username}
                   onChange={handleInputChange}
+                  disabled={!editMode}
                 />
               </div>
               <div className={styles.labelimput}>
-                <label>Ubicación:</label>
+                <label className={styles.contLabel}>Ubicación:</label>
                 <input
                   type="text"
                   name="location"
                   value={formUser.location}
                   onChange={handleInputChange}
+                  disabled={!editMode}
                 />
               </div>
               <div className={styles.labelimput}>
-                <label>Teléfono:</label>
+                <label className={styles.contLabel}>Teléfono:</label>
                 <input
                   type="text"
                   name="phone"
                   value={formUser.phone}
                   onChange={handleInputChange}
+                  disabled={!editMode}
                 />
               </div>
+            </div>
+            <div className={styles.columnaRight}>
               <div className={styles.labelimput}>
-                <label>Correo electrónico:</label>
+                <label className={styles.contLabel}>Correo electrónico:</label>
                 <input
                   type="email"
                   name="email"
                   value={formUser.email}
                   onChange={handleInputChange}
+                  disabled={!editMode}
                 />
               </div>
               <div className={styles.labelimput}>
-                <label>Contraseña actual:</label>
+                <label className={styles.contLabel}>Contraseña actual:</label>
                 <input
                   type="password"
                   name="currentPassword"
                   value={formUser.currentPassword}
                   onChange={handleInputChange}
+                  disabled={!editMode}
                 />
               </div>
               <div>
-                <label>Nueva contraseña:</label>
+                <label className={styles.contLabel}>Nueva contraseña:</label>
                 <input
                   type="password"
                   name="newPassword"
                   value={formUser.newPassword}
                   onChange={handleInputChange}
+                  disabled={!editMode}
                 />
               </div>
             </div>
+
+            <div className={styles.buttonContainer}>
+              {editMode ? (
+                <button type="button" onClick={handleSubmit}>
+                  Guardar Datos
+                </button>
+              ) : (
+                <button type="button" onClick={handleModificar}>
+                  Modificar Datos
+                </button>
+              )}
+            </div>
           </section>
-          <div className={styles.buttonContainer}>
-            <button type="submit">Guardar cambios</button>
-          </div>
         </div>
       </form>
     </div>

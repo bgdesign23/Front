@@ -1,16 +1,17 @@
-.cardContainer {
+.cardContainerOffer {
   width: 272px;
-
   background-color: rgba(25, 25, 25, 1);
   position: relative;
   margin: 0 auto;
   height: 336px;
   border-radius: 8px;
-  .imagen {
+  .imagenOffer {
     width: 272px;
+    height: 60%;
     height: 223px;
     object-fit: cover;
-    border-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 }
 
@@ -24,38 +25,43 @@
   font-size: 14px;
 }
 
-.cardContainer h2 {
-  margin-top: 6px;
+
+.nombreOffer{
+  width: 100%;
+  margin-top: 15px;
   color: #fff;
   font-family: Barlow;
   font-size: 21px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-align: left;
+  padding-left: .8rem;
 }
 
-.details {
-  margin-top: 10px;
+.detailsOffer {
   display: flex;
-  justify-content: center;
-  gap: 2px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  width: 100%; 
+  gap: 3rem;
+  padding-inline: 1rem;
 }
 
-.details h2 {
+.detailsOffer span {
   color: #fff;
-  width: 106px;
-  height: 23px;
-  text-align: center;
+  text-align: left;
   font-family: Barlow;
   font-size: 23px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+
 }
 
-.details h4 {
+.detailsOffer h4 {
   color: #fff;
-  text-align: center;
   font-family: Barlow;
   font-size: 29px;
   font-style: normal;
@@ -63,15 +69,14 @@
   line-height: normal;
 }
 
-.cardContainer h3 {
+.cardContainerOffer h3 {
   color: #fff;
   font-family: "Barlow";
-  font-size: 16px;
-  margin-left: 50px;
+  font-size: 20px;
 }
 
 @media (max-width: 480px) {
-  .cardContainer {
+  .cardContainerOffer {
     height: 200px;
     border-radius: 0px;
     width: 160px;
@@ -80,14 +85,15 @@
     }
   }
 
-  .details h3 {
+  .detailsOffer h3 {
     position: relative;
     display: flex;
     align-items: center;
     margin-left: 63px;
   }
 
-  .details {
+  .detailsOffer {
     margin-top: 10px;
   }
-}
+} 
+

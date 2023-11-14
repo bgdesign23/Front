@@ -5,7 +5,7 @@ import Style from "../LoginForm/LoginForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
-import imagennForm from "../LoginForm/fondodellogin.jpg";
+// import imagennForm from "../LoginForm/fondodellogin.jpg";
 import { URL } from "../../utils/toggleUrl.js";
 
 function LoginForm() {
@@ -97,29 +97,32 @@ function LoginForm() {
                 <h4
                   onClick={() => navigate("/form/login/request-password-reset")}
                 >
-                  👉 ¿Olvidaste tu contraseña? 👈
+                  ¿Olvidaste tu contraseña?
                 </h4>
               </div>
               <div className={Style.botonera2}>
                 <button className={Style.btn} type="submit">
-                  INICIAR SESIÓN
+                  Iniciar Sesion
                 </button>
                 <button
                   className={Style.btn}
                   onClick={() => navigate("/form/register")}
                 >
-                  CREAR CUENTA
-                </button>
-                <button className={Style.btn} onClick={() => handleOnGoogle()}>
-                  <FcGoogle /> CONTINUAR CON GOOGLE
+                  Crear Cuenta
                 </button>
               </div>
             </form>
+            <div className={Style.botonGoogle}>
+              <button className={Style.btn} onClick={() => handleOnGoogle()}>
+                <FcGoogle size={25} style={{ marginRight: "8px" }} /> Continuar
+                con Google
+              </button>
+            </div>
           </div>
         </div>
-        <div className={Style.imagennForm}>
+        {/* <div className={Style.imagennForm}>
           <img src={imagennForm} alt="" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

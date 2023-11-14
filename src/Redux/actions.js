@@ -3,6 +3,9 @@ import Swal from "sweetalert2";
 import {
   CLEAR_DETAIL,
   GET_ALL_PRODUCTS,
+  EDIT_PRODUCTS,
+  RESTORE_PRODUCTS,
+  PRODUCT_ERRORS,
   GET_BY_NAME,
   GET_DETAIL,
   ORDERBYPRICE,
@@ -33,13 +36,22 @@ import {
   GET_ALL_USERS,
   DELETE_USER,
   RESTORE_USER,
+  EDIT_USERS,
   DELETE_COUPON,
   DELETE_PRODUCT,
   CLEAR_ERRORS,
   GET_ADMIN,
   CREATE_ADMIN,
-  // GET_BY_ID_ADMIN,
-  DELETE_ADMIN
+  DELETE_ADMIN,
+  RESTORE_ADMIN,
+  EDIT_ADMIN,
+  CARTS_REQUEST,
+  CARTS_SUCCESS,
+  CARTS_FAILURE,
+  GET_CARTS,
+  CLEAN_CARTS,
+  PRODUCTS_ELIMINATED,
+  USERS_ELIMINATED,
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -50,6 +62,53 @@ export const getProductsAction = () => {
       const { data } = await axios.get(`${URL}/products`);
       return dispatch({
         type: GET_ALL_PRODUCTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+export const getCarts = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/carts`);
+      return dispatch({
+        type: GET_CARTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const editProduct = (id, updateData) => {
+  return async (dispatch) => {
+    try {
+      console.log("id: ", id);
+      console.log("Data: ", updateData);
+      const { data } = await axios.put(`${URL}/products/${id}`, updateData);
+      return dispatch({
+        type: EDIT_PRODUCTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+      dispatch({
+        type: PRODUCT_ERRORS,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const restoreProduct = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`${URL}/products/restore/${id}`);
+      return dispatch({
+        type: RESTORE_PRODUCTS,
         payload: data,
       });
     } catch (error) {
@@ -105,9 +164,23 @@ export const deleteUser = (id) => {
 export const restoreUser = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL}/users/restore/${id}`);
+      const { data } = await axios.put(`${URL}/users/restore/${id}`);
       return dispatch({
         type: RESTORE_USER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const editUser = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`${URL}/users/${id}`);
+      return dispatch({
+        type: EDIT_USERS,
         payload: data,
       });
     } catch (error) {
@@ -137,17 +210,45 @@ export const createAdmin = (admin) => {
   };
 };
 
-export const deleteAdmin =  (id) => {
+export const restoreAdmin = (id) => {
   return async (dispatch) => {
-  try {
-    const { data } = await axios.delete(`${URL}/admin/delete/${id}`)
-    return dispatch({
-      type: DELETE_ADMIN,
-      payload: data,
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
+    try {
+      const { data } = await axios.post(`${URL}/admin/restore/${id}`);
+      return dispatch({
+        type: RESTORE_ADMIN,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const editAdmin = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`${URL}/admin/${id}`);
+      return dispatch({
+        type: EDIT_ADMIN,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const deleteAdmin = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(`${URL}/admin/delete/${id}`);
+      return dispatch({
+        type: DELETE_ADMIN,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 };
 
@@ -313,10 +414,10 @@ export const registerUser = (userData, navigate) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: response.data,
     });
-    navigate("/form/login");
+    navigate("/form/perfil");
   } catch (error) {
     await Swal.fire({
-      title: "Error al registrarse 🤔",
+      title: "Error al registrarse",
       text: error.response.data.error,
       icon: "error",
       background: "#3b3838",
@@ -347,7 +448,7 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
       payload: response.data,
     });
     await Swal.fire({
-      title: `¡Hola ${response.data.user.username}! 👋`,
+      title: `¡Hola ${response.data.user.username}! `,
       text: "Has iniciado sesión exitosamente",
       icon: "success",
       showConfirmButton: false,
@@ -362,7 +463,7 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
       payload: error.message,
     });
     await Swal.fire({
-      title: "Error al iniciar sesión 😧",
+      title: "Error al iniciar sesión",
       text: error.response.data.error,
       icon: "error",
       background: "#3b3838",
@@ -373,7 +474,6 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
 
 export const getUser = () => async (dispatch) => {
   try {
-
     const token = localStorage.getItem("token");
     const config = {
       headers: {
@@ -400,6 +500,7 @@ export const updateUser = (formData, token) => async (dispatch) => {
       },
     };
     const response = await axios.put(`${URL}/users`, formData, config);
+    localStorage.setItem("token", response.data.token);
     dispatch({
       type: UPDATE_USER_SUCCESS,
       payload: response.data,
@@ -412,7 +513,6 @@ export const updateUser = (formData, token) => async (dispatch) => {
       background: "#3b3838",
       color: "#ffffff",
     });
-    window.location.reload();
   } catch (error) {
     dispatch({
       type: UPDATE_USER_FAILURE,
@@ -431,7 +531,7 @@ export const updateUser = (formData, token) => async (dispatch) => {
 export const logoutUser = (navigate) => (dispatch) => {
   Swal.fire({
     icon: "warning",
-    title: "Te vas? 😢",
+    title: "Te vas?",
     showDenyButton: true,
     confirmButtonText: "Así es",
     denyButtonText: "Volver",
@@ -484,7 +584,7 @@ export const postProduct = (formData, navigate) => {
       dispatch(getProductsAction());
       dispatch(getCategories());
       await Swal.fire({
-        title: "¡Creación exitosa! 😎",
+        title: "¡Creación exitosa!",
         text: "Producto agregado exitosamente.",
         icon: "success",
         showConfirmButton: false,
@@ -532,7 +632,7 @@ export const googleUser = (payload) => {
       }
       localStorage.setItem("token", payload.token);
       await Swal.fire({
-        title: `¡Hola ${payload.user.username}! 👋`,
+        title: `¡Hola ${payload.user.username}! `,
         text: "Has iniciado sesión exitosamente",
         icon: "success",
         showConfirmButton: false,
@@ -549,13 +649,6 @@ export const googleUser = (payload) => {
         color: "#ffffff",
       });
     }
-  };
-};
-
-export const createCoupon = (coupon) => {
-  return {
-    type: CREATE_COUPON,
-    payload: coupon,
   };
 };
 
@@ -621,7 +714,6 @@ export const createCart = (cart, token) => {
         },
       };
       await axios.post(`${URL}/payment/success`, [cart], config);
-      localStorage.removeItem("cart");
     } catch (error) {
       await Swal.fire({
         title: "Hubo un error al crear el carrito",
@@ -656,7 +748,6 @@ export const saveCart = () => {
     }
   };
 };
-
 export function clearErrors() {
   return async function (dispatch) {
     dispatch({
@@ -666,54 +757,167 @@ export function clearErrors() {
 }
 
 export const requestPasswordResetAction = (result, navigate) => {
-	return async function () {
-		try {
-			const response = await axios.post(`${URL}/users/request-password-reset`, result);
-			await Swal.fire({
+  return async function () {
+    try {
+      const response = await axios.post(
+        `${URL}/users/request-password-reset`,
+        result
+      );
+      await Swal.fire({
         title: "¡Pedido de recuperación enviado!",
         text: "Por favor ingresa a tu correo y sigue los pasos para restablecer tu contraseña",
         icon: "success",
         background: "#3b3838",
         color: "#ffffff",
       });
-			if (response.data.redirectUrl) {
-        window.open('https://accounts.google.com/', '_blank');}
-        navigate("/form/login");
-		} catch (error) {
-			await Swal.fire({
-				title: "Hubo un error al enviar petición para restablecer la contraseña",
+      if (response.data.redirectUrl) {
+        window.open("https://accounts.google.com/", "_blank");
+      }
+      navigate("/form/login");
+    } catch (error) {
+      await Swal.fire({
+        title:
+          "Hubo un error al enviar petición para restablecer la contraseña",
         text: error.response.data.error,
-				icon: 'error',
+        icon: "error",
         background: "#3b3838",
         color: "#ffffff",
-			});
+      });
       navigate("/form/login");
-		}
-	};
+    }
+  };
 };
 
 export const confirmPasswordReset = (token, password) => {
-	return async function () {
-		try {
-			const result = await axios.post(`${URL}/users/password-reset`, {
-				password,
+  return async function () {
+    try {
+      const result = await axios.post(`${URL}/users/password-reset`, {
+        password,
         token,
-			});
-			await Swal.fire({
-				title: result.data.message,
-				icon: 'success',
-				timer: 5000,
+      });
+      await Swal.fire({
+        title: result.data.message,
+        icon: "success",
+        timer: 5000,
         background: "#3b3838",
         color: "#ffffff",
-			});
-		} catch (error) {
-			await Swal.fire({
-				title: "Hubo un error al confirmar el restablecimiento de la contraseña",
+      });
+    } catch (error) {
+      await Swal.fire({
+        title:
+          "Hubo un error al confirmar el restablecimiento de la contraseña",
         text: error.response.data.error,
-				icon: 'error',
+        icon: "error",
         background: "#3b3838",
         color: "#ffffff",
-			});
-		}
-	};
+      });
+    }
+  };
 };
+
+export const carts = (UserId) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: CARTS_REQUEST });
+      const response = await axios.get(`${URL}/carts/user/${UserId}`);
+      dispatch({
+        type: CARTS_SUCCESS,
+        payload: response.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: CARTS_FAILURE,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const cleanCarts = () => {
+  return {
+    type: CLEAN_CARTS,
+  };
+};
+
+export const putReview = (newRating, productId, user, result) => {
+  return async function () {
+    try {
+      const body = {
+        newRating: newRating,
+        comment: result.value,
+        userId: user.user.id,
+      };
+      const response = await axios.put(
+        `${URL}/products/rating/${productId}`,
+        body
+      );
+      await Swal.fire({
+        title: "Valoración enviada exitosamente",
+        text: response.data.message,
+        icon: "success",
+        timer: 5000,
+        background: "#3b3838",
+        color: "#ffffff",
+      });
+      window.location.reload();
+    } catch (error) {
+      await Swal.fire({
+        title: "Hubo un error al enviar el comentario sobre el producto",
+        text: error.response.data.error,
+        icon: "error",
+        background: "#3b3838",
+        color: "#ffffff",
+      });
+    }
+  };
+};
+
+export const productEliminated = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/products/restore/eliminated`);
+
+      return dispatch({
+        type: PRODUCTS_ELIMINATED,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const usersEliminated = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/users/restore/eliminated`);
+      console.log("Usuarios Eliminados (acción):", data);
+      return dispatch({
+        type: USERS_ELIMINATED,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const createCoupon = (couponData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${URL}/coupon/create`, couponData);
+      dispatch({
+        type: "CREATE_COUPON_SUCCESS",
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+// export const createCoupon = (coupon) => {
+//   return {
+//     type: CREATE_COUPON,
+//     payload: coupon,
+//   };
+// };

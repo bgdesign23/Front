@@ -1,0 +1,25 @@
+.IconFav{
+    display: flex;
+    position: absolute;
+    left: 0;
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    color: rgb(87, 82, 82);
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.IconFav:hover{
+    color: white;
+}
+
+.IconFavLiked {
+    display: flex;
+    position: absolute;
+    left: 0;
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    color: red;
+    font-size: 28px;
+    cursor: pointer;
+}

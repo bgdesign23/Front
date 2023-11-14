@@ -17,27 +17,23 @@ import {
 import Detail from "./views/Detail/Detail";
 import FormProduct from "./views/FormProduct/FormProduct";
 import CartShop from "./Components/CartShop/CartShop";
-import PerfilUser from "./views/PerfilUser/PerfilUser";
-import CouponUser from "../src/views/PerfilUser/CouponUser";
+import UserPerfil from "./views/userPerfil/userPerfil.jsx";
+import ComprasUser from "./views/userPerfil/ComprasUser/ComprasUser";
+import CouponUser from "./views/userPerfil/Cupon/CouponUser.jsx";
 import Success from "./views/MercadoPago/Success";
-import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
+import AdminDashboard from "../src/views/AdminDashboard/AdminDashboard.jsx";
 import RequestPasswordReset from "./views/Password/RequestPasswordReset";
 import PasswordReset from "./views/Password/PasswordReset";
-// import { useState } from "react";
-// import SideBar from "./Components/SideBar/SideBar";
-// import ButtonSide from "./Components/SideBar/ButtonSide/ButtonSide";
+import UserAdmin from "../src/views/UserAdminDashboard/UserAdmin.jsx";
+import CreateCouponForm from "./views/AdminDashboard/FormsAdmDash/CreateCouponForm.jsx";
+import NotFound404 from "./views/NotFound404/NotFound404.jsx";
+import CreateAdmin from "./views/AdminDashboard/FormsAdmDash/CreateAdmin.jsx";
 
 function App() {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products);
   const location = useLocation();
   const user = useSelector((state) => state.user);
-
-  // const [isOpenSideBar, setIsOpenSideBar] = useState(false);
-
-  // const toggleSideBar = () => {
-  //   setIsOpenSideBar(!isOpenSideBar);
-  // };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,13 +48,6 @@ function App() {
   return (
     <div className={styles.App}>
       <>
-        {/* <div className={styles.sideBar}>
-          <button className={styles.toggleButton} onClick={toggleSideBar}>
-            <ButtonSide />
-          </button>
-          <SideBar isOpen={isOpenSideBar} toggleSideBar={toggleSideBar} />
-        </div> */}
-
         <div className={styles.navBar}>
           {location.pathname !== "/home/success" && <NavBar />}
         </div>
@@ -70,18 +59,19 @@ function App() {
             <Route path="/form/decoracion" element={<FormDecoracion />} />
             <Route
               path="/home/product"
-              ñ
               element={<Product productos={productos} />}
             />
             <Route path="/home/nuevo" element={<FormProduct />} />
             <Route path="/form/login" element={<LoginForm />} />
             <Route path="/form/register" element={<FormRegistro />} />
-            <Route path="/form/perfil" element={<PerfilUser />} />
-            <Route path="/cupones" element={<CouponUser />} />
+            <Route path="/form/perfil" element={<UserPerfil />} />
             <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/cupones" element={<CouponUser />} />
+            <Route path="/perfil/compras" element={<ComprasUser />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/cartShop" element={<CartShop />} />
             <Route path="/home/success" element={<Success />} />
+            <Route path="/userAdmin" element={<UserAdmin />} />
             <Route
               path={"/form/login/request-password-reset"}
               element={<RequestPasswordReset />}
@@ -90,6 +80,9 @@ function App() {
               path={"/form/login/password-reset"}
               element={<PasswordReset />}
             />
+            <Route path="/crear-cupon" element={<CreateCouponForm />} />
+            <Route path="/crear/admin" element={<CreateAdmin />} />
+            <Route path="*" element={<NotFound404 />} />
           </Routes>
         </div>
       </>

@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import validationForm from "./ValidationFormProduct";
 import { postProduct } from "../../Redux/actions.js";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function FormProduct() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const categories = useSelector((state) => state.categories);
   const [errors, setErrors] = useState({});
+  const [editMode, setEditMode] = useState(false);
   const [formProduct, setFormProduct] = useState({
     name: "",
     description: "",
@@ -21,25 +23,54 @@ function FormProduct() {
     price: "",
     stock: "",
     image: "",
-    amount: "",
   });
 
-  const handleChange = (event) => {
-    setFormProduct({
-      ...formProduct,
-      [event.target.name]: event.target.value,
-    });
+  const handleModificar = () => {
+    setEditMode(true);
+  };
 
-    setErrors(
-      validationForm({
+  const handleChange = (event) => {
+    if (event.target.name === "category") {
+      setFormProduct({
+        ...formProduct,
+        category: event.target.value,
+        newCategory: "",
+      });
+      setEditMode(false);
+      setErrors(
+        validationForm({
+          ...formProduct,
+          [event.target.name]: event.target.value,
+        })
+      );
+    } else {
+      setFormProduct({
         ...formProduct,
         [event.target.name]: event.target.value,
-      })
-    );
+      });
+      setErrors(
+        validationForm({
+          ...formProduct,
+          [event.target.name]: event.target.value,
+        })
+      );
+    }
   };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
+    const maxSize = 2 * 1024 * 1024;
+    if (file && file.size > maxSize) {
+      Swal.fire({
+        text: "La imagen es demasiado grande. (Máximo: 2 Mb)",
+        icon: "warning",
+        background: "#3b3838",
+        color: "#ffffff",
+        timer: 3000,
+      });
+      event.target.value = null;
+      return;
+    }
     setFormProduct({ ...formProduct, image: file });
   };
 
@@ -58,163 +89,166 @@ function FormProduct() {
     formData.append("price", formProduct.price);
     formData.append("stock", formProduct.stock);
     formData.append("image", formProduct.image);
-    formData.append("amount", formProduct.amount);
     dispatch(postProduct(formData, navigate));
+    setEditMode(false);
   };
 
   return (
     <div className={styles.containerFor}>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          value={formProduct.name}
-          onChange={handleChange}
-          placeholder="Nombre"
-          required
-        />
-        {errors.name && <div className={styles.error}>{errors.name}</div>}
-        <br />
-        <textarea
-          type="text"
-          name="description"
-          value={formProduct.description}
-          onChange={handleChange}
-          placeholder="Descripción..."
-          rows="4"
-          required
-        />
-        {errors.description && (
-          <div className={styles.error}>{errors.description}</div>
-        )}
-        <br />
-        <br />
-        <select
-          name="category"
-          value={formProduct.category}
-          onChange={handleChange}
-        >
-          <option value="">Seleccione una categoría de producto</option>
-          {categories
-            .sort((a, b) => a.name > b.name)
-            .map((cat) => (
-              <option key={cat.id} value={cat.name}>
-                {cat.name}
-              </option>
-            ))}
-          <option value="nueva_categoria">Crear nueva categoría</option>
-        </select>
-        {formProduct.category === "nueva_categoria" && (
-          <input
+      <div className={styles.tituloPadre}>
+        <h6>Crear nuevo producto</h6>
+      </div>
+
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.sectionLeft}>
+          <div className={styles.inputContainer}>
+            <h6 className={styles.titulosForm}>Nombre del producto</h6>
+            <input //Nombre
+              type="text"
+              name="name"
+              value={formProduct.name}
+              onChange={handleChange}
+              placeholder="Nombre"
+              required
+            />
+            {errors.name && <div className={styles.error}>{errors.name}</div>}
+          </div>
+
+          <div className={styles.inputContainer}>
+            <h6 className={styles.titulosForm}>Ambiente</h6>
+            <input //Tipo de Ambiente
+              type="text"
+              name="type"
+              value={formProduct.type}
+              onChange={handleChange}
+              placeholder="(ej.: Oficina, Comercial, Hogar)"
+              required
+            />
+            {errors.type && <div className={styles.error}>{errors.type}</div>}
+          </div>
+
+          <div className={styles.inputContainer}>
+            <h6 className={styles.titulosForm}>Material</h6>
+            <input //Material
+              type="text"
+              name="material"
+              value={formProduct.material}
+              onChange={handleChange}
+              placeholder="(ej.: Pino, Roble, Vidrio, Tela)"
+              required
+            />
+            {errors.material && (
+              <div className={styles.error}>{errors.material}</div>
+            )}
+          </div>
+
+          <div className={styles.inputContainer}>
+            <h6 className={styles.titulosForm}>Color</h6>
+            <input //Color
+              type="text"
+              name="color"
+              value={formProduct.color}
+              onChange={handleChange}
+              placeholder="Color"
+              required
+            />
+            {errors.color && <div className={styles.error}>{errors.color}</div>}
+          </div>
+
+          <div className={styles.inputContainer}>
+            <h6 className={styles.titulosForm}>Precio</h6>
+            <input
+              type="number"
+              min="0.01"
+              step="0.01"
+              name="price"
+              value={formProduct.price}
+              onChange={handleChange}
+              placeholder="Precio"
+              required
+            />
+            {errors.price && <div className={styles.error}>{errors.price}</div>}
+          </div>
+
+          <h6 className={styles.titulosForm}>Ingresa la descripción:</h6>
+          <textarea //Description
             type="text"
-            name="newCategory"
-            placeholder="Nueva categoría..."
-            value={formProduct.newCategory}
+            name="description"
+            value={formProduct.description}
             onChange={handleChange}
-          />
-        )}
-        {errors.category && (
-          <div className={styles.error}>{errors.category}</div>
-        )}
-        <br />
-        <br />
-        <input
-          type="text"
-          name="type"
-          value={formProduct.type}
-          onChange={handleChange}
-          placeholder="Tipo de ambiente (ej.: Oficina, Comercial, Hogar)"
-          required
-        />
-        {errors.type && <div className={styles.error}>{errors.type}</div>}
-        <br />
-        <br />
-        <input
-          type="text"
-          name="material"
-          value={formProduct.material}
-          onChange={handleChange}
-          placeholder="Material del mueble (ej.: Pino, Roble, Vidrio, Tela)"
-          required
-        />
-        {errors.material && (
-          <div className={styles.error}>{errors.material}</div>
-        )}
-        <br />
-        <br />
-        <input
-          type="text"
-          name="color"
-          value={formProduct.color}
-          onChange={handleChange}
-          placeholder="Color"
-          required
-        />
-        {errors.color && <div className={styles.error}>{errors.color}</div>}
-        <br />
-        <br />
-        <input
-          type="text"
-          pattern="[0-9]*"
-          name="price"
-          value={formProduct.price}
-          onChange={handleChange}
-          placeholder="Precio"
-          required
-        />
-        {errors.price && <div className={styles.error}>{errors.price}</div>}
-        <br />
-        <br />
-        <label>
-          <input
-            id="En Stock"
-            type="radio"
-            name="stock"
-            value="En Stock"
-            onChange={handleChange}
-          />{" "}
-          En Stock
-        </label>
-        <br />
-        {formProduct.stock === "En Stock" && (
-          <input
-            type="text"
-            pattern="[0-9]*"
-            name="amount"
-            value={formProduct.amount}
-            onChange={handleChange}
-            placeholder="Cantidad en stock"
+            placeholder="Descripción..."
+            rows="4"
             required
           />
-        )}
-        {formProduct.stock === "En Stock" && errors.amount && (
-          <div className={styles.error}>{errors.amount}</div>
-        )}
-        <br />
-        <label>
-          <input
-            id="Sin Stock"
-            type="radio"
-            name="stock"
-            value="Sin Stock"
-            onChange={handleChange}
-          />{" "}
-          Sin Stock
-        </label>
-        {errors.stock && <div className={styles.error}>{errors.stock}</div>}
-        <br />
-        <br />
-        Seleccionar imagen del producto
-        <br />
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
-        <br />
-        <br />
-        <button type="submit">Enviar</button>
+          {errors.description && (
+            <div className={styles.error}>{errors.description}</div>
+          )}
+        </div>
+
+        <div className={styles.sectionRight}>
+          <div className={styles.inputContainer}>
+            <div className={styles.images}>
+              <h6 className={styles.titulosForm}>Selecciona imagen</h6>
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+            </div>
+          </div>
+
+          <div className={styles.inputContainer}>
+            <h6 className={styles.titulosForm}>Seleccionar categoría</h6>
+            <select //Categorias selector
+              name="category"
+              value={formProduct.category}
+              onChange={handleChange}
+            >
+              <option value="" disabled>Seleccione una categoría</option>
+              {categories
+                .sort((a, b) => a.name > b.name)
+                .map((cat) => (
+                  <option key={cat.id} value={cat.name}>
+                    {cat.name}
+                  </option>
+                ))}
+              {errors.category && (
+                <div className={styles.error}>{errors.category}</div>)}
+              <div />
+              <option onClick={handleModificar}>Crear nueva categoría</option>
+            </select>
+          </div>
+          <div className={styles.inputContainer}>
+            <h6 className={styles.titulosForm}>Crear Categoria</h6>
+            <input
+              type="text"
+              name="newCategory"
+              placeholder="  Nueva categoría..."
+              value={formProduct.newCategory}
+              onChange={handleChange}
+              disabled={!editMode}
+            />
+          </div>
+          {errors.newCategory && (
+                <div className={styles.error}>{errors.newCategory}</div>)}
+          <div className={styles.inputContainer}>
+            <h6 className={styles.titulosForm}>Cantidad</h6>
+            <input
+              type="text"
+              pattern="[0-9]*"
+              name="stock"
+              value={formProduct.stock}
+              onChange={handleChange}
+              placeholder="Unidades disponibles"
+              required
+            />
+            {errors.stock && <div className={styles.error}>{errors.stock}</div>}
+          </div>
+          <div className={styles.buttonSend}>
+            <button type="submit">Enviar</button>
+          </div>
+        </div>
       </form>
     </div>
   );
