@@ -19,14 +19,21 @@ const NavBar = () => {
         </div>
       </div>
       <div className={styles.dos}>
-        <button onClick={() => navigate("/")} className={styles.btn}>
+        <button
+          onClick={() => navigate("/")}
+          className={`${styles.btn} ${
+            location.pathname === "/" ? styles.active : ""
+          }`}
+        >
           Inicio
         </button>
       </div>
       <div className={styles.dos}>
         <button
           onClick={() => navigate("/home/product")}
-          className={styles.btn}
+          className={`${styles.btn} ${
+            location.pathname === "/home/product" ? styles.active : ""
+          }`}
         >
           Productos
         </button>
