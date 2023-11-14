@@ -5,6 +5,7 @@ import {
   GET_ALL_PRODUCTS,
   EDIT_PRODUCTS,
   RESTORE_PRODUCTS,
+  PRODUCT_ERRORS,
   GET_BY_NAME,
   GET_DETAIL,
   ORDERBYPRICE,
@@ -94,6 +95,10 @@ export const editProduct = (id, updateData) => {
       });
     } catch (error) {
       console.log(error.message);
+      dispatch({
+        type: PRODUCT_ERRORS,
+        payload: error.message,
+      });
     }
   };
 };

@@ -27,6 +27,7 @@ import PasswordReset from "./views/Password/PasswordReset";
 import UserAdmin from "../src/views/UserAdminDashboard/UserAdmin.jsx";
 import CreateCouponForm from "./views/AdminDashboard/FormsAdmDash/CreateCouponForm.jsx";
 import NotFound404 from "./views/NotFound404/NotFound404.jsx";
+import CreateAdmin from "./views/AdminDashboard/FormsAdmDash/CreateAdmin.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -80,6 +81,7 @@ function App() {
               element={<PasswordReset />}
             />
             <Route path="/crear-cupon" element={<CreateCouponForm />} />
+            <Route path="/crear/admin" element={<CreateAdmin />} />
             <Route path="*" element={<NotFound404 />} />
           </Routes>
         </div>
