@@ -49,8 +49,12 @@ export const CARTS_SUCCESS = "CARTS_SUCCESS";
 export const CARTS_FAILURE = "CARTS_FAILURE";
 export const GET_CARTS = "GET_CARTS";
 export const CLEAN_CARTS = "CLEAN_CARTS";
-export const EDIT_COUPON = "EDIT_COUPON"
-
+export const EDIT_COUPON = "EDIT_COUPON";
 export const PRODUCTS_ELIMINATED = "PRODUCTS_ELIMINATED";
 export const USERS_ELIMINATED = "USERS_ELIMINATED";
 export const CREATE_COUPON_SUCCESS = "CREATE_COUPON_SUCCESS";
+export const ADD_NUMBER = "ADD_NUMBER";
+export const LOW_NUMBER = "LOW_NUMBER";
+export const QUIT_NUMBER = "QUIT_NUMBER";
+export const RESET_NUMBER = "RESET_NUMBER";
+export const SET_NUMBER = "SET_NUMBER";

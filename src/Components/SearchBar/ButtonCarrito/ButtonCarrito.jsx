@@ -1,18 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import Styles from "../../CartShop/CartShop.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setNumber } from "../../../Redux/actions.js";
 
 export default function ButtonCarrito() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  // const [cantidad, setCantidad] = useState(0)
+  const stateNumber = useSelector((state)=>state.number)
   const isInCartShop = location.pathname === "/CartShop";
-  //guardamos la locacion para luego hacer un renderizado condicional en el return
 
-  const cartData = JSON.parse(localStorage.getItem("cart")) || [];
+  useEffect(()=>{
+    const cartData = JSON.parse(localStorage.getItem("cart")) || [];
 
-  //de esta forma accedemos al localstorage
-  const cantidad = cartData.reduce((accumulator, product) => {
-    return accumulator + product.amount;
-  }, 0);
+    const newCantidad = cartData.reduce((accumulator, product) => {
+      return accumulator + product.amount;
+    }, 0);
+
+    dispatch(setNumber(newCantidad))
+  }, [dispatch])
+
+  const number = () => {
+    return stateNumber
+  }
 
   return (
     <div
@@ -31,7 +42,7 @@ export default function ButtonCarrito() {
         />
       </svg>
       <div className={Styles.carritoNum}>
-        <p>{cantidad}</p>
+        <p>{number()}</p>
       </div>
     </div>
   );

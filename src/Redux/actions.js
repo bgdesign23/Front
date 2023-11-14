@@ -52,7 +52,12 @@ import {
   CLEAN_CARTS,
   PRODUCTS_ELIMINATED,
   USERS_ELIMINATED,
-  EDIT_COUPON
+  EDIT_COUPON,
+  ADD_NUMBER,
+  LOW_NUMBER,
+  QUIT_NUMBER,
+  RESET_NUMBER,
+  SET_NUMBER,
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -413,6 +418,7 @@ export const registerUser = (userData, navigate) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: response.data,
     });
+    dispatch(resetNumber());
     navigate("/form/perfil");
   } catch (error) {
     await Swal.fire({
@@ -435,12 +441,25 @@ export const filterRestart = () => (dispatch) => {
 
 export const loginUser = (credentials, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
-
+  function calculateTotal(products) {
+    let total = 0;
+    products.forEach((productString) => {
+      const productArray = JSON.parse(productString);
+      productArray.forEach((product) => {
+        total += product.amount;
+      });
+    });
+    return total;
+  }
   try {
     const response = await axios.post(`${URL}/users/login`, credentials);
     localStorage.setItem("token", response.data.token);
     if (response.data.user.cart.products) {
       localStorage.setItem("cart", response.data.user.cart.products[0]);
+      const chargeNumber = await calculateTotal(
+        response.data.user.cart.products
+        )
+      dispatch(setNumber(chargeNumber))
     }
     dispatch({
       type: LOGIN_SUCCESS,
@@ -545,6 +564,7 @@ export const logoutUser = (navigate) => (dispatch) => {
       localStorage.removeItem("cart");
       navigate("/form/login");
       dispatch({ type: LOGOUT });
+      dispatch(resetNumber());
     }
   });
 };
@@ -621,6 +641,16 @@ export const postProduct = (formData, navigate) => {
 
 export const googleUser = (payload) => {
   return async function (dispatch) {
+    function calculateTotal(products) {
+      let total = 0;
+      products.forEach((productString) => {
+        const productArray = JSON.parse(productString);
+        productArray.forEach((product) => {
+          total += product.amount;
+        });
+      });
+      return total;
+    }
     try {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -628,6 +658,10 @@ export const googleUser = (payload) => {
       });
       if (payload.user.cart?.products) {
         localStorage.setItem("cart", payload.user.cart.products[0]);
+        const chargeNumber = await calculateTotal(
+          payload.user.cart.products
+          )
+        dispatch(setNumber(chargeNumber))
       }
       localStorage.setItem("token", payload.token);
       await Swal.fire({
@@ -928,5 +962,37 @@ export const editCoupon = (id, updateData) => {
     } catch (error) {
       console.log(error.message);
     }
+  };
+};
+
+export const addNumber = () => {
+  return {
+    type: ADD_NUMBER,
+  };
+};
+
+export const lowNumber = () => {
+  return {
+    type: LOW_NUMBER,
+  };
+};
+
+export const quitNumber = (number) => {
+  return {
+    type: QUIT_NUMBER,
+    payload: number,
+  };
+};
+
+export const resetNumber = () => {
+  return {
+    type: RESET_NUMBER,
+  };
+};
+
+export const setNumber = (number) => {
+  return {
+    type: SET_NUMBER,
+    payload: number,
   };
 };

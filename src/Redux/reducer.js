@@ -45,7 +45,12 @@ import {
   PRODUCTS_ELIMINATED,
   USERS_ELIMINATED,
   CREATE_COUPON_SUCCESS,
-  EDIT_COUPON
+  EDIT_COUPON,
+  ADD_NUMBER,
+  LOW_NUMBER,
+  QUIT_NUMBER,
+  RESET_NUMBER,
+  SET_NUMBER,
 } from "./actionsTypes";
 
 let initialState = {
@@ -71,7 +76,8 @@ let initialState = {
   productsEliminated: [],
   usersEliminated: [],
   coupons: [],
-  createdCoupon: null,  
+  createdCoupon: null,
+  number: Number(0),
 };
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -348,6 +354,36 @@ const Reducer = (state = initialState, action) => {
         createdCoupon: action.payload,
         error: null,
       };
+
+    case ADD_NUMBER:
+    return {
+      ...state,
+      number: state.number + 1,
+    };
+
+    case LOW_NUMBER:
+    return {
+      ...state,
+      number: state.number - 1,
+    };
+
+    case QUIT_NUMBER:
+    return {
+      ...state,
+      number: state.number - action.payload,
+    };
+
+    case RESET_NUMBER:
+    return {
+      ...state,
+      number: Number(0),
+    };
+
+    case SET_NUMBER:
+    return {
+      ...state,
+      number: action.payload,
+    };
 
     default:
       return { ...state };
