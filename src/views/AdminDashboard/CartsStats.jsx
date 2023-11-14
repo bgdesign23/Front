@@ -140,35 +140,33 @@ const CartComponent = () => {
   };
   return (
     <>
-      <div className={Style.containerPadre}>
-        <div className={Style.containerHijo}>
-          <label> Fecha de Inicio: </label>
-          <input
-            type="date"
-            value={startDate.toISOString().split("T")[0]}
-            onChange={handleStartDate}
-          />
+      <div className={style.containerPadre}>
+        <div className={style.containerAlineador}>
+          <h6>Panel de control de ventas</h6>
+          <div className={style.containerHijo}>
+            <div className={style.inputBox}>
+              <label> Fecha de Inicio: </label>
+              <input
+                type="date"
+                value={startDate.toISOString().split("T")[0]}
+                onChange={handleStartDate}
+              />
+            </div>
+
+            <div className={style.inputBox}>
+              <label> Fecha de fin: </label>
+              <input
+                type="date"
+                value={endDate.toISOString().split("T")[0]}
+                onChange={handleEndDate}
+              />
+            </div>
+
+            <div className={style.grafico}>
+              <Line data={data} options={options} />
+            </div>
+          </div>
         </div>
-        <div>
-          <label> Fecha de fin: </label>
-          <input
-            type="date"
-            value={endDate.toISOString().split("T")[0]}
-            onChange={handleEndDate}
-          />
-        </div>
-      </div>
-      <div
-        style={{
-          width: "50%",
-          margin: "auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "80vh",
-        }}
-      >
-        <Line data={data} options={options} />
       </div>
     </>
   );
