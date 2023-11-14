@@ -1,0 +1,49 @@
+.containerPadre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    height: 100%;
+}
+
+.containerAlineador {
+    display: block;
+    
+}
+
+.containerPadre h6 {
+    font-size: 25px;
+    font-family: barlow;
+    color: #ffffff;
+}
+
+.containerHijo {
+    display: fixed;
+    /* border: 1px solid rgb(85, 255, 0); */
+    width: 1200px;
+    height: 650px;
+    border-radius: 34px;
+    margin-top: 30px;
+    background-color: white;
+    font-family: barlow;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 40px;
+    
+   
+    
+}
+
+.grafico {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 500px;
+        padding-block: 25px;
+    
+}
+
+/* .alineacionHijos{
+    gap: 12rem;
+} */
