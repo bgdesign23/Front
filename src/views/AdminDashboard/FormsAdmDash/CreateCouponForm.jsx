@@ -73,6 +73,7 @@ const CreateCouponForm = () => {
                     Estado:
                     <input
                       type="text"
+                      placeholder="(eje: activo o inactivo)"
                       value={couponNew.status}
                       onChange={(e) =>
                         setCouponNew({ ...couponNew, status: e.target.value })
@@ -85,6 +86,7 @@ const CreateCouponForm = () => {
                     Vencimiento:
                     <input
                       type="text"
+                      placeholder="(eje: 25/12/2024)"
                       value={couponNew.expiration}
                       onChange={(e) =>
                         setCouponNew({
@@ -100,6 +102,7 @@ const CreateCouponForm = () => {
                     Descuento:
                     <input
                       type="text"
+                      placeholder="(eje: 0.20)"
                       value={couponNew.discount}
                       onChange={(e) =>
                         setCouponNew({ ...couponNew, discount: e.target.value })
@@ -114,6 +117,7 @@ const CreateCouponForm = () => {
                     Cantidad de usos:
                     <input
                       type="text"
+                      placeholder="(eje: 5 )"
                       value={couponNew.usagesAvailable}
                       onChange={(e) =>
                         setCouponNew({
@@ -130,6 +134,7 @@ const CreateCouponForm = () => {
                     Código validador:
                     <input
                       type="text"
+                      placeholder="(eje: palabra codigo)"
                       value={couponNew.code}
                       onChange={(e) =>
                         setCouponNew({ ...couponNew, code: e.target.value })
