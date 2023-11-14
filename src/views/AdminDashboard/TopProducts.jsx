@@ -126,23 +126,25 @@ const TopProducts = () => {
     <>
       <div className={style.containerPadre}>
         <div className={style.containerAlineador}>
-          <h6>Top ventas metricas</h6>
           <div className={style.containerHijo}>
-            <div className={style.inputBox}>
-              <label> Fecha de Inicio: </label>
-              <input
-                type="date"
-                value={startDate.toISOString().split("T")[0]}
-                onChange={handleStartDate}
-              />
-            </div>
-            <div className={style.inputBox}>
-              <label> Fecha de fin: </label>
-              <input
-                type="date"
-                value={endDate.toISOString().split("T")[0]}
-                onChange={handleEndDate}
-              />
+            <h6>Top ventas metricas</h6>
+            <div className={style.inputPadreBox}>
+              <div className={style.inputBox}>
+                <label> Fecha de Inicio: </label>
+                <input
+                  type="date"
+                  value={startDate.toISOString().split("T")[0]}
+                  onChange={handleStartDate}
+                />
+              </div>
+              <div className={style.inputBox}>
+                <label> Fecha de fin: </label>
+                <input
+                  type="date"
+                  value={endDate.toISOString().split("T")[0]}
+                  onChange={handleEndDate}
+                />
+              </div>
             </div>
             <div className={style.grafico}>
               <Bar data={data} options={options} />

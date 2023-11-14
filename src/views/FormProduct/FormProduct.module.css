@@ -63,7 +63,7 @@ textarea {
 .form {
   display: flex;
   justify-content: left;
-  border-radius: 34px;
+  border-radius: 8px;
   padding: 30px;
   width: 1000px;
   height: 700px;

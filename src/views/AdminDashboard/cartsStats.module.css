@@ -1,9 +1,17 @@
+/* .containerPadre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+} */
+
 .containerPadre {
     display: flex;
     justify-content: center;
     align-items: center;
     /* border: 1px solid red; */
     height: 100%;
+    width: 50%;
 }
 
 .containerAlineador {
@@ -11,17 +19,20 @@
 }
 
 .containerPadre h6 {
+    padding-bottom: 1.5rem;
     font-size: 25px;
     font-family: barlow;
-    color: #ffffff;
+    color: #000000;
 }
 
 .containerHijo {
-    display: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     /* border: 1px solid rgb(85, 255, 0); */
-    width: 1200px;
-    height: 650px;
-    border-radius: 34px;
+    width: 700px;
+    height: 550px;
+    border-radius: 8px;
     padding: 30px;
     margin-top: 30px;
     background-color: white;
@@ -33,10 +44,12 @@
 
 .grafico {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-top: 50px;
     width: 100%;
-    height: 500px;
-    padding-block: 25px;
+    /* height: 250px; */
+}
 
+.inputPadreBox{
+    display: flex;
+    justify-content: center;
 }
