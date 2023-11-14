@@ -6,6 +6,10 @@
   left: 340px;
 }
 
+.buttonSearch {
+  margin-left: 5px;
+}
+
 .noStyleButton {
   background: none;
   border: none;

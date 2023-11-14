@@ -21,7 +21,7 @@
   top: 10%;
   width: 100%;
   bottom: 0;
-  margin-left: 74px;
+  margin-left: 55px;
 }
 
 .botonera button {
@@ -41,8 +41,8 @@
 
 .logout {
   position: absolute;
-  bottom: 40px;
-  margin-left: -40px;
+  bottom: 20px;
+  margin-left: -48px;
   border: none;
   background: none;
   color: rgb(255, 255, 255);

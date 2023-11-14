@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Styles from "../Menu/Menu.module.css";
 import { logoutUser } from "../../../Redux/actions";
 import { useDispatch } from "react-redux";
+import Logout from "./Logout";
 
 const Menu = () => {
   const navigate = useNavigate(); //Agregar la ruta para mis compras
@@ -22,9 +23,11 @@ const Menu = () => {
         <button onClick={() => navigate("/cupones")}>Cupones</button>
         <button>Mis Favoritos</button>
       </div>
-      <button onClick={handleLogout} className={Styles.logout}>
-        Cerrar Sesion
-      </button>
+      <div className={Styles.logout}>
+        <button onClick={handleLogout} className={Styles.logout}>
+          <Logout /> Cerrar Sesion
+        </button>
+      </div>
     </div>
   );
 };
