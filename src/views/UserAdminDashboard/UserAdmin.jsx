@@ -56,7 +56,7 @@ const UserAdmin = () => {
     <div className={Styles.containerAll}>
       <div className={Styles.boxLeft}>
         <div className={Styles.titulo}>
-          <h1>Admin 01</h1>
+          <h1>Admin</h1>
         </div>
         <div className={Styles.botonera}>
           <button

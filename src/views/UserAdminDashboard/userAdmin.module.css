@@ -43,7 +43,7 @@
     top: 10%;
     width: 100%;
     bottom: 0;
-        /* border: 2px solid rgb(145, 223, 20) */
+    /* border: 2px solid rgb(145, 223, 20) */
     }
     
 .botonera h2{
@@ -51,6 +51,7 @@
     color: aliceblue;
     padding-block: .5rem;
     cursor: pointer;;
+
 }
 .botonera h2{
     font-family: Arial, Helvetica, sans-serif;
@@ -73,6 +74,8 @@
     font-weight: bold;
     font-size: 15px;
     border: none;
+    /* display: flex; */
+            /*border: 2px solid rgb(223, 20, 149) */
 }
 
 
@@ -87,7 +90,6 @@
     font-family: Arial, Helvetica, sans-serif;
             bottom: 0;
                 width: 100%;
-
 } 
 
 .backBtn {
