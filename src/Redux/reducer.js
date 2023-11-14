@@ -42,6 +42,9 @@ import {
   RESTORE_PRODUCTS,
   GET_CARTS,
   CLEAN_CARTS,
+  PRODUCTS_ELIMINATED,
+  USERS_ELIMINATED,
+  CREATE_COUPON_SUCCESS,
 } from "./actionsTypes";
 
 let initialState = {
@@ -64,6 +67,9 @@ let initialState = {
   errors: {},
   carts: [],
   carts_copy: [],
+  productsEliminated: [],
+  usersEliminated: [],
+  createdCoupon: null,
 };
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -315,6 +321,25 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         carts: [],
+      };
+
+    case PRODUCTS_ELIMINATED:
+      return {
+        ...state,
+        productsEliminated: action.payload,
+      };
+
+    case USERS_ELIMINATED:
+      return {
+        ...state,
+        usersEliminated: action.payload,
+      };
+
+    case CREATE_COUPON_SUCCESS:
+      return {
+        ...state,
+        createdCoupon: action.payload,
+        error: null,
       };
 
     default:

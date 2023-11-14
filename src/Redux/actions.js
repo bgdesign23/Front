@@ -50,6 +50,8 @@ import {
   CARTS_FAILURE,
   GET_CARTS,
   CLEAN_CARTS,
+  PRODUCTS_ELIMINATED,
+  USERS_ELIMINATED,
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -82,7 +84,6 @@ export const getCarts = () => {
 };
 
 export const editProduct = (id, updateData) => {
-
   return async (dispatch) => {
     try {
       console.log("id: ", id);
@@ -105,7 +106,7 @@ export const editProduct = (id, updateData) => {
 export const restoreProduct = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL}/products/restore/${id}`);
+      const { data } = await axios.put(`${URL}/products/restore/${id}`);
       return dispatch({
         type: RESTORE_PRODUCTS,
         payload: data,
@@ -163,7 +164,7 @@ export const deleteUser = (id) => {
 export const restoreUser = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL}/users/restore/${id}`);
+      const { data } = await axios.put(`${URL}/users/restore/${id}`);
       return dispatch({
         type: RESTORE_USER,
         payload: data,
@@ -651,13 +652,6 @@ export const googleUser = (payload) => {
   };
 };
 
-export const createCoupon = (coupon) => {
-  return {
-    type: CREATE_COUPON,
-    payload: coupon,
-  };
-};
-
 export const deleteCoupon = (id) => {
   return async (dispatch) => {
     try {
@@ -823,9 +817,9 @@ export const confirmPasswordReset = (token, password) => {
 
 export const carts = (UserId) => {
   return async (dispatch) => {
-    try{
+    try {
       dispatch({ type: CARTS_REQUEST });
-      const response = await axios.get(`${URL}/carts/user/${UserId}`)
+      const response = await axios.get(`${URL}/carts/user/${UserId}`);
       dispatch({
         type: CARTS_SUCCESS,
         payload: response.data,
@@ -877,3 +871,53 @@ export const putReview = (newRating, productId, user, result) => {
     }
   };
 };
+
+export const productEliminated = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/products/restore/eliminated`);
+
+      return dispatch({
+        type: PRODUCTS_ELIMINATED,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const usersEliminated = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/users/restore/eliminated`);
+      console.log("Usuarios Eliminados (acción):", data);
+      return dispatch({
+        type: USERS_ELIMINATED,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const createCoupon = (couponData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${URL}/coupon/create`, couponData);
+      dispatch({
+        type: "CREATE_COUPON_SUCCESS",
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+// export const createCoupon = (coupon) => {
+//   return {
+//     type: CREATE_COUPON,
+//     payload: coupon,
+//   };
+// };

@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Styles from "../UserAdminDashboard/userAdmin.module.css";
-import { getAllUsers, getAdmin, getProductsAction } from "../../Redux/actions";
+import {
+  getAllUsers,
+  getAdmin,
+  getProductsAction,
+  getCarts,
+} from "../../Redux/actions";
 import FormProduct from "../FormProduct/FormProduct";
 import Users from "../UserAdminDashboard/Dashboard/Users/Users";
 import Administrators from "./Dashboard/administradores/Administrators";
 import AdminProducts from "./Dashboard/Products/AdminProducts";
 import CreateCouponForm from "../AdminDashboard/FormsAdmDash/CreateCouponForm";
 import admin from "../../images/admin.png";
+import CartComponent from "../AdminDashboard/CartsStats";
+import TopProducts from "../AdminDashboard/TopProducts";
 
 const UserAdmin = () => {
   const dispatch = useDispatch();
@@ -31,6 +38,9 @@ const UserAdmin = () => {
         break;
       case "users":
         dispatch(getAllUsers());
+        break;
+      case "metricas":
+        dispatch(getCarts()());
         break;
       default:
         break;
@@ -56,6 +66,12 @@ const UserAdmin = () => {
             Administradores
           </button>
           <button
+            onClick={() => handleVisibleSection("newAdmin")}
+            className={Styles.Btn}
+          >
+            Crear nuevo Admin
+          </button>
+          <button
             onClick={() => handleVisibleSection("users")}
             className={Styles.Btn}
           >
@@ -70,21 +86,25 @@ const UserAdmin = () => {
           <button onClick={handleCreateProduct} className={Styles.Btn}>
             Crear productos
           </button>
-          <button
-            onClick={() => handleVisibleSection("newAdmin")}
-            className={Styles.Btn}
-          >
-            Crear nuevo Admin
-          </button>
           <button onClick={handleCreateCupon} className={Styles.Btn}>
-            Crear cupón
+            Cupónes
           </button>
+          {/* <button onClick={handleCreateCupon} className={Styles.Btn}>
+            Crear cupón
+          </button> */}
           <button
-            onClick={() => handleVisibleSection("logout")}
+            onClick={() => handleVisibleSection("metricas")}
             className={Styles.Btn}
           >
-            Cerrar sesión
+            Control de ventas
           </button>
+          <button
+            onClick={() => handleVisibleSection("top")}
+            className={Styles.Btn}
+          >
+            Productos TOP
+          </button>
+          <button className={Styles.Btn}>Cerrar sesión</button>
         </div>
       </div>
       <div className={Styles.boxRight}>
@@ -95,6 +115,8 @@ const UserAdmin = () => {
             {visibleSection === "admins" && <Administrators />}
             {visibleSection === "products" && <AdminProducts />}
             {visibleSection === "createCoupon" && <CreateCouponForm />}
+            {visibleSection === "metricas" && <CartComponent />}
+            {visibleSection === "top" && <TopProducts />}
           </>
         ) : (
           <div className={Styles.panelHome}>
