@@ -26,6 +26,7 @@ import {
   getUser,
   usersEliminated,
   productEliminated,
+  editCoupon
 } from "../../Redux/actions";
 import UserTableComponent from "./UserTableComponent";
 import TableComponent from "./tableComponent";
@@ -35,7 +36,6 @@ import CouponTableComponent from "./CouponsTable";
 import TopProducts from "./TopProducts";
 import EliminatedUsersTable from "./Eliminados/EliminatedUsersTable";
 import EliminatedProductsTable from "./Eliminados/tableeliminated";
-import AdminNNNTableComponent from "./AdminTable";
 import ComponentAdminTable from "./AdminTable";
 
 const AdminDashboard = () => {
@@ -81,6 +81,7 @@ const AdminDashboard = () => {
         console.error("Error deleting coupon:", error);
       });
   };
+  
   const handleVisibleProducts = () => {
     setVisibleProducts((prevVisible) => !prevVisible);
     if (!visibleProducts) {
@@ -127,7 +128,7 @@ const AdminDashboard = () => {
     role: "",
   });
 
-  const prodRef = useRef({
+  const [prodRef, setProdRef] = useState({
     name: "",
     stock: "",
     price: "",
@@ -135,6 +136,14 @@ const AdminDashboard = () => {
     material: "",
     description: "",
   });
+
+  const [inputCoupon, setInputCoupon] = useState({
+    newCode: "",
+    status: "",
+    discount: "",
+    expiration: "",
+    usagesAvailable: "",
+  })
 
   const handleGetCarts = () => {
     dispatch(getCarts());
@@ -149,6 +158,36 @@ const AdminDashboard = () => {
       setCupones(value);
     }
     dispatch(getUserCoupons(value));
+  };
+
+  const handleEditCoupon = (event, id, rowData) => {
+    event.preventDefault();
+    console.log("Coupon Id: ", id);
+    console.log("rowData: ", rowData);
+    try {
+      const updatedData = {
+        newCode: rowData.code,
+        status: rowData.status,
+        discount: rowData.discount,
+        expiration: rowData.expiration,
+        usagesAvailable: rowData.usagesAvailable,
+      };
+      console.log("Data: ", updatedData);
+      dispatch(editCoupon(id, updatedData)).then(() => {
+          dispatch(clearErrors());
+          Swal.fire("Listo", "Has modificado un cupón exitosamente");        
+      });
+      // Limpiar los campos después de la edición
+      setInputCoupon({        
+        newCode: "",
+        status: "",
+        discount: "",
+        expiration: "",
+        usagesAvailable: "",
+      });
+    } catch (error) {
+      console.error("Error al editar el cupón: ", error)
+    }
   };
 
   const handleAdminView = (value) => {
@@ -307,15 +346,13 @@ const AdminDashboard = () => {
         stock: rowData.stock,
       };
       console.log("Data: ", updatedData);
-      dispatch(editProduct(productId, updatedData)).then((postError) => {
-        if (!postError) {
+      dispatch(editProduct(productId, updatedData)).then(() => {
           dispatch(clearErrors());
           console.log("A ver si llega hasta aquí");
-          Swal.fire("Listo", "Has modificado un producto exitosamente");
-        }
+          Swal.fire("Listo", "Has modificado un producto exitosamente");        
       });
       // Limpiar los campos después de la edición
-      setProd({
+      setProdRef({
         name: "",
         stock: "",
         price: "",
@@ -324,7 +361,7 @@ const AdminDashboard = () => {
         description: "",
       });
     } catch (error) {
-      setErrors({ type: "EDIT_PRODUCTS", error: postError?.response?.data });
+      console.error("Error al editar el producto: ", error);
     }
   };
 
@@ -423,6 +460,7 @@ const AdminDashboard = () => {
             <CouponTableComponent
               coupons={coupon}
               onDeleteCoupon={handleDeleteCoupon}
+              onEditCoupon={handleEditCoupon}
             />
           </div>
         )}
