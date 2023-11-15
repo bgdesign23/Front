@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Styles from "../UserAdminDashboard/userAdmin.module.css";
 import {
   getAllUsers,
@@ -7,7 +8,9 @@ import {
   getProductsAction,
   getCarts,
   getUserCoupons,
+  logoutUser,
 } from "../../Redux/actions";
+import Logout from "../userPerfil/Menu/Logout";
 import FormProduct from "../FormProduct/FormProduct";
 import Users from "../UserAdminDashboard/Dashboard/Users/Users";
 import Administrators from "./Dashboard/administradores/Administrators";
@@ -16,11 +19,16 @@ import admin from "../../images/admin.png";
 import CartComponent from "../AdminDashboard/CartsStats";
 import TopProducts from "../AdminDashboard/TopProducts";
 import CreateCouponForm from "../AdminDashboard/FormsAdmDash/CreateCouponForm";
-// import CouponTableComponent from "../AdminDashboard/CouponsTable";
 
 const UserAdmin = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [visibleSection, setVisibleSection] = useState(null);
+
+  const handleLogout = () => {
+    dispatch(logoutUser(navigate));
+  };
 
   const handleCreateProduct = () => {
     setVisibleSection("createProduct");
@@ -99,8 +107,10 @@ const UserAdmin = () => {
           >
             Metrias de ventas
           </button>
-
-          <button className={Styles.Btn}>Cerrar sesión</button>
+          <button onClick={handleLogout} className={Styles.logout}>
+            <Logout /> Cerrar Sesion
+          </button>
+          {/* <button className={Styles.Btn}>Cerrar sesión</button> */}
         </div>
       </div>
 
@@ -117,7 +127,7 @@ const UserAdmin = () => {
             {visibleSection === "metricas" && (
               <>
                 <div className={Styles.Order}>
-                  <h6 className={Styles.tituloTodo}>Control de Ventas</h6>
+                  <h6 className={Styles.tituloTodo}>Panel de control ventas</h6>
                   <CartComponent />
                   <TopProducts />
                 </div>

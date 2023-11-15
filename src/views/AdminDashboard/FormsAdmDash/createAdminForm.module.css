@@ -1,0 +1,114 @@
+.containerAbuelo{
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color: transparent;
+    border-radius:8px; 
+
+}
+.containerPadre{
+    position: relative;
+    display: flex;
+    width: 50%;
+    height: 300px;
+    background-color: transparent;
+    border-radius:8px;
+    /* z-index: 110;    */
+}
+
+
+.containerForm{
+    margin-left: 140px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    height: 300px;
+    justify-content: center;
+    width: 860px;
+    height: 380px;
+}
+
+
+.ladoB{
+    padding-top: 6%;
+    display: block;
+    width: 300px;
+    /* background-color: rgb(26, 74, 146); */
+}
+.ladoA{
+        padding-top: 6%;
+    display: block;
+    width: 300px;
+    /* background-color: rgb(26, 104, 146); */
+}
+
+
+.boxinputs{
+    /* border: 1px solid slateblue; */
+    padding-inline: 2rem;
+    padding-block: .2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxinputs label {
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    
+    display: flex;
+    justify-content: center;
+    font-family: barlow;
+    color: #000000;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 16px;
+    text-align: left;
+    gap: .5rem;
+}
+
+.boxinputs input{
+        height: 50px;height: 50px;
+        border: 1px solid #ccc;
+            background-color: rgb(217, 217, 217);
+            padding-left: 20px;
+            animation: _placeho
+}
+
+.btn {
+    position: absolute;
+    right: 10;
+    bottom: 5%;
+        position: absolute;
+            width: 500px;
+            margin-top: 1rem;
+            height: 40px;
+            bottom: 7%;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-family: Arial;
+            color: #191919;
+            background-color: #ffffff;
+}
+.btn:hover {
+    height: 40px;
+    border-radius: 8px;
+    font-family: Arial;
+    color: #ffffff;
+    background-color: #191919;
+    transition: 0.8s;
+}
+
+.crearAdminTitulo{
+    position: absolute;
+    left: 45%;
+    top: 3%;
+    color: #000000;
+    z-index: 10;
+    font-size: 25px;
+    font-family: barlow;
+    font-weight: bold;
+}

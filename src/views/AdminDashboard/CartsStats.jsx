@@ -142,7 +142,7 @@ const CartComponent = () => {
       <div className={style.containerPadre}>
         <div className={style.containerAlineador}>
           <div className={style.containerHijo}>
-            <h6>Total ventas</h6>
+            <h6>Total ventas diarias</h6>
             <div className={style.inputPadreBox}>
               <div className={style.inputBox}>
                 <label> Fecha de Inicio: </label>

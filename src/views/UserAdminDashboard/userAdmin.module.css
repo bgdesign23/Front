@@ -156,3 +156,22 @@
             font-family: barlow;
             color:#ffffff ;
         }
+
+
+.logout {
+    margin-top: 10rem;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: rgb(255, 255, 255);
+    font-family: Arial;
+}
+.logout svg {
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: rgb(255, 255, 255);
+    font-family: Arial;
+}

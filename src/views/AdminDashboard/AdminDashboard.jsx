@@ -57,7 +57,6 @@ const AdminDashboard = () => {
   const cart = useSelector((state) => state.carts);
   const navigate = useNavigate();
 
-  const [adminView, setAdminView] = useState(false);
   const [cupones, setCupones] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [visibleCountProducts, setVisibleCountProducts] = useState(10);
@@ -197,15 +196,6 @@ const AdminDashboard = () => {
     } catch (error) {
       console.error("Error al editar el cupón: ", error);
     }
-  };
-
-  const handleAdminView = (value) => {
-    if (adminView === value) {
-      setAdminView(false);
-    } else {
-      setAdminView(value);
-    }
-    dispatch(getAdmin(value));
   };
 
   const handleEditAdmin = (event, adminId) => {

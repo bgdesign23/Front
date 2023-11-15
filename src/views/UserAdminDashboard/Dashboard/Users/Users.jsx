@@ -39,19 +39,25 @@ export default function Users() {
     <div className={Styles.containerAbuelo}>
       <div className={Styles.containerPadre}>
         <div className={Styles.containerHijo}>
-          <h6>Administrar usuarios</h6>
-          <div className={Styles.containerTable}>
-            <UserTableComponent
-              usuarios={usuarios}
-              visibleUsers={visibleUsers}
-              onDeleteUser={handleDeleteUser}
-            />
-          </div>
+          {usuarios.length > 0 ? (
+            <>
+              <h6>Administrar usuarios</h6>
+              <div className={Styles.containerTable}>
+                <UserTableComponent
+                  usuarios={usuarios}
+                  visibleUsers={visibleUsers}
+                  onDeleteUser={handleDeleteUser}
+                />
+              </div>
+            </>
+          ) : (
+            <h6 className={Styles.msjEmpty}>No hay usuarios regitrados</h6>
+          )}
         </div>
         <div className={Styles.containerHijo2}>
           {userEliminated.length > 0 ? (
             <>
-              <h6>Restablecer usuario eliminado</h6>
+              <h6 className={Styles.msjEmpty}>Restablecer usuario eliminado</h6>
               <div className={Styles.containerTable2}>
                 <EliminatedUsersTable
                   usersEliminated={userEliminated}
@@ -60,7 +66,7 @@ export default function Users() {
               </div>
             </>
           ) : (
-            <h6>No hay Usuarios eliminados.</h6>
+            <h6>No hay usuarios eliminados</h6>
           )}
         </div>
       </div>
