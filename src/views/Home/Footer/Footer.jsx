@@ -1,20 +1,17 @@
 import style from "../Footer/Footer.module.css";
 import logo from "../../../images/logosinfondo.png";
-import mercadopago from "../../../images/mercadopago.png";
 
 function Footer() {
   return (
     <footer className={style.Footer}>
       <div className={style.sectionFooterOne}>
-        {/* <div className={style.imagenFooter}><img src={logo} /> </div> */}
-        <div className={style.pagos}>
-          <h4 className={style.metodoPago}>Metodos de Pagos</h4>
+        {/* <div className={style.pagos}>
           <img
             src={mercadopago}
             alt="mercadopago"
             className={style.mercadopago}
           />
-        </div>
+        </div> */}
 
         <div className={style.imagenFooter}>
           <img src={logo} />{" "}
@@ -95,15 +92,6 @@ function Footer() {
               </ul>
             </div>
           </div>
-        </div>
-
-        <div className={style.contactos}>
-          <h4 className={style.contactoOne}>Contáctate con nosotros</h4>
-          <ul className={style.listaContactos}>
-            <li>+54 2477 456785</li>
-            <li>bgd.grupo12@gmail.com</li>
-            <li>instagram</li>
-          </ul>
         </div>
       </div>
       <div className={style.FooterCopyright}>

@@ -24,18 +24,23 @@ const Decoracion = () => {
             </section>
 
             <section className={styles.textSection}>
-              <h1>{serv.name}</h1>
-              <span>{serv.description}</span>
-              <p>Estilo: {serv.type}</p>
+              <div className={styles.titleDeco}>
+                <h1>{serv.name}</h1>
+              </div>
+              <div className={styles.textDeco}>
+                <span>{serv.description}</span>
+              </div>
+              <div className={styles.estiloDeco}>
+                <p>Estilo: {serv.type}</p>
+              </div>
             </section>
-            <Link to="/form/decoracion">
-              <button className={styles.boton}> Solicitar servicio </button>
-            </Link>
+            <div className={styles.buttonDeco}>
+              <Link to="/form/decoracion">
+                <button className={styles.boton}> Solicitar servicio </button>
+              </Link>
+            </div>
           </div>
         ))}
-      </section>
-      <section className={styles.forma}>
-        <FormaSvg />
       </section>
     </div>
   );

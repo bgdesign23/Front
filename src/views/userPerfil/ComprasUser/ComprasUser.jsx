@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { carts, cleanCarts, getUser } from "../../../Redux/actions";
 import Menu from "../Menu/Menu.jsx";
 import styles from "./ComprasUser.module.css";
+import tarjetas from "../../../images/tarjetas.png";
 
 function CartList() {
   const dispatch = useDispatch();
@@ -67,8 +68,11 @@ function CartList() {
             </div>
           </div>
         ) : (
-          <div className={styles.h1Compras}>
-            <h1>Aún no has realizado compras</h1>
+          <div>
+            <div className={styles.h1Compras}>
+              <h1>Aún no has realizado compras</h1>
+            </div>
+            <img src={tarjetas} className={styles.imageTarjetas} />
           </div>
         )}
       </div>

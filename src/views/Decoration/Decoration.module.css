@@ -1,22 +1,16 @@
-.forma {
-  width: 100%;
-  overflow: hidden;
-  height: 100%;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-}
 .contenedor {
   position: absolute;
-  height: 100vh;
+  max-height: 600vh;
   width: 100%;
+  background-color: #272727;
 }
 
 .contentContainer {
   margin-bottom: 20px;
-  padding-bottom: 20px;
-  height: 540vh;
+  height: 150vh;
   padding-top: 70px;
 }
+
 .containerDeco {
   display: flex;
   align-items: center;
@@ -24,9 +18,9 @@
   gap: 10px;
   max-width: 50%;
   margin: 30px auto;
-  background-color: black;
-  background: linear-gradient(to bottom right, #3b3b3b, #000000);
-  border-radius: 5px;
+  background-color: rgb(199, 199, 199);
+  border: 2px solid rgba(0, 0, 0, 0.089);
+  border-radius: 8px;
 }
 
 @media (min-width: 768px) {
@@ -46,13 +40,20 @@
   padding: 20px;
 }
 
+.imgSection {
+  width: 100%;
+  border-radius: 8px;
+
+  border: #191919;
+}
+
 .textSection {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: -100px;
-  font-family: "Barlow", sans-serif;
-  color: white;
+  font-family: Arial;
+  color: black;
   align-items: flex-start;
   text-align: left;
 }
@@ -60,36 +61,52 @@
 .containerDeco img {
   width: 300px;
   height: 300px;
-  /* display: block; */
+  border-radius: 8px;
 }
 
 .textSection h1 {
   font-family: Cinzel;
   font-size: 30px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
-  color: white;
+  color: black;
+  width: 300px;
+}
+
+.titleDeco {
+  margin-top: -55px;
+  margin-left: -20px;
+}
+
+.textDeco {
+  margin-left: -20px;
+  margin-top: 20px;
+  font-family: Arial;
+}
+
+.estiloDeco p {
+  position: relative;
+  top: 30px;
+  right: 20px;
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .boton {
-  /* margin-bottom: 4rem; */
-  margin-left: -330px;
+  margin-left: -290px;
   margin-top: 250px;
   width: 200px;
   border-radius: 8px;
-  cursor: pointer;
-  background-color: white;
-  color: #191919;
-  height: 45px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
+  color: white;
+  background-color: #191919;
+  height: 43px;
+  font-family: Arial;
   font-size: 15px;
 }
 
 .boton:hover {
-  color: white;
-  background-color: #191919;
+  background-color: white;
+  color: #191919;
   font-weight: lighter;
   transition: 0.8s;
 }
