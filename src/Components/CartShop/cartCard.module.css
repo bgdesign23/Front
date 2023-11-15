@@ -130,13 +130,12 @@ h3 {
 }
 
 .eliminar{
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* display: flex; */
+  font-weight: lighter;
   gap: 1rem;
-  /* border: 1px solid aqua; */
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .eliminar:hover {
   color: #d71e1e;
+
 }
