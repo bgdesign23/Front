@@ -113,17 +113,7 @@ const UserAdmin = () => {
             {visibleSection === "products" && <AdminProducts />}
             <div className={Styles.cuponContainer}>
               {visibleSection === "createCoupon" && <CreateCouponForm />}
-              {/* {visibleSection === "createCoupon" && (
-                <CouponTableComponent
-                  coupons={coupon}
-                  onDeleteCoupon={handleDeleteCoupon}
-                />
-              )} */}
             </div>
-
-            {/* <h6 className={Styles.tituloTodo}>Panel de Metricas </h6>
-              {visibleSection === "metricas" && <CartComponent />}
-              {visibleSection === "metricas" && <TopProducts />} */}
             {visibleSection === "metricas" && (
               <>
                 <div className={Styles.Order}>
