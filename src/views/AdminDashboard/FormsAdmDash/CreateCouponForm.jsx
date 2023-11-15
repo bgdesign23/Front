@@ -171,13 +171,11 @@ const CreateCouponForm = () => {
                 className={Styles.btn}
                 type="submit"
                 disabled={!isFormValid()}
-              ></button>
+              >
+                Crear cupón
+              </button>
             </form>
           </div>
-          {/* <CouponTableComponent
-            coupons={coupon}
-            onDeleteCoupon={handleDeleteCoupon}
-          /> */}
         </div>
 
         <div className={Styles.alineadorHijastro}>

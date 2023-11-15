@@ -81,7 +81,7 @@ const AdminDashboard = () => {
         console.error("Error deleting coupon:", error);
       });
   };
-  
+
   const handleVisibleProducts = () => {
     setVisibleProducts((prevVisible) => !prevVisible);
     if (!visibleProducts) {
