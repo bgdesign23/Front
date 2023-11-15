@@ -46,8 +46,8 @@ const TopProducts = () => {
   const carts = useSelector((state) => state.carts);
   const dispatch = useDispatch();
 
-  const [startDate, setStartDate] = useState(new Date("2023-11-06"));
-  const [endDate, setEndDate] = useState(new Date("2023-11-12"));
+  const [startDate, setStartDate] = useState(new Date("2023-11-12"));
+  const [endDate, setEndDate] = useState(new Date("2023-11-19"));
 
   useEffect(() => {
     dispatch(getCarts());

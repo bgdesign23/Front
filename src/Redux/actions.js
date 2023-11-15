@@ -52,6 +52,7 @@ import {
   CLEAN_CARTS,
   PRODUCTS_ELIMINATED,
   USERS_ELIMINATED,
+  EDIT_COUPON,
   ADD_NUMBER,
   LOW_NUMBER,
   QUIT_NUMBER,
@@ -91,8 +92,6 @@ export const getCarts = () => {
 export const editProduct = (id, updateData) => {
   return async (dispatch) => {
     try {
-      console.log("id: ", id);
-      console.log("Data: ", updateData);
       const { data } = await axios.put(`${URL}/products/${id}`, updateData);
       return dispatch({
         type: EDIT_PRODUCTS,
@@ -943,6 +942,22 @@ export const createCoupon = (couponData) => {
       dispatch({
         type: "CREATE_COUPON_SUCCESS",
         payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const editCoupon = (id, updateData) => {
+  return async (dispatch) => {
+    try {
+      console.log("id: ", id);
+      console.log("Data: ", updateData);
+      const { data } = await axios.put(`${URL}/coupon/${id}`, updateData);
+      return dispatch({
+        type: EDIT_COUPON,
+        payload: data,
       });
     } catch (error) {
       console.log(error.message);

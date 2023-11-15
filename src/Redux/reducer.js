@@ -45,6 +45,7 @@ import {
   PRODUCTS_ELIMINATED,
   USERS_ELIMINATED,
   CREATE_COUPON_SUCCESS,
+  EDIT_COUPON,
   ADD_NUMBER,
   LOW_NUMBER,
   QUIT_NUMBER,
@@ -74,6 +75,7 @@ let initialState = {
   carts_copy: [],
   productsEliminated: [],
   usersEliminated: [],
+  coupons: [],
   createdCoupon: null,
   number: Number(0),
 };
@@ -282,6 +284,11 @@ const Reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+    case EDIT_COUPON:
+      return {
+        ...state,
+        coupons: action.payload,
+      };    
     case RESTORE_USER:
       return {
         ...state,
