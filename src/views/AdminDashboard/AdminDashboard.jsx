@@ -26,7 +26,10 @@ import {
   getUser,
   usersEliminated,
   productEliminated,
-  editCoupon
+  editCoupon,
+  adminsEliminated,
+  couponEliminated,
+  restoreCoupon,
 } from "../../Redux/actions";
 import UserTableComponent from "./UserTableComponent";
 import TableComponent from "./tableComponent";
@@ -37,6 +40,8 @@ import TopProducts from "./TopProducts";
 import EliminatedUsersTable from "./Eliminados/EliminatedUsersTable";
 import EliminatedProductsTable from "./Eliminados/tableeliminated";
 import ComponentAdminTable from "./AdminTable";
+import EliminatedCouponsTable from "./Eliminados/couponEliminated";
+import AdminsEliminatedTable from "./Eliminados/adminEliminated";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -46,6 +51,8 @@ const AdminDashboard = () => {
   const coupon = useSelector((state) => state.userCoupons);
   const productsEliminated = useSelector((state) => state.productsEliminated);
   const userEliminated = useSelector((state) => state.usersEliminated);
+  const admineliminated = useSelector((state) => state.adminsEliminated);
+  const coupnseliminated = useSelector((state) => state.couponEliminated);
 
   const cart = useSelector((state) => state.carts);
   const navigate = useNavigate();
@@ -62,6 +69,8 @@ const AdminDashboard = () => {
   useEffect(() => {
     dispatch(usersEliminated());
     dispatch(productEliminated());
+    dispatch(adminsEliminated());
+    dispatch(couponEliminated());
   }, [dispatch, updated]);
 
   const handleDeleteUser = (userId) => {
@@ -143,7 +152,7 @@ const AdminDashboard = () => {
     discount: "",
     expiration: "",
     usagesAvailable: "",
-  })
+  });
 
   const handleGetCarts = () => {
     dispatch(getCarts());
@@ -174,11 +183,11 @@ const AdminDashboard = () => {
       };
       console.log("Data: ", updatedData);
       dispatch(editCoupon(id, updatedData)).then(() => {
-          dispatch(clearErrors());
-          Swal.fire("Listo", "Has modificado un cupón exitosamente");        
+        dispatch(clearErrors());
+        Swal.fire("Listo", "Has modificado un cupón exitosamente");
       });
       // Limpiar los campos después de la edición
-      setInputCoupon({        
+      setInputCoupon({
         newCode: "",
         status: "",
         discount: "",
@@ -186,7 +195,7 @@ const AdminDashboard = () => {
         usagesAvailable: "",
       });
     } catch (error) {
-      console.error("Error al editar el cupón: ", error)
+      console.error("Error al editar el cupón: ", error);
     }
   };
 
@@ -295,22 +304,30 @@ const AdminDashboard = () => {
     });
   };
 
-  const handleRestoreAdmin = (event, id) => {
-    event.preventDefault();
-    dispatch(restoreAdmin(id)).then(() => {
-      dispatch(getAdmin());
-      dispatch(getAdmin(deleted));
-    });
-    setUpdated(!updated);
-  };
-  const handleDeletedAdmin = (event, id) => {
-    event.preventDefault();
+  // const handleRestoreAdmin = (event, id) => {
+  //   event.preventDefault();
+  //   dispatch(restoreAdmin(id)).then(() => {
+  //     dispatch(getAdmin());
+  //     dispatch(getAdmin(deleted));
+  //   });
+  //   setUpdated(!updated);
+  // };
+  const handleDeletedAdmin = (id) => {
     dispatch(deleteAdmin(id)).then(() => {
-      dispatch(getAdmin());
-      dispatch(getAdmin(deleted));
+      dispatch(adminsEliminated());
+      setUpdated((prevUpdated) => !prevUpdated);
+      console.log("Admin eliminado y estado actualizado:", admineliminated);
     });
-    setUpdated(!updated);
   };
+
+  // const handleDeletedAdmin = (event, id) => {
+  //   event.preventDefault();
+  //   dispatch(deleteAdmin(id)).then(() => {
+  //     dispatch(getAdmin());
+  //     dispatch(getAdmin(deleted));
+  //   });
+  //   setUpdated(!updated);
+  // };
 
   const handleDeleteProduct = (productId) => {
     dispatch(deleteProduct(productId)).then(async () => {
@@ -347,9 +364,9 @@ const AdminDashboard = () => {
       };
       console.log("Data: ", updatedData);
       dispatch(editProduct(productId, updatedData)).then(() => {
-          dispatch(clearErrors());
-          console.log("A ver si llega hasta aquí");
-          Swal.fire("Listo", "Has modificado un producto exitosamente");        
+        dispatch(clearErrors());
+        console.log("A ver si llega hasta aquí");
+        Swal.fire("Listo", "Has modificado un producto exitosamente");
       });
       // Limpiar los campos después de la edición
       setProdRef({
@@ -383,6 +400,47 @@ const AdminDashboard = () => {
       console.error("Error al restaurar el producto:", error);
     }
   };
+
+  const handleRestoreCoupon = (couponId) => {
+    dispatch(restoreCoupon(couponId)).then(() => {
+      // Después de la restauración, actualiza la lista de cupones eliminados
+      dispatch(couponEliminated());
+      // Actualiza la lista de cupones principal
+      dispatch(getUserCoupons());
+      // Actualiza el estado para reflejar el cambio en la interfaz
+      setUpdated((prevUpdated) => !prevUpdated);
+    });
+  };
+
+  // const handleRestoreAdmin = (event, id) => {
+  //   dispatch(restoreAdmin(id)).then(() => {
+  //     // Después de la restauración, actualiza la lista de administradores eliminados
+  //     dispatch(adminsEliminated());
+  //     // Actualiza la lista de administradores principal
+  //     dispatch(getAdmin());
+  //     // Actualiza el estado para reflejar el cambio en la interfaz
+  //     setUpdated((prevUpdated) => !prevUpdated);
+  //   });
+  // };
+  // const handleRestoreAdmin = (event, adminId) => {
+  //   dispatch(restoreAdmin(adminId)).then(() => {
+  //     // Después de la restauración, actualiza la lista de administradores eliminados
+  //     dispatch(adminsEliminated());
+  //     // Actualiza la lista de administradores principal
+  //     dispatch(getAdmin());
+  //     // Actualiza el estado para reflejar el cambio en la interfaz
+  //     setUpdated((prevUpdated) => !prevUpdated);
+  //   });
+  // };
+  const handleRestoreAdmin = (adminId) => {
+    dispatch(restoreAdmin(adminId)).then(() => {
+      dispatch(adminsEliminated());
+      // Aquí deberías actualizar la lista de administradores principal si es necesario
+      // dispatch(getAdmin());
+      setUpdated((prevUpdated) => !prevUpdated);
+    });
+  };
+
   return (
     <div>
       <br />
@@ -464,7 +522,19 @@ const AdminDashboard = () => {
             />
           </div>
         )}
-
+        {coupnseliminated.length > 0 ? (
+          <div>
+            <h2>Cupones Eliminados</h2>
+            {visibleCoupons && (
+              <EliminatedCouponsTable
+                couponsEliminated={coupnseliminated}
+                handleRestoreCoupon={handleRestoreCoupon}
+              />
+            )}
+          </div>
+        ) : (
+          <p>No hay cupones eliminados.</p>
+        )}
         {visibleAdmins && (
           <ComponentAdminTable
             admins={admin}
@@ -472,6 +542,17 @@ const AdminDashboard = () => {
             onRestoreAdmin={handleRestoreAdmin}
             onEditAdmin={handleEditAdmin}
           />
+        )}
+        {admineliminated.length > 0 ? (
+          <div>
+            <h2>Administradores Eliminados</h2>
+            <AdminsEliminatedTable
+              adminsEliminated={admineliminated}
+              handleRestoreAdmin={handleRestoreAdmin}
+            />
+          </div>
+        ) : (
+          <p>No hay administradores eliminados.</p>
         )}
       </div>
       <div>

@@ -21,7 +21,7 @@ const ComponentAdminTable = ({
           { data: "phone", title: "Phone" },
           { data: "email", title: "Email" },
           { data: "password", title: "Password" },
-          { data: "role", title: "Role" },
+          { data: "role", title: "Re" },
 
           {
             data: "action",
@@ -33,17 +33,11 @@ const ComponentAdminTable = ({
               const deleteButton = document.createElement("button");
               deleteButton.innerText = "Delete";
 
-              const restoreButton = document.createElement("button");
-              restoreButton.innerText = "Restore";
-
               editButton.addEventListener("click", () =>
                 onEditAdmin(admins[row].id)
               );
               deleteButton.addEventListener("click", () =>
                 onDeleteAdmin(admins[row].id)
-              );
-              restoreButton.addEventListener("click", () =>
-                onRestoreAdmin(admins[row].id)
               );
 
               while (td.firstChild) {
@@ -52,7 +46,6 @@ const ComponentAdminTable = ({
 
               td.appendChild(editButton);
               td.appendChild(deleteButton);
-              td.appendChild(restoreButton);
             },
           },
         ],
