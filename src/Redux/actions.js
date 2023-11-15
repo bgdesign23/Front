@@ -61,6 +61,8 @@ import {
   COUPON_ELIMINATED,
   RESTORE_COUPON,
   ADMIN_ELIMINATED,
+  POST_FAV,
+  DELETE_FAV
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -1035,6 +1037,34 @@ export const restoreCoupon = (couponId) => {
     } catch (error) {
       console.error("Error al restaurar el cupón:", error.message);
       // Maneja el error según tus necesidades
+    }
+  };
+};
+export const postFav = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(`${URL}/favorite/${id}`);
+      dispatch({
+        type: POST_FAV,
+        payload: data
+      });
+    } catch (error) {
+      console.log(error.message);
+    };
+  };
+};
+
+export const deleteFav = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${URL}/favorite/delete/${id}`);
+      const { data } = await axios.get(`${URL}/favorite`);
+      return dispatch({
+        type: DELETE_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
     }
   };
 };
