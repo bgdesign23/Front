@@ -191,7 +191,7 @@ function FormProduct() {
               <input
                 type="file"
                 name="image"
-                accept="image/*"
+                accept=".jpg, .jpeg, .png"
                 onChange={handleImageChange}
               />
             </div>
