@@ -2,23 +2,25 @@ import { useEffect, useRef } from "react";
 import Handsontable from "handsontable";
 import "handsontable/dist/handsontable.full.min.css";
 
-const EliminatedProductsTable = ({
-  isVisible,
-  productsEliminated,
-  handleRestoreProduct,
-}) => {
+const EliminatedCouponsTable = ({ couponsEliminated, handleRestoreCoupon }) => {
   const hotRef = useRef(null);
 
   useEffect(() => {
+    if (hotRef.current) {
+      hotRef.current.destroy();
+    }
+
     const container = document.getElementById(
-      "eliminated-products-handsontable-container"
+      "eliminated-coupons-handsontable-container"
     );
     const hot = new Handsontable(container, {
-      data: productsEliminated,
+      data: couponsEliminated,
       columns: [
-        { data: "name", title: "Name" },
-        { data: "description", title: "Description" },
-        { data: "price", title: "Price" },
+        { data: "code", title: "Code" },
+        { data: "status", title: "Status" },
+        { data: "discount", title: "Discount" },
+        { data: "expiration", title: "Expiration" },
+        { data: "usagesAvailable", title: "Usages Available" },
         {
           data: "action",
           title: "Action",
@@ -26,7 +28,7 @@ const EliminatedProductsTable = ({
             const button = document.createElement("button");
             button.innerText = "Restore";
             button.addEventListener("click", () => {
-              handleRestoreProduct(productsEliminated[row].id);
+              handleRestoreCoupon(couponsEliminated[row].id);
             });
 
             while (td.firstChild) {
@@ -43,14 +45,9 @@ const EliminatedProductsTable = ({
     });
 
     hotRef.current = hot;
-    return () => {
-      if (hotRef.current) {
-        hotRef.current.destroy();
-      }
-    };
-  }, [isVisible, productsEliminated, handleRestoreProduct]);
+  }, [couponsEliminated, handleRestoreCoupon]);
 
-  return <div id="eliminated-products-handsontable-container"></div>;
+  return <div id="eliminated-coupons-handsontable-container"></div>;
 };
 
-export default EliminatedProductsTable;
+export default EliminatedCouponsTable;
