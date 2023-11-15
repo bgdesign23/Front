@@ -127,7 +127,7 @@ const TopProducts = () => {
       <div className={style.containerPadre}>
         <div className={style.containerAlineador}>
           <div className={style.containerHijo}>
-            <h6>Top ventas metricas</h6>
+            <h6>Top 10 productos más vendidos</h6>
             <div className={style.inputPadreBox}>
               <div className={style.inputBox}>
                 <label> Fecha de Inicio: </label>

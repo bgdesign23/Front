@@ -48,7 +48,7 @@
     border-radius: 8px;
     padding: 30px;
     width: 600px;
-    height: 450px;
+    height: 480px;
     margin-top: 30px;
     background-color: white;
     font-family: barlow;
@@ -66,7 +66,7 @@
             justify-content: center; */
             border-radius: 8px;
             width: 560px;
-            height: 450px;
+            height: 480px;
             margin-top: 30px;
             background-color: white;
             font-family: barlow;
@@ -114,7 +114,7 @@ height: 40px;
     width: 500px;
     margin-top: 1rem;
     height: 40px;
-    bottom: 5%;
+    bottom: 7%;
     border-radius: 8px;
     border: 1px solid #ccc;
     font-family: Arial;
