@@ -1,9 +1,5 @@
 import style from "../Footer/Footer.module.css";
 import logo from "../../../images/logosinfondo.png";
-import mercadopago from "../../../images/mercadopago.png";
-import Instagram from "./Instagram";
-import Whatsapp from "./Whatsapp";
-import Gmail from "./gmail";
 
 function Footer() {
   return (
