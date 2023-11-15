@@ -85,7 +85,7 @@ h3 {
   color: #211f1f;
   border: none;
   /* border: 2px solid black; */
-  height: 60px;
+  height: cover;
 }
 
 .botonesCantidad:hover {
@@ -95,11 +95,14 @@ h3 {
 
 .name_container {
   width: 200px;
+    /* border: 1px solid aqua; */
+    margin-left: 2rem;
 }
 
 .details {
   width: 100px;
   margin: 0px;
+  /* border: 1px solid aqua; */
 }
 
 .imagen_container {
@@ -113,12 +116,27 @@ h3 {
   background-color: transparent;
   color: #211f1f;
   justify-content: center;
+  /* border: 1px solid aqua; */
 }
 
 .numero p {
   padding-top: 20px;
+  /* border: 1px solid aqua; */
 }
 
 .cantidad_Container {
   display: flex;
+  /* border: 1px solid aqua; */
+}
+
+.eliminar{
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* display: flex; */
+  gap: 1rem;
+  /* border: 1px solid aqua; */
+}
+
+.eliminar:hover {
+  color: #d71e1e;
 }

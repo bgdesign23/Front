@@ -55,8 +55,9 @@ function CartCard({
             <h3>${formatthousand(totalPriceProduct)}</h3>
           </div>
 
-          <div onClick={() => deleteProduct(id)}>
+          <div className={Styles.eliminar} onClick={() => deleteProduct(id)}>
             <ButtonDelete />
+            <h6>Eliminar</h6>
           </div>
         </div>
       </div>

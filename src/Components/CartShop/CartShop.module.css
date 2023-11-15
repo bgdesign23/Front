@@ -176,11 +176,14 @@
   margin-inline: 0.5rem;
   align-items: left;
   justify-content: center;
+    background-color: #009ee3;
+    
 }
 
 input {
   width: 230px;
   border-radius: 8px;
+
 }
 
 .btncupon:hover {

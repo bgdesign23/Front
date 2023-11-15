@@ -6,9 +6,13 @@ export default function EmptyCart() {
   const navigate = useNavigate();
   return (
     <div>
-      <div className={Styles.containerBag} onClick={() => navigate("/home/product")}>
-        <h1 className={Styles.carVacio}>Tu carrito esta vacío!</h1>
-        <BsHandbagFill className={Styles.Bag}/>
+      <div
+        className={Styles.containerBag}
+        onClick={() => navigate("/home/product")}
+      >
+        <h1 className={Styles.carVacio}>Tu carrito esta vacío</h1>
+        <h1 className={Styles.carVacio}>click aqui para iniciar a comprar!</h1>
+        <BsHandbagFill className={Styles.Bag} />
       </div>
     </div>
   );
