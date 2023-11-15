@@ -719,10 +719,10 @@ export const getUserCoupons = () => {
   };
 };
 
-export const applyCoupon = (couponCode) => {
+export const applyCoupon = (couponDetails) => {
   return {
     type: APPLY_COUPON,
-    payload: couponCode,
+    payload: couponDetails,
   };
 };
 

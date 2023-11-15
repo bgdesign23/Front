@@ -8,29 +8,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { addNumber, applyCoupon, createPreference, lowNumber, quitNumber } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import EmptyCart from "../CartShop/EmptyCart.jsx";
-
-function validateCoupon(couponCode) {
-  const currentDate = new Date();
-
-  const welcomeCoupon = {
-    status: "activo",
-    expiration: "2023-12-31",
-    discount: 0.2,
-    usagesAvailable: 1,
-    code: "bgdesign",
-  };
-
-  if (
-    welcomeCoupon.code === couponCode &&
-    welcomeCoupon.status === "activo" &&
-    new Date(welcomeCoupon.expiration) >= currentDate &&
-    welcomeCoupon.usagesAvailable > 0
-  ) {
-    return welcomeCoupon.discount;
-  }
-
-  return 0;
-}
+import { getCouponDetails, isCouponValid, validateCoupon } from "../../views/userPerfil/Cupon/validateCoupon";
 
 function ShoppingCart() {
   initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e"); //esta es la key-publi para la pasarela de pago
@@ -38,12 +16,16 @@ function ShoppingCart() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [preferenceId, setPreferenceId] = useState(null);
-  const [couponCode, setCouponCode] = useState("");
-  const [discount, setDiscount] = useState(0);
   const [totalWithDiscount, setTotalWithDiscount] = useState(0);
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   ); //se accede al localStorage
+  const [couponCode, setCouponCode] = useState('');
+  const [discount, setDiscount] = useState(0);
+  const [appliedCoupons, setAppliedCoupons] = useState([]); // Estado para almacenar los cupones aplicados
+
+
+
 
   //total a pagar
   const numero = cart.reduce((accumulator, producto) => {
@@ -134,22 +116,72 @@ function ShoppingCart() {
   function formatthousand(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
+ const handleApplyCoupon = async () => {
+  // Verifica si el código del cupón está presente.
+  if (!couponCode) {
+    toast.error("Ingresa un código de cupón válido");
+    return;
+  }
 
-  const handleApplyCoupon = async () => {
-    const newDiscount = validateCoupon(couponCode);
-    setDiscount(newDiscount);
-    dispatch(applyCoupon(couponCode));
-    setCouponCode("");
+  // Verifica si el cupón ya ha sido aplicado por el usuario.
+  if (appliedCoupons.includes(couponCode)) {
+    toast.warning("Este cupón ya fue usado por el usuario");
+    return;
+  }
 
-    if (newDiscount > 0) {
-      const totalWithDiscount = numero * (1 - newDiscount);
-      setTotalWithDiscount(totalWithDiscount);
-    } else {
-      setDiscount(0);
-      setTotalWithDiscount(numero);
+  // Obtén el total actual de la compra utilizando calculateTotalPrice.
+  
+  const total = calculateTotalPrice(product);
+
+  // Realiza las validaciones utilizando la lógica de tu archivo de validaciones.
+  const isValidCoupon = validateCoupon(couponCode, total, appliedCoupons);
+
+  if (isValidCoupon) {
+    try {
+      // Llama a la acción 'applyCoupon' y espera la respuesta asincrónica.
+      const result = await dispatch(applyCoupon(couponCode));
+
+      // Verifica si la aplicación del cupón fue exitosa.
+      if (result.success) {
+        // Actualiza el estado del descuento con el valor obtenido de la respuesta.
+        setDiscount(result.discount);
+
+        // Actualiza la lista de cupones aplicados.
+        setAppliedCoupons([...appliedCoupons, couponCode]);
+
+        // Muestra un mensaje de éxito al usuario con la descripción del cupón.
+        toast.success(`Cupón ${couponCode} - ${result.description} aplicado correctamente`);
+      } else {
+        // En caso de error, muestra un mensaje de error al usuario.
+        toast.error(result.message);
+      }
+    } catch (error) {
+      // Captura cualquier error durante la ejecución de la acción.
+      console.error("Error al aplicar el cupón:", error);
+
+      // Muestra un mensaje de error al usuario.
+      toast.error("Error al aplicar el cupón");
     }
-  };
+  } else {
+    // El cupón no es válido según las reglas definidas en validateCoupon.
+    const couponDetails = getCouponDetails(couponCode);
 
+    if (!couponDetails) {
+      toast.error("Cupón no válido");
+    } else {
+      if (total < couponDetails.minPurchase) {
+        toast.error(`El importe mínimo para el cupón es de ${couponDetails.minPurchase}`);
+      }
+      // Otros mensajes personalizados según sea necesario.
+    }
+  }
+};
+  
+
+  
+  
+  
+  
   const handleButtonBuy = async () => {
     if (user && localStorage.getItem("token")) return handleBuy();
     else
