@@ -1,16 +1,22 @@
-.h1Success,
-.h2Success {
-  color: antiquewhite;
-  margin-top: 50px;
-  text-align: center;
-}
-
 .imgSuccess {
   width: 70px;
   height: 70px;
   border-radius: 0;
 }
 
+.containerSucces {
+  border: 1px solid red;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}
+
+.compraImage {
+  border: 1px solid violet;
+  position: relative;
+  width: auto;
+  height: 300px;
+}
 .btnSuccess {
   border-radius: 8px;
   cursor: pointer;
