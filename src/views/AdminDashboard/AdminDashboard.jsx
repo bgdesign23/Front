@@ -57,7 +57,6 @@ const AdminDashboard = () => {
   const cart = useSelector((state) => state.carts);
   const navigate = useNavigate();
 
-  const [adminView, setAdminView] = useState(false);
   const [cupones, setCupones] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [visibleCountProducts, setVisibleCountProducts] = useState(10);
@@ -199,15 +198,6 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleAdminView = (value) => {
-    if (adminView === value) {
-      setAdminView(false);
-    } else {
-      setAdminView(value);
-    }
-    dispatch(getAdmin(value));
-  };
-
   const handleEditAdmin = (event, adminId) => {
     event.preventDefault();
     dispatch(
@@ -308,7 +298,6 @@ const AdminDashboard = () => {
     dispatch(deleteAdmin(id)).then(() => {
       dispatch(adminsEliminated());
       setUpdated((prevUpdated) => !prevUpdated);
-      console.log("Admin eliminado y estado actualizado:", admineliminated);
     });
   };
 
@@ -392,12 +381,12 @@ const AdminDashboard = () => {
     });
   };
 
+  //!CAMBIE ESTO
   const handleRestoreAdmin = (adminId) => {
     dispatch(restoreAdmin(adminId)).then(() => {
-      dispatch(adminsEliminated());
-      // Aquí deberías actualizar la lista de administradores principal si es necesario
-      // dispatch(getAdmin());
-      setUpdated((prevUpdated) => !prevUpdated);
+      dispatch(getAdmin()).then(() => {
+        setUpdated((prevUpdated) => !prevUpdated);
+      });
     });
   };
 

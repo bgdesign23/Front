@@ -2,7 +2,7 @@ import SearchBar from "../../Components/SearchBar/SearchBar";
 import styles from "../NavBar/NavBar.module.css";
 import logo from "../../images/home9.png";
 import ButtonCarrito from "../SearchBar/ButtonCarrito/ButtonCarrito";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ButtonUserAuth from "./ButtonUser/ButtonUserAuth";
 import ButtonUser from "./ButtonUser/ButtonUser";
 import { useSelector } from "react-redux";
@@ -38,7 +38,16 @@ const NavBar = () => {
           Productos
         </button>
       </div>
-
+      <div className={styles.dos}>
+          {user && user.user.role === 1 && <button
+          onClick={() => navigate("/userAdmin")}
+          className={`${styles.btn} ${
+            location.pathname === "/userAdmin" ? styles.active : ""
+          }`}
+        >
+          Panel
+        </button>}
+      </div>
       <div className={styles.tres}>
         <img
           onClick={() => navigate("/")}
