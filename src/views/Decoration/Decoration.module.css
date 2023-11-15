@@ -95,10 +95,11 @@
 .boton {
   margin-left: -290px;
   margin-top: 250px;
-  width: 200px;
+  width: 220px;
   border-radius: 8px;
-  color: white;
-  background-color: #191919;
+  color: rgb(255, 255, 255);
+  background-color: #25d366;
+
   height: 43px;
   font-family: Arial;
   font-size: 15px;
@@ -108,5 +109,6 @@
   background-color: white;
   color: #191919;
   font-weight: lighter;
+  border: solid 2px #25d366;
   transition: 0.8s;
 }

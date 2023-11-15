@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser } from "../../../Redux/actions";
 import styles from "./FormUser.module.css";
+import InputMask from "react-input-mask";
 
 function PerfilUser() {
   const dispatch = useDispatch();
@@ -99,7 +100,13 @@ function PerfilUser() {
               </div>
               <div className={styles.labelimput}>
                 <label className={styles.contLabel}>Teléfono:</label>
-                <input
+
+                <InputMask
+                  mask="+54 999 9999 - 9999"
+                  {...("phone",
+                  {
+                    required: "Este campo es requerido",
+                  })}
                   type="text"
                   name="phone"
                   value={formUser.phone}
