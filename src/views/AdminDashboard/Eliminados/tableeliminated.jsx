@@ -1,4 +1,3 @@
-// EliminatedProductsTable.js
 import { useEffect, useRef } from "react";
 import Handsontable from "handsontable";
 import "handsontable/dist/handsontable.full.min.css";
@@ -11,7 +10,6 @@ const EliminatedProductsTable = ({
   const hotRef = useRef(null);
 
   useEffect(() => {
-    // Si es visible, crear o actualizar el hot
     const container = document.getElementById(
       "eliminated-products-handsontable-container"
     );

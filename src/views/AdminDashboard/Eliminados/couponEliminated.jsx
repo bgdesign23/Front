@@ -17,7 +17,10 @@ const EliminatedCouponsTable = ({ couponsEliminated, handleRestoreCoupon }) => {
       data: couponsEliminated,
       columns: [
         { data: "code", title: "Code" },
-        { data: "description", title: "Description" },
+        { data: "status", title: "Status" },
+        { data: "discount", title: "Discount" },
+        { data: "expiration", title: "Expiration" },
+        { data: "usagesAvailable", title: "Usages Available" },
         {
           data: "action",
           title: "Action",

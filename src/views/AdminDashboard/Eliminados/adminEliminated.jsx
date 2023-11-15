@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Handsontable from "handsontable";
 import "handsontable/dist/handsontable.full.min.css";
 
@@ -24,7 +24,6 @@ const AdminsEliminatedTable = ({ adminsEliminated, handleRestoreAdmin }) => {
               const button = document.createElement("button");
               button.innerText = "Restore";
 
-              // Utiliza una función interna para manejar el clic y pasar el ID correcto
               const handleButtonClick = () => {
                 handleRestoreAdmin(adminsEliminated[row].id);
               };
@@ -48,7 +47,6 @@ const AdminsEliminatedTable = ({ adminsEliminated, handleRestoreAdmin }) => {
     }
   }, [adminsEliminated, handleRestoreAdmin]);
 
-  // Actualiza la tabla cuando cambia adminsEliminated
   useEffect(() => {
     if (hotRef.current) {
       hotRef.current.loadData(adminsEliminated);

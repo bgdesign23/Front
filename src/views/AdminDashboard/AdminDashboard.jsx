@@ -304,14 +304,6 @@ const AdminDashboard = () => {
     });
   };
 
-  // const handleRestoreAdmin = (event, id) => {
-  //   event.preventDefault();
-  //   dispatch(restoreAdmin(id)).then(() => {
-  //     dispatch(getAdmin());
-  //     dispatch(getAdmin(deleted));
-  //   });
-  //   setUpdated(!updated);
-  // };
   const handleDeletedAdmin = (id) => {
     dispatch(deleteAdmin(id)).then(() => {
       dispatch(adminsEliminated());
@@ -319,15 +311,6 @@ const AdminDashboard = () => {
       console.log("Admin eliminado y estado actualizado:", admineliminated);
     });
   };
-
-  // const handleDeletedAdmin = (event, id) => {
-  //   event.preventDefault();
-  //   dispatch(deleteAdmin(id)).then(() => {
-  //     dispatch(getAdmin());
-  //     dispatch(getAdmin(deleted));
-  //   });
-  //   setUpdated(!updated);
-  // };
 
   const handleDeleteProduct = (productId) => {
     dispatch(deleteProduct(productId)).then(async () => {
@@ -403,35 +386,12 @@ const AdminDashboard = () => {
 
   const handleRestoreCoupon = (couponId) => {
     dispatch(restoreCoupon(couponId)).then(() => {
-      // Después de la restauración, actualiza la lista de cupones eliminados
       dispatch(couponEliminated());
-      // Actualiza la lista de cupones principal
       dispatch(getUserCoupons());
-      // Actualiza el estado para reflejar el cambio en la interfaz
       setUpdated((prevUpdated) => !prevUpdated);
     });
   };
 
-  // const handleRestoreAdmin = (event, id) => {
-  //   dispatch(restoreAdmin(id)).then(() => {
-  //     // Después de la restauración, actualiza la lista de administradores eliminados
-  //     dispatch(adminsEliminated());
-  //     // Actualiza la lista de administradores principal
-  //     dispatch(getAdmin());
-  //     // Actualiza el estado para reflejar el cambio en la interfaz
-  //     setUpdated((prevUpdated) => !prevUpdated);
-  //   });
-  // };
-  // const handleRestoreAdmin = (event, adminId) => {
-  //   dispatch(restoreAdmin(adminId)).then(() => {
-  //     // Después de la restauración, actualiza la lista de administradores eliminados
-  //     dispatch(adminsEliminated());
-  //     // Actualiza la lista de administradores principal
-  //     dispatch(getAdmin());
-  //     // Actualiza el estado para reflejar el cambio en la interfaz
-  //     setUpdated((prevUpdated) => !prevUpdated);
-  //   });
-  // };
   const handleRestoreAdmin = (adminId) => {
     dispatch(restoreAdmin(adminId)).then(() => {
       dispatch(adminsEliminated());
