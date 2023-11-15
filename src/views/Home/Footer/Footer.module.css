@@ -6,27 +6,25 @@
   justify-content: space-around;
   flex-direction: column;
   font-family: "Open Sans", sans-serif;
-  height: 300px;
+  height: 250px;
   width: 100%;
-  padding-top: 30px;
-  /* padding-inline: 30px; */
 }
-.pagos{
-  height: 100%;
-    padding-left: 2rem;
+
+.pagos {
+  height: 60px;
+  position: relative;
+  left: 400px;
+  top: 100px;
 }
-.metodoPago{
-  padding-left: 1.6rem;
-  padding-top: 6rem;
-}
-.mercadopago{
-  width: 250px;
+
+.mercadopago {
+  width: 100px;
   height: cover;
 }
 
 .sectionFooterOne {
   display: flex;
-    height: 270px;
+  height: 270px;
 }
 
 .imagenFooter {
@@ -34,14 +32,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: relative; */
 }
 
 .imagenFooter img {
-  height: 250px;
+  height: 200px;
   width: auto;
   position: absolute;
-  left: 800px;
+  left: 0px;
   bottom: 20px;
 }
 
@@ -55,9 +52,20 @@
 
 .TeamSection {
   display: flex;
-  flex-direction: column;
   gap: 10px;
+  position: relative;
+  top: 30px;
+  width: 320px;
+  right: 130px;
   text-align: left;
+}
+
+.textoTeam {
+  position: relative;
+  display: flex;
+  width: 90%;
+  right: 130px;
+  top: 20px;
 }
 
 ul {
@@ -73,43 +81,22 @@ ul {
   text-decoration: underline;
 }
 
-.contactos {
-  flex: 1;
-  text-align: left;
-  display: flex;
-  position: relative;
-  justify-content: center;
-  flex-direction: column;
-  align-items: left;
-  width: cover;
-  height: 180px;
-  padding-inline: 1rem;
-  margin-left: 1.5rem;
-}
-
-.contactoOne {
-  text-align: left;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: left;
-  right: -20px;
-  top: -25px;
-}
-
 .FooterCopyright {
-
   text-align: center;
   justify-content: center;
   align-items: center;
-  background-color: #d9d9d9;
   width: 100%;
-
-
 }
-
 
 h4 {
   text-align: left;
 }
 
+.containRedes {
+  border: 1px solid blueviolet;
+  display: flex;
+  height: 40px;
+  position: relative;
+  right: 800px;
+  padding: 10px;
+}

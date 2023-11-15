@@ -1,5 +1,3 @@
-
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,19 +6,12 @@
 
 body {
   background-color: #191919;
-  overflow: scroll;
-  /* Activa el scroll */
-  scrollbar-width: none;
-  /* Oculta la barra de desplazamiento en Firefox */
-  -ms-overflow-style: none;
-  /* Oculta la barra de desplazamiento en Internet Explorer y Microsoft Edge */
 }
 
-/* Estilo personalizado para el scroll (opcional) */
 ::-webkit-scrollbar {
   width: 0.5em;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #888;
+  background-color: #cfcfcf;
 }
