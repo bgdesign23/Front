@@ -54,11 +54,8 @@ import {
   COUPON_ELIMINATED,
   ADMIN_ELIMINATED,
   RESTORE_COUPON,
-<<<<<<< Updated upstream
   POST_FAV,
-=======
   DELETE_ADMIN,
->>>>>>> Stashed changes
 } from "./actionsTypes";
 
 let initialState = {
@@ -413,21 +410,17 @@ const Reducer = (state = initialState, action) => {
           (coupon) => coupon.id !== action.payload.id
         ),
       };
-<<<<<<< Updated upstream
     case POST_FAV:
       return {
         ...state,
         favorites: action.payload,
-      };  
-=======
+      };
     case DELETE_ADMIN:
       return {
         ...state,
         admin: action.payload,
         admin_copy: action.payload,
       };
-
->>>>>>> Stashed changes
     default:
       return { ...state };
   }
