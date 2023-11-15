@@ -26,7 +26,7 @@ import {
   getUser,
   usersEliminated,
   productEliminated,
-  editCoupon
+  editCoupon,
 } from "../../Redux/actions";
 import UserTableComponent from "./UserTableComponent";
 import TableComponent from "./tableComponent";
@@ -143,7 +143,7 @@ const AdminDashboard = () => {
     discount: "",
     expiration: "",
     usagesAvailable: "",
-  })
+  });
 
   const handleGetCarts = () => {
     dispatch(getCarts());
@@ -174,11 +174,11 @@ const AdminDashboard = () => {
       };
       console.log("Data: ", updatedData);
       dispatch(editCoupon(id, updatedData)).then(() => {
-          dispatch(clearErrors());
-          Swal.fire("Listo", "Has modificado un cupón exitosamente");        
+        dispatch(clearErrors());
+        Swal.fire("Listo", "Has modificado un cupón exitosamente");
       });
       // Limpiar los campos después de la edición
-      setInputCoupon({        
+      setInputCoupon({
         newCode: "",
         status: "",
         discount: "",
@@ -186,7 +186,7 @@ const AdminDashboard = () => {
         usagesAvailable: "",
       });
     } catch (error) {
-      console.error("Error al editar el cupón: ", error)
+      console.error("Error al editar el cupón: ", error);
     }
   };
 
@@ -347,9 +347,9 @@ const AdminDashboard = () => {
       };
       console.log("Data: ", updatedData);
       dispatch(editProduct(productId, updatedData)).then(() => {
-          dispatch(clearErrors());
-          console.log("A ver si llega hasta aquí");
-          Swal.fire("Listo", "Has modificado un producto exitosamente");        
+        dispatch(clearErrors());
+        console.log("A ver si llega hasta aquí");
+        Swal.fire("Listo", "Has modificado un producto exitosamente");
       });
       // Limpiar los campos después de la edición
       setProdRef({
