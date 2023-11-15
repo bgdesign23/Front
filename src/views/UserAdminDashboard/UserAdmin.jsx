@@ -76,12 +76,7 @@ const UserAdmin = () => {
           >
             Administradores
           </button>
-          <button
-            onClick={() => handleVisibleSection("newAdmin")}
-            className={Styles.Btn}
-          >
-            Crear nuevo Admin
-          </button>
+
           <button
             onClick={() => handleVisibleSection("users")}
             className={Styles.Btn}

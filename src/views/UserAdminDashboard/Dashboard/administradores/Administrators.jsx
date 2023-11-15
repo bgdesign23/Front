@@ -12,6 +12,7 @@ import {
   restoreAdmin,
   adminsEliminated,
   clearErrors,
+  getAdmin,
 } from "../../../../Redux/actions";
 
 export default function Administrators() {
@@ -73,11 +74,12 @@ export default function Administrators() {
 
   const handleRestoreAdmin = (adminId) => {
     dispatch(restoreAdmin(adminId)).then(() => {
-      dispatch(adminsEliminated());
-      // dispatch(getAdmin());
-      setUpdated(!updated);
+      dispatch(getAdmin()).then(() => {
+        setUpdated(!updated);
+      });
     });
   };
+
   useEffect(() => {
     dispatch(adminsEliminated());
   }, [dispatch, updated]);
