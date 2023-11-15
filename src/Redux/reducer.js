@@ -55,6 +55,7 @@ import {
   ADMIN_ELIMINATED,
   RESTORE_COUPON,
   POST_FAV,
+  DELETE_ADMIN,
 } from "./actionsTypes";
 
 let initialState = {
@@ -413,7 +414,13 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         favorites: action.payload,
-      };  
+      };
+    case DELETE_ADMIN:
+      return {
+        ...state,
+        admin: action.payload,
+        admin_copy: action.payload,
+      };
     default:
       return { ...state };
   }

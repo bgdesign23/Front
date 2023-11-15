@@ -24,16 +24,12 @@ const CouponTableComponent = ({ coupons, onDeleteCoupon, onEditCoupon }) => {
               const deleteButton = document.createElement("button");
               deleteButton.innerText = "Delete";
 
-              const editButton = document.createElement("button")
-              editButton.innerText = "Edit"
+              const editButton = document.createElement("button");
+              editButton.innerText = "Edit";
 
               editButton.addEventListener("click", (event) => {
-                onEditCoupon(
-                  event,                   
-                  coupons[row].id,
-                  coupons[row]
-                )
-              })
+                onEditCoupon(event, coupons[row].id, coupons[row]);
+              });
 
               deleteButton.addEventListener("click", (event) => {
                 event.preventDefault();
@@ -45,7 +41,7 @@ const CouponTableComponent = ({ coupons, onDeleteCoupon, onEditCoupon }) => {
               }
 
               td.appendChild(deleteButton);
-              td.appendChild(editButton)
+              td.appendChild(editButton);
             },
           },
         ],

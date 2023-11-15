@@ -248,12 +248,14 @@ export const editAdmin = (id) => {
 };
 
 export const deleteAdmin = (id) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
-      const { data } = await axios.delete(`${URL}/admin/delete/${id}`);
-      return dispatch({
+      await axios.delete(`${URL}/admin/delete/${id}`);
+      const state = getState();
+      const updatedAdmins = state.admin.filter((admin) => admin.id !== id);
+      dispatch({
         type: DELETE_ADMIN,
-        payload: data,
+        payload: updatedAdmins,
       });
     } catch (error) {
       console.log(error.message);

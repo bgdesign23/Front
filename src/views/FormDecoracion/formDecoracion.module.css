@@ -1,18 +1,18 @@
 .containerFor {
   margin: 0px auto;
-  padding-top: 170px;
+  padding-top: 125px;
 }
 
 .formContainer {
-  padding: 100px;
-  width: 600px;
+  padding: 30px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  border: 5px solid rgba(63, 63, 63, 0.482);
-  border-radius: 5px;
-  background-color: rgba(217, 217, 217, 0.482);
+  background-color: rgba(217, 217, 217, 0.482); /*color del contenedor*/
+  border: 2px solid rgba(250, 22, 22, 0.089);
+  border-radius: 8px; /*8px*/
 }
 
 .contain {
@@ -37,19 +37,23 @@
   padding: 10px;
   margin: 5px 0;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  background-color: rgba(217, 217, 217, 0.482);
+  border-radius: 8px;
   margin-left: 30px;
 }
 
 .numberTel {
   position: relative;
-  margin-left: 11px;
-  width: 270px;
+  margin-left: 1px;
+  width: 200px;
 }
-
+.Mensaje textarea {
+  position: relative;
+  width: 324567px;
+}
 .localidad {
   position: relative;
-  margin-left: -40px;
+  margin-left: 0px;
 }
 
 .column button {

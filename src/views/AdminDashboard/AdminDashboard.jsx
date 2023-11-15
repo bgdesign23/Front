@@ -308,7 +308,6 @@ const AdminDashboard = () => {
     dispatch(deleteAdmin(id)).then(() => {
       dispatch(adminsEliminated());
       setUpdated((prevUpdated) => !prevUpdated);
-      console.log("Admin eliminado y estado actualizado:", admineliminated);
     });
   };
 
@@ -392,12 +391,12 @@ const AdminDashboard = () => {
     });
   };
 
+  //!CAMBIE ESTO
   const handleRestoreAdmin = (adminId) => {
     dispatch(restoreAdmin(adminId)).then(() => {
-      dispatch(adminsEliminated());
-      // Aquí deberías actualizar la lista de administradores principal si es necesario
-      // dispatch(getAdmin());
-      setUpdated((prevUpdated) => !prevUpdated);
+      dispatch(getAdmin()).then(() => {
+        setUpdated((prevUpdated) => !prevUpdated);
+      });
     });
   };
 
