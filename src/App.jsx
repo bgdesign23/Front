@@ -61,17 +61,14 @@ function App() {
               path="/home/product"
               element={<Product productos={productos} />}
             />
-            <Route path="/home/nuevo" element={<FormProduct />} />
             <Route path="/form/login" element={<LoginForm />} />
             <Route path="/form/register" element={<FormRegistro />} />
             <Route path="/form/perfil" element={<UserPerfil />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/cupones" element={<CouponUser />} />
             <Route path="/perfil/compras" element={<ComprasUser />} />
-            <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/cartShop" element={<CartShop />} />
             <Route path="/home/success" element={<Success />} />
-            <Route path="/userAdmin" element={<UserAdmin />} />
             <Route
               path={"/form/login/request-password-reset"}
               element={<RequestPasswordReset />}
@@ -80,8 +77,11 @@ function App() {
               path={"/form/login/password-reset"}
               element={<PasswordReset />}
             />
-            <Route path="/crear-cupon" element={<CreateCouponForm />} />
-            <Route path="/crear/admin" element={<CreateAdmin />} />
+            {user && user.user.role === 1 && <Route path="/admin" element={<AdminDashboard />} />}
+            {user && user.user.role === 1 && <Route path="/userAdmin" element={<UserAdmin />} />}
+            {user && user.user.role === 1 && <Route path="/home/nuevo" element={<FormProduct />} />}
+            {user && user.user.role === 1 && <Route path="/crear-cupon" element={<CreateCouponForm />} />}
+            {user && user.user.role === 1 && <Route path="/crear/admin" element={<CreateAdmin />} />}
             <Route path="*" element={<NotFound404 />} />
           </Routes>
         </div>
