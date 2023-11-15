@@ -1040,19 +1040,24 @@ export const restoreCoupon = (couponId) => {
     }
   };
 };
-export const postFav = (id) => {
+
+
+export const postFav = (id, productId ) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL}/favorite/${id}`);
+      console.log('Enviando solicitud para agregar a favoritos');
+      const { data } = await axios.post(`${URL}/favorite/${id}`, {productId});
       dispatch({
         type: POST_FAV,
-        payload: data
+        payload: data,
       });
     } catch (error) {
       console.log(error.message);
-    };
+    }
   };
 };
+
+
 
 export const deleteFav = (id) => {
   return async (dispatch) => {

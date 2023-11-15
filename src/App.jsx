@@ -28,6 +28,8 @@ import UserAdmin from "../src/views/UserAdminDashboard/UserAdmin.jsx";
 import CreateCouponForm from "./views/AdminDashboard/FormsAdmDash/CreateCouponForm.jsx";
 import NotFound404 from "./views/NotFound404/NotFound404.jsx";
 import CreateAdmin from "./views/AdminDashboard/FormsAdmDash/CreateAdmin.jsx";
+import Favorites from "../../Front/src/views/userPerfil/Favorites/Favorites.jsx"
+
 
 function App() {
   const dispatch = useDispatch();
@@ -68,6 +70,8 @@ function App() {
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/cupones" element={<CouponUser />} />
             <Route path="/perfil/compras" element={<ComprasUser />} />
+            <Route path="/favorites" element={<Favorites />} />
+
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/cartShop" element={<CartShop />} />
             <Route path="/home/success" element={<Success />} />
