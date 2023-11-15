@@ -54,6 +54,7 @@ import {
   COUPON_ELIMINATED,
   ADMIN_ELIMINATED,
   RESTORE_COUPON,
+  POST_FAV,
 } from "./actionsTypes";
 
 let initialState = {
@@ -83,6 +84,7 @@ let initialState = {
   number: Number(0),
   adminsEliminated: [],
   couponEliminated: [],
+  favorites: [],
 };
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -407,6 +409,11 @@ const Reducer = (state = initialState, action) => {
           (coupon) => coupon.id !== action.payload.id
         ),
       };
+    case POST_FAV:
+      return {
+        ...state,
+        favorites: action.payload,
+      };  
     default:
       return { ...state };
   }

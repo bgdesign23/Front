@@ -58,6 +58,8 @@ export const LOW_NUMBER = "LOW_NUMBER";
 export const QUIT_NUMBER = "QUIT_NUMBER";
 export const RESET_NUMBER = "RESET_NUMBER";
 export const SET_NUMBER = "SET_NUMBER";
+export const POST_FAV = "POST_FAV";
+export const DELETE_FAV = "DELETE_FAV";
 
 export const ADMIN_ELIMINATED = "ADMIN_ELIMINATED";
 export const COUPON_ELIMINATED = "COUPON_ELIMINATED";

@@ -1,18 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import stylesNotFound from "./NotFound404.module.css";
+import styles from "./NotFound404.module.css";
+import error from "../../images/error.png";
 
 const NotFound = () => {
   const navigate = useNavigate();
   return (
-    <div className={stylesNotFound.divNotFound}>
-      <h1 className={stylesNotFound.h1NotFound}>404</h1>
-      <h2 className={stylesNotFound.h2NotFound}>Not Found</h2>
-      <button
-        className={stylesNotFound.btnNotFound}
-        onClick={() => navigate("/")}
-      >
-        Back
-      </button>
+    <div className={styles.general}>
+      <div className={styles.divNotFound}>
+        <div>
+          <img src={error} className={styles.imageError} />
+        </div>
+        <button className={styles.notFound} onClick={() => navigate("/")}>
+          Back
+        </button>
+      </div>
     </div>
   );
 };

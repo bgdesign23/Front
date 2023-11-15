@@ -59,13 +59,15 @@ export default function FormRegistro() {
 
   return (
     <div className={styles.pageContainer}>
-      {/* <div className={styles.loginBackground}> */}
       <div>
         <div className={styles.loginContainer}>
           <p className={styles.titulo}>
             Completa los datos para crear tu cuenta
           </p>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className={styles.containerForm}
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className={styles.login}>
               <section className={styles.formimput}>
                 <div className={styles.columna}>
