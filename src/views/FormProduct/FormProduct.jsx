@@ -95,11 +95,10 @@ function FormProduct() {
 
   return (
     <div className={styles.containerFor}>
-      <div className={styles.tituloPadre}>
-        <h6>Crear nuevo producto</h6>
-      </div>
-
       <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.tituloPadre}>
+          <h6>Crear nuevo producto</h6>
+        </div>
         <div className={styles.sectionLeft}>
           <div className={styles.inputContainer}>
             <h6 className={styles.titulosForm}>Nombre del producto</h6>
@@ -205,7 +204,9 @@ function FormProduct() {
               value={formProduct.category}
               onChange={handleChange}
             >
-              <option value="" disabled>Seleccione una categoría</option>
+              <option value="" disabled>
+                Seleccione una categoría
+              </option>
               {categories
                 .sort((a, b) => a.name > b.name)
                 .map((cat) => (
@@ -214,7 +215,8 @@ function FormProduct() {
                   </option>
                 ))}
               {errors.category && (
-                <div className={styles.error}>{errors.category}</div>)}
+                <div className={styles.error}>{errors.category}</div>
+              )}
               <div />
               <option onClick={handleModificar}>Crear nueva categoría</option>
             </select>
@@ -231,7 +233,8 @@ function FormProduct() {
             />
           </div>
           {errors.newCategory && (
-                <div className={styles.error}>{errors.newCategory}</div>)}
+            <div className={styles.error}>{errors.newCategory}</div>
+          )}
           <div className={styles.inputContainer}>
             <h6 className={styles.titulosForm}>Cantidad</h6>
             <input

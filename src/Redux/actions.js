@@ -29,7 +29,7 @@ import {
   FILTER_BY_MATERIAL,
   GET_DESING,
   SET_USER,
-  CREATE_COUPON,
+  // CREATE_COUPON,
   GET_USER_COUPONS,
   APPLY_COUPON,
   COUPONS_ERROR,
@@ -58,6 +58,9 @@ import {
   QUIT_NUMBER,
   RESET_NUMBER,
   SET_NUMBER,
+  COUPON_ELIMINATED,
+  RESTORE_COUPON,
+  ADMIN_ELIMINATED,
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -217,7 +220,7 @@ export const createAdmin = (admin) => {
 export const restoreAdmin = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL}/admin/restore/${id}`);
+      const { data } = await axios.put(`${URL}/admin/restore/${id}`);
       return dispatch({
         type: RESTORE_ADMIN,
         payload: data,
@@ -458,8 +461,8 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
       localStorage.setItem("cart", response.data.user.cart.products[0]);
       const chargeNumber = await calculateTotal(
         response.data.user.cart.products
-        )
-      dispatch(setNumber(chargeNumber))
+      );
+      dispatch(setNumber(chargeNumber));
     }
     dispatch({
       type: LOGIN_SUCCESS,
@@ -658,10 +661,8 @@ export const googleUser = (payload) => {
       });
       if (payload.user.cart?.products) {
         localStorage.setItem("cart", payload.user.cart.products[0]);
-        const chargeNumber = await calculateTotal(
-          payload.user.cart.products
-          )
-        dispatch(setNumber(chargeNumber))
+        const chargeNumber = await calculateTotal(payload.user.cart.products);
+        dispatch(setNumber(chargeNumber));
       }
       localStorage.setItem("token", payload.token);
       await Swal.fire({
@@ -994,5 +995,46 @@ export const setNumber = (number) => {
   return {
     type: SET_NUMBER,
     payload: number,
+  };
+};
+export const adminsEliminated = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/admin/res/eliminated`);
+      return dispatch({
+        type: ADMIN_ELIMINATED,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const couponEliminated = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/coupon/eliminated`);
+      return dispatch({
+        type: COUPON_ELIMINATED,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+export const restoreCoupon = (couponId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`${URL}/coupon/restore/${couponId}`);
+      dispatch({
+        type: RESTORE_COUPON,
+        payload: data, // Ajusta esto según la respuesta de tu servidor
+      });
+    } catch (error) {
+      console.error("Error al restaurar el cupón:", error.message);
+      // Maneja el error según tus necesidades
+    }
   };
 };
