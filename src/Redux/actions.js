@@ -62,7 +62,8 @@ import {
   RESTORE_COUPON,
   ADMIN_ELIMINATED,
   POST_FAV,
-  DELETE_FAV
+  DELETE_FAV,
+  GET_FAV
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -1042,10 +1043,11 @@ export const restoreCoupon = (couponId) => {
     }
   };
 };
-export const postFav = (id) => {
+export const postFav = (productData) => {
+
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL}/favorite/${id}`);
+      const { data } = await axios.post(`${URL}/favorite/${productData.id}`, productData);
       dispatch({
         type: POST_FAV,
         payload: data
@@ -1063,6 +1065,20 @@ export const deleteFav = (id) => {
       const { data } = await axios.get(`${URL}/favorite`);
       return dispatch({
         type: DELETE_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const getFav = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/favorite`);
+      return dispatch({
+        type: GET_FAV,
         payload: data,
       });
     } catch (error) {

@@ -47,7 +47,7 @@ const CartComponent = () => {
   const dispatch = useDispatch();
 
   const [startDate, setStartDate] = useState(new Date("2023-11-12"));
-  const [endDate, setEndDate] = useState(new Date("2023-11-10"));
+  const [endDate, setEndDate] = useState(new Date("2023-11-19"));
 
   useEffect(() => {
     dispatch(getCarts());

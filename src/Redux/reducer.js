@@ -56,6 +56,8 @@ import {
   RESTORE_COUPON,
   POST_FAV,
   DELETE_ADMIN,
+  GET_FAV,
+  DELETE_FAV
 } from "./actionsTypes";
 
 let initialState = {
@@ -420,7 +422,17 @@ const Reducer = (state = initialState, action) => {
         ...state,
         admin: action.payload,
         admin_copy: action.payload,
-      };
+      };      
+    case GET_FAV:
+      return{
+        ...state,
+        favorites: action.payload,
+      }
+      case DELETE_FAV:
+        return{
+          ...state,
+          favorites: action.payload
+        }
     default:
       return { ...state };
   }
