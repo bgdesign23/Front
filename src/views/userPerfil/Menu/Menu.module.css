@@ -30,6 +30,7 @@
   justify-content: left;
   align-items: center;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .botonera button {
@@ -37,6 +38,10 @@
   border: none;
   background: none;
   color: rgb(255, 255, 255);
+}
+
+.botonera button.active {
+  color: #007bff;
 }
 
 .logout {
