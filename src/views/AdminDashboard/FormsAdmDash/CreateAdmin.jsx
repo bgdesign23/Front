@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { createAdmin, clearErrors } from "../../../Redux/actions";
 import Swal from "sweetalert2";
 import styles from "../FormsAdmDash/createAdminForm.module.css";
+import InputMask from "react-input-mask";
 
 const CreateAdmin = () => {
   const dispatch = useDispatch();
@@ -79,9 +80,9 @@ const CreateAdmin = () => {
             <div className={styles.boxinputs}>
               <label>
                 Phone:
-                <input
-                  type="text"
-                  placeholder="Eje: +54 5555- 555"
+                <InputMask
+                  mask="+54 999 9999 - 9999" // Establece la máscara
+                  placeholder="Eje: +54 011 5555- 555"
                   value={inputAdmin.phone}
                   onChange={(e) =>
                     setInputAdmin({ ...inputAdmin, phone: e.target.value })
