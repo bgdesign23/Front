@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: white;
+  /* background-color: white; */
 }
 .loginContainer {
   display: flex;
@@ -91,7 +91,7 @@
 }
 
 .login button:hover {
-  background-color: transparent;
+  background-color: #ffffff;
   color: black;
   font-weight: bold;
 }
@@ -114,8 +114,8 @@
 }
 
 .buttonGoogle:hover {
-  background-color: rgb(56, 56, 56);
-  color: white;
+  background-color: #ffffff;
+  color: black;
   font-weight: bold;
 }
 

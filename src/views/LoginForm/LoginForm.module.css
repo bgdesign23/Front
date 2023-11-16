@@ -3,7 +3,7 @@
   justify-content: left;
   align-items: center;
   height: 100vh;
-  background-color: white;
+  /* background-color: white; */
 }
 
 h4 {
@@ -113,7 +113,7 @@ h4 {
 }
 
 .login button:hover {
-  background-color: transparent;
+  background-color: #ffffff;
   color: black;
   font-weight: bold;
 }
