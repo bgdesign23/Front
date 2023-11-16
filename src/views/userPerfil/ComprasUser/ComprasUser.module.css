@@ -4,7 +4,7 @@
   align-items: center;
   width: 100%;
   height: 97vh;
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
 }
 
 .boxLeft {
@@ -68,13 +68,6 @@
   min-height: 120px;
 }
 
-.h1Compras {
-  color: black;
-  font-family: Cinzel;
-  display: flex;
-  justify-content: center;
-}
-
 .imgCompras {
   width: 110px;
   height: 110px;
@@ -98,7 +91,7 @@
   width: 33%;
   position: absolute;
   right: 1.5%;
-  margin-top: -130px;
+  /* margin-top: -130px; */
   font-family: Arial;
   text-align: left;
   font-size: 13px;
@@ -132,4 +125,21 @@
   position: relative;
   right: -66.5%;
   margin-top: -37px;
+}
+
+.imageTarjetas {
+  width: auto;
+  height: 400px;
+  position: relative;
+}
+
+.h1Compras {
+  color: black;
+  font-family: Cinzel;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 10%;
 }

@@ -45,6 +45,19 @@ import {
   PRODUCTS_ELIMINATED,
   USERS_ELIMINATED,
   CREATE_COUPON_SUCCESS,
+  EDIT_COUPON,
+  ADD_NUMBER,
+  LOW_NUMBER,
+  QUIT_NUMBER,
+  RESET_NUMBER,
+  SET_NUMBER,
+  COUPON_ELIMINATED,
+  ADMIN_ELIMINATED,
+  RESTORE_COUPON,
+  POST_FAV,
+  DELETE_ADMIN,
+  GET_FAV,
+  DELETE_FAV
 } from "./actionsTypes";
 
 let initialState = {
@@ -69,7 +82,12 @@ let initialState = {
   carts_copy: [],
   productsEliminated: [],
   usersEliminated: [],
+  coupons: [],
   createdCoupon: null,
+  number: Number(0),
+  adminsEliminated: [],
+  couponEliminated: [],
+  favorites: [],
 };
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -276,6 +294,11 @@ const Reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+    case EDIT_COUPON:
+      return {
+        ...state,
+        coupons: action.payload,
+      };
     case RESTORE_USER:
       return {
         ...state,
@@ -342,6 +365,74 @@ const Reducer = (state = initialState, action) => {
         error: null,
       };
 
+    case ADD_NUMBER:
+      return {
+        ...state,
+        number: state.number + 1,
+      };
+
+    case LOW_NUMBER:
+      return {
+        ...state,
+        number: state.number - 1,
+      };
+
+    case QUIT_NUMBER:
+      return {
+        ...state,
+        number: state.number - action.payload,
+      };
+
+    case RESET_NUMBER:
+      return {
+        ...state,
+        number: Number(0),
+      };
+
+    case SET_NUMBER:
+      return {
+        ...state,
+        number: action.payload,
+      };
+    case ADMIN_ELIMINATED:
+      return {
+        ...state,
+        adminsEliminated: action.payload,
+      };
+    case COUPON_ELIMINATED:
+      return {
+        ...state,
+        couponEliminated: action.payload,
+      };
+    case RESTORE_COUPON:
+      return {
+        ...state,
+        userCoupons: [...state.userCoupons, action.payload],
+        couponEliminated: state.couponEliminated.filter(
+          (coupon) => coupon.id !== action.payload.id
+        ),
+      };
+    case POST_FAV:
+      return {
+        ...state,
+        favorites: action.payload,
+      };
+    case DELETE_ADMIN:
+      return {
+        ...state,
+        admin: action.payload,
+        admin_copy: action.payload,
+      };      
+    case GET_FAV:
+      return{
+        ...state,
+        favorites: action.payload,
+      }
+      case DELETE_FAV:
+        return{
+          ...state,
+          favorites: action.payload
+        }
     default:
       return { ...state };
   }

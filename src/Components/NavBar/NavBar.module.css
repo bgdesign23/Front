@@ -25,12 +25,16 @@
 
 .dos {
   display: flex;
-  gap: 1rem;
+  margin-left: -5vw;
 }
 
 .dos button {
   font-family: Arial;
-  font-size: 15px;
+  font-size: 17px;
+}
+
+.dos button.active {
+  color: #007bff;
 }
 
 .tres {

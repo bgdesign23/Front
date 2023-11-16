@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getDesings } from "../../Redux/actions";
-import FormaSvg from "./FormaSvg/FormaSvg";
+// import FormaSvg from "./FormaSvg/FormaSvg";
 import styles from "../Decoration/Decoration.module.css";
+import logoWhatsapp from "../Detail/whatsapp (1).png";
 
 const Decoracion = () => {
   const dispatch = useDispatch();
@@ -24,18 +24,46 @@ const Decoracion = () => {
             </section>
 
             <section className={styles.textSection}>
-              <h1>{serv.name}</h1>
-              <span>{serv.description}</span>
-              <p>Estilo: {serv.type}</p>
+              <div className={styles.titleDeco}>
+                <h1>{serv.name}</h1>
+              </div>
+              <div className={styles.textDeco}>
+                <span>{serv.description}</span>
+              </div>
+              <div className={styles.estiloDeco}>
+                <p>Estilo: {serv.type}</p>
+              </div>
             </section>
-            <Link to="/form/decoracion">
-              <button className={styles.boton}> Solicitar servicio </button>
-            </Link>
+            <div className={styles.buttonDeco}>
+              <button className={styles.boton}>
+                <a
+                  href="https://wa.me/5492477399289/?text=¡Hola!%20Quisiera%20más%20información%20sobre%20los%20servicios%20de%20decoración.%20✨"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.whatsappLink}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    textDecoration: "none",
+                    color: "inherit",
+                    marginLeft: "7px",
+                  }}
+                >
+                  Contactar por WhatsApp
+                  <img
+                    src={logoWhatsapp}
+                    alt=""
+                    style={{
+                      width: "26px",
+                      height: "26px",
+                      marginLeft: "10px",
+                    }}
+                  />
+                </a>
+              </button>
+            </div>
           </div>
         ))}
-      </section>
-      <section className={styles.forma}>
-        <FormaSvg />
       </section>
     </div>
   );

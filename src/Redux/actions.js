@@ -29,7 +29,7 @@ import {
   FILTER_BY_MATERIAL,
   GET_DESING,
   SET_USER,
-  CREATE_COUPON,
+  // CREATE_COUPON,
   GET_USER_COUPONS,
   APPLY_COUPON,
   COUPONS_ERROR,
@@ -52,6 +52,18 @@ import {
   CLEAN_CARTS,
   PRODUCTS_ELIMINATED,
   USERS_ELIMINATED,
+  EDIT_COUPON,
+  ADD_NUMBER,
+  LOW_NUMBER,
+  QUIT_NUMBER,
+  RESET_NUMBER,
+  SET_NUMBER,
+  COUPON_ELIMINATED,
+  RESTORE_COUPON,
+  ADMIN_ELIMINATED,
+  POST_FAV,
+  DELETE_FAV,
+  GET_FAV
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -86,8 +98,6 @@ export const getCarts = () => {
 export const editProduct = (id, updateData) => {
   return async (dispatch) => {
     try {
-      console.log("id: ", id);
-      console.log("Data: ", updateData);
       const { data } = await axios.put(`${URL}/products/${id}`, updateData);
       return dispatch({
         type: EDIT_PRODUCTS,
@@ -213,7 +223,7 @@ export const createAdmin = (admin) => {
 export const restoreAdmin = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL}/admin/restore/${id}`);
+      const { data } = await axios.put(`${URL}/admin/restore/${id}`);
       return dispatch({
         type: RESTORE_ADMIN,
         payload: data,
@@ -239,12 +249,14 @@ export const editAdmin = (id) => {
 };
 
 export const deleteAdmin = (id) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
-      const { data } = await axios.delete(`${URL}/admin/delete/${id}`);
-      return dispatch({
+      await axios.delete(`${URL}/admin/delete/${id}`);
+      const state = getState();
+      const updatedAdmins = state.admin.filter((admin) => admin.id !== id);
+      dispatch({
         type: DELETE_ADMIN,
-        payload: data,
+        payload: updatedAdmins,
       });
     } catch (error) {
       console.log(error.message);
@@ -414,6 +426,7 @@ export const registerUser = (userData, navigate) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: response.data,
     });
+    dispatch(resetNumber());
     navigate("/form/perfil");
   } catch (error) {
     await Swal.fire({
@@ -436,12 +449,25 @@ export const filterRestart = () => (dispatch) => {
 
 export const loginUser = (credentials, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
-
+  function calculateTotal(products) {
+    let total = 0;
+    products.forEach((productString) => {
+      const productArray = JSON.parse(productString);
+      productArray.forEach((product) => {
+        total += product.amount;
+      });
+    });
+    return total;
+  }
   try {
     const response = await axios.post(`${URL}/users/login`, credentials);
     localStorage.setItem("token", response.data.token);
     if (response.data.user.cart.products) {
       localStorage.setItem("cart", response.data.user.cart.products[0]);
+      const chargeNumber = await calculateTotal(
+        response.data.user.cart.products
+      );
+      dispatch(setNumber(chargeNumber));
     }
     dispatch({
       type: LOGIN_SUCCESS,
@@ -546,6 +572,7 @@ export const logoutUser = (navigate) => (dispatch) => {
       localStorage.removeItem("cart");
       navigate("/form/login");
       dispatch({ type: LOGOUT });
+      dispatch(resetNumber());
     }
   });
 };
@@ -622,6 +649,16 @@ export const postProduct = (formData, navigate) => {
 
 export const googleUser = (payload) => {
   return async function (dispatch) {
+    function calculateTotal(products) {
+      let total = 0;
+      products.forEach((productString) => {
+        const productArray = JSON.parse(productString);
+        productArray.forEach((product) => {
+          total += product.amount;
+        });
+      });
+      return total;
+    }
     try {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -629,6 +666,8 @@ export const googleUser = (payload) => {
       });
       if (payload.user.cart?.products) {
         localStorage.setItem("cart", payload.user.cart.products[0]);
+        const chargeNumber = await calculateTotal(payload.user.cart.products);
+        dispatch(setNumber(chargeNumber));
       }
       localStorage.setItem("token", payload.token);
       await Swal.fire({
@@ -915,9 +954,135 @@ export const createCoupon = (couponData) => {
     }
   };
 };
-// export const createCoupon = (coupon) => {
-//   return {
-//     type: CREATE_COUPON,
-//     payload: coupon,
-//   };
-// };
+
+export const editCoupon = (id, updateData) => {
+  return async (dispatch) => {
+    try {
+      console.log("id: ", id);
+      console.log("Data: ", updateData);
+      const { data } = await axios.put(`${URL}/coupon/${id}`, updateData);
+      return dispatch({
+        type: EDIT_COUPON,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const addNumber = () => {
+  return {
+    type: ADD_NUMBER,
+  };
+};
+
+export const lowNumber = () => {
+  return {
+    type: LOW_NUMBER,
+  };
+};
+
+export const quitNumber = (number) => {
+  return {
+    type: QUIT_NUMBER,
+    payload: number,
+  };
+};
+
+export const resetNumber = () => {
+  return {
+    type: RESET_NUMBER,
+  };
+};
+
+export const setNumber = (number) => {
+  return {
+    type: SET_NUMBER,
+    payload: number,
+  };
+};
+export const adminsEliminated = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/admin/res/eliminated`);
+      return dispatch({
+        type: ADMIN_ELIMINATED,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const couponEliminated = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/coupon/eliminated`);
+      return dispatch({
+        type: COUPON_ELIMINATED,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+export const restoreCoupon = (couponId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`${URL}/coupon/restore/${couponId}`);
+      dispatch({
+        type: RESTORE_COUPON,
+        payload: data, // Ajusta esto según la respuesta de tu servidor
+      });
+    } catch (error) {
+      console.error("Error al restaurar el cupón:", error.message);
+      // Maneja el error según tus necesidades
+    }
+  };
+};
+export const postFav = (productData) => {
+
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(`${URL}/favorite/${productData.id}`, productData);
+      dispatch({
+        type: POST_FAV,
+        payload: data
+      });
+    } catch (error) {
+      console.log(error.message);
+    };
+  };
+};
+
+export const deleteFav = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${URL}/favorite/delete/${id}`);
+      const { data } = await axios.get(`${URL}/favorite`);
+      return dispatch({
+        type: DELETE_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const getFav = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/favorite`);
+      return dispatch({
+        type: GET_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};

@@ -2,10 +2,7 @@ import styles from "../SearchBar/SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {
-  getByName,
-  getByHashtag,
-} from "../../Redux/actions";
+import { getByName, getByHashtag } from "../../Redux/actions";
 import ButtonSearch from "./ButtonSearch/ButtonSearch";
 
 const SearchBar = () => {
@@ -45,14 +42,16 @@ const SearchBar = () => {
           onChange={(event) => handle_input(event)}
         />
       </form>
-      <button
-        type="submit"
-        disabled
-        className={styles.noStyleButton}
-        onClick={(event) => handle_Submit(event)}
-      >
-        <ButtonSearch />
-      </button>
+      <div className={styles.buttonSearch}>
+        <button
+          type="submit"
+          disabled={searchState.trim() === ""}
+          className={styles.noStyleButton}
+          onClick={(event) => handle_Submit(event)}
+        >
+          <ButtonSearch />
+        </button>
+      </div>
     </div>
   );
 };

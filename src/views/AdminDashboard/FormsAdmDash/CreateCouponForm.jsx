@@ -9,6 +9,7 @@ import {
 import Swal from "sweetalert2";
 import Styles from "../FormsAdmDash/cuponForm.module.css";
 import CouponTableComponent from "../CouponsTable.jsx";
+import InputMask from "react-input-mask";
 
 const CreateCouponForm = () => {
   const dispatch = useDispatch();
@@ -91,10 +92,10 @@ const CreateCouponForm = () => {
               <div className={Styles.LadoA}>
                 <div className={Styles.inputsBox}>
                   <label>
-                    Estado:
+                    Motivo/ objeto:
                     <input
                       type="text"
-                      placeholder="ejemplo: Activo"
+                      placeholder="eje: Navidad, blackFriday.."
                       value={couponNew.status}
                       onChange={(e) =>
                         setCouponNew({ ...couponNew, status: e.target.value })
@@ -105,9 +106,10 @@ const CreateCouponForm = () => {
                 <div className={Styles.inputsBox}>
                   <label>
                     Caducidad:
-                    <input
+                    <InputMask
+                      mask=" 99/999/9999"
                       type="text"
-                      placeholder="ejemplo: 2023/10/20"
+                      placeholder="eje: 01/01/2024"
                       value={couponNew.expiration}
                       onChange={(e) =>
                         setCouponNew({
@@ -123,7 +125,7 @@ const CreateCouponForm = () => {
                     Porcentaje descuento:
                     <input
                       type="text"
-                      placeholder="ejemplo: 0.2"
+                      placeholder="ejem: 0.20"
                       value={couponNew.discount}
                       onChange={(e) =>
                         setCouponNew({ ...couponNew, discount: e.target.value })
@@ -139,7 +141,7 @@ const CreateCouponForm = () => {
                     Cantidad de usos:
                     <input
                       type="text"
-                      placeholder="ejemplo: 1"
+                      placeholder="eje: 5"
                       value={couponNew.usagesAvailable}
                       onChange={(e) =>
                         setCouponNew({
@@ -153,10 +155,10 @@ const CreateCouponForm = () => {
 
                 <div className={Styles.inputsBox}>
                   <label>
-                    Código valido:
+                    Nombre del Código:
                     <input
                       type="text"
-                      placeholder="ejemplo: bgdesign2"
+                      placeholder="eje: Navidad"
                       value={couponNew.code}
                       onChange={(e) =>
                         setCouponNew({ ...couponNew, code: e.target.value })
@@ -171,13 +173,11 @@ const CreateCouponForm = () => {
                 className={Styles.btn}
                 type="submit"
                 disabled={!isFormValid()}
-              ></button>
+              >
+                Crear cupón
+              </button>
             </form>
           </div>
-          {/* <CouponTableComponent
-            coupons={coupon}
-            onDeleteCoupon={handleDeleteCoupon}
-          /> */}
         </div>
 
         <div className={Styles.alineadorHijastro}>

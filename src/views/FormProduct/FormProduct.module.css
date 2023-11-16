@@ -4,7 +4,7 @@
   margin: 0 auto;
   position: fixed;
   transform: translate(-50%, -50%);
-  top: 50%;
+  top: 47%;
   left: 55%;
   width: cover;
   height: cover;
@@ -13,14 +13,14 @@
 .tituloPadre {
   position: fixed;
   transform: translate(-50%, -50%);
-  top: 10%;
+  top: 7%;
   left: 50%;
 }
 
 .tituloPadre h6 {
   font-size: 25px;
   font-family: barlow;
-  color: #ffffff;
+  color: #000000;
 }
 
 .inputContainer {
@@ -66,7 +66,7 @@ textarea {
   border-radius: 8px;
   padding: 30px;
   width: 1000px;
-  height: 700px;
+  height: 750px;
   margin-top: 100px;
   background-color: white;
   border: 1px solid rgba(255, 255, 255, 0.089);
@@ -74,10 +74,11 @@ textarea {
 }
 
 .sectionRight {
-  /* border: 1px solid orangered; */
+    /* border: 1px solid orangered; */
   flex: 1;
   width: 400px;
   height: 550px;
+  margin-top: 3rem;
 }
 
 .sectionLeft {
@@ -86,6 +87,7 @@ textarea {
   flex: 1;
   height: 550px;
   width: 250px;
+    margin-top: 3rem;
 }
 
 .error {

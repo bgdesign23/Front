@@ -4,7 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./views/Home/Home";
 import Product from "./views/Product/Product";
 import Decoracion from "./views/Decoration/Decoration";
-import FormDecoracion from "./views/FormDecoracion/FormDecoracion";
+// import FormDecoracion from "./views/FormDecoracion/FormDecoracion";
 import LoginForm from "./views/LoginForm/LoginForm";
 import FormRegistro from "./views/FormRegistro/FormRegistro";
 import NavBar from "./Components/NavBar/NavBar";
@@ -28,6 +28,7 @@ import UserAdmin from "../src/views/UserAdminDashboard/UserAdmin.jsx";
 import CreateCouponForm from "./views/AdminDashboard/FormsAdmDash/CreateCouponForm.jsx";
 import NotFound404 from "./views/NotFound404/NotFound404.jsx";
 import CreateAdmin from "./views/AdminDashboard/FormsAdmDash/CreateAdmin.jsx";
+import MyFavs from "./views/userPerfil/Favorites/MyFavorites.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,22 +57,20 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home/decoracion" element={<Decoracion />} />
-            <Route path="/form/decoracion" element={<FormDecoracion />} />
+            {/* <Route path="/form/decoracion" element={<FormDecoracion />} /> */}
             <Route
               path="/home/product"
               element={<Product productos={productos} />}
             />
-            <Route path="/home/nuevo" element={<FormProduct />} />
             <Route path="/form/login" element={<LoginForm />} />
             <Route path="/form/register" element={<FormRegistro />} />
             <Route path="/form/perfil" element={<UserPerfil />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/cupones" element={<CouponUser />} />
             <Route path="/perfil/compras" element={<ComprasUser />} />
-            <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/cartShop" element={<CartShop />} />
             <Route path="/home/success" element={<Success />} />
-            <Route path="/userAdmin" element={<UserAdmin />} />
+            <Route path="/favorites" element={<MyFavs />}/>
             <Route
               path={"/form/login/request-password-reset"}
               element={<RequestPasswordReset />}
@@ -80,8 +79,11 @@ function App() {
               path={"/form/login/password-reset"}
               element={<PasswordReset />}
             />
-            <Route path="/crear-cupon" element={<CreateCouponForm />} />
-            <Route path="/crear/admin" element={<CreateAdmin />} />
+            {user && user.user.role === 1 && <Route path="/admin" element={<AdminDashboard />} />}
+            {user && user.user.role === 1 && <Route path="/userAdmin" element={<UserAdmin />} />}
+            {user && user.user.role === 1 && <Route path="/home/nuevo" element={<FormProduct />} />}
+            {user && user.user.role === 1 && <Route path="/crear-cupon" element={<CreateCouponForm />} />}
+            {user && user.user.role === 1 && <Route path="/crear/admin" element={<CreateAdmin />} />}
             <Route path="*" element={<NotFound404 />} />
           </Routes>
         </div>

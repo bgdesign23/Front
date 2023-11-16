@@ -46,8 +46,8 @@ const TopProducts = () => {
   const carts = useSelector((state) => state.carts);
   const dispatch = useDispatch();
 
-  const [startDate, setStartDate] = useState(new Date("2023-11-06"));
-  const [endDate, setEndDate] = useState(new Date("2023-11-12"));
+  const [startDate, setStartDate] = useState(new Date("2023-11-12"));
+  const [endDate, setEndDate] = useState(new Date("2023-11-19"));
 
   useEffect(() => {
     dispatch(getCarts());
@@ -82,11 +82,14 @@ const TopProducts = () => {
     });
   });
 
-  //console.log("Ventas por producto: ", ventasPorProducto);
+// const productosMasVendidos = Object.entries(ventasPorProducto)
+//     .sort((a, b) => b[1] - a[1])
+//     .slice(0, 10);
 
-  // const productosMasVendidos = Object.entries(ventasPorProducto)
-  // .map(([productId, quantity]) => [productId, Number(quantity)])
-  // .sort((a,b) => b[1] - a[1]).sort(0, 10)
+//   // Construir los datos para el gráfico a partir de los productos más vendidos
+//   const labels = productosMasVendidos.map(([productName]) => productName);
+//   const datos = productosMasVendidos.map(([_, cantidad]) => cantidad);
+
 
   const labels = Object.keys(ventasPorProducto);
   const datos = Object.values(ventasPorProducto);
@@ -127,7 +130,7 @@ const TopProducts = () => {
       <div className={style.containerPadre}>
         <div className={style.containerAlineador}>
           <div className={style.containerHijo}>
-            <h6>Top ventas metricas</h6>
+            <h6>Top 10 productos más vendidos</h6>
             <div className={style.inputPadreBox}>
               <div className={style.inputBox}>
                 <label> Fecha de Inicio: </label>

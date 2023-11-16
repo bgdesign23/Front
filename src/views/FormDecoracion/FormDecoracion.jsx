@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./formDecoracion.module.css";
 import Swal from "sweetalert2";
+import InputMask from "react-input-mask";
 
 function FormDecoracion() {
   const [formData, setFormData] = useState({
@@ -19,9 +20,11 @@ function FormDecoracion() {
     if (formData.Nombre.trim() === "") {
       newErrors.Nombre = "El nombre es obligatorio";
     }
-    if (!/^[\d+]+$/.test(formData.NumeroDeTelefono)) {
-      newErrors.NumeroDeTelefono =
-        "El número de teléfono solo pueden ser números sin espacios, puedes incluir también el indicativo de tu país con el signo +";
+    if (formData.Apellido.trim() === "") {
+      newErrors.Apellido = "El apellido es obligatorio";
+    }
+    if (formData.Mensaje.trim() === "") {
+      newErrors.Mensaje = "El mensaje es obligatorio";
     }
 
     return newErrors;
@@ -86,7 +89,12 @@ function FormDecoracion() {
                     className={styles.inputs}
                   />
                   {errors.Nombre && (
-                    <div className={styles.error}>{errors.Nombre}</div>
+                    <div
+                      className={styles.error}
+                      style={{ color: "rgba(255, 0, 0, 0.7)" }}
+                    >
+                      {errors.Nombre}
+                    </div>
                   )}
                 </div>
               </div>
@@ -100,27 +108,34 @@ function FormDecoracion() {
                     placeholder="Apellido"
                     required
                     className={styles.inputs}
-                  />
+                  />{" "}
+                  {errors.Apellido && (
+                    <div
+                      className={styles.error}
+                      style={{ color: "rgba(255, 0, 0, 0.7)" }}
+                    >
+                      {errors.Apellido}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className={styles.row}>
                 <div className={styles.column}>
                   <div className={styles.numberTel}>
-                    <input // Número de Teléfono
+                    <InputMask // Número de Teléfono
+                      mask="+54 999 9999 - 9999" // Máscara
+                      {...("phone",
+                      {
+                        required: "Este campo es requerido",
+                      })}
                       type="tel"
                       name="NumeroDeTelefono"
                       value={formData.NumeroDeTelefono}
                       onChange={handleChange}
                       placeholder="Número de Teléfono"
-                      pattern="[0-9]+"
                       required
                       className={styles.inputs}
                     />
-                    {errors.NumeroDeTelefono && (
-                      <div className={styles.error}>
-                        {errors.NumeroDeTelefono}
-                      </div>
-                    )}
                   </div>
                 </div>
                 <div className={styles.column}>
@@ -139,15 +154,25 @@ function FormDecoracion() {
               </div>
               <div className={styles.row}>
                 <div className={styles.column}>
-                  <textarea // Mensaje
-                    name="Mensaje"
-                    value={formData.Mensaje}
-                    onChange={handleChange}
-                    placeholder="Mensaje"
-                    rows="4"
-                    required
-                    className={styles.inputs}
-                  />
+                  <dir className={styles.Mensaje}>
+                    <textarea // Mensaje
+                      name="Mensaje"
+                      value={formData.Mensaje}
+                      onChange={handleChange}
+                      placeholder="Mensaje"
+                      rows="4"
+                      required
+                      className={styles.inputs}
+                    />{" "}
+                    {errors.Mensaje && (
+                      <div
+                        className={styles.error}
+                        style={{ color: "rgba(255, 0, 0, 0.7)" }}
+                      >
+                        {errors.Mensaje}
+                      </div>
+                    )}
+                  </dir>
                 </div>
               </div>
               <div className={styles.row}>

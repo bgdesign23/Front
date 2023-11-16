@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { cleanDetail, getDetail } from "../../Redux/actions";
+import { cleanDetail, getDetail, addNumber } from "../../Redux/actions";
 import styles from "../Detail/Detail.module.css";
 import { useLocalStorage } from "../../localStorage/localStorage";
 import toast, { Toaster } from "react-hot-toast";
@@ -73,7 +73,7 @@ const Detail = () => {
       setThing([...thing]);
 
       toast.success("se agrego al carrito de compras");
-      // console.log("Productos: ", thing);
+      dispatch(addNumber())
     } else {
       Swal.fire({
         title: "No hay suficiente stock",

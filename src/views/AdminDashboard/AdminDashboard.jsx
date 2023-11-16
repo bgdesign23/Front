@@ -26,6 +26,10 @@ import {
   getUser,
   usersEliminated,
   productEliminated,
+  editCoupon,
+  adminsEliminated,
+  couponEliminated,
+  restoreCoupon,
 } from "../../Redux/actions";
 import UserTableComponent from "./UserTableComponent";
 import TableComponent from "./tableComponent";
@@ -35,8 +39,9 @@ import CouponTableComponent from "./CouponsTable";
 import TopProducts from "./TopProducts";
 import EliminatedUsersTable from "./Eliminados/EliminatedUsersTable";
 import EliminatedProductsTable from "./Eliminados/tableeliminated";
-import AdminNNNTableComponent from "./AdminTable";
 import ComponentAdminTable from "./AdminTable";
+import EliminatedCouponsTable from "./Eliminados/couponEliminated";
+import AdminsEliminatedTable from "./Eliminados/adminEliminated";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -46,11 +51,12 @@ const AdminDashboard = () => {
   const coupon = useSelector((state) => state.userCoupons);
   const productsEliminated = useSelector((state) => state.productsEliminated);
   const userEliminated = useSelector((state) => state.usersEliminated);
+  const admineliminated = useSelector((state) => state.adminsEliminated);
+  const coupnseliminated = useSelector((state) => state.couponEliminated);
 
   const cart = useSelector((state) => state.carts);
   const navigate = useNavigate();
 
-  const [adminView, setAdminView] = useState(false);
   const [cupones, setCupones] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [visibleCountProducts, setVisibleCountProducts] = useState(10);
@@ -62,6 +68,8 @@ const AdminDashboard = () => {
   useEffect(() => {
     dispatch(usersEliminated());
     dispatch(productEliminated());
+    dispatch(adminsEliminated());
+    dispatch(couponEliminated());
   }, [dispatch, updated]);
 
   const handleDeleteUser = (userId) => {
@@ -81,6 +89,7 @@ const AdminDashboard = () => {
         console.error("Error deleting coupon:", error);
       });
   };
+
   const handleVisibleProducts = () => {
     setVisibleProducts((prevVisible) => !prevVisible);
     if (!visibleProducts) {
@@ -127,13 +136,21 @@ const AdminDashboard = () => {
     role: "",
   });
 
-  const prodRef = useRef({
+  const [prodRef, setProdRef] = useState({
     name: "",
     stock: "",
     price: "",
     type: "",
     material: "",
     description: "",
+  });
+
+  const [inputCoupon, setInputCoupon] = useState({
+    newCode: "",
+    status: "",
+    discount: "",
+    expiration: "",
+    usagesAvailable: "",
   });
 
   const handleGetCarts = () => {
@@ -151,13 +168,34 @@ const AdminDashboard = () => {
     dispatch(getUserCoupons(value));
   };
 
-  const handleAdminView = (value) => {
-    if (adminView === value) {
-      setAdminView(false);
-    } else {
-      setAdminView(value);
+  const handleEditCoupon = (event, id, rowData) => {
+    event.preventDefault();
+    console.log("Coupon Id: ", id);
+    console.log("rowData: ", rowData);
+    try {
+      const updatedData = {
+        newCode: rowData.code,
+        status: rowData.status,
+        discount: rowData.discount,
+        expiration: rowData.expiration,
+        usagesAvailable: rowData.usagesAvailable,
+      };
+      console.log("Data: ", updatedData);
+      dispatch(editCoupon(id, updatedData)).then(() => {
+        dispatch(clearErrors());
+        Swal.fire("Listo", "Has modificado un cupón exitosamente");
+      });
+      // Limpiar los campos después de la edición
+      setInputCoupon({
+        newCode: "",
+        status: "",
+        discount: "",
+        expiration: "",
+        usagesAvailable: "",
+      });
+    } catch (error) {
+      console.error("Error al editar el cupón: ", error);
     }
-    dispatch(getAdmin(value));
   };
 
   const handleEditAdmin = (event, adminId) => {
@@ -256,21 +294,11 @@ const AdminDashboard = () => {
     });
   };
 
-  const handleRestoreAdmin = (event, id) => {
-    event.preventDefault();
-    dispatch(restoreAdmin(id)).then(() => {
-      dispatch(getAdmin());
-      dispatch(getAdmin(deleted));
-    });
-    setUpdated(!updated);
-  };
-  const handleDeletedAdmin = (event, id) => {
-    event.preventDefault();
+  const handleDeletedAdmin = (id) => {
     dispatch(deleteAdmin(id)).then(() => {
-      dispatch(getAdmin());
-      dispatch(getAdmin(deleted));
+      dispatch(adminsEliminated());
+      setUpdated((prevUpdated) => !prevUpdated);
     });
-    setUpdated(!updated);
   };
 
   const handleDeleteProduct = (productId) => {
@@ -307,15 +335,13 @@ const AdminDashboard = () => {
         stock: rowData.stock,
       };
       console.log("Data: ", updatedData);
-      dispatch(editProduct(productId, updatedData)).then((postError) => {
-        if (!postError) {
-          dispatch(clearErrors());
-          console.log("A ver si llega hasta aquí");
-          Swal.fire("Listo", "Has modificado un producto exitosamente");
-        }
+      dispatch(editProduct(productId, updatedData)).then(() => {
+        dispatch(clearErrors());
+        console.log("A ver si llega hasta aquí");
+        Swal.fire("Listo", "Has modificado un producto exitosamente");
       });
       // Limpiar los campos después de la edición
-      setProd({
+      setProdRef({
         name: "",
         stock: "",
         price: "",
@@ -324,7 +350,7 @@ const AdminDashboard = () => {
         description: "",
       });
     } catch (error) {
-      setErrors({ type: "EDIT_PRODUCTS", error: postError?.response?.data });
+      console.error("Error al editar el producto: ", error);
     }
   };
 
@@ -346,6 +372,24 @@ const AdminDashboard = () => {
       console.error("Error al restaurar el producto:", error);
     }
   };
+
+  const handleRestoreCoupon = (couponId) => {
+    dispatch(restoreCoupon(couponId)).then(() => {
+      dispatch(couponEliminated());
+      dispatch(getUserCoupons());
+      setUpdated((prevUpdated) => !prevUpdated);
+    });
+  };
+
+  //!CAMBIE ESTO
+  const handleRestoreAdmin = (adminId) => {
+    dispatch(restoreAdmin(adminId)).then(() => {
+      dispatch(getAdmin()).then(() => {
+        setUpdated((prevUpdated) => !prevUpdated);
+      });
+    });
+  };
+
   return (
     <div>
       <br />
@@ -423,10 +467,23 @@ const AdminDashboard = () => {
             <CouponTableComponent
               coupons={coupon}
               onDeleteCoupon={handleDeleteCoupon}
+              onEditCoupon={handleEditCoupon}
             />
           </div>
         )}
-
+        {coupnseliminated.length > 0 ? (
+          <div>
+            <h2>Cupones Eliminados</h2>
+            {visibleCoupons && (
+              <EliminatedCouponsTable
+                couponsEliminated={coupnseliminated}
+                handleRestoreCoupon={handleRestoreCoupon}
+              />
+            )}
+          </div>
+        ) : (
+          <p>No hay cupones eliminados.</p>
+        )}
         {visibleAdmins && (
           <ComponentAdminTable
             admins={admin}
@@ -434,6 +491,17 @@ const AdminDashboard = () => {
             onRestoreAdmin={handleRestoreAdmin}
             onEditAdmin={handleEditAdmin}
           />
+        )}
+        {admineliminated.length > 0 ? (
+          <div>
+            <h2>Administradores Eliminados</h2>
+            <AdminsEliminatedTable
+              adminsEliminated={admineliminated}
+              handleRestoreAdmin={handleRestoreAdmin}
+            />
+          </div>
+        ) : (
+          <p>No hay administradores eliminados.</p>
         )}
       </div>
       <div>
