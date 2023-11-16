@@ -11,7 +11,7 @@ export default function Iconfavorites({id, name, type, material,description, pri
 
   const productData = {
     id,
-    userId: user.user.id,
+    userId: user?.user.id,
     name,
     type,
     material,
