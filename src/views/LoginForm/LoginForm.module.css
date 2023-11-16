@@ -2,9 +2,8 @@
   display: flex;
   justify-content: left;
   align-items: center;
-    height: 99vh;
+  height: 99vh;
 }
-
 
 h4 {
   font-family: Arial, Helvetica, sans-serif;
@@ -12,12 +11,12 @@ h4 {
 
 .imagennForm {
   opacity: 50%;
-    position: left;
-    width: 100vw;
-    display: flex;
-    z-index: 10;
-    height: 99vh;
-    /* border: 5px solid pink; */
+  position: left;
+  width: 100vw;
+  display: flex;
+  z-index: 10;
+  height: 99vh;
+  /* border: 5px solid pink; */
 }
 .loginBackground {
   display: flex;
