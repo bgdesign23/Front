@@ -4,7 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./views/Home/Home";
 import Product from "./views/Product/Product";
 import Decoracion from "./views/Decoration/Decoration";
-import FormDecoracion from "./views/FormDecoracion/FormDecoracion";
+// import FormDecoracion from "./views/FormDecoracion/FormDecoracion";
 import LoginForm from "./views/LoginForm/LoginForm";
 import FormRegistro from "./views/FormRegistro/FormRegistro";
 import NavBar from "./Components/NavBar/NavBar";
@@ -57,7 +57,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home/decoracion" element={<Decoracion />} />
-            <Route path="/form/decoracion" element={<FormDecoracion />} />
+            {/* <Route path="/form/decoracion" element={<FormDecoracion />} /> */}
             <Route
               path="/home/product"
               element={<Product productos={productos} />}

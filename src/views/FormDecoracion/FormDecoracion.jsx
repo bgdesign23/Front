@@ -20,6 +20,13 @@ function FormDecoracion() {
     if (formData.Nombre.trim() === "") {
       newErrors.Nombre = "El nombre es obligatorio";
     }
+    if (formData.Apellido.trim() === "") {
+      newErrors.Apellido = "El apellido es obligatorio";
+    }
+    if (formData.Mensaje.trim() === "") {
+      newErrors.Mensaje = "El mensaje es obligatorio";
+    }
+
     return newErrors;
   };
 
@@ -82,7 +89,12 @@ function FormDecoracion() {
                     className={styles.inputs}
                   />
                   {errors.Nombre && (
-                    <div className={styles.error}>{errors.Nombre}</div>
+                    <div
+                      className={styles.error}
+                      style={{ color: "rgba(255, 0, 0, 0.7)" }}
+                    >
+                      {errors.Nombre}
+                    </div>
                   )}
                 </div>
               </div>
@@ -96,7 +108,15 @@ function FormDecoracion() {
                     placeholder="Apellido"
                     required
                     className={styles.inputs}
-                  />
+                  />{" "}
+                  {errors.Apellido && (
+                    <div
+                      className={styles.error}
+                      style={{ color: "rgba(255, 0, 0, 0.7)" }}
+                    >
+                      {errors.Apellido}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className={styles.row}>
@@ -143,7 +163,15 @@ function FormDecoracion() {
                       rows="4"
                       required
                       className={styles.inputs}
-                    />
+                    />{" "}
+                    {errors.Mensaje && (
+                      <div
+                        className={styles.error}
+                        style={{ color: "rgba(255, 0, 0, 0.7)" }}
+                      >
+                        {errors.Mensaje}
+                      </div>
+                    )}
                   </dir>
                 </div>
               </div>
