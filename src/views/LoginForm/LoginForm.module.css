@@ -2,9 +2,9 @@
   display: flex;
   justify-content: left;
   align-items: center;
-    height: 99vh;
+  height: 100vh;
+  /* background-color: white; */
 }
-
 
 h4 {
   font-family: Arial, Helvetica, sans-serif;
@@ -12,12 +12,12 @@ h4 {
 
 .imagennForm {
   opacity: 50%;
-    position: left;
-    width: 100vw;
-    display: flex;
-    z-index: 10;
-    height: 99vh;
-    /* border: 5px solid pink; */
+  position: left;
+  width: 100vw;
+  display: flex;
+  z-index: 10;
+  height: 99vh;
+  /* border: 5px solid pink; */
 }
 .loginBackground {
   display: flex;
@@ -70,6 +70,7 @@ h4 {
   height: 500px;
   padding: 20px;
   border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.089);
   background-color: rgba(217, 217, 217, 0.482);
   border-radius: 34px;
 }
@@ -100,7 +101,7 @@ h4 {
   width: 400px;
   border-radius: 8px;
   cursor: pointer;
-  background-color: transparent;
+  background-color: #191919;
   color: #ffffff;
   border: 2px solid rgb(177, 171, 171);
   height: 50px;
@@ -112,7 +113,9 @@ h4 {
 }
 
 .login button:hover {
-  background-color: #191919;
+  background-color: #ffffff;
+  color: black;
+  font-weight: bold;
 }
 
 .loginContainer h2 {

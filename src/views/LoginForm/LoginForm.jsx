@@ -104,12 +104,6 @@ function LoginForm() {
                 <button className={Style.btn} type="submit">
                   Iniciar Sesion
                 </button>
-                <button
-                  className={Style.btn}
-                  onClick={() => navigate("/form/register")}
-                >
-                  Crear Cuenta
-                </button>
               </div>
             </form>
             <div className={Style.botonGoogle}>
@@ -118,6 +112,12 @@ function LoginForm() {
                 con Google
               </button>
             </div>
+                <br />
+                <div className={Style.recup}>
+                <h4 onClick={() => navigate("/form/register")}>
+                  ¿No tiene una cuenta? Regístrese
+                </h4>
+                </div>
           </div>
         </div>
         {/* <div className={Style.imagennForm}>

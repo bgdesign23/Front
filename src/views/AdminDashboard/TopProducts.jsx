@@ -82,11 +82,14 @@ const TopProducts = () => {
     });
   });
 
-  //console.log("Ventas por producto: ", ventasPorProducto);
+// const productosMasVendidos = Object.entries(ventasPorProducto)
+//     .sort((a, b) => b[1] - a[1])
+//     .slice(0, 10);
 
-  // const productosMasVendidos = Object.entries(ventasPorProducto)
-  // .map(([productId, quantity]) => [productId, Number(quantity)])
-  // .sort((a,b) => b[1] - a[1]).sort(0, 10)
+//   // Construir los datos para el gráfico a partir de los productos más vendidos
+//   const labels = productosMasVendidos.map(([productName]) => productName);
+//   const datos = productosMasVendidos.map(([_, cantidad]) => cantidad);
+
 
   const labels = Object.keys(ventasPorProducto);
   const datos = Object.values(ventasPorProducto);

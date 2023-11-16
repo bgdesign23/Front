@@ -33,7 +33,7 @@ function Success() {
         background: "#3b3838",
         color: "#ffffff",
         showConfirmButton: false,
-        timer: 3000,
+        timer: 1000,
       });
       dispatch(createCart(cart, user.token));
     }
@@ -70,12 +70,6 @@ function Success() {
         </h2>
       </div> */}
         <div className={styles.buttonContainer}>
-          <button
-            className={styles.btnSuccess}
-            onClick={() => navigate("/home/product")}
-          >
-            Volver
-          </button>
           <button
             className={styles.btnSuccess}
             onClick={() => navigate("/perfil/compras")}

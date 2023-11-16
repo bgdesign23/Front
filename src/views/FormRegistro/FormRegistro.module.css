@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 99vh;
+  height: 100vh;
+  /* background-color: white; */
 }
 .loginContainer {
   display: flex;
@@ -41,9 +42,10 @@
   justify-content: center;
   padding: 20px;
   border-radius: 34px;
-  background-color: rgba(217, 217, 217, 0.482);
   z-index: 999;
-  /* border: 1px solid pink; */
+  background-color: rgba(217, 217, 217, 0.482); /*color del contenedor*/
+  border: 2px solid rgba(250, 22, 22, 0.089);
+  border-radius: 8px;
 }
 
 .labelimput {
@@ -71,6 +73,7 @@
   padding: 5px;
   margin: 5px 0;
   border: 1px solid #ccc;
+  background-color: rgba(217, 217, 217, 0.482);
   border-radius: 8px;
 }
 
@@ -79,15 +82,18 @@
   max-width: 400px;
   border-radius: 8px;
   cursor: pointer;
-  background-color: transparent;
+  background-color: #191919;
   color: #ffffff;
   border: 2px solid rgb(177, 171, 171);
   height: 50px;
   margin-inline: 0.5rem;
   margin-block: 0.5rem;
 }
+
 .login button:hover {
-  background-color: #191919;
+  background-color: #ffffff;
+  color: black;
+  font-weight: bold;
 }
 
 .buttonGoogle {
@@ -96,7 +102,7 @@
   max-width: 400px;
   border-radius: 8px;
   cursor: pointer;
-  background-color: gray;
+  background-color: #191919;
   color: #ffffff;
   border: 2px solid rgb(177, 171, 171);
   height: 50px;
@@ -106,8 +112,11 @@
   margin-inline: 0.5rem;
   margin-left: -2px;
 }
+
 .buttonGoogle:hover {
-  background-color: #191919;
+  background-color: #ffffff;
+  color: black;
+  font-weight: bold;
 }
 
 .buttonContainer {
