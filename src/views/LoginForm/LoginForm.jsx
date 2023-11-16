@@ -104,17 +104,20 @@ function LoginForm() {
                 <button className={Style.btn} type="submit">
                   Iniciar Sesion
                 </button>
-                <button className={Style.btn} onClick={() => handleOnGoogle()}>
-                  <FcGoogle size={25} style={{ marginRight: "8px" }} />{" "}
-                  Continuar con Google
-                </button>
+              </div>
+            </form>
+            <div className={Style.botonGoogle}>
+              <button className={Style.btn} onClick={() => handleOnGoogle()}>
+                <FcGoogle size={25} style={{ marginRight: "8px" }} /> Continuar
+                con Google
+              </button>
+            </div>
                 <br />
-
+                <div className={Style.recup}>
                 <h4 onClick={() => navigate("/form/register")}>
                   ¿No tiene una cuenta? Regístrese
                 </h4>
-              </div>
-            </form>
+                </div>
           </div>
         </div>
         {/* <div className={Style.imagennForm}>
