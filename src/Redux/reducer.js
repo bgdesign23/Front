@@ -55,11 +55,10 @@ import {
   ADMIN_ELIMINATED,
   RESTORE_COUPON,
   POST_FAV,
-<<<<<<< HEAD
-  DELETE_FAV
-=======
+  DELETE_FAV,
   DELETE_ADMIN,
->>>>>>> f69621dcd053166f480a41010aef108d58d74995
+  GET_FAV,
+  
 } from "./actionsTypes";
 
 let initialState = {
@@ -280,7 +279,7 @@ const Reducer = (state = initialState, action) => {
         userCoupons: [...state.userCoupons, action.payload],
       };
 
-    case GET_USER_COUPONS:
+   case GET_USER_COUPONS:
       return {
         ...state,
         userCoupons: action.payload,
@@ -414,7 +413,6 @@ const Reducer = (state = initialState, action) => {
           (coupon) => coupon.id !== action.payload.id
         ),
       };
-<<<<<<< HEAD
   case POST_FAV:
   return {
     ...state,
@@ -426,7 +424,6 @@ case DELETE_FAV:
     favorites: action.payload
   };
 
-=======
     case POST_FAV:
       return {
         ...state,
@@ -437,8 +434,17 @@ case DELETE_FAV:
         ...state,
         admin: action.payload,
         admin_copy: action.payload,
-      };
->>>>>>> f69621dcd053166f480a41010aef108d58d74995
+      };      
+    case GET_FAV:
+      return{
+        ...state,
+        favorites: action.payload,
+      }
+      case DELETE_FAV:
+        return{
+          ...state,
+          favorites: action.payload
+        }
     default:
       return { ...state };
   }

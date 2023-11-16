@@ -22,7 +22,6 @@ const Menu = () => {
         <button onClick={() => navigate("/perfil/compras")}>Mis Compras</button>
         <button onClick={() => navigate("/cupones")}>Cupones</button>
         <button onClick={() => navigate("/favorites")}>Mis Favoritos</button>
-
       </div>
       <div className={Styles.logout}>
         <button onClick={handleLogout} className={Styles.logout}>

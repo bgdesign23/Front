@@ -5,8 +5,7 @@ import Iconfavorites from "./favorites/Iconfavorites";
 // import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 
-export default function Card({ id, name, price, image, rating, productId }) {
-  
+export default function Card({ id, name, image, rating, types, description, price, stock, color, material }) {
   const PrecioEnCuota = (price / 12).toFixed(2);
   const navigate = useNavigate();
 
@@ -17,8 +16,17 @@ export default function Card({ id, name, price, image, rating, productId }) {
   return (
     <>
       <div className={Styles.cardContainer}>
-<Iconfavorites productId={id} />
-
+        <Iconfavorites 
+          id={id}
+          name={name}
+          type={types}
+          material={material}
+          description={description}
+          price={price}
+          stock={stock}
+          color={color}
+          image={image}
+        />
         <img
           className={Styles.imagen}
           src={image}

@@ -51,6 +51,8 @@ export default function Cards({ productos }) {
                   category={product.CategoryId}
                   amount={product.amount}
                   rating={product.rating}
+                  material={product.material}
+                  color={product.color}
                 />
               ))}
             </div>

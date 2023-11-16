@@ -1,36 +1,38 @@
-import { useState } from "react";
-import { BsSuitHeartFill } from "react-icons/bs";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postFav } from "../../../Redux/actions";
+import { BsSuitHeartFill } from "react-icons/bs";
 import Styles from "../favorites/favorites.module.css";
 
-const Iconfavorites = () => {
-  const dispatch = useDispatch();
-const product = useSelector((state) => state.product); 
-  const user = useSelector((state) => state.user); 
-  console.log("Estado del usuario:", user);
+export default function Iconfavorites({id, name, type, material,description, price, stock, color, image}) {
+  const [fav, setFav] = useState(false);
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
 
-  const [favoriteStatus, setFavoriteStatus] = useState(false);
-
+  const productData = {
+    id,
+    userId: user?.user.id,
+    name,
+    type,
+    material,
+    description,
+    price,
+    stock,
+    color,
+    image
+  }
+  
   const handleFav = () => {
-    if (user.authenticated) {  
-      setFavoriteStatus(!favoriteStatus);
-      dispatch(postFav(product)); 
-    } else {
-      console.log("Usuario no autenticado");
-    }
+    console.log("Entra al handle?: ", productData);
+    setFav(!fav);
+    dispatch(postFav(productData))
+    console.log("Esto llega hasta acá?");
   };
-
-  console.log("Estado de los productos:", product);
-
-  const favClassName = favoriteStatus ? Styles.IconFavLiked : Styles.IconFav;
-
+  
 
   return (
-    <div className={favClassName} onClick={handleFav}>
-      <BsSuitHeartFill />
+    <div className={fav ? Styles.IconFavLiked : Styles.IconFav}>
+      <BsSuitHeartFill onClick={handleFav} />
     </div>
   );
-};
-
-export default Iconfavorites;
+}

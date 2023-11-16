@@ -152,7 +152,7 @@
   display: flex;
   justify-content: center;
   margin-block: 0.5rem;
-  padding-right: 1rem;
+  /* padding-right: 1rem; */
 }
 
 .btn:hover {
@@ -162,13 +162,15 @@
 }
 
 .cupon_container {
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 .btncupon {
   border: none;
-  width: 240px;
+  width: 100%;
   border-radius: 8px;
   cursor: pointer;
   color: #191919;
@@ -176,11 +178,14 @@
   margin-inline: 0.5rem;
   align-items: left;
   justify-content: center;
+  background-color: #ffffff;
+  font-weight: lighter;
 }
 
 input {
   width: 230px;
   border-radius: 8px;
+
 }
 
 .btncupon:hover {

@@ -5,10 +5,10 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { addNumber, applyCoupon, createPreference, lowNumber, quitNumber } from "../../Redux/actions";
+import { addNumber, applyCoupon, getUserCoupons, createPreference, lowNumber, quitNumber } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import EmptyCart from "../CartShop/EmptyCart.jsx";
-import { getCouponDetails, isCouponValid, validateCoupon } from "../../views/userPerfil/Cupon/validateCoupon";
+import  { isCouponValid, coupons }   from "../../views/userPerfil/Cupon/validateCoupon";
 
 function ShoppingCart() {
   initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e"); //esta es la key-publi para la pasarela de pago
@@ -22,8 +22,8 @@ function ShoppingCart() {
   ); //se accede al localStorage
   const [couponCode, setCouponCode] = useState('');
   const [discount, setDiscount] = useState(0);
-  const [appliedCoupons, setAppliedCoupons] = useState([]); // Estado para almacenar los cupones aplicados
-
+  const userCoupons = useSelector((state) => state.userCoupons);
+const [appliedCoupons, setAppliedCoupons] = useState([]);
 
 
 
@@ -94,12 +94,10 @@ function ShoppingCart() {
   const handleAmount_Down = (id) => {
     const updatedCart = cart.map((product) => {
       if (product.id === id && product.amount > 1) {
-        // Clona el producto y actualiza la propiedad amount
         return { ...product, amount: (product.amount -= 1) };
       }
       return product;
     });
-    // Actualiza el estado y el localStorage
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     if (updatedCart.length) {
@@ -116,72 +114,51 @@ function ShoppingCart() {
   function formatthousand(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
- const handleApplyCoupon = async () => {
-  // Verifica si el código del cupón está presente.
-  if (!couponCode) {
-    toast.error("Ingresa un código de cupón válido");
-    return;
-  }
-
-  // Verifica si el cupón ya ha sido aplicado por el usuario.
-  if (appliedCoupons.includes(couponCode)) {
-    toast.warning("Este cupón ya fue usado por el usuario");
-    return;
-  }
-
-  // Obtén el total actual de la compra utilizando calculateTotalPrice.
+  const handleApplyCoupon = async () => {
+    console.log("Inicio handleApplyCoupon");
   
-  const total = calculateTotalPrice(product);
-
-  // Realiza las validaciones utilizando la lógica de tu archivo de validaciones.
-  const isValidCoupon = validateCoupon(couponCode, total, appliedCoupons);
-
-  if (isValidCoupon) {
-    try {
-      // Llama a la acción 'applyCoupon' y espera la respuesta asincrónica.
-      const result = await dispatch(applyCoupon(couponCode));
-
-      // Verifica si la aplicación del cupón fue exitosa.
-      if (result.success) {
-        // Actualiza el estado del descuento con el valor obtenido de la respuesta.
-        setDiscount(result.discount);
-
-        // Actualiza la lista de cupones aplicados.
-        setAppliedCoupons([...appliedCoupons, couponCode]);
-
-        // Muestra un mensaje de éxito al usuario con la descripción del cupón.
-        toast.success(`Cupón ${couponCode} - ${result.description} aplicado correctamente`);
-      } else {
-        // En caso de error, muestra un mensaje de error al usuario.
-        toast.error(result.message);
+    // Verificar si appliedCoupons es un array, si no, inicializarlo como un array vacío
+    setAppliedCoupons((prevCoupons) => (Array.isArray(prevCoupons) ? prevCoupons : []));
+  
+    if (!userCoupons.length) {
+      try {
+        await dispatch(getUserCoupons(user)); // Asegúrate de que getUserCoupons sea una acción asíncrona
+        console.log("Obteniendo cupones del usuario");
+      } catch (error) {
+        console.error("Error al obtener cupones del usuario:", error);
+        // Manejar el error, mostrar un mensaje al usuario, etc.
+        return;
       }
-    } catch (error) {
-      // Captura cualquier error durante la ejecución de la acción.
-      console.error("Error al aplicar el cupón:", error);
-
-      // Muestra un mensaje de error al usuario.
-      toast.error("Error al aplicar el cupón");
     }
-  } else {
-    // El cupón no es válido según las reglas definidas en validateCoupon.
-    const couponDetails = getCouponDetails(couponCode);
-
-    if (!couponDetails) {
-      toast.error("Cupón no válido");
+  
+    if (!couponCode) {
+      toast.error("Ingrese un código de cupón válido");
+      console.log("Código de cupón no válido");
+      return;
+    }
+  
+    const couponValidation = await isCouponValid(couponCode, numero, appliedCoupons, user);
+    console.log("Resultado de isCouponValid:", couponValidation);
+  
+    if (couponValidation.isValid) {
+      const { coupon, discountedTotal } = couponValidation;
+  
+      // Actualizar estados con el descuento aplicado
+      setDiscount(coupon.descuento || 0);
+      setTotalWithDiscount(discountedTotal);
+  
+      // Actualizar estados con el cupón aplicado
+      setAppliedCoupons((prevCoupons) => [...prevCoupons, couponCode]);
+  
+      // Mensaje de éxito
+      toast.success(`Cupón "${coupon.codigo}": ${coupon.descripcion} fue aplicado con éxito`);
     } else {
-      if (total < couponDetails.minPurchase) {
-        toast.error(`El importe mínimo para el cupón es de ${couponDetails.minPurchase}`);
-      }
-      // Otros mensajes personalizados según sea necesario.
+      // Mensaje de error
+      toast.error(couponValidation.message);
+      console.log("Error al aplicar cupón:", couponValidation.message);
     }
-  }
-};
-  
+  };
 
-  
-  
-  
-  
   const handleButtonBuy = async () => {
     if (user && localStorage.getItem("token")) return handleBuy();
     else
@@ -203,7 +180,7 @@ function ShoppingCart() {
       });
   };
 
-  const handleBuy = async () => {
+    const handleBuy = async () => {
     const updatedCart = cart.map((producto) => {
       const discountedPrice = producto.price * (1 - discount);
       return {

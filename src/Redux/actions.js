@@ -62,7 +62,8 @@ import {
   RESTORE_COUPON,
   ADMIN_ELIMINATED,
   POST_FAV,
-  DELETE_FAV
+  DELETE_FAV,
+  GET_FAV
 } from "../Redux/actionsTypes";
 
 import { URL } from "../utils/toggleUrl";
@@ -704,29 +705,37 @@ export const deleteCoupon = (id) => {
   };
 };
 
-export const getUserCoupons = () => {
-  return (dispatch) => {
-    axios
-      .get(`${URL}/coupon`)
-      .then((response) => {
-        dispatch({
-          type: GET_USER_COUPONS,
-          payload: response.data,
-        });
-      })
-      .catch((error) => {
-        dispatch({
-          type: COUPONS_ERROR,
-          payload: error.response.data,
-        });
-      });
-  };
-};
+
 
 export const applyCoupon = (couponDetails) => {
   return {
     type: APPLY_COUPON,
     payload: couponDetails,
+  };
+};
+export const getUserCoupons = () => {
+  return (dispatch) => {
+    axios
+      .get(`${URL}/coupon`)
+      .then((response) => {
+        if (response && response.data) {
+          dispatch({
+            type: GET_USER_COUPONS,
+            payload: response.data,
+          });
+        } else {
+          dispatch({
+            type: COUPONS_ERROR,
+            payload: "Error: Datos de cupones no disponibles en la respuesta.",
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: COUPONS_ERROR,
+          payload: error.response ? error.response.data : "Error de red.",
+        });
+      });
   };
 };
 
@@ -1042,13 +1051,11 @@ export const restoreCoupon = (couponId) => {
     }
   };
 };
+export const postFav = (productData) => {
 
-
-export const postFav = (id, productId ) => {
   return async (dispatch) => {
     try {
-      console.log('Enviando solicitud para agregar a favoritos');
-      const { data } = await axios.post(`${URL}/favorite/${id}`, {productId});
+      const { data } = await axios.post(`${URL}/favorite/${productData.id}`, productData);
       dispatch({
         type: POST_FAV,
         payload: data,
@@ -1068,6 +1075,20 @@ export const deleteFav = (id) => {
       const { data } = await axios.get(`${URL}/favorite`);
       return dispatch({
         type: DELETE_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const getFav = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${URL}/favorite`);
+      return dispatch({
+        type: GET_FAV,
         payload: data,
       });
     } catch (error) {
