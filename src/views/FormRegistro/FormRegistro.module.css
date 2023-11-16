@@ -44,6 +44,10 @@
   background-color: rgba(217, 217, 217, 0.482);
   z-index: 999;
   /* border: 1px solid pink; */
+
+  background-color: rgba(217, 217, 217, 0.482); /*color del contenedor*/
+  border: 2px solid rgba(250, 22, 22, 0.089);
+  border-radius: 8px; /*8px*/
 }
 
 .labelimput {
@@ -70,7 +74,9 @@
   max-width: 400px;
   padding: 5px;
   margin: 5px 0;
+  /* border: 1px solid #ccc; */
   border: 1px solid #ccc;
+  background-color: rgba(217, 217, 217, 0.482);
   border-radius: 8px;
 }
 

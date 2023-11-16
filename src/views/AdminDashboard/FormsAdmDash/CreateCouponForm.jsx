@@ -9,6 +9,7 @@ import {
 import Swal from "sweetalert2";
 import Styles from "../FormsAdmDash/cuponForm.module.css";
 import CouponTableComponent from "../CouponsTable.jsx";
+import InputMask from "react-input-mask";
 
 const CreateCouponForm = () => {
   const dispatch = useDispatch();
@@ -105,7 +106,8 @@ const CreateCouponForm = () => {
                 <div className={Styles.inputsBox}>
                   <label>
                     Caducidad:
-                    <input
+                    <InputMask
+                      mask=" 99/999/9999"
                       type="text"
                       placeholder="eje: 01/01/2024"
                       value={couponNew.expiration}

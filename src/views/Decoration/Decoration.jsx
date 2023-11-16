@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getDesings } from "../../Redux/actions";
-import FormaSvg from "./FormaSvg/FormaSvg";
+// import FormaSvg from "./FormaSvg/FormaSvg";
 import styles from "../Decoration/Decoration.module.css";
+import logoWhatsapp from "../Detail/whatsapp (1).png";
 
 const Decoracion = () => {
   const dispatch = useDispatch();
@@ -35,9 +35,32 @@ const Decoracion = () => {
               </div>
             </section>
             <div className={styles.buttonDeco}>
-              <Link to="/form/decoracion">
-                <button className={styles.boton}> Solicitar servicio </button>
-              </Link>
+              <button className={styles.boton}>
+                <a
+                  href="https://wa.me/5492477399289/?text=¡Hola!%20Quisiera%20más%20información%20sobre%20los%20servicios%20de%20decoración.%20✨"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.whatsappLink}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    textDecoration: "none",
+                    color: "inherit",
+                    marginLeft: "7px",
+                  }}
+                >
+                  Contactar por WhatsApp
+                  <img
+                    src={logoWhatsapp}
+                    alt=""
+                    style={{
+                      width: "26px",
+                      height: "26px",
+                      marginLeft: "10px",
+                    }}
+                  />
+                </a>
+              </button>
             </div>
           </div>
         ))}

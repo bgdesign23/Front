@@ -29,10 +29,9 @@ const MyFavs = () => {
         <br/>
         <br/>
         <h1> Favoritos: </h1>
-         {favorites.map((product) =>
-         <div>
+         {favorites?.map((product) =>
+         <div key= {product.id}>
             <Card            
-              key= {product.id}
               id={product.id}
               name= {product.name}
               description={product.description}
