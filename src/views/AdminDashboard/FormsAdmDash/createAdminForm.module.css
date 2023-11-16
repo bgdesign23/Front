@@ -5,6 +5,9 @@
     height: 300px;
     background-color: transparent;
     border-radius:8px; 
+    /* border: 1px solid rgb(98, 255, 0);
+        background-color: rgb(114, 49, 49);*/
+        /* justify-content: center;  */
 
 }
 .containerPadre{
@@ -19,7 +22,7 @@
 
 
 .containerForm{
-    margin-left: 140px;
+    margin-left: 115px;
     position: relative;
     display: flex;
     flex-direction: row;
