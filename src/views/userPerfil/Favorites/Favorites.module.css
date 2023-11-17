@@ -1,0 +1,26 @@
+.boxRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 85%;
+  height: 89vh;
+  align-content: center;
+  color:aliceblue;
+  margin-top: 30%;
+    text-align: center;
+   
+}
+.h1Compras {
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    z-index: 999999999;
+  }
+  
+  .imgCompras {
+    width: 100px;
+    height: 100px;
+  }
+  

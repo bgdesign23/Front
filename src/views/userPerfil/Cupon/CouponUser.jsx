@@ -1,27 +1,34 @@
+import React, { useState } from "react";
 import Menu from "../../userPerfil/Menu/Menu.jsx";
 import Styles from "../../userPerfil/Cupon/CuponUser.module.css";
 
 const CuponesPage = () => {
+  const [cuponesUtilizados, setCuponesUtilizados] = useState([]);
+
   const cupones = [
-    {
-      id: 1,
-      titulo: "Descuento Bienvenida",
-      descripcion: "20% de descuento en tu primera compra",
-      codigo: "bgdesign",
-    },
     {
       id: 2,
       titulo: "Descuento Black",
-      descripcion: "15% de descuento en compras superiores a $10.000",
+      descripcion: "En tu compra superior a $10.000 tienes un descuento del 15%",
       codigo: "black",
     },
     {
       id: 3,
-      titulo: "Descuento Permanencia",
-      descripcion: "En tu 5ta compra tenes un descuento del 10%",
-      codigo: "permanencia",
+      titulo: "Descuento Designblack",
+      descripcion: "En tu compra superior a $45.000 tienes un descuento del 30%",
+      codigo: "designblack",
+      descuento: 0.3,
+      montoMinimo: 45000,
     },
   ];
+
+  const marcarCuponUtilizado = (codigo) => {
+    // Lógica para marcar el cupón como utilizado
+    setCuponesUtilizados([...cuponesUtilizados, codigo]);
+
+    // Mostrar una alerta
+    alert(`El cupón "${codigo}" ya no puede ser utilizado.`);
+  };
 
   return (
     <div className={Styles.containerAll}>
@@ -36,15 +43,25 @@ const CuponesPage = () => {
           ) : (
             <ul>
               {cupones.map((cupon) => (
-                <li key={cupon.id}>
+                <li key={cupon.id} className={cuponesUtilizados.includes(cupon.codigo) ? Styles.cuponUtilizado : ""}>
                   <div className={Styles.conteinDesc}>
                     <div className={Styles.descCont}>
-                      <h4>{cupon.titulo}</h4>
-                      <p>{cupon.descripcion}</p>
+                      <h4 className={cuponesUtilizados.includes(cupon.codigo) ? Styles.cuponUtilizadoText : ""}>
+                        {cupon.titulo}
+                      </h4>
+                      <p className={cuponesUtilizados.includes(cupon.codigo) ? Styles.cuponUtilizadoText : ""}>
+                        {cupon.descripcion}
+                      </p>
                     </div>
                   </div>
                   <div className={Styles.codigoDesc}>
                     <h5>Codigo: {cupon.codigo}</h5>
+                    {!cuponesUtilizados.includes(cupon.codigo) && (
+                      <button onClick={() => marcarCuponUtilizado(cupon.codigo)}>
+                       
+                       
+                      </button>
+                    )}
                   </div>
                 </li>
               ))}
@@ -52,9 +69,8 @@ const CuponesPage = () => {
           )}
           <div className={Styles.basesCondiciones}>
             <h4>
-              {" "}
-              Bases y Condiones: Los descuentos se aplican por unica vez, no son
-              acumulables entre si.{" "}
+              Bases y Condiones: Los descuentos se aplican por única vez, no son
+              acumulables entre sí.
             </h4>
           </div>
         </div>

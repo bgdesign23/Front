@@ -5,32 +5,10 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { addNumber, applyCoupon, createPreference, lowNumber, quitNumber } from "../../Redux/actions";
+import { addNumber, applyCoupon, getUserCoupons, createPreference, lowNumber, quitNumber } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import EmptyCart from "../CartShop/EmptyCart.jsx";
-
-function validateCoupon(couponCode) {
-  const currentDate = new Date();
-
-  const welcomeCoupon = {
-    status: "activo",
-    expiration: "2023-12-31",
-    discount: 0.2,
-    usagesAvailable: 1,
-    code: "bgdesign",
-  };
-
-  if (
-    welcomeCoupon.code === couponCode &&
-    welcomeCoupon.status === "activo" &&
-    new Date(welcomeCoupon.expiration) >= currentDate &&
-    welcomeCoupon.usagesAvailable > 0
-  ) {
-    return welcomeCoupon.discount;
-  }
-
-  return 0;
-}
+import  { isCouponValid, coupons }   from "../../views/userPerfil/Cupon/validateCoupon";
 
 function ShoppingCart() {
   initMercadoPago("TEST-f0c64837-0fc1-441b-85ea-20be004df16e"); //esta es la key-publi para la pasarela de pago
@@ -38,12 +16,16 @@ function ShoppingCart() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [preferenceId, setPreferenceId] = useState(null);
-  const [couponCode, setCouponCode] = useState("");
-  const [discount, setDiscount] = useState(0);
   const [totalWithDiscount, setTotalWithDiscount] = useState(0);
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   ); //se accede al localStorage
+  const [couponCode, setCouponCode] = useState('');
+  const [discount, setDiscount] = useState(0);
+  const userCoupons = useSelector((state) => state.userCoupons);
+const [appliedCoupons, setAppliedCoupons] = useState([]);
+
+
 
   //total a pagar
   const numero = cart.reduce((accumulator, producto) => {
@@ -112,12 +94,10 @@ function ShoppingCart() {
   const handleAmount_Down = (id) => {
     const updatedCart = cart.map((product) => {
       if (product.id === id && product.amount > 1) {
-        // Clona el producto y actualiza la propiedad amount
         return { ...product, amount: (product.amount -= 1) };
       }
       return product;
     });
-    // Actualiza el estado y el localStorage
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     if (updatedCart.length) {
@@ -134,19 +114,48 @@ function ShoppingCart() {
   function formatthousand(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
-
   const handleApplyCoupon = async () => {
-    const newDiscount = validateCoupon(couponCode);
-    setDiscount(newDiscount);
-    dispatch(applyCoupon(couponCode));
-    setCouponCode("");
-
-    if (newDiscount > 0) {
-      const totalWithDiscount = numero * (1 - newDiscount);
-      setTotalWithDiscount(totalWithDiscount);
+    console.log("Inicio handleApplyCoupon");
+  
+    // Verificar si appliedCoupons es un array, si no, inicializarlo como un array vacío
+    setAppliedCoupons((prevCoupons) => (Array.isArray(prevCoupons) ? prevCoupons : []));
+  
+    if (!userCoupons.length) {
+      try {
+        await dispatch(getUserCoupons(user)); // Asegúrate de que getUserCoupons sea una acción asíncrona
+        console.log("Obteniendo cupones del usuario");
+      } catch (error) {
+        console.error("Error al obtener cupones del usuario:", error);
+        // Manejar el error, mostrar un mensaje al usuario, etc.
+        return;
+      }
+    }
+  
+    if (!couponCode) {
+      toast.error("Ingrese un código de cupón válido");
+      console.log("Código de cupón no válido");
+      return;
+    }
+  
+    const couponValidation = await isCouponValid(couponCode, numero, appliedCoupons, user);
+    console.log("Resultado de isCouponValid:", couponValidation);
+  
+    if (couponValidation.isValid) {
+      const { coupon, discountedTotal } = couponValidation;
+  
+      // Actualizar estados con el descuento aplicado
+      setDiscount(coupon.descuento || 0);
+      setTotalWithDiscount(discountedTotal);
+  
+      // Actualizar estados con el cupón aplicado
+      setAppliedCoupons((prevCoupons) => [...prevCoupons, couponCode]);
+  
+      // Mensaje de éxito
+      toast.success(`Cupón "${coupon.codigo}": ${coupon.descripcion} fue aplicado con éxito`);
     } else {
-      setDiscount(0);
-      setTotalWithDiscount(numero);
+      // Mensaje de error
+      toast.error(couponValidation.message);
+      console.log("Error al aplicar cupón:", couponValidation.message);
     }
   };
 
@@ -171,7 +180,7 @@ function ShoppingCart() {
       });
   };
 
-  const handleBuy = async () => {
+    const handleBuy = async () => {
     const updatedCart = cart.map((producto) => {
       const discountedPrice = producto.price * (1 - discount);
       return {

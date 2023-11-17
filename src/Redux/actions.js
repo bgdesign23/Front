@@ -705,29 +705,37 @@ export const deleteCoupon = (id) => {
   };
 };
 
+
+
+export const applyCoupon = (couponDetails) => {
+  return {
+    type: APPLY_COUPON,
+    payload: couponDetails,
+  };
+};
 export const getUserCoupons = () => {
   return (dispatch) => {
     axios
       .get(`${URL}/coupon`)
       .then((response) => {
-        dispatch({
-          type: GET_USER_COUPONS,
-          payload: response.data,
-        });
+        if (response && response.data) {
+          dispatch({
+            type: GET_USER_COUPONS,
+            payload: response.data,
+          });
+        } else {
+          dispatch({
+            type: COUPONS_ERROR,
+            payload: "Error: Datos de cupones no disponibles en la respuesta.",
+          });
+        }
       })
       .catch((error) => {
         dispatch({
           type: COUPONS_ERROR,
-          payload: error.response.data,
+          payload: error.response ? error.response.data : "Error de red.",
         });
       });
-  };
-};
-
-export const applyCoupon = (couponCode) => {
-  return {
-    type: APPLY_COUPON,
-    payload: couponCode,
   };
 };
 
@@ -1050,13 +1058,15 @@ export const postFav = (productData) => {
       const { data } = await axios.post(`${URL}/favorite/${productData.id}`, productData);
       dispatch({
         type: POST_FAV,
-        payload: data
+        payload: data,
       });
     } catch (error) {
       console.log(error.message);
-    };
+    }
   };
 };
+
+
 
 export const deleteFav = (id) => {
   return async (dispatch) => {
