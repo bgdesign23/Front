@@ -11,6 +11,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCategories,
+  getFav,
   getProductsAction,
   getUser,
 } from "../src/Redux/actions";
@@ -44,6 +45,7 @@ function App() {
     !user && localStorage.getItem("token") && dispatch(getUser());
     dispatch(getProductsAction());
     dispatch(getCategories());
+    user && dispatch(getFav(user?.user.id))
   }, [dispatch, user]);
 
   return (

@@ -1,11 +1,10 @@
-// import Rating from "../../Components/Rating/Rating";
+/* eslint-disable react/prop-types */
 import Styles from "../Product/card.module.css";
 import { useNavigate } from "react-router-dom";
 import Iconfavorites from "./favorites/Iconfavorites";
-// import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 
-export default function Card({ id, name, image, rating, types, description, price, stock, color, material }) {
+export default function Card({Favoriteid, id, name, image, rating, types, description, price, stock, color, material, comments, category, amount }) {
   const PrecioEnCuota = (price / 12).toFixed(2);
   const navigate = useNavigate();
 
@@ -17,6 +16,7 @@ export default function Card({ id, name, image, rating, types, description, pric
     <>
       <div className={Styles.cardContainer}>
         <Iconfavorites 
+          Favoriteid={Favoriteid}
           id={id}
           name={name}
           type={types}
@@ -26,6 +26,10 @@ export default function Card({ id, name, image, rating, types, description, pric
           stock={stock}
           color={color}
           image={image}
+          comments={comments}
+          category={category}
+          amount={amount}
+          rating={rating}
         />
         <img
           className={Styles.imagen}
