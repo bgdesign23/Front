@@ -412,27 +412,27 @@ const Reducer = (state = initialState, action) => {
           (coupon) => coupon.id !== action.payload.id
         ),
       };
-    case POST_FAV:
-      return {
-        ...state,
-        favorites: action.payload,
-      };
     case DELETE_ADMIN:
       return {
         ...state,
         admin: action.payload,
         admin_copy: action.payload,
       };      
+    case POST_FAV:
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      };
     case GET_FAV:
       return{
         ...state,
         favorites: action.payload,
       }
-      case DELETE_FAV:
-        return{
-          ...state,
-          favorites: action.payload
-        }
+    case DELETE_FAV:
+      return{
+        ...state,
+        favorites: action.payload
+      }
     default:
       return { ...state };
   }
