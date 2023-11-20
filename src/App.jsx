@@ -10,6 +10,7 @@ import FormRegistro from "./views/FormRegistro/FormRegistro";
 import NavBar from "./Components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  carts,
   getCategories,
   getFav,
   getProductsAction,
@@ -46,6 +47,7 @@ function App() {
     dispatch(getProductsAction());
     dispatch(getCategories());
     user && dispatch(getFav(user?.user.id))
+    user && dispatch(carts(user?.user.id))
   }, [dispatch, user]);
 
   return (

@@ -45,7 +45,6 @@ import {
   DELETE_ADMIN,
   RESTORE_ADMIN,
   EDIT_ADMIN,
-  CARTS_REQUEST,
   CARTS_SUCCESS,
   CARTS_FAILURE,
   GET_CARTS,
@@ -857,7 +856,6 @@ export const confirmPasswordReset = (token, password) => {
 export const carts = (UserId) => {
   return async (dispatch) => {
     try {
-      dispatch({ type: CARTS_REQUEST });
       const response = await axios.get(`${URL}/carts/user/${UserId}`);
       dispatch({
         type: CARTS_SUCCESS,
