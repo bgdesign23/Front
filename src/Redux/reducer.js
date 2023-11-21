@@ -35,7 +35,6 @@ import {
   DELETE_PRODUCT,
   DELETE_USER,
   RESTORE_USER,
-  CARTS_REQUEST,
   CARTS_SUCCESS,
   CARTS_FAILURE,
   EDIT_USERS,
@@ -322,21 +321,14 @@ const Reducer = (state = initialState, action) => {
         ...state,
         errors: {},
       };
-
-    case CARTS_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
     case CARTS_SUCCESS:
       return {
-        loading: false,
+        ...state,
         carts: action.payload.carts,
-        error: "",
       };
     case CARTS_FAILURE:
       return {
-        loading: false,
+        ...state,
         carts: [],
         error: action.payload,
       };
@@ -412,27 +404,27 @@ const Reducer = (state = initialState, action) => {
           (coupon) => coupon.id !== action.payload.id
         ),
       };
-    case POST_FAV:
-      return {
-        ...state,
-        favorites: action.payload,
-      };
     case DELETE_ADMIN:
       return {
         ...state,
         admin: action.payload,
         admin_copy: action.payload,
       };      
+    case POST_FAV:
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      };
     case GET_FAV:
       return{
         ...state,
         favorites: action.payload,
       }
-      case DELETE_FAV:
-        return{
-          ...state,
-          favorites: action.payload
-        }
+    case DELETE_FAV:
+      return{
+        ...state,
+        favorites: action.payload
+      }
     default:
       return { ...state };
   }

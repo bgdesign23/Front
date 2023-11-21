@@ -65,11 +65,11 @@
 }
 .containerTable2 {
     position: absolute;
-    top: 45%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 92%;
-    max-height: 60vh;
+    max-height: 20vh;
     overflow-y: auto;
 }
 

@@ -1,26 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { carts, cleanCarts, getUser } from "../../../Redux/actions";
+import { useSelector } from "react-redux";
 import Menu from "../Menu/Menu.jsx";
 import styles from "./ComprasUser.module.css";
 import tarjetas from "../../../images/tarjetas.png";
 
 function CartList() {
-  const dispatch = useDispatch();
   const cartsState = useSelector((state) => state.carts);
-  const user = useSelector((state) => state.user);
-
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (user) {
-      dispatch(carts(user?.user.id));
-    }
-    return () => dispatch(cleanCarts());
-  }, []);
 
   return (
     <div className={styles.containerAll}>
@@ -31,7 +15,7 @@ function CartList() {
         {cartsState && cartsState.length > 0 ? (
           <div className={styles.containerCompras}>
             <div className={styles.contCompr}>
-              {cartsState.map((cart, index) => (
+              {cartsState.map((cart) => (
                 <div className={styles.cartCompra} key={cart.id}>
                   <div className={styles.contDate}>
                     <p>{`Fecha de Operacion: ${

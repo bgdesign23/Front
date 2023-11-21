@@ -45,7 +45,6 @@ import {
   DELETE_ADMIN,
   RESTORE_ADMIN,
   EDIT_ADMIN,
-  CARTS_REQUEST,
   CARTS_SUCCESS,
   CARTS_FAILURE,
   GET_CARTS,
@@ -857,7 +856,6 @@ export const confirmPasswordReset = (token, password) => {
 export const carts = (UserId) => {
   return async (dispatch) => {
     try {
-      dispatch({ type: CARTS_REQUEST });
       const response = await axios.get(`${URL}/carts/user/${UserId}`);
       dispatch({
         type: CARTS_SUCCESS,
@@ -1047,22 +1045,22 @@ export const postFav = (productData) => {
 
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL}/favorite/${productData.id}`, productData);
+      const { data } = await axios.post(`${URL}/favorite`, productData);
       dispatch({
         type: POST_FAV,
         payload: data
       });
     } catch (error) {
       console.log(error.message);
-    };
+    }
   };
 };
 
-export const deleteFav = (id) => {
+export const deleteFav = (Favoriteid, UserId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${URL}/favorite/delete/${id}`);
-      const { data } = await axios.get(`${URL}/favorite`);
+      await axios.delete(`${URL}/favorite/${Favoriteid}`);
+      const { data } = await axios.get(`${URL}/favorite/${UserId}`);
       return dispatch({
         type: DELETE_FAV,
         payload: data,
@@ -1073,10 +1071,10 @@ export const deleteFav = (id) => {
   };
 };
 
-export const getFav = () => {
+export const getFav = (UserId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`${URL}/favorite`);
+      const { data } = await axios.get(`${URL}/favorite/${UserId}`);
       return dispatch({
         type: GET_FAV,
         payload: data,
